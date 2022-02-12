@@ -2,7 +2,6 @@ const { Server } = require("socket.io");
 
 const io = new Server(8080, { /* options */ });
 
-import { Server } from "socket.io";
 
 
 console.log("Server started")
