@@ -1,10 +1,10 @@
-var socket = require('socket.io')();
+var sockett = require('socket.io')();
 
-socket.on('connection',function(client){
+sockett.on('connection',function(client){
     console.log(`new connection ! ${client.id}`);
 
 });
-socket.listen(8080)
+sockett.listen(8080)
 console.log(`app running`);
 
 const { io } = require("socket.io-client");
