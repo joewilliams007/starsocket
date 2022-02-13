@@ -1,15 +1,18 @@
-const io = require("socket.io") (3000, {
-  cors: {
-    origin: ["http://localhost:8080"],
-  },
+var socket = require('socket.io')();
+var users = {
+    desktop : {},
+    android : {}
+}
+socket.on('connection',function(client){
+    console.log(`new connection ! ${client.id}`);
+    client.on('intro',(user)=>{
+
+            user.client = client ;
+            user.cid = client.id ;
+            users[user.type] = user ;
+
+            console.log('users '+users);
+    })
 });
-console.log("Server started")
-
-
-io.on("connection", (socket) => {
-  // ...
-  console.log("Connection Successfull")
-  console.log(socket.id); // ojIckSD2jqNzOqIrAGzL
-  socket.emit("hello", "world");
-
-});
+socket.listen(8080)
+console.log(`app running`);
