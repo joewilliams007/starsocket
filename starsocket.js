@@ -24,4 +24,9 @@ io.on("connection", (socket) => {
   });
   */
 
+    socket.on("hello", (arg) => {
+      console.log(arg); // world
+    });
+ 
+
 });
