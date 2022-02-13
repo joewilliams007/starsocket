@@ -5,35 +5,29 @@ var server = net.createServer(function(socket) {
 	socket.pipe(socket);
 });
 
-server.listen(1337, '127.0.0.1');
+server.on('connection', function(socket) {
+    console.log('A new connection has been established.');
 
-/*
-And connect with a tcp client from the command line using netcat, the *nix 
-utility for reading and writing across tcp/udp network connections.  I've only 
-used it for debugging myself.
-$ netcat 127.0.0.1 1337
-You should see:
-> Echo server
-*/
 
-/* Or use this example tcp client written in node.js.  (Originated with 
-example code from 
-http://www.hacksparrow.com/tcp-socket-programming-in-node-js.html.) */
+    // The server can also receive data from the client by reading from its socket.
+    socket.on('data', function(chunk) {
+        console.log(`Data received from client: ${chunk.toString()}`);
+    });
 
-var net = require('net');
+    // When the client requests to end the TCP connection with the server, the server
+    // ends the connection.
+    socket.on('end', function() {
+        console.log('Closing connection with the client');
+    });
 
-var client = new net.Socket();
-client.connect(1337, '127.0.0.1', function() {
-	console.log('Connected');
-	client.write('Hello, server! Love, Client.');
+    // Don't forget to catch error, for your own sake.
+    socket.on('error', function(err) {
+        console.log(`Error: ${err}`);
+    });
 });
 
-client.on('data', function(data) {
-	console.log('Received: ' + data);
-	client.destroy(); // kill client after server's response
-});
 
-client.on('close', function() {
-	console.log('Connection closed');
-});
+server.listen(8080);
+
+
 

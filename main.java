@@ -1,5 +1,10 @@
-public class Main {
+// Client Side
+
+class Program{
+	
   public static void main(String[] args) {
-    System.out.println("Hello World");
+		clientsocket client = new clientsocket();
+		client.run();
   }
+
 }
