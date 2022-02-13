@@ -1,7 +1,13 @@
 var net = require('net');
+const _messages = JSON.parse(fs.readFileSync('./messages.json'));
 
 var server = net.createServer(function(socket) {
-	socket.write('Echo server\r\n');
+
+	teks = `Total: ${_messages.length}\n\n`
+	for (var messages of _messages) {
+	teks += `${messages}\n`}
+
+	socket.write(teks.trim());
 	socket.pipe(socket);
 });
 
@@ -12,7 +18,12 @@ server.on('connection', function(socket) {
     // The server can also receive data from the client by reading from its socket.
     socket.on('data', function(chunk) {
         console.log(`Data received from client: ${chunk.toString()}`);
-    });
+
+              //-- Save Message         		
+			  _messages.push(chunk.toString())
+			  fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+  
+	});
 
     // When the client requests to end the TCP connection with the server, the server
     // ends the connection.
