@@ -1,18 +1,23 @@
 var socket = require('socket.io')();
-var users = {
-    desktop : {},
-    android : {}
-}
+
 socket.on('connection',function(client){
     console.log(`new connection ! ${client.id}`);
-    client.on('intro',(user)=>{
 
-            user.client = client ;
-            user.cid = client.id ;
-            users[user.type] = user ;
-
-            console.log('users '+users);
-    })
 });
 socket.listen(8080)
 console.log(`app running`);
+
+const { io } = require("socket.io-client");
+const socket = io(); // same server
+// const socket = io("https://server-domain.com"); // different site
+
+// client-side
+socket.on("connect", () => {
+    console.log(socket.id); // x8WIv7-mJelg7on_ALbx
+  });
+  
+  socket.on("disconnect", () => {
+    console.log(socket.id); // undefined
+  });
+
+
