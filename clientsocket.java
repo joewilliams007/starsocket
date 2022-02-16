@@ -1,33 +1,61 @@
+// package com.stardash.stardash;
+
 import java.io.*;
 import java.net.*;
+import java.util.function.Function;
 
 public class clientsocket {
-    public void run() {
+
+    int serverPort;
+    Socket socket;
+    PrintWriter toServer;
+    BufferedReader fromServer;
+
+    public clientsocket(){
+        serverPort = 2222;
         try {
-            int serverPort = 8080;
-            InetAddress host = InetAddress.getByName("localhost"); 
-            System.out.println("Connecting to server on port " + serverPort); 
-    
-            Socket socket = new Socket(host,serverPort); 
-            //Socket socket = new Socket("127.0.0.1", serverPort);
-            System.out.println("Just connected to " + socket.getRemoteSocketAddress()); 
-            PrintWriter toServer = 
-                new PrintWriter(socket.getOutputStream(),true);
-            BufferedReader fromServer = 
-                new BufferedReader(
-                        new InputStreamReader(socket.getInputStream()));
-            toServer.println("Hello from " + socket.getLocalSocketAddress()); 
-            String line = fromServer.readLine();
-            System.out.println("Client received: " + line + " from Server");
-            toServer.close();
+            socket = new Socket("localhost", serverPort);
+            toServer =
+                    new PrintWriter(socket.getOutputStream(), true);
+            fromServer =
+                    new BufferedReader(
+                            new InputStreamReader(socket.getInputStream()));
+        } catch (UnknownHostException ex) {
+
+        } catch (IOException e) {
+        }
+    }
+
+    public void stopConnection(){
+        toServer.close();
+        try {
             fromServer.close();
-            socket.close();
-        }
-        catch(UnknownHostException ex) {
-            ex.printStackTrace();
-        }
-        catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
-}
+        try {
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void sendMessage(String message) {
+        toServer.print(message);
+    }
+
+    public String run() {
+        String line = "No Answer";
+        try {
+            System.out.println("12");
+            line = fromServer.readLine();
+            line += "\n"+fromServer.readLine();
+            System.out.println("34");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    catch (Error e) {}
+        return line;
+    }
 }

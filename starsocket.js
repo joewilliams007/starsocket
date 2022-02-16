@@ -8,13 +8,14 @@ var server = net.createServer(function(socket) {
 
 	console.log('A new connection has been established.');
 	socket.pipe(socket);
-
-	socket.write('run');
+	
+	socket.write('hehe1\n');
+	socket.write('hehe2\n');
 
 	socket.on('data', function(chunk) {
 		console.log(`Data received from client: ${chunk.toString()}`);
 			  //-- Save Message         		
-			  _messages.push(chunk.toString().replace(/\n/g, " "))
+			  _messages.push(chunk.toString())
 			  fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 	});
 	
