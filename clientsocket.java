@@ -12,7 +12,7 @@ public class clientsocket {
     BufferedReader fromServer;
 
     public clientsocket(){
-        serverPort = 2222;
+        serverPort = 4753;
         try {
             socket = new Socket("localhost", serverPort);
             toServer =
@@ -42,7 +42,10 @@ public class clientsocket {
 
 
     public void sendMessage(String message) {
+
         toServer.print(message);
+      // toServer.write(message);
+      
     }
 
     public String run() {
@@ -50,6 +53,14 @@ public class clientsocket {
         try {
             System.out.println("12");
             line = fromServer.readLine();
+            line += "\n"+fromServer.readLine();
+            line += "\n"+fromServer.readLine();
+            line += "\n"+fromServer.readLine();
+            line += "\n"+fromServer.readLine();
+            line += "\n"+fromServer.readLine();
+            line += "\n"+fromServer.readLine();
+            line += "\n"+fromServer.readLine();
+            line += "\n"+fromServer.readLine();
             line += "\n"+fromServer.readLine();
             System.out.println("34");
         } catch (IOException e) {

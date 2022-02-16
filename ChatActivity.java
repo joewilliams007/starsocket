@@ -18,7 +18,7 @@ import android.widget.Toast;
           //  StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
           //  StrictMode.setThreadPolicy(policy);
             //sendMessage();
-           // online();
+            // online();
             sendMessage();
 
         }
@@ -37,9 +37,9 @@ import android.widget.Toast;
     public static void sendMessage() {
         clientsocket client = new clientsocket();
 
-        String message = "high";       // ((EditText)findViewById(R.id.editTextSendMessage)).getText().toString();
+        String message = "heee";       // ((EditText)findViewById(R.id.editTextSendMessage)).getText().toString();
       //  ((TextView) findViewById(R.id.textViewOnline)).setText("All Messages\n"+message);
         client.sendMessage(message);
-        client.stopConnection();
+       
     }
 }//  ((TextView) findViewById(R.id.textViewOnline)).setText("fail");
