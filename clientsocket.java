@@ -49,6 +49,8 @@ public class clientsocket {
     }
 
     public String run() {
+
+        
         String line = "No Answer";
         try {
             System.out.println("12");

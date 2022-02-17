@@ -25,24 +25,14 @@ var server = net.createServer(function(socket) {
 	message10 = _messages[Number(count) - 10]	
 
 
-	socket.write(message1+'\n');
-	socket.write(message2+'\n');
-	socket.write(message3+'\n');
-	socket.write(message4+'\n');
-	socket.write(message5+'\n');
-	socket.write(message6+'\n');
-	socket.write(message7+'\n');
-	socket.write(message8+'\n');
-	socket.write(message9+'\n');
-	socket.write(message10+'\n');
-
+	socket.write("message1\n");
 
 	socket.on('data', function(chunk) {
 
 
 		console.log(`Data received from client: ${chunk.toString()}`);
 			  //-- Save Message         		
-			  _messages.push(chunk.toString().replace(/(?:\r\n|\r|\n)/g))
+			  _messages.push(chunk.toString())
 			  fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 	});
 	
@@ -59,4 +49,18 @@ var server = net.createServer(function(socket) {
 
 server.listen(4753);
 
+/* -----------------------------------
+var client = new net.Socket();
+client.connect(4753, function() {
+	console.log('Connected');
+	client.write('Hello, server! Love, Client.');
+});
 
+client.on('data', function(data) {
+	console.log('Received: ' + data);
+	client.destroy(); // kill client after server's response
+});
+
+client.on('close', function() {
+	console.log('Connection closed');
+}); */
