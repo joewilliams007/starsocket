@@ -24,8 +24,31 @@ var server = net.createServer(function(socket) {
 	message9 = _messages[Number(count) - 9]	
 	message10 = _messages[Number(count) - 10]	
 
+	message11 = _messages[Number(count) - 11]	
+	message12 = _messages[Number(count) - 12]	
+	message13 = _messages[Number(count) - 13]	
+	message14 = _messages[Number(count) - 14]	
+	message15 = _messages[Number(count) - 15]	
+	message16 = _messages[Number(count) - 16]	
+	message17 = _messages[Number(count) - 17]	
+	message18 = _messages[Number(count) - 18]	
+	message19 = _messages[Number(count) - 19]	
+	message20 = _messages[Number(count) - 20]
 
-	socket.write(message1+"\n"+message2+"\n"+message3+"\n"+message4+"\n"+message5+"\n"+message6+"\n"+message7+"\n"+message8+"\n"+message9+"\n"+message10+"\n");
+	message21 = _messages[Number(count) - 21]	
+	message22 = _messages[Number(count) - 22]	
+	message23 = _messages[Number(count) - 23]	
+	message24 = _messages[Number(count) - 24]	
+	message25 = _messages[Number(count) - 25]	
+	message26 = _messages[Number(count) - 26]	
+	message27 = _messages[Number(count) - 27]	
+	message28 = _messages[Number(count) - 28]	
+	message29 = _messages[Number(count) - 29]	
+	message30 = _messages[Number(count) - 30]
+
+	result = (message1+message2+message3+message4+message5+message6+message7+message8+message9+message10+message11+message12+message13+message14+message15+message16+message17+message18+message19+message20+message21+message22+message23+message24+message25+message26+message27+message28+message29+message30).replace("undefined","")
+    finalresult = result.replace(/undefined/g,"")
+	socket.write(finalresult);
 
 
 	socket.on('data', function(chunk) {
