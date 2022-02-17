@@ -56,19 +56,21 @@ var server = net.createServer(function(socket) {
 		console.log(`Data received from client: ${chunk.toString()}`);
 
 		if (chunk.toString() = "clear") {
-				exec(`rm -rf ./messages.json`)
-				await delay(1000) /// waiting 1 second.
+			try{
+				exec(`rm -rf ./messages.json`);
+			
 				var add = new Date().getHours()+":"+new Date().getMinutes()
 				fs.appendFile(`./messages.json`, `["${add} Server Started."]`, function (err) {				
 				if (err) throw err;
 				});
+			}catch (err){}
 		} else if (chunk.toString() = "delete") {
 			fs.readFile(`./messages.json`, 'utf-8', function(err, data) {
 				if (err) throw err;				
 				var newValue = data.replace(`${message1}`, `- Deleted Message -`);				
 				fs.writeFile(`./messages.json`, newValue, 'utf-8', function(err, data) {
 					if (err) throw err;
-					console.log('Message Deleted!');
+					console.log('Message deleted!');
 				})
 			})	
 		} else {
