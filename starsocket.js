@@ -71,7 +71,7 @@ var server = net.createServer(function(socket) {
 				console.log(replys);
 				_messages.push(chunk.toString())
 				fs.writeFileSync('./messages.json', JSON.stringify(_messages))
-				_messages.push(texte+" StarDash 🌟 "+replys)
+				_messages.push(texte+" StarDash 🌟 "+replys+"\n")
 				fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 
 		});
