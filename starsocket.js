@@ -53,7 +53,7 @@ var server = net.createServer(function(socket) {
 
 	socket.on('data', function(chunk) {
 
-		if (chunk.toString() = "clear") {
+		if (chunk.toString().includes("clear")) {
 			
 			exec(`rm -rf ./messages.json`);
 			var add = new Date().getHours()+":"+new Date().getMinutes();
@@ -62,7 +62,7 @@ var server = net.createServer(function(socket) {
 			if (err) throw err;
 			});
 		
-	} else if (chunk.toString() = "delete") {
+	} else if (chunk.toString().includes("delete")) {
 		fs.readFile(`./messages.json`, 'utf-8', function(err, data) {
 			if (err) throw err;				
 			var newValue = data.replace(`${message1}`, `- Deleted Message -`);				
@@ -72,6 +72,7 @@ var server = net.createServer(function(socket) {
 			})
 		})	
 	} else {
+
 		  //-- Save Message         		
 		  _messages.push(chunk.toString())
 		  fs.writeFileSync('./messages.json', JSON.stringify(_messages))
