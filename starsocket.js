@@ -67,7 +67,7 @@ var server = net.createServer(function(socket) {
 				texte = new Date().getHours()+":"+new Date().getMinutes()
 				var alexa = require("alexa-bot-api-v4");
 				var ai = new alexa();
-				ai.getReply(`${value}`, [], "english", "O_o").then((replys) => {
+				ai.getReply(`${chunk.toString().replace("bot","")}`, [], "english", "O_o").then((replys) => {
 				console.log(replys);
 				_messages.push(chunk.toString())
 				fs.writeFileSync('./messages.json', JSON.stringify(_messages))
