@@ -1,74 +1,40 @@
-// package com.stardash.stardash;
-
-import java.io.*;
 import java.net.*;
-import java.util.function.Function;
-
-public class clientsocket {
-
-    int serverPort;
-    Socket socket;
-    PrintWriter toServer;
-    BufferedReader fromServer;
-
-    public clientsocket(){
-        serverPort = 4753;
-        try {
-            socket = new Socket("localhost", serverPort);
-            toServer =
-                    new PrintWriter(socket.getOutputStream(), true);
-            fromServer =
-                    new BufferedReader(
-                            new InputStreamReader(socket.getInputStream()));
+import java.io.*;
+ 
+/**
+ * This program is a socket client application that connects to a time server
+ * to get the current date time.
+ *
+ * @author www.codejava.net
+ */
+public class TimeClient {
+ 
+    public static void main(String[] args) {
+        String hostname = "time.nist.gov";
+        int port = 13;
+ 
+        try (Socket socket = new Socket(hostname, port)) {
+ 
+            InputStream input = socket.getInputStream();
+            InputStreamReader reader = new InputStreamReader(input);
+ 
+            int character;
+            StringBuilder data = new StringBuilder();
+ 
+            while ((character = reader.read()) != -1) {
+                data.append((char) character);
+            }
+ 
+            System.out.println(data);
+ 
+ 
         } catch (UnknownHostException ex) {
-
-        } catch (IOException e) {
+ 
+            System.out.println("Server not found: " + ex.getMessage());
+ 
+        } catch (IOException ex) {
+ 
+            System.out.println("I/O error: " + ex.getMessage());
         }
-    }
-
-    public void stopConnection(){
-        toServer.close();
-        try {
-            fromServer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            socket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public void sendMessage(String message) {
-
-        toServer.print(message);
-      // toServer.write(message);
-      
-    }
-
-    public String run() {
-
-        
-        String line = "No Answer";
-        try {
-            System.out.println("12");
-            line = fromServer.readLine();
-            line += "\n"+fromServer.readLine();
-            line += "\n"+fromServer.readLine();
-            line += "\n"+fromServer.readLine();
-            line += "\n"+fromServer.readLine();
-            line += "\n"+fromServer.readLine();
-            line += "\n"+fromServer.readLine();
-            line += "\n"+fromServer.readLine();
-            line += "\n"+fromServer.readLine();
-            line += "\n"+fromServer.readLine();
-            System.out.println("34");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    catch (Error e) {}
-        return line;
     }
 }

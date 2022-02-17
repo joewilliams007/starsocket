@@ -25,7 +25,8 @@ var server = net.createServer(function(socket) {
 	message10 = _messages[Number(count) - 10]	
 
 
-	socket.write("message1\n");
+	socket.write(message1+"\n"+message2+"\n"+message3+"\n"+message4+"\n"+message5+"\n"+message6+"\n"+message7+"\n"+message8+"\n"+message9+"\n"+message10+"\n");
+
 
 	socket.on('data', function(chunk) {
 
