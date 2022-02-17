@@ -67,16 +67,14 @@ var server = net.createServer(function(socket) {
 				texte = new Date().getHours()+":"+new Date().getMinutes()
 				var alexa = require("alexa-bot-api-v4");
 				var ai = new alexa();
+                 
+				var st = texte
+				var s = st.split(' ')
+				s.splice(0,3)
+				st = s.join(' ');
+			
 
-				var temp = chunk.toString()
-				var temp1 = function(f) {
-				if(f.split('error:').length > 4)
-					return f.split('error:')[4].trim();
-				else return f;
-				};
-				console.log("Output: ", temp1(temp))
-
-				ai.getReply(`${temp1(temp)}`, [], "english", "O_o").then((replys) => {
+				ai.getReply(`${st}`, [], "english", "O_o").then((replys) => {
 				console.log(replys);
 				_messages.push(chunk.toString())
 				fs.writeFileSync('./messages.json', JSON.stringify(_messages))
