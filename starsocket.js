@@ -62,15 +62,21 @@ var server = net.createServer(function(socket) {
 			if (err) throw err;
 			});
 		
-	} else if (chunk.toString().includes("delete")) {
-		fs.readFile(`./messages.json`, 'utf-8', function(err, data) {
-			if (err) throw err;				
-			var newValue = data.replace(`${message1}`, `- Deleted Message -`);				
-			fs.writeFile(`./messages.json`, newValue, 'utf-8', function(err, data) {
-				if (err) throw err;
-				console.log('Message deleted!');
-			})
-		})	
+	} else if (chunk.toString().includes("bot")) {
+
+				texte = new Date().getHours()+":"+new Date().getMinutes()
+				var alexa = require("alexa-bot-api-v4");
+				var ai = new alexa();
+				ai.getReply(`${value}`, [], "english", "O_o").then((replys) => {
+				console.log(replys);
+				_messages.push(chunk.toString())
+				fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+				_messages.push(texte+" StarDash 🌟 "+replys)
+				fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+
+		});
+
+
 	} else {
 
 		  //-- Save Message         		
