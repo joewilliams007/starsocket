@@ -68,7 +68,7 @@ var server = net.createServer(function(socket) {
 				var alexa = require("alexa-bot-api-v4");
 				var ai = new alexa();
                  
-				var newStr = texte.split(' ').slice(1).join(' ')
+				texte.split(" ").pop();
 
 				ai.getReply(`${newStr}`, [], "english", "O_o").then((replys) => {
 				console.log(result);
