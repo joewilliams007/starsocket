@@ -79,7 +79,8 @@ var server = net.createServer(function(socket) {
 			  _messages.push(chunk.toString())
 			  fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 		}
-	
+	});
+
 	socket.on('end', function() {
 		console.log('Closing connection with the client');
 		socket.destroy()
