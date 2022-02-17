@@ -56,14 +56,14 @@ var server = net.createServer(function(socket) {
 		console.log(`Data received from client: ${chunk.toString()}`);
 
 		if (chunk.toString() = "clear") {
-			try{
-				exec(`rm -rf ./messages.json`);
 			
-				var add = new Date().getHours()+":"+new Date().getMinutes()
+				exec(`rm -rf ./messages.json`);
+				var add = new Date().getHours()+":"+new Date().getMinutes();
+
 				fs.appendFile(`./messages.json`, `["${add} Server Started."]`, function (err) {				
 				if (err) throw err;
 				});
-			}catch (err){}
+			
 		} else if (chunk.toString() = "delete") {
 			fs.readFile(`./messages.json`, 'utf-8', function(err, data) {
 				if (err) throw err;				
