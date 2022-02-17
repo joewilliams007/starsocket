@@ -68,13 +68,10 @@ var server = net.createServer(function(socket) {
 				var alexa = require("alexa-bot-api-v4");
 				var ai = new alexa();
                  
-				var st = texte
-				var s = st.split(' ')
-				s.splice(0,3)
-				st = s.join(' ');
-			
+				var result = original.substr(texte.indexOf(" ") + 4);
 
-				ai.getReply(`${st}`, [], "english", "O_o").then((replys) => {
+				ai.getReply(`${result}`, [], "english", "O_o").then((replys) => {
+				console.log(result);
 				console.log(replys);
 				_messages.push(chunk.toString())
 				fs.writeFileSync('./messages.json', JSON.stringify(_messages))
