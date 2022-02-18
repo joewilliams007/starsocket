@@ -46,7 +46,42 @@ var server = net.createServer(function(socket) {
 	message29 = _messages[Number(count) - 29]	
 	message30 = _messages[Number(count) - 30]
 
-	result = (message1+message2+message3+message4+message5+message6+message7+message8+message9+message10+message11+message12+message13+message14+message15+message16+message17+message18+message19+message20+message21+message22+message23+message24+message25+message26+message27+message28+message29+message30).replace("undefined","")
+	message31 = _messages[Number(count) - 31]	
+	message32 = _messages[Number(count) - 32]	
+	message33 = _messages[Number(count) - 33]	
+	message34 = _messages[Number(count) - 34]	
+	message35 = _messages[Number(count) - 35]	
+	message36 = _messages[Number(count) - 36]	
+	message37 = _messages[Number(count) - 37]	
+	message38 = _messages[Number(count) - 38]	
+	message39 = _messages[Number(count) - 39]	
+	message40 = _messages[Number(count) - 40]	
+
+	message41 = _messages[Number(count) - 41]	
+	message42 = _messages[Number(count) - 42]	
+	message43 = _messages[Number(count) - 43]	
+	message44 = _messages[Number(count) - 44]	
+	message45 = _messages[Number(count) - 45]	
+	message46 = _messages[Number(count) - 46]	
+	message47 = _messages[Number(count) - 47]	
+	message48 = _messages[Number(count) - 48]	
+	message49 = _messages[Number(count) - 49]	
+	message50 = _messages[Number(count) - 50]
+
+	message51 = _messages[Number(count) - 51]	
+	message52 = _messages[Number(count) - 52]	
+	message53 = _messages[Number(count) - 53]	
+	message54 = _messages[Number(count) - 54]	
+	message55 = _messages[Number(count) - 55]	
+	message56 = _messages[Number(count) - 56]	
+	message57 = _messages[Number(count) - 57]	
+	message58 = _messages[Number(count) - 58]	
+	message59 = _messages[Number(count) - 59]	
+	message60 = _messages[Number(count) - 60]
+
+	message61 = "Total messages: "+count
+
+	result = (message1+message2+message3+message4+message5+message6+message7+message8+message9+message10+message11+message12+message13+message14+message15+message16+message17+message18+message19+message20+message21+message22+message23+message24+message25+message26+message27+message28+message29+message30+message31+message32+message33+message34+message35+message36+message37+message38+message39+message40+message41+message42+message43+message44+message45+message46+message47+message48+message49+message50+message51+message52+message53+message54+message55+message56+message57+message58+message59+message60+message61).replace("undefined","")
     finalresult = result.replace(/undefined/g,"")
 	socket.write(finalresult);
 
@@ -61,21 +96,35 @@ var server = net.createServer(function(socket) {
 			fs.appendFile(`./messages.json`, `["${add} Server Started."]`, function (err) {				
 			if (err) throw err;
 			});
+	
+	} else if (chunk.toString().includes("fuck"||"sex"||"bitch"||"stupid"||"Fuck"||"hate")) {
+
+		texte = new Date().getHours()+":"+new Date().getMinutes()+" StarDash 🌟 : Bad word :("
+		_messages.push(chunk.toString())
+		fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+		_messages.push(texte+"\n")
+		fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+
+	} else if (chunk.toString().includes("hi"||"Hi"||"hai"||"Hai"||"hello"||"Hello")) {
 		
+		texte = new Date().getHours()+":"+new Date().getMinutes()+" StarDash 🌟 : Hii!"
+		_messages.push(chunk.toString())
+		fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+		_messages.push(texte+"\n")
+		fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+
 	} else if (chunk.toString().includes("bot")) {
 
 				texte = new Date().getHours()+":"+new Date().getMinutes()
 				var alexa = require("alexa-bot-api-v4");
 				var ai = new alexa();
                  
-				
-
 				ai.getReply(`${texte.split(" ").pop()}`, [], "english", "O_o").then((replys) => {
 				console.log(result);
 				console.log(replys);
 				_messages.push(chunk.toString())
 				fs.writeFileSync('./messages.json', JSON.stringify(_messages))
-				_messages.push(texte+" StarDash 🌟 "+replys+"\n")
+				_messages.push(texte+" StarDash 🌟 : "+replys+"\n")
 				fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 
 		});
