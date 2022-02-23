@@ -13,10 +13,6 @@ var server = net.createServer(function(socket) {
 	server.getConnections(function(error,count){
 		console.log('Number of concurrent connections to the server : ' + count);
 
-		
-
-	
-
 		const promise1 = new Promise((resolve, reject) => {
 			exec(`rm -rf ./online.json`)
 			resolve('Success!');
@@ -28,6 +24,7 @@ var server = net.createServer(function(socket) {
 			});	
 		  });
 	
+		});
 
 	var count = _messages.length;
 	var _online = JSON.parse(fs.readFileSync(`./online.json`));
