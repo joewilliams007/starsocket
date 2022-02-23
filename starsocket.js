@@ -9,8 +9,11 @@ console.log('Started Server.\nAll Saved messages: '+ count1);
 
 var server = net.createServer(function(socket) {
 
+	server.getConnections(function(error,count){
+		console.log('Number of concurrent connections to the server : ' + count);
+	  });
+	  
 	var count = _messages.length;
-	
 	
 	message1 = _messages[Number(count) - 1]	
 	message2 = _messages[Number(count) - 2]	
