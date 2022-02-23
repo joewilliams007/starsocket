@@ -13,16 +13,17 @@ var server = net.createServer(function(socket) {
 	server.getConnections(function(error,count){
 		console.log('Number of concurrent connections to the server : ' + count);
 
-		var _online = JSON.parse(fs.readFileSync(`./online.json`));
-		var online = _online[0]	//--- online
+		
 
-		fs.readFile(`./online.json`, 'utf-8', function(err, data) {
-			if (err) throw err;
-			var newValue = data.replace(`${online}`, count);
-			fs.writeFile(`./online.json`, newValue, 'utf-8', function(err, data) {
-				if (err) throw err;
-			})
-		})
+		try{
+		exec(`rm -rf ./online.json`)
+		await delay(1000)
+		fs.appendFile(`./online.json`, `["${count}"]`, function (err) {				
+		});	
+		} catch {
+			console.error(err)
+		}
+		
 	  });
 
 	var count = _messages.length;
