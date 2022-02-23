@@ -8,10 +8,9 @@ var server = net.createServer();
 console.log('Started Server.\nAll Saved messages: '+ count1);
 
 var server = net.createServer(function(socket) {
-	console.log('A new connection has been established.');
 
 	var count = _messages.length;
-	console.log("All Messages: "+count)
+	
 	
 	message1 = _messages[Number(count) - 1]	
 	message2 = _messages[Number(count) - 2]	
@@ -89,7 +88,7 @@ var server = net.createServer(function(socket) {
 	socket.on('data', function(chunk) {
 		
 		console.log('---------server details -----------------');
-
+		console.log("All Messages: "+count)
 		var address = server.address();
 		var port = address.port;
 		var family = address.family;
@@ -104,7 +103,8 @@ var server = net.createServer(function(socket) {
 		console.log('Server LOCAL ip :' + laddr);
 	  
 		console.log('------------remote client info --------------');
-	  
+		console.log('A new connection has been established.');
+	
 		var rport = socket.remotePort;
 		var raddr = socket.remoteAddress;
 		var rfamily = socket.remoteFamily;
