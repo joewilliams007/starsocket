@@ -2,21 +2,28 @@ var net = require('net');
 let fs = require('fs')
 const _messages = JSON.parse(fs.readFileSync('./messages.json'));
 var count1 = _messages.length;
-
+var _online = JSON.parse(fs.readFileSync(`./online.json`));
+var online = _online[0]	//--- online	
 
 var server = net.createServer();
 console.log('Started Server.\nAll Saved messages: '+ count1);
 
 var server = net.createServer(function(socket) {
 
-	let ice = 0
-	try {
+	
+	
 	server.getConnections(function(error,count){
 		console.log('Number of concurrent connections to the server : ' + count);
-		ice = count
+
+		fs.readFile(`./online.js`, 'utf-8', function(err, data) {
+			if (err) throw err;
+			var newValue = data.replace(`${tickets1}`, newtickets);
+			fs.writeFile(`./online.js`, newValue, 'utf-8', function(err, data) {
+				if (err) throw err;
+			})
+		})
 	  });
-	} catch {
-	}
+
 	var count = _messages.length;
 	
 	message1 = _messages[Number(count) - 1]	
