@@ -1,9 +1,7 @@
 var net = require('net');
 let fs = require('fs')
 const _messages = JSON.parse(fs.readFileSync('./messages.json'));
-var count1 = _messages.length;
-var _online = JSON.parse(fs.readFileSync(`./online.json`));
-var online = _online[0]	//--- online	
+var count1 = _messages.length;	
 
 var server = net.createServer();
 console.log('Started Server.\nAll Saved messages: '+ count1);
@@ -15,9 +13,12 @@ var server = net.createServer(function(socket) {
 	server.getConnections(function(error,count){
 		console.log('Number of concurrent connections to the server : ' + count);
 
+		var _online = JSON.parse(fs.readFileSync(`./online.json`));
+		var online = _online[0]	//--- online
+
 		fs.readFile(`./online.js`, 'utf-8', function(err, data) {
 			if (err) throw err;
-			var newValue = data.replace(`${tickets1}`, newtickets);
+			var newValue = data.replace(`${online}`, count);
 			fs.writeFile(`./online.js`, newValue, 'utf-8', function(err, data) {
 				if (err) throw err;
 			})
@@ -25,7 +26,9 @@ var server = net.createServer(function(socket) {
 	  });
 
 	var count = _messages.length;
-	
+	var _online = JSON.parse(fs.readFileSync(`./online.json`));
+	var online = _online[0]	//--- online
+
 	message1 = _messages[Number(count) - 1]	
 	message2 = _messages[Number(count) - 2]	
 	message3 = _messages[Number(count) - 3]	
@@ -94,7 +97,7 @@ var server = net.createServer(function(socket) {
 
 	message61 = "Total messages: "+count
 
-	result = ("ONLINE: "+ice+"\n"+message1+message2+message3+message4+message5+message6+message7+message8+message9+message10+message11+message12+message13+message14+message15+message16+message17+message18+message19+message20+message21+message22+message23+message24+message25+message26+message27+message28+message29+message30+message31+message32+message33+message34+message35+message36+message37+message38+message39+message40+message41+message42+message43+message44+message45+message46+message47+message48+message49+message50+message51+message52+message53+message54+message55+message56+message57+message58+message59+message60+message61).replace("undefined","")
+	result = ("ONLINE: "+online+"\n"+message1+message2+message3+message4+message5+message6+message7+message8+message9+message10+message11+message12+message13+message14+message15+message16+message17+message18+message19+message20+message21+message22+message23+message24+message25+message26+message27+message28+message29+message30+message31+message32+message33+message34+message35+message36+message37+message38+message39+message40+message41+message42+message43+message44+message45+message46+message47+message48+message49+message50+message51+message52+message53+message54+message55+message56+message57+message58+message59+message60+message61).replace("undefined","")
     finalresult = result.replace(/undefined/g,"")
 	socket.write(finalresult);
 
