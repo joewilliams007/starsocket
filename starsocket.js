@@ -172,7 +172,7 @@ var server = net.createServer(function(socket) {
 	});
 
 	socket.on('error', function(err) {
-		console.log(`Error: ${err}`);
+		// console.log(`Error: ${err}`);
 	});
 });
 
