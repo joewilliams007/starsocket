@@ -27,8 +27,14 @@ var server = net.createServer(function(socket) {
 		});
 
 	var count = _messages.length;
+
+	let online
+	try{
 	var _online = JSON.parse(fs.readFileSync(`./online.json`));
-	var online = _online[0]	//--- online
+	online = _online[0]	//--- online
+	} catch {
+		online = "1"
+	}
 
 	message1 = _messages[Number(count) - 1]	
 	message2 = _messages[Number(count) - 2]	
