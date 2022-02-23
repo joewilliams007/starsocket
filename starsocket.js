@@ -2,7 +2,7 @@ var net = require('net');
 let fs = require('fs')
 const _messages = JSON.parse(fs.readFileSync('./messages.json'));
 var count1 = _messages.length;	
-
+const {exec} = require('child_process');
 var server = net.createServer();
 console.log('Started Server.\nAll Saved messages: '+ count1);
 
