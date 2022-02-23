@@ -155,7 +155,7 @@ var server = net.createServer(function(socket) {
 		_messages.push(texte+"\n")
 		fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 
-	} else if (chunk.toString().includes("hi"||"Hi"||"hai"||"Hai"||"hello"||"Hello")) {
+	} else if (chunk.toString().includes("hi "||"Hi "||"hai "||"Hai "||"hello "||"Hello ")) {
 		
 		texte = new Date().getHours()+":"+new Date().getMinutes()+" StarDash 🌟 : Hii!"
 		_messages.push(chunk.toString())
