@@ -9,22 +9,26 @@ console.log('Started Server.\nAll Saved messages: '+ count1);
 var server = net.createServer(function(socket) {
 
 	
-	
-	server.getConnections(function(error,count){
-		console.log('Number of concurrent connections to the server : ' + count);
 
-		const promise1 = new Promise((resolve, reject) => {
-			exec(`rm -rf ./online.json`)
-			resolve('Success!');
-		  });
-		  
-		  promise1.then((value) => {
-			console.log(value);
-			fs.appendFile(`./online.json`, `["${count}"]`, function (err) {				
-			});	
-		  });
+
+	var minutes = 50, the_interval = minutes * 100;
+	setInterval(function() {
+		server.getConnections(function(error,count){
+			console.log('Number of concurrent connections to the server : ' + count);
 	
-		});
+			const promise1 = new Promise((resolve, reject) => {
+				exec(`rm -rf ./online.json`)
+				resolve('Success!');
+			  });
+			  
+			  promise1.then((value) => {
+				
+				fs.appendFile(`./online.json`, `["${count}"]`, function (err) {				
+				});	
+			  });
+		
+			});
+	}, the_interval);
 
 	var count = _messages.length;
 
