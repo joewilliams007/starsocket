@@ -15,16 +15,19 @@ var server = net.createServer(function(socket) {
 
 		
 
-		try{
-		exec(`rm -rf ./online.json`)
-		await delay(1000)
-		fs.appendFile(`./online.json`, `["${count}"]`, function (err) {				
-		});	
-		} catch {
-			console.error(err)
-		}
-		
-	  });
+	
+
+		const promise1 = new Promise((resolve, reject) => {
+			exec(`rm -rf ./online.json`)
+			resolve('Success!');
+		  });
+		  
+		  promise1.then((value) => {
+			console.log(value);
+			fs.appendFile(`./online.json`, `["${count}"]`, function (err) {				
+			});	
+		  });
+	
 
 	var count = _messages.length;
 	var _online = JSON.parse(fs.readFileSync(`./online.json`));
