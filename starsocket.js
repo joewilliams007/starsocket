@@ -16,10 +16,10 @@ var server = net.createServer(function(socket) {
 		var _online = JSON.parse(fs.readFileSync(`./online.json`));
 		var online = _online[0]	//--- online
 
-		fs.readFile(`./online.js`, 'utf-8', function(err, data) {
+		fs.readFile(`./online.json`, 'utf-8', function(err, data) {
 			if (err) throw err;
 			var newValue = data.replace(`${online}`, count);
-			fs.writeFile(`./online.js`, newValue, 'utf-8', function(err, data) {
+			fs.writeFile(`./online.json`, newValue, 'utf-8', function(err, data) {
 				if (err) throw err;
 			})
 		})
