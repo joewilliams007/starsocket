@@ -1,11 +1,10 @@
 var net = require('net');
 let fs = require('fs')
-const _images = JSON.parse(fs.readFileSync('./images.json'));
-var count1 = _messages.length;	
+const _images = JSON.parse(fs.readFileSync('./images.json'));	
 const {exec} = require('child_process');
 const { finished } = require('stream');
 var server = net.createServer();
-console.log('Started Server.\nAll Saved messages: '+ count1);
+console.log('Started Server.\nAll Saved messages: ');
 
 
 // function to encode file data to base64 encoded string
