@@ -87,7 +87,9 @@ var server = net.createServer(function(socket) {
 
 
 	socket.on('data', function(chunk) {
-
+		
+		console.log(request.connection.remoteAddress);
+		
 		if (chunk.toString().includes("clear")) {
 			
 			exec(`rm -rf ./messages.json`);
