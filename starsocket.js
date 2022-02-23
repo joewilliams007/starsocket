@@ -11,7 +11,7 @@ var server = net.createServer(function(socket) {
 	
 
 
-	var minutes = 50, the_interval = minutes * 100;
+	var minutes = 50, the_interval = minutes * 10000;
 	setInterval(function() {
 		server.getConnections(function(error,count){
 			console.log('Number of concurrent connections to the server : ' + count);
