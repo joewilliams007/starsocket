@@ -3,6 +3,7 @@ let fs = require('fs')
 const _messages = JSON.parse(fs.readFileSync('./messages.json'));
 var count1 = _messages.length;	
 const {exec} = require('child_process');
+const { finished } = require('stream');
 var server = net.createServer();
 console.log('Started Server.\nAll Saved messages: '+ count1);
 
@@ -28,7 +29,7 @@ function base64_decode(base64str, file) {
 // convert image to base64 encoded string
 var base64str = base64_encode('image.jpg');
 console.log(base64str);
-
+console.log("finished");
 
 var server = net.createServer(function(socket) {
 
