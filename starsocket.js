@@ -168,7 +168,7 @@ var server = net.createServer(function(socket) {
 	
 	socket.on('end', function() {
 		// console.log('Closing connection with the client');
-		socket.destroy()
+		// socket.destroy()
 	});
 
 	socket.on('error', function(err) {
