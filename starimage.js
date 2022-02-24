@@ -10,6 +10,7 @@ console.log('Started Server.');
 var server = net.createServer(function(socket) {
 	console.log("New Connection")
 
+	var count = _images.length;
 	lastImage = _images[Number(count) - 1]	
 	socket.write(lastImage);
 
