@@ -19,7 +19,7 @@ var server = net.createServer(function(socket) {
 		console.log("Data arrived. Storing in File.")
 
 		  //-- Save Message
-		  console.log(chunk.toString)         		
+		  console.log(chunk.toString())         		
 		  _images.push(chunk.toString())
 		  fs.writeFileSync('./images.json', JSON.stringify(_images))
 	
