@@ -11,7 +11,7 @@ var server = net.createServer(function(socket) {
 	console.log("New Connection")
 
 	var count = _images.length;
-	lastImage = _images[Number(count) - 1]	
+	lastImage = _images[0]	
 	socket.write(lastImage);
 
 	socket.on('data', function(chunk) {
