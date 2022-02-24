@@ -9,7 +9,9 @@ console.log('Started Server.');
 
 var server = net.createServer(function(socket) {
 	console.log("New Connection")
-	socket.write(base64str);
+
+	lastImage = _images[Number(count) - 1]	
+	socket.write(lastImage);
 
 	socket.on('data', function(chunk) {
 		
