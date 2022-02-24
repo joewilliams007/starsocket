@@ -27,9 +27,6 @@ var server = net.createServer(function(socket) {
 		  
 		  exec(`rm -rf ./images.json`);
 
-		  var delay = ms => new Promise(resolve => setTimeout(resolve, ms))
-		  await delay(3000) /// waiting 1 second.
-
 		  fs.appendFile(`./images.json`, `["${chunk.toString().replace(/\n/g,'')}"]`, function (err) {				
 		  if (err) throw err;
 		  });
