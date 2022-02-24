@@ -21,17 +21,22 @@ var server = net.createServer(function(socket) {
 		console.log("Data arrived. Storing in File.")
 
 		  //-- Save Message
-		  console.log(chunk.toString())    
+		  console.log(chunk.toString())   
 
+		  
+		  
 		  exec(`rm -rf ./images.json`);
-		 
+
+		  var delay = ms => new Promise(resolve => setTimeout(resolve, ms))
+		  await delay(3000) /// waiting 1 second.
+
 		  fs.appendFile(`./images.json`, `["${chunk.toString().replace(/\n/g,'')}"]`, function (err) {				
 		  if (err) throw err;
 		  });
 
-		  _images.push(chunk.toString())
-		  fs.writeFileSync('./images.json', JSON.stringify(_images))
-	
+		var delay = ms => new Promise(resolve => setTimeout(resolve, ms))
+		  await delay(3000) /// waiting 1 second.
+		
 
 	});
 	
