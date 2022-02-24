@@ -1,6 +1,6 @@
 var net = require('net');
 let fs = require('fs')
-const _images = JSON.parse(fs.readFileSync('./images.json'));	
+
 const {exec} = require('child_process');
 const { finished } = require('stream');
 var server = net.createServer();
@@ -11,6 +11,7 @@ var server = net.createServer(function(socket) {
 	console.log("New Connection")
 
 	var count = _images.length;
+	var _images = JSON.parse(fs.readFileSync('./images.json'));	
 	lastImage = _images[0]	
 	socket.write(lastImage);
 	console.log(lastImage)
