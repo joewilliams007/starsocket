@@ -10,11 +10,13 @@ console.log('Started Server.');
 var server = net.createServer(function(socket) {
 	console.log("New Connection")
 
-
+	try {
 	var _images = JSON.parse(fs.readFileSync('./images.json'));	
 	lastImage = _images[0]	
+	
 	socket.write(lastImage);
 	console.log(lastImage)
+	} catch {console.log("No image")}
 
 	socket.on('data', function(chunk) {
 		
