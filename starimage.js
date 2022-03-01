@@ -19,7 +19,7 @@ var server = net.createServer(function(socket) {
 //----------------------------------------------------------------------------------------------------------------
 		function decode_base64(base64str , filename){
 			var buf = Buffer.from(base64str,'base64');
-		  
+			var path = require('path');
 			fs.writeFile(path.join(__dirname,filename), buf, function(error){
 			  if(error){
 				throw error;
