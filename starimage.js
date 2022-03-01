@@ -11,7 +11,7 @@ var server = net.createServer(function(socket) {
 
 	socket.on('data', function(chunk) {
 		console.log(`receiving file...`)
-		console.log(chunk.toString);
+		console.log(chunk);
 		receivedData += chunk.toString
 	});
 	
