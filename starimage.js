@@ -17,10 +17,13 @@ var server = net.createServer(function(socket) {
 	socket.on('end', function() {
 		
 		
-		var base64Data = receivedData.rawBody.replace(/^data:image\/png;base64,/, "");
 
-		require("fs").writeFile("out.jpg", base64Data, 'base64', function(err) {
-		  console.log(err);
+		// Remove header
+		let base64Image = receivedData.split(';base64,').pop();
+		
+		
+		fs.writeFile('image.png', base64Image, {encoding: 'base64'}, function(err) {
+			console.log('File created');
 		});
 		console.log("The file was saved! (1)");
 
