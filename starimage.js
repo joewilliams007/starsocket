@@ -11,32 +11,36 @@ var server = net.createServer(function(socket) {
 
 	socket.on('data', function(chunk) {
 		console.log(`receiving file...`)
-		console.log(chunk);
-		receivedData += chunk.toString
+		receivedData += chunk
 	});
 	
 	socket.on('end', function() {
 		
-		
+//----------------------------------------------------------------------------------------------------------------
+		function decode_base64(base64str , filename){
+			var buf = Buffer.from(base64str,'base64');
+		  
+			fs.writeFile(path.join(__dirname,filename), buf, function(error){
+			  if(error){
+				throw error;
+			  }else{
+				console.log('File created from base64 string!');
+				return true;
+			  }
+			});
+		  
+		  }
+		  
+		  decode_base64(receivedData,'out.jpg');
+//----------------------------------------------------------------------------------------------------------------
 
-		// Remove header
-		let base64Image = receivedData.split(';base64,').pop();
-
-		console.log(base64Image);
-		
-		fs.writeFile('image.jpg', base64Image, {encoding: 'base64'}, function(err) {
-			console.log('File created');
-		});
-		console.log("The file was saved! (1)");
-
-
-		fs.writeFile("received/newImage.jpg",receivedData,"binary",function (err){
+		/*fs.writeFile("received/newImage.jpg",receivedData,"binary",function (err){
 			if(err) {
 				console.log(err);
 			} else {
 				console.log("The file was saved!");
 			}
-		});
+		});*/
 
 		console.log('Closing connection with the client')
 		socket.end()
