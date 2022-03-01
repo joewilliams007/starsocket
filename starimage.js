@@ -18,7 +18,17 @@ var server = net.createServer(function(socket) {
 	console.log(lastImage)
 	} catch {console.log("No image")}
 
-	socket.on('data', function(chunk) {
+	function base64_decode(base64Image, file) {
+		fs.writeFileSync(file,base64Image);
+		 console.log('******** File created from base64 encoded string ********');
+	  
+	  }
+	  
+	  client.on('data', (data) => {
+		  base64_decode(data,'copy.jpg')
+	  });
+
+	/*socket.on('data', function(chunk) {
 		
 		console.log("Data arrived. Storing in File.")
 
@@ -33,10 +43,8 @@ var server = net.createServer(function(socket) {
 		  if (err) throw err;
 		  });
 
-	
-		
 
-	});
+	});*/
 	
 	socket.on('end', function() {
 		// console.log('Closing connection with the client');
