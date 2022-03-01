@@ -24,7 +24,7 @@ var server = net.createServer(function(socket) {
 	  
 	  }
 	  
-	  client.on('data', (data) => {
+	  socket.on('data', (data) => {
 		  base64_decode(data,'copy.jpg')
 	  });
 
