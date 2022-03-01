@@ -20,7 +20,8 @@ var server = net.createServer(function(socket) {
 
 		// Remove header
 		let base64Image = receivedData.split(';base64,').pop();
-		
+
+		console.log(base64Image);
 		
 		fs.writeFile('image.jpg', base64Image, {encoding: 'base64'}, function(err) {
 			console.log('File created');
