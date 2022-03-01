@@ -11,10 +11,20 @@ var server = net.createServer(function(socket) {
 
 	socket.on('data', function(chunk) {
 		console.log(`receiving file...`)
-		receivedData += chunk
+		receivedData += chunk.toString
 	});
 	
 	socket.on('end', function() {
+		
+		
+		var base64Data = receivedData.rawBody.replace(/^data:image\/png;base64,/, "");
+
+		require("fs").writeFile("out.jpg", base64Data, 'base64', function(err) {
+		  console.log(err);
+		});
+		console.log("The file was saved! (1)");
+
+
 		fs.writeFile("received/newImage.jpg",receivedData,"binary",function (err){
 			if(err) {
 				console.log(err);
@@ -22,6 +32,7 @@ var server = net.createServer(function(socket) {
 				console.log("The file was saved!");
 			}
 		});
+
 		console.log('Closing connection with the client')
 		socket.end()
 	});
