@@ -83,7 +83,7 @@ var server = net.createServer(function(socket) {
 
 	message61 = "Total messages: "+count
 
-	result = (message1+message2+message3+message4+message5+message6+message7+message8+message9+message10+message11+message12+message13+message14+message15+message16+message17+message18+message19+message20+message21+message22+message23+message24+message25+message26+message27+message28+message29+message30+message31+message32+message33+message34+message35+message36+message37+message38+message39+message40+message41+message42+message43+message44+message45+message46+message47+message48+message49+message50+message51+message52+message53+message54+message55+message56+message57+message58+message59+message60+message61).replace("undefined","")
+	result = (message1+"\n"+message2+"\n"+message3+"\n"+message4+"\n"+message5+"\n"+message6+"\n"+message7+"\n"+message8+"\n"+message9+"\n"+message10+"\n"+message11+"\n"+message12+"\n"+message13+"\n"+message14+"\n"+message15+"\n"+message16+"\n"+message17+"\n"+message18+"\n"+message19+"\n"+message20+"\n"+message21+"\n"+message22+"\n"+message23+"\n"+message24+"\n"+message25+"\n"+message26+"\n"+message27+"\n"+message28+"\n"+message29+"\n"+message30+"\n"+message31+"\n"+message32+"\n"+message33+"\n"+message34+"\n"+message35+"\n"+message36+"\n"+message37+"\n"+message38+"\n"+message39+"\n"+message40+"\n"+message41+"\n"+message42+"\n"+message43+"\n"+message44+"\n"+message45+"\n"+message46+"\n"+message47+"\n"+message48+"\n"+message49+"\n"+message50+"\n"+message51+"\n"+message52+"\n"+message53+"\n"+message54+"\n"+message55+"\n"+message56+"\n"+message57+"\n"+message58+"\n"+message59+"\n"+message60+"\n"+message61+"\n").replace("undefined","")
     finalresult = result.replace(/undefined/g,"")
 	socket.write(finalresult);
 
