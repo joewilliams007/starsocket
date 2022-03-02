@@ -16,7 +16,7 @@ var server = net.createServer(function(socket) {
 
 	entireMessage += "Total messages: "+ _messages.length
 
-    socket.write(entireMessage)
+    socket.write(entireMessage.replace(/undefined/g,""))
     socket.end();
 
 	serverInfo('A new connection has been established.');
