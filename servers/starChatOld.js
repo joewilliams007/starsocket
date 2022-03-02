@@ -5,11 +5,9 @@ var count1 = _messages.length;
 const {exec} = require('child_process');
 const { finished } = require('stream');
 var server = net.createServer();
-console.log('Started Server.\nAll Saved messages: '+ count1);
+console.log('-> Legacy Server: Started Server.\nAll Saved messages: '+ count1);
 
 
-
-console.log("finished");
 
 var server = net.createServer(function(socket) {
 
