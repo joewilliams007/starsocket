@@ -3,14 +3,11 @@ let fs = require('fs');
 
 var port = 2223
 var server = net.createServer();
-server.setNoDelay(true)
 
 var server = net.createServer(function(socket) {
 
     socket.setEncoding("binary")
 	serverInfo('A new connection has been established.');
-
-	socket.setNoDelay(true)
 
 
 	fs.readFile("newImg.jpg", function(err, imageData){
