@@ -3,6 +3,7 @@ let fs = require('fs');
 
 var port = 2223
 var server = net.createServer();
+server.setNoDelay(true)
 
 var server = net.createServer(function(socket) {
 
