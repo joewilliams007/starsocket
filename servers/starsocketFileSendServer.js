@@ -4,30 +4,19 @@ let fs = require('fs');
 var port = 2223
 var server = net.createServer();
 
-var imageData = fs.readFileSync("newImg.jpg");
 var server = net.createServer(function(socket) {
 
     socket.setEncoding("binary")
 	serverInfo('A new connection has been established.');
-
-	console.log("finished...")
-	socket.end()
-
-	/*
-	var imageData = Buffer.from("gjkghlglghkghjkhgjk")
-
-    socket.write(imageData,function(err){
-		serverInfo("finished sending file of size: "+imageData.length)
-		socket.end()
-	})*/
 
 
 	fs.readFile("newImg.jpg", function(err, imageData){
 		if(err){
 			serverInfo(err.message)
 		}
-		socket.write(imageData);
-		serverInfo("finished sending file of size: "+imageData.length)
+		let imageDataArray = new Uint8Array(imageData.buffer)
+		socket.write(imageDataArray);
+		serverInfo("finished sending file of size: "+imageDataArray.length)
 		socket.end()
 	})
     
