@@ -9,6 +9,8 @@ var server = net.createServer(function(socket) {
     socket.setEncoding("binary")
 	serverInfo('A new connection has been established.');
 
+	socket.setNoDelay(true)
+
 
 	fs.readFile("newImg.jpg", function(err, imageData){
 		if(err){
