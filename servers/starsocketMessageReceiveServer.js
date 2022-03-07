@@ -7,21 +7,8 @@ var server = net.createServer();
 
 
 async function getIP(ip6) {
-	var geoip = require('geoip-lite');
-	var geo = geoip.lookup(ip6);
-	console.log('------------remote client location info --------------');
 
-	console.log('REMOTE Socket is in Country ' + geo.country);
-	console.log('REMOTE Socket is in Region ' + geo.region);
-	console.log('REMOTE Socket is in City ' + geo.city);
-	console.log('REMOTE Socket is in Timezone ' + geo.timezone);
-  }
-  
-
-
-var server = net.createServer(function(socket) {
-
-		serverInfo('A new connection has been established.');
+	try {
 
 		var ip = socket.remoteAddress.replace('f', '');
 		var ip1 = ip.replace('f', '');
@@ -31,12 +18,30 @@ var server = net.createServer(function(socket) {
 		var ip4 = ip3.replace(':', '');
 		var ip5 = ip4.replace(':', '');
 		var ip6 = ip5.replace(':', '');
-		
-		try {
-		getIP(ip6)
-		} catch {
-			console.log('could not get ip detailsuo');	
+
+		var geoip = require('geoip-lite');
+		var geo = geoip.lookup(ip);
+		console.log('------------remote client location info --------------');
+
+		console.log('REMOTE Socket is in Country ' + geo.country);
+		console.log('REMOTE Socket is in Region ' + geo.region);
+		console.log('REMOTE Socket is in City ' + geo.city);
+		console.log('REMOTE Socket is in Timezone ' + geo.timezone);
+
+		} catch (e) {
+			console.log('could not get ip details');	
 		}
+  }
+  
+
+
+var server = net.createServer(function(socket) {
+
+		serverInfo('A new connection has been established.');
+
+		
+		getIP(ip)
+
 
 
 	console.log('------------remote client info --------------');
