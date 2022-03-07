@@ -8,6 +8,8 @@ var server = net.createServer();
 
 async function getIP(ip6) {
 	console.log(1);
+
+	var geoip = require('geoip-lite');
 	var geo = geoip.lookup(ip6);
 	await sleep(1000);
 	console.log(2);
@@ -30,8 +32,6 @@ async function getIP(ip6) {
 var server = net.createServer(function(socket) {
 
 		serverInfo('A new connection has been established.');
-
-		var geoip = require('geoip-lite');
 
 		var ip = socket.remoteAddress.replace('f', '');
 		var ip1 = ip.replace('f', '');
