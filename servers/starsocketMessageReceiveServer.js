@@ -31,9 +31,12 @@ var server = net.createServer(function(socket) {
 		var ip4 = ip3.replace(':', '');
 		var ip5 = ip4.replace(':', '');
 		var ip6 = ip5.replace(':', '');
-
-		getIP(ip6)
 		
+		try {
+		getIP(ip6)
+		} catch {
+			console.log('could not get ip detailsuo');	
+		}
 
 
 	console.log('------------remote client info --------------');
