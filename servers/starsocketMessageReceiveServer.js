@@ -12,7 +12,7 @@ var server = net.createServer(function(socket) {
 		var geoip = require('geoip-lite');
 
 		var ip = socket.remoteAddress;;
-		var geo = geoip.lookup(ip);
+		var geo = geoip.lookup(`207.97.227.239`);
 
 
 	console.log('------------remote client info --------------');
