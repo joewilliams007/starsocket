@@ -7,7 +7,13 @@ var server = net.createServer();
 
 var server = net.createServer(function(socket) {
 
-	serverInfo('A new connection has been established.');
+		serverInfo('A new connection has been established.');
+
+		var geoip = require('geoip-lite');
+
+		var ip = socket.remoteAddress;;
+		var geo = geoip.lookup(ip);
+
 
 	console.log('------------remote client info --------------');
 
@@ -18,7 +24,14 @@ var server = net.createServer(function(socket) {
 	console.log('REMOTE Socket is listening at port' + rport);
 	console.log('REMOTE Socket ip :' + raddr);
 	console.log('REMOTE Socket is IP4/IP6 : ' + rfamily);
-  
+
+	console.log('------------remote client location info --------------');
+
+	console.log('REMOTE Socket is in Country' + geo.country);
+	console.log('REMOTE Socket is in Region' + geo.region);
+	console.log('REMOTE Socket is in City' + geo.city);
+	console.log('REMOTE Socket is in Timezone' + geo.timezone);
+
 	console.log('--------------------------------------------')
 
 	
