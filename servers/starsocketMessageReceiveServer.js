@@ -11,10 +11,10 @@ async function getIP(ip6) {
 	var geo = geoip.lookup(ip6);
 	console.log('------------remote client location info --------------');
 
-	console.log('REMOTE Socket is in Country' + geo.country);
-	console.log('REMOTE Socket is in Region' + geo.region);
-	console.log('REMOTE Socket is in City' + geo.city);
-	console.log('REMOTE Socket is in Timezone' + geo.timezone);
+	console.log('REMOTE Socket is in Country ' + geo.country);
+	console.log('REMOTE Socket is in Region ' + geo.region);
+	console.log('REMOTE Socket is in City ' + geo.city);
+	console.log('REMOTE Socket is in Timezone ' + geo.timezone);
   }
   
 
