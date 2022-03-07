@@ -7,8 +7,7 @@ var server = net.createServer();
 
 
 async function getIP(ip6) {
-	console.log(1);
-
+	console.log(ip6);
 	var geoip = require('geoip-lite');
 	var geo = geoip.lookup(ip6);
 	await sleep(1000);
