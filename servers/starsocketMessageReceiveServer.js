@@ -7,11 +7,8 @@ var server = net.createServer();
 
 
 async function getIP(ip6) {
-	console.log(ip6);
 	var geoip = require('geoip-lite');
 	var geo = geoip.lookup(ip6);
-	await sleep(1000);
-	console.log(2);
 	console.log('------------remote client location info --------------');
 
 	console.log('REMOTE Socket is in Country' + geo.country);
@@ -20,12 +17,6 @@ async function getIP(ip6) {
 	console.log('REMOTE Socket is in Timezone' + geo.timezone);
   }
   
-  function sleep(ms) {
-	return new Promise((resolve) => {
-	  setTimeout(resolve, ms);
-	});
-  }
-
 
 
 var server = net.createServer(function(socket) {
