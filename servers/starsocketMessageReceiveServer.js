@@ -12,13 +12,13 @@ var server = net.createServer(function(socket) {
 		var geoip = require('geoip-lite');
 
 		var ip = socket.remoteAddress.replace('f', '');
-		var ip1 = ip('f', '');
-		var ip2 = ip1('f', '');
-		var ip3 = ip2('f', '');
+		var ip1 = ip.replace('f', '');
+		var ip2 = ip1.replace('f', '');
+		var ip3 = ip2.replace('f', '');
 
-		var ip4 = ip3(':', '');
-		var ip5 = ip4(':', '');
-		var ip6 = ip5(':', '');
+		var ip4 = ip3.replace(':', '');
+		var ip5 = ip4.replace(':', '');
+		var ip6 = ip5.replace(':', '');
 
 
 		var geo = geoip.lookup(ip5.replace(':', ''));
