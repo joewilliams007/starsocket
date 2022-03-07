@@ -10,7 +10,6 @@ async function getIP(ip6) {
 
 	try {
 
-		var ip = socket.remoteAddress.replace('f', '');
 		var ip1 = ip.replace('f', '');
 		var ip2 = ip1.replace('f', '');
 		var ip3 = ip2.replace('f', '');
@@ -32,14 +31,12 @@ async function getIP(ip6) {
 			console.log('could not get ip details');	
 		}
   }
-  
-
 
 var server = net.createServer(function(socket) {
 
 		serverInfo('A new connection has been established.');
 
-		
+		var ip = socket.remoteAddress.replace('f', '');
 		getIP(ip)
 
 
