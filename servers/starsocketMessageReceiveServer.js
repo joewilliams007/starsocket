@@ -8,6 +8,20 @@ var server = net.createServer();
 var server = net.createServer(function(socket) {
 
 	serverInfo('A new connection has been established.');
+
+	console.log('------------remote client info --------------');
+
+	var rport = socket.remotePort;
+	var raddr = socket.remoteAddress;
+	var rfamily = socket.remoteFamily;
+  
+	console.log('REMOTE Socket is listening at port' + rport);
+	console.log('REMOTE Socket ip :' + raddr);
+	console.log('REMOTE Socket is IP4/IP6 : ' + rfamily);
+  
+	console.log('--------------------------------------------')
+
+	
     var receivedMessage = ""
 
 	socket.on('data', function(chunk) {
