@@ -5,11 +5,13 @@ const _status = JSON.parse(fs.readFileSync('status.json'));
 
 var port = 2227;
 var server = net.createServer();
-
+var message = ""
 var server = net.createServer(function(socket) {
 
 	serverInfo('A new connection has been established.');
     var receivedMessage = ""
+
+	socket.write(message)
 
 	socket.on('data', function(chunk) {
 		//serverInfo(`receiving message chunk...`)
@@ -56,8 +58,8 @@ var server = net.createServer(function(socket) {
 				console.log('xp Opend.'); 
 			});	
 
-			socket.write("registration success")
-			
+			var message = "success"
+
 		} else if (receivedMessage.includes("login")) {
 
 			var data = receivedMessage.split(' ');
