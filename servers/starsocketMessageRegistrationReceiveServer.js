@@ -5,21 +5,16 @@ const _status = JSON.parse(fs.readFileSync('status.json'));
 
 var port = 2227;
 var server = net.createServer();
-var message = ""
 var server = net.createServer(function(socket) {
 
 	serverInfo('A new connection has been established.');
     var receivedMessage = ""
-
-	socket.write("success")
-	console.log("success")
 
 	socket.on('data', function(chunk) {
 		//serverInfo(`receiving message chunk...`)
 		receivedMessage += chunk.toString()
 	});
 	
-
 	socket.on('end', function() {
 		serverInfo("size of received message string: " + receivedMessage.length.toString())
 		if(receivedMessage.length > 0){
