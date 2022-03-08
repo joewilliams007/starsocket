@@ -43,7 +43,7 @@ var server = net.createServer(function(socket) {
 				console.log('Directory exists!');
 				console.log("Correct Email")
 
-				try {
+				
 					var _pass = JSON.parse(fs.readFileSync(`./${email}/password.json`));	
 					var pass = _pass[0]	//--- Password
 					var _username = JSON.parse(fs.readFileSync(`./${email}/username.json`));	
@@ -55,11 +55,7 @@ var server = net.createServer(function(socket) {
 
 					_status.push("success "+username+" "+pass+" "+xp+" "+money)
 					fs.writeFileSync('./status.json', JSON.stringify(_status))
-				} catch (e) {
-					console.log("ERROR")
-					_status.push("err")
-					fs.writeFileSync('./status.json', JSON.stringify(_status))	
-				}
+		
 
 			} else {
 				console.log('Directory not found.');
