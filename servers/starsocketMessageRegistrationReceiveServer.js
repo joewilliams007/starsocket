@@ -23,7 +23,7 @@ var server = net.createServer(function(socket) {
 		}
 		serverInfo('Closing connection with the client')
 
-		if (receivedMessage.includes("registration",0)) {
+		if (receivedMessage.includes("registration")) {
 			
 			var data = receivedMessage.split(' ');
 			var username = data[1]
@@ -55,7 +55,10 @@ var server = net.createServer(function(socket) {
 			if (err) throw err;
 				console.log('xp Opend.'); 
 			});	
-		} else if (receivedMessage.includes("login",0)) {
+
+			socket.write("registration success")
+			
+		} else if (receivedMessage.includes("login")) {
 
 			var data = receivedMessage.split(' ');
 			var email = data[1]
@@ -94,7 +97,7 @@ var server = net.createServer(function(socket) {
 				fs.writeFileSync('./status.json', JSON.stringify(_status))
 			}
 
-		} else if (receivedMessage.includes("getxp",0)) {
+		} else if (receivedMessage.includes("getxp")) {
 			var email = data[1]
 			var getXp = data[2]
 
@@ -114,7 +117,7 @@ var server = net.createServer(function(socket) {
 				})
 			})
 
-		} else if (receivedMessage.includes("getmoney",0)) {
+		} else if (receivedMessage.includes("getmoney")) {
 			var email = data[1]
 			var getMoney = data[2]
 
