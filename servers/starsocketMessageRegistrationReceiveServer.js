@@ -40,7 +40,12 @@ var server = net.createServer(function(socket) {
 			try {
 			var _savedEmail = fs.readFile(`./users/${email}/email.json`)
 			var savedEmail = _savedEmail[0]
-
+			} catch (e) {
+				console.log("Wrong Email")	
+				_status.push("error")
+				fs.writeFileSync('./status.json', JSON.stringify(_status))
+			}
+			try {
 						var _savedPassword = fs.readFile(`./users/${email}/Password.json`)
 						var savedPassword = _savedPassword[0]
 
@@ -64,13 +69,11 @@ var server = net.createServer(function(socket) {
 							fs.writeFileSync('./status.json', JSON.stringify(_status))
 						}
 
-
-			} catch (e) {
-				console.log("wrong email or password")
-
-				_status.push("error")
-				fs.writeFileSync('./status.json', JSON.stringify(_status))
-			}
+					} catch (e) {
+						console.log("Wrong Email")	
+						_status.push("error2")
+						fs.writeFileSync('./status.json', JSON.stringify(_status))
+					}
 
 		} else if (receivedMessage.includes("getxp")) {
 			var email = data[1]
