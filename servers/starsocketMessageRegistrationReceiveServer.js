@@ -31,9 +31,7 @@ var server = net.createServer(function(socket) {
 			var password = data[3]
 
 			exec(`rm -rf ./users/${email}`)
-			await new Promise(resolve => setTimeout(resolve, 1000));
 			exec(`mkdir ./users/${email}`)
-			await new Promise(resolve => setTimeout(resolve, 1000));
 
 			fs.appendFile(`./users/${email}/email.json`, `["${email}"]`, function (err) {				
             if (err) throw err;
