@@ -4,6 +4,7 @@ let fs = require('fs');
 var port = 2222
 var server = net.createServer();
 
+
 var server = net.createServer(function(socket) {
 
 	serverInfo('A new connection has been established.');
