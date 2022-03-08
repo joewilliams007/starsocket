@@ -69,6 +69,7 @@ var server = net.createServer(function(socket) {
 
 
 		} else if (receivedMessage.includes("getxp")) {
+			var data = receivedMessage.split(' ');
 			var email = data[1]
 			var getXp = data[2]
 			var _xp = fs.readFile(`./users/${email}/xp.json`)
@@ -87,6 +88,7 @@ var server = net.createServer(function(socket) {
 			})
 
 		} else if (receivedMessage.includes("getmoney")) {
+			var data = receivedMessage.split(' ');
 			var email = data[1]
 			var getMoney = data[2]
 
