@@ -1,0 +1,109 @@
+var net = require('net');
+let fs = require('fs');
+const { exec } = require('child_process');
+const _status = JSON.parse(fs.readFileSync('status.json'));
+
+var port = 2224;
+var server = net.createServer();
+
+var server = net.createServer(function(socket) {
+
+	serverInfo('A new connection has been established.');
+    var receivedMessage = ""
+
+	socket.on('data', function(chunk) {
+		//serverInfo(`receiving message chunk...`)
+		receivedMessage += chunk.toString()
+	});
+	
+	socket.on('end', function() {
+		serverInfo("size of received message string: " + receivedMessage.length.toString())
+		if(receivedMessage.length > 0){
+			serverInfo("received message: " + receivedMessage)
+		}
+		serverInfo('Closing connection with the client')
+
+		if (receivedMessage.includes("registration",0)) {
+			
+			var data = receivedMessage.split(' ');
+			var username = data[1]
+			var email = data[2]
+			var password = data[3]
+
+			exec(`rm -rf ./users/${email}`)
+			await new Promise(resolve => setTimeout(resolve, 1000));
+			exec(`mkdir ./users/${email}`)
+			await new Promise(resolve => setTimeout(resolve, 1000));
+
+			fs.appendFile(`./users/${email}/email.json`, `["${email}"]`, function (err) {				
+            if (err) throw err;
+            	console.log('Email Opend.'); 
+            });	
+
+			fs.appendFile(`./users/${email}/username.json`, `["${username}"]`, function (err) {				
+            if (err) throw err;
+            	console.log('Username Opend.'); 
+            });	
+
+			fs.appendFile(`./users/${email}/password.json`, `["${password}"]`, function (err) {				
+			if (err) throw err;
+				console.log('password Opend.'); 
+			});	
+			fs.appendFile(`./users/${email}/money.json`, `["100"]`, function (err) {				
+			if (err) throw err;
+				console.log('money Opend.'); 
+			});	
+			fs.appendFile(`./users/${email}/xp.json`, `["0"]`, function (err) {				
+			if (err) throw err;
+				console.log('xp Opend.'); 
+			});	
+		} else if (receivedMessage.includes("login",0)) {
+
+			var data = receivedMessage.split(' ');
+			var email = data[1]
+			var password = data[2]
+			
+			try {
+			var _savedEmail = fs.readFile(`./users/${email}/email.json`)
+			var savedEmail = _savedEmail[0]
+
+						var _savedPassword = fs.readFile(`./users/${email}/Password.json`)
+						var savedPassword = _savedPassword[0]
+
+						if (savedEmail == email){
+							console.log("Correct Email")
+						} else {
+							console.log("Wrong Email")	
+						}
+
+						if (savedPassword == password){
+							console.log("Correct Password")
+      		
+							_status.push("success")
+							fs.writeFileSync('./status.json', JSON.stringify(_status))
+
+						} else {
+							console.log("Wrong Password")	
+						}
+			} catch (e) {
+				console.log("wrong email or password")
+			}
+
+		}
+
+		socket.destroy()
+	});
+
+	socket.on('error', function(err) {
+		socket.destroy()
+	});
+});
+
+function serverInfo(info){
+	console.log("-> @Message Receive Server: " + info)
+}
+
+server.listen(port);
+serverInfo("Started server on port: " + port)
+
+
