@@ -68,6 +68,30 @@ var server = net.createServer(function(socket) {
 			}
 
 
+		} else if (receivedMessage.includes("valid")) {
+
+			var data = receivedMessage.split(' ');
+			var email = data[1]
+			
+			const dir = `./users/${email}/email.json`;
+			// check if directory exists
+			if (fs.existsSync(dir)) {
+				console.log('Directory exists!');
+				console.log("Correct Email")
+
+				
+
+					_status.push("valid ")
+					fs.writeFileSync('./status.json', JSON.stringify(_status))
+
+
+			} else {
+				console.log('Directory not found.');
+				_status.push("err")
+				fs.writeFileSync('./status.json', JSON.stringify(_status))
+			}
+
+
 		} else if (receivedMessage.includes("getxp")) {
 		try {
 				var data = receivedMessage.split(' ');
