@@ -3,7 +3,7 @@ let fs = require('fs');
 const { exec } = require('child_process');
 const _status = JSON.parse(fs.readFileSync('status.json'));
 
-var port = 2224;
+var port = 2227;
 var server = net.createServer();
 
 var server = net.createServer(function(socket) {
