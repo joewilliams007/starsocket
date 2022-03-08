@@ -7,7 +7,7 @@ var fileReceiveServer = require("./servers/starsocketFileReceiveServer.js")
 var messageSendServer = require("./servers/starsocketMessageSendServer.js")
 var messageReceiveServer = require("./servers/starsocketMessageReceiveServer.js")
 
-var messageSendServerRegistration = require("./servers/starsocketMessageSendRegistrationServer.js")
+var messageSendServerRegistration = require("./servers/StarSocketMessageSendRegistrationServer.js")
 var messageReceiveServerRegistration = require("./servers/starsocketMessageRegistrationReceiveServer.js")
 
 var legacySupport = require("./servers/starChatOld.js")
