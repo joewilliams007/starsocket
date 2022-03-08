@@ -19,6 +19,7 @@ var server = net.createServer(function(socket) {
 		receivedMessage += chunk.toString()
 	});
 	
+
 	socket.on('end', function() {
 		serverInfo("size of received message string: " + receivedMessage.length.toString())
 		if(receivedMessage.length > 0){
@@ -33,33 +34,8 @@ var server = net.createServer(function(socket) {
 			var email = data[2]
 			var password = data[3]
 
-			exec(`rm -rf ./users/${email}`)
-			exec(`mkdir ./users/${email}`)
-
-			fs.appendFile(`./users/${email}/email.json`, `["${email}"]`, function (err) {				
-            if (err) throw err;
-            	console.log('Email Opend.'); 
-            });	
-
-			fs.appendFile(`./users/${email}/username.json`, `["${username}"]`, function (err) {				
-            if (err) throw err;
-            	console.log('Username Opend.'); 
-            });	
-
-			fs.appendFile(`./users/${email}/password.json`, `["${password}"]`, function (err) {				
-			if (err) throw err;
-				console.log('password Opend.'); 
-			});	
-			fs.appendFile(`./users/${email}/money.json`, `["100"]`, function (err) {				
-			if (err) throw err;
-				console.log('money Opend.'); 
-			});	
-			fs.appendFile(`./users/${email}/xp.json`, `["0"]`, function (err) {				
-			if (err) throw err;
-				console.log('xp Opend.'); 
-			});	
-
-			var message = "success"
+			makeAccount(email, username, password)
+			
 
 		} else if (receivedMessage.includes("login")) {
 
@@ -160,4 +136,31 @@ function serverInfo(info){
 server.listen(port);
 serverInfo("Started server on port: " + port)
 
+// Functions ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+function makeAccount (email, username, password){
+	exec(`rm -rf ./users/${email}`)
+	exec(`mkdir ./users/${email}`)
 
+	fs.appendFile(`./users/${email}/email.json`, `["${email}"]`, function (err) {				
+	if (err) throw err;
+		console.log('Email Opend.'); 
+	});	
+
+	fs.appendFile(`./users/${email}/username.json`, `["${username}"]`, function (err) {				
+	if (err) throw err;
+		console.log('Username Opend.'); 
+	});	
+
+	fs.appendFile(`./users/${email}/password.json`, `["${password}"]`, function (err) {				
+	if (err) throw err;
+		console.log('password Opend.'); 
+	});	
+	fs.appendFile(`./users/${email}/money.json`, `["100"]`, function (err) {				
+	if (err) throw err;
+		console.log('money Opend.'); 
+	});	
+	fs.appendFile(`./users/${email}/xp.json`, `["0"]`, function (err) {				
+	if (err) throw err;
+		console.log('xp Opend.'); 
+	});	
+}
