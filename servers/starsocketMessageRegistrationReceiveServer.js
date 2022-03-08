@@ -137,30 +137,41 @@ server.listen(port);
 serverInfo("Started server on port: " + port)
 
 // Functions ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-function makeAccount (email, username, password){
+async function makeAccount (email, username, password){
 	exec(`rm -rf ./users/${email}`)
+	await sleep(2000);
 	exec(`mkdir ./users/${email}`)
-
+	await sleep(2000);
 	fs.appendFile(`./users/${email}/email.json`, `["${email}"]`, function (err) {				
 	if (err) throw err;
 		console.log('Email Opend.'); 
 	});	
-
+	await sleep(1000);
 	fs.appendFile(`./users/${email}/username.json`, `["${username}"]`, function (err) {				
 	if (err) throw err;
 		console.log('Username Opend.'); 
 	});	
-
+	await sleep(1000);
 	fs.appendFile(`./users/${email}/password.json`, `["${password}"]`, function (err) {				
 	if (err) throw err;
 		console.log('password Opend.'); 
 	});	
+	await sleep(1000);
 	fs.appendFile(`./users/${email}/money.json`, `["100"]`, function (err) {				
 	if (err) throw err;
 		console.log('money Opend.'); 
 	});	
+	await sleep(1000);
 	fs.appendFile(`./users/${email}/xp.json`, `["0"]`, function (err) {				
 	if (err) throw err;
 		console.log('xp Opend.'); 
 	});	
+}
+
+
+
+function sleep(ms) {
+return new Promise((resolve) => {
+  setTimeout(resolve, ms);
+});
 }
