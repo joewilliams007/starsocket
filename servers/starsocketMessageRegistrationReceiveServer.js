@@ -95,18 +95,17 @@ var server = net.createServer(function(socket) {
 		} else if (receivedMessage.includes("getmoney")) {
 			var data = receivedMessage.split(' ');
 			var email = data[1]
+		
 			var getMoney = data[2]
-
 			var _money = JSON.parse(fs.readFileSync(`./users/${email}/money.json`));	
 			var money = _money[0]	//--- money
 
-			var moneyOld = Number(money);
-			var moneyUp = Number(getMoney);
-			var moneyNew = moneyUp + moneyOld; 
+			var xpOld = Number(money);
+			var xpUp = Number(getMoney);
 
 			fs.readFile(`./users/${email}/money.json`, 'utf-8', function(err, data) {
 				if (err) throw err;	
-				var newValue = data.replace(`${moneyOld}`, moneyNew);	
+				var newValue = data.replace(`${moneyOld}`, moneyUp);	
 				fs.writeFile(`./users/${email}/money.json`, newValue, 'utf-8', function(err, data) {
 					if (err) throw err;
 					console.log('Gained money!');
