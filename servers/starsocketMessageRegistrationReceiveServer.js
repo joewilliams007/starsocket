@@ -11,7 +11,7 @@ var server = net.createServer(function(socket) {
 	serverInfo('A new connection has been established.');
     var receivedMessage = ""
 
-	socket.write(message)
+	socket.write("message")
 
 	socket.on('data', function(chunk) {
 		//serverInfo(`receiving message chunk...`)
