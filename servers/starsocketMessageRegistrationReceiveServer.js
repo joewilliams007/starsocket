@@ -63,6 +63,8 @@ var server = net.createServer(function(socket) {
 
 			} else {
 				console.log('Directory not found.');
+				_status.push("err")
+				fs.writeFileSync('./status.json', JSON.stringify(_status))
 			}
 
 
