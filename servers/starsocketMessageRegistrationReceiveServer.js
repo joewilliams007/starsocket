@@ -72,9 +72,10 @@ var server = net.createServer(function(socket) {
 		try {
 				var data = receivedMessage.split(' ');
 				var email = data[1]
+			
 				var getXp = data[2]
-				var _xp = fs.readFile(`./users/${email}/xp.json`)
-				var xp = _xp[0]
+				var _xp = JSON.parse(fs.readFileSync(`./users/${email}/xp.json`));	
+				var xp = _xp[0]	//--- xp
 
 				var xpOld = Number(xp);
 				var xpUp = Number(getXp);
@@ -96,8 +97,8 @@ var server = net.createServer(function(socket) {
 			var email = data[1]
 			var getMoney = data[2]
 
-			var _money = fs.readFile(`./users/${email}/money.json`)
-			var money = _money[0]
+			var _money = JSON.parse(fs.readFileSync(`./users/${email}/money.json`));	
+			var money = _money[0]	//--- money
 
 			var moneyOld = Number(money);
 			var moneyUp = Number(getMoney);
