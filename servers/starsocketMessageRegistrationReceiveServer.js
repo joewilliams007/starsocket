@@ -42,6 +42,25 @@ var server = net.createServer(function(socket) {
 			if (fs.existsSync(dir)) {
 				console.log('Directory exists!');
 				console.log("Correct Email")
+
+				try {
+					var _pass = JSON.parse(fs.readFileSync(`./${email}/password.json`));	
+					var pass = _pass[0]	//--- Password
+					var _username = JSON.parse(fs.readFileSync(`./${email}/username.json`));	
+					var username = _username[0]	//--- username
+					var _xp = JSON.parse(fs.readFileSync(`./${email}/xp.json`));	
+					var xp = _xp[0]	//--- xp
+					var _money = JSON.parse(fs.readFileSync(`./${email}/money.json`));	
+					var money = _money[0]	//--- money
+
+					_status.push("success "+username+" "+pass+" "+xp+" "+money)
+					fs.writeFileSync('./status.json', JSON.stringify(_status))
+				} catch (e) {
+					console.log("ERROR")
+					_status.push("err")
+					fs.writeFileSync('./status.json', JSON.stringify(_status))	
+				}
+
 			} else {
 				console.log('Directory not found.');
 			}
@@ -56,14 +75,10 @@ var server = net.createServer(function(socket) {
 				fs.writeFileSync('./status.json', JSON.stringify(_status))
 			}
 			var password;
-			try {
+			
 				var _savedPassword = fs.readFile(`./users/${email}/password.json`)
 				password = _savedPassword[0]
-			} catch (e) {
-				console.log("Wrong Password")	
-				_status.push("Wrong Password")
-				fs.writeFileSync('./status.json', JSON.stringify(_status))
-			}
+
 
 
 		} else if (receivedMessage.includes("getxp")) {
