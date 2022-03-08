@@ -74,6 +74,8 @@ var server = net.createServer(function(socket) {
 							console.log("Correct Email")
 						} else {
 							console.log("Wrong Email")	
+							_status.push("error")
+							fs.writeFileSync('./status.json', JSON.stringify(_status))
 						}
 
 						if (savedPassword == password){
@@ -84,12 +86,60 @@ var server = net.createServer(function(socket) {
 
 						} else {
 							console.log("Wrong Password")	
+							_status.push("error")
+							fs.writeFileSync('./status.json', JSON.stringify(_status))
 						}
 			} catch (e) {
 				console.log("wrong email or password")
+
+				_status.push("error")
+				fs.writeFileSync('./status.json', JSON.stringify(_status))
 			}
 
+		} else if (receivedMessage.includes("getxp",0)) {
+			var email = data[1]
+			var getXp = data[2]
+
+			var _xp = fs.readFile(`./users/${email}/xp.json`)
+			var xp = _xp[0]
+
+			var xpOld = Number(xp);
+			var xpUp = Number(getXp);
+			var xpNew = xpUp + xpOld; 
+
+			fs.readFile(`./users/${email}/xp.json`, 'utf-8', function(err, data) {
+				if (err) throw err;	
+				var newValue = data.replace(`${xpOld}`, xpNew);	
+				fs.writeFile(`./users/${email}/xp.json`, newValue, 'utf-8', function(err, data) {
+					if (err) throw err;
+					console.log('Gained xp!');
+				})
+			})
+
+		} else if (receivedMessage.includes("getmoney",0)) {
+			var email = data[1]
+			var getMoney = data[2]
+
+			var _money = fs.readFile(`./users/${email}/money.json`)
+			var money = _money[0]
+
+			var moneyOld = Number(money);
+			var moneyUp = Number(getMoney);
+			var moneyNew = moneyUp + moneyOld; 
+
+			fs.readFile(`./users/${email}/money.json`, 'utf-8', function(err, data) {
+				if (err) throw err;	
+				var newValue = data.replace(`${moneyOld}`, moneyNew);	
+				fs.writeFile(`./users/${email}/money.json`, newValue, 'utf-8', function(err, data) {
+					if (err) throw err;
+					console.log('Gained money!');
+				})
+			})
+
+		} else {
+			console.log("No specific request Master.")
 		}
+
 
 		socket.destroy()
 	});
