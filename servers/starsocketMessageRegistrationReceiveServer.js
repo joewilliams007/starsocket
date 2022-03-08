@@ -2,7 +2,6 @@ var net = require('net');
 let fs = require('fs');
 const { exec } = require('child_process');
 const _status = JSON.parse(fs.readFileSync('status.json'));
-
 var port = 2227;
 var server = net.createServer();
 var server = net.createServer(function(socket) {
@@ -64,6 +63,8 @@ var server = net.createServer(function(socket) {
 							_status.push("error")
 							fs.writeFileSync('./status.json', JSON.stringify(_status))
 						}
+
+
 			} catch (e) {
 				console.log("wrong email or password")
 

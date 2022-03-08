@@ -6,7 +6,7 @@ var port = 2228
 var server = net.createServer();
 
 var server = net.createServer(function(socket) {
-	var _messages = JSON.parse(fs.readFileSync('messagesRegistration.json')).reverse();
+	var _messages = JSON.parse(fs.readFileSync('status.json')).reverse();
 
 	var entireMessage = ""
 
