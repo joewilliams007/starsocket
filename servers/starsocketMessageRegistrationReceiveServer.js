@@ -65,21 +65,6 @@ var server = net.createServer(function(socket) {
 				console.log('Directory not found.');
 			}
 
-			var email;
-			try {
-				var _savedEmail = fs.readFile(`./users/${email}/email.json`)
-				email = _savedEmail[0]
-			} catch (e) {
-				console.log("Wrong Email")	
-				_status.push("error")
-				fs.writeFileSync('./status.json', JSON.stringify(_status))
-			}
-			var password;
-			
-				var _savedPassword = fs.readFile(`./users/${email}/password.json`)
-				password = _savedPassword[0]
-
-
 
 		} else if (receivedMessage.includes("getxp")) {
 			var email = data[1]
