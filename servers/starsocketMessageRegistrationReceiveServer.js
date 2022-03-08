@@ -71,17 +71,15 @@ var server = net.createServer(function(socket) {
 		} else if (receivedMessage.includes("getxp")) {
 			var email = data[1]
 			var getXp = data[2]
-
 			var _xp = fs.readFile(`./users/${email}/xp.json`)
 			var xp = _xp[0]
 
 			var xpOld = Number(xp);
 			var xpUp = Number(getXp);
-			var xpNew = xpUp + xpOld; 
 
 			fs.readFile(`./users/${email}/xp.json`, 'utf-8', function(err, data) {
 				if (err) throw err;	
-				var newValue = data.replace(`${xpOld}`, xpNew);	
+				var newValue = data.replace(`${xpOld}`, xpUp);	
 				fs.writeFile(`./users/${email}/xp.json`, newValue, 'utf-8', function(err, data) {
 					if (err) throw err;
 					console.log('Gained xp!');
