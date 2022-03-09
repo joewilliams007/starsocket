@@ -133,8 +133,8 @@ var server = net.createServer(function(socket) {
 			var _money = JSON.parse(fs.readFileSync(`./users/${email}/money.json`));	
 			var money = _money[0]	//--- money
 
-			var xpOld = Number(money);
-			var xpUp = Number(getMoney);
+			var moneyOld = Number(money);
+			var moneyUp = Number(getMoney);
 
 			fs.readFile(`./users/${email}/money.json`, 'utf-8', function(err, data) {
 				if (err) throw err;	
