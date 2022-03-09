@@ -30,6 +30,8 @@ var server = net.createServer(function(socket) {
 			var email = data[2]
 			var password = data[3]
 
+			emailRegis(data)
+
 			makeAccount(email, username, password)
 // Login ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		} else if (receivedMessage.includes("login")) {
@@ -263,6 +265,49 @@ StarDash Team`
 	}
 	});
 
+}
+// Send Email Registration------------------------------------------------------------------------------------------------------------------------------------------------
+async function emailRegis (data){
+
+	var username = data[1]
+	var email = data[2]
+	var pass = data[3]
+
+	try {
+
+		var nodemailer = require('nodemailer');
+		var transporter = nodemailer.createTransport({
+		host: 'smtp.gmail.com',
+		port: 587,
+		auth: {
+			user: 'StarDash.app@gmail.com',
+			pass: 'johannw2004'
+		},
+		});
+		transporter.verify().then(console.log).catch(console.error);
+		var mailOptions = {
+		from: 'stardashnotification@gmail.com',
+		to: `${email}`,
+		subject: `StarDash Account registered successfully`,
+	
+		text: `Dear StarDash user ${username},
+	
+Congrats! Your StarDash account just was created. Have fun using the app. 
+							
+StarDash Team`
+		};
+		transporter.sendMail(mailOptions, function(error, info){
+		if (error) {
+			console.log(error);
+		} else {
+			console.log('Email sent: ' + info.response);
+		}
+		});
+	
+
+} catch (e) {
+	console.log("err sending register email")
+}
 }
 // Transfer ------------------------------------------------------------------------------------------------------------------------------------------------
 async function transfer (data){
