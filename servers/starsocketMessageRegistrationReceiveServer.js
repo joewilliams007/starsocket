@@ -92,6 +92,15 @@ var server = net.createServer(function(socket) {
 			}
 
 
+		} else if (receivedMessage.includes("confirmation")) {
+
+			var data = receivedMessage.split(' ');
+				
+			transfer(data)
+		
+
+
+
 		} else if (receivedMessage.includes("getxp")) {
 		try {
 				var data = receivedMessage.split(' ');
@@ -187,8 +196,51 @@ async function makeAccount (email, username, password){
 		console.log('xp Opend.'); 
 	});	
 }
+// Transfer ------------------------------------------------------------------------------------------------------------------------------------------------
+async function transfer (data){
+var emailTo = data[1]
+var emailFrom = data[2]
+var amount = data[3]
 
+_status.push("transferred")
+fs.writeFileSync('./status.json', JSON.stringify(_status))
 
+await sleep(1000)
+
+var _moneyHis = JSON.parse(fs.readFileSync(`./users/${emailTo}/money.json`));	
+var moneyHis = _moneyHis[0]	//--- money
+
+await sleep(1000)
+
+var newHisMoney = Number(_moneyHis) + Number(amount)
+await sleep(1000)
+		fs.readFile(`./users/${emailTo}/money.json`, 'utf-8', function(err, data) {
+			if (err) throw err;	
+			var newValue = data.replace(`${moneyHis}`, newHisMoney);	
+			fs.writeFile(`./users/${emailTo}/money.json`, newValue, 'utf-8', function(err, data) {
+				if (err) throw err;
+				console.log('Transfered!');
+			})
+		})
+await sleep(1000)
+
+var _moneyMine = JSON.parse(fs.readFileSync(`./users/${emailTo}/money.json`));	
+var moneyMine = _moneyMine[0]	//--- money
+
+await sleep(1000)
+
+var newMineMoney = Number(_moneyMine) - Number(amount)
+await sleep(1000)
+		fs.readFile(`./users/${emailFrom}/money.json`, 'utf-8', function(err, data) {
+			if (err) throw err;	
+			var newValue = data.replace(`${moneyMine}`, newMineMoney);	
+			fs.writeFile(`./users/${emailFrom}/money.json`, newValue, 'utf-8', function(err, data) {
+				if (err) throw err;
+				console.log('Transfered!');
+			})
+		})
+
+}
 
 function sleep(ms) {
 return new Promise((resolve) => {
