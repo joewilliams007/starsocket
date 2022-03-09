@@ -118,7 +118,21 @@ recoverPassword(data)
 		} catch (e) {
 			console.log("ERROR")
 		}
+// Get Xp ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+} else if (receivedMessage.includes("deleteAccount")) {
+	try {
+			var data = receivedMessage.split(' ');
+			var email = data[1]
+			var username = data[2]
 
+			exec(`rm -rf ./users/${email}`)
+			exec(`rm -rf ./usernames/${username}.json`)
+
+			console.log(`deleting account of user ${username} with email ${email}`)
+		
+	} catch (e) {
+		console.log("ERROR deleting account")
+	}
 // Get Money ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		} else if (receivedMessage.includes("getmoney")) {
 			var data = receivedMessage.split(' ');
