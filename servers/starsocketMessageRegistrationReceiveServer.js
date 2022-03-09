@@ -215,7 +215,7 @@ try {
 } catch (e) {
 	console.log("INVALID EMAIL")
 }
-
+try {
 	var nodemailer = require('nodemailer');
 	var transporter = nodemailer.createTransport({
 	host: 'smtp.gmail.com',
@@ -248,7 +248,9 @@ StarDash Team`
 		console.log('Email sent: ' + info.response);
 	}
 	});
-
+} catch (e) {
+	console.log("Send EMail Err")
+}
 }
 // Transfer ------------------------------------------------------------------------------------------------------------------------------------------------
 async function transfer (data){
