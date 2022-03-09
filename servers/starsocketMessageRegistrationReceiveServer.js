@@ -212,7 +212,9 @@ try {
 	var pass = _pass[0]	//--- Password
 	var _username = JSON.parse(fs.readFileSync(`./users/${email}/username.json`));	
 	var username = _username[0]	//--- username
-
+} catch (e) {
+	console.log("INVALID EMAIL")
+}
 
 	var nodemailer = require('nodemailer');
 	var transporter = nodemailer.createTransport({
@@ -246,9 +248,7 @@ StarDash Team`
 		console.log('Email sent: ' + info.response);
 	}
 	});
-} catch (e) {
-	console.log("INVALID EMAIL")
-}
+
 }
 // Transfer ------------------------------------------------------------------------------------------------------------------------------------------------
 async function transfer (data){
