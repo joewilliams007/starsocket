@@ -90,6 +90,10 @@ var server = net.createServer(function(socket) {
 //Confirm Transfer ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 			var data = receivedMessage.split(' ');
 			transfer(data)
+		} else if (receivedMessage.includes("getPassword")) {
+//Recover Password per email ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+var data = receivedMessage.split(' ');
+recoverPassword(data)			
 // Get Xp ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		} else if (receivedMessage.includes("getxp")) {
 		try {
@@ -198,6 +202,53 @@ async function makeAccount (email, username, password){
 	if (err) throw err;
 		console.log('usernameInfo Opend.'); 
 	});	
+}
+// Send Email ------------------------------------------------------------------------------------------------------------------------------------------------
+async function recoverPassword (data){
+
+var email = data[1]
+try {
+	var _pass = JSON.parse(fs.readFileSync(`./users/${email}/password.json`));	
+	var pass = _pass[0]	//--- Password
+	var _username = JSON.parse(fs.readFileSync(`./users/${email}/username.json`));	
+	var username = _username[0]	//--- username
+
+
+	var nodemailer = require('nodemailer');
+	var transporter = nodemailer.createTransport({
+	host: 'smtp.gmail.com',
+	port: 587,
+	auth: {
+		user: 'stardashnotification@gmail.com',
+		pass: 'stardash20%'
+	},
+	});
+	transporter.verify().then(console.log).catch(console.error);
+	var mailOptions = {
+	from: 'stardashnotification@gmail.com',
+	to: `${email}`,
+	subject: `StarDash Recover MyAccount`,
+
+	text: `Dear StarDash user ${username},
+
+Your account details are: 
+Email: ${email}
+Password: ${pass}
+
+if you havent tapped on "forgot password" in the StarDash app, you can ignore this message.
+							
+StarDash Team`
+	};
+	transporter.sendMail(mailOptions, function(error, info){
+	if (error) {
+		console.log(error);
+	} else {
+		console.log('Email sent: ' + info.response);
+	}
+	});
+} catch (e) {
+	console.log("INVALID EMAIL")
+
 }
 // Transfer ------------------------------------------------------------------------------------------------------------------------------------------------
 async function transfer (data){
