@@ -1,3 +1,4 @@
+// Dependecies ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var net = require('net');
 let fs = require('fs');
 const { exec } = require('child_process');
@@ -5,7 +6,7 @@ const _status = JSON.parse(fs.readFileSync('status.json'));
 var port = 2227;
 var server = net.createServer();
 var server = net.createServer(function(socket) {
-
+// Start Server ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	serverInfo('A new connection has been established.');
     var receivedMessage = ""
 
@@ -20,7 +21,8 @@ var server = net.createServer(function(socket) {
 			serverInfo("received message: " + receivedMessage)
 		}
 		serverInfo('Closing connection with the client')
-
+// ALL FUNCTIONS ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Start registration ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		if (receivedMessage.includes("registration")) {
 			
 			var data = receivedMessage.split(' ');
@@ -29,8 +31,7 @@ var server = net.createServer(function(socket) {
 			var password = data[3]
 
 			makeAccount(email, username, password)
-			
-
+// Login ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		} else if (receivedMessage.includes("login")) {
 
 			var data = receivedMessage.split(' ');
@@ -67,9 +68,8 @@ var server = net.createServer(function(socket) {
 				fs.writeFileSync('./status.json', JSON.stringify(_status))
 			}
 
-
+// is Email account valid? ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		} else if (receivedMessage.includes("valid")) {
-
 			var data = receivedMessage.split(' ');
 			var email = data[1]
 			
@@ -78,29 +78,19 @@ var server = net.createServer(function(socket) {
 			if (fs.existsSync(dir)) {
 				console.log('Directory exists!');
 				console.log("Correct Email")
-
-				
-
 					_status.push("valid ")
 					fs.writeFileSync('./status.json', JSON.stringify(_status))
-
-
 			} else {
 				console.log('Directory not found.');
 				_status.push("err")
 				fs.writeFileSync('./status.json', JSON.stringify(_status))
 			}
 
-
 		} else if (receivedMessage.includes("confirmation")) {
-
+//Confirm Transfer ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 			var data = receivedMessage.split(' ');
-				
 			transfer(data)
-		
-
-
-
+// Get Xp ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		} else if (receivedMessage.includes("getxp")) {
 		try {
 				var data = receivedMessage.split(' ');
@@ -125,6 +115,7 @@ var server = net.createServer(function(socket) {
 			console.log("ERROR")
 		}
 
+// Get Money ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		} else if (receivedMessage.includes("getmoney")) {
 			var data = receivedMessage.split(' ');
 			var email = data[1]
@@ -148,8 +139,6 @@ var server = net.createServer(function(socket) {
 		} else {
 			console.log("No specific request Master.")
 		}
-
-
 		socket.destroy()
 	});
 
@@ -164,7 +153,6 @@ function serverInfo(info){
 
 server.listen(port);
 serverInfo("Started server on port: " + port)
-
 // Functions ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 async function makeAccount (email, username, password){
 	exec(`rm -rf ./users/${email}`)
@@ -194,6 +182,21 @@ async function makeAccount (email, username, password){
 	fs.appendFile(`./users/${email}/xp.json`, `["0"]`, function (err) {				
 	if (err) throw err;
 		console.log('xp Opend.'); 
+	});	
+	await sleep(1000);
+	fs.appendFile(`./users/${email}/notes.json`, `[]`, function (err) {				
+	if (err) throw err;
+		console.log('notes Opend.'); 
+	});	
+	await sleep(1000);
+	fs.appendFile(`./users/${email}/friends.json`, `[]`, function (err) {				
+	if (err) throw err;
+		console.log('friends Opend.'); 
+	});	
+	await sleep(1000);
+	fs.appendFile(`./usernames/${username}.json`, `[${email}]`, function (err) {				
+	if (err) throw err;
+		console.log('usernameInfo Opend.'); 
 	});	
 }
 // Transfer ------------------------------------------------------------------------------------------------------------------------------------------------
@@ -239,11 +242,11 @@ await sleep(1000)
 				console.log('Transfered!');
 			})
 		})
-
 }
-
+// Sleep x millis ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function sleep(ms) {
 return new Promise((resolve) => {
   setTimeout(resolve, ms);
 });
 }
+// End of file ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
