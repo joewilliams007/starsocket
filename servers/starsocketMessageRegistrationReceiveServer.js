@@ -221,8 +221,8 @@ try {
 	host: 'smtp.gmail.com',
 	port: 587,
 	auth: {
-		user: 'stardashnotification@gmail.com',
-		pass: 'stardash20%'
+		user: 'StarDash.app@gmail.com',
+		pass: 'johannw2004'
 	},
 	});
 	transporter.verify().then(console.log).catch(console.error);
