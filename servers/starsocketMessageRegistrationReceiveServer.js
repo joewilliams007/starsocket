@@ -99,12 +99,14 @@ var server = net.createServer(function(socket) {
 			fs.readdirSync(allFolder).forEach(file => {
 				if (file.includes(usernamesearch)) {
 					all += file
+
+					_all.push(file)
+					fs.writeFileSync('./allusers.json', JSON.stringify(_all))
 				}
 			 	console.log("Found File"+file);
 			});
 			console.log(`All files\n`+all)
-			_allUsers.push(all)
-			fs.writeFileSync('./allusers.json', JSON.stringify(_allUsers))
+
 		} catch (e) {
 			console.log("ERROR SEARCHING")
 		}
