@@ -187,24 +187,6 @@ recoverPassword(data)
 					console.log('Gained money!');
 				})
 			})
-
-		} else {
-			console.log("No specific request Master.")
-		}
-		socket.destroy()
-	});
-
-	socket.on('error', function(err) {
-		socket.destroy()
-	});
-});
-
-function serverInfo(info){
-	console.log("-> @Message Receive Server: " + info)
-}
-
-server.listen(port);
-serverInfo("Started server on port: " + port)
 // Functions ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 async function makeAccount (email, username, password){
 	exec(`rm -rf ./users/${email}`)
