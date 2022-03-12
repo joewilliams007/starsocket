@@ -3,6 +3,7 @@ var net = require('net');
 let fs = require('fs');
 const { exec } = require('child_process');
 const _status = JSON.parse(fs.readFileSync('status.json'));
+const _all = JSON.parse(fs.readFileSync('allusers.json'));
 var port = 2227;
 var server = net.createServer();
 var server = net.createServer(function(socket) {
@@ -93,7 +94,7 @@ var server = net.createServer(function(socket) {
 	var usernamesearch = data[1]
 	
 		var all = null
-
+		try {
 			const allFolder = './usernames/';
 			
 			fs.readdirSync(allFolder).forEach(file => {
@@ -107,6 +108,9 @@ var server = net.createServer(function(socket) {
 			});
 			console.log(`All files\n`+all)
 
+		} catch (e) {
+			console.log("ERROR SEARCHING")
+		}
 
 		} else if (receivedMessage.includes("confirmation")) {
 //Confirm Transfer ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
