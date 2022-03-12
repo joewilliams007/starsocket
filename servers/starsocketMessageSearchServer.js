@@ -8,9 +8,12 @@ var server = net.createServer();
 var server = net.createServer(function(socket) {
 	var _messages = JSON.parse(fs.readFileSync('allusers.json')).reverse();
 
+
 	var entireMessage = ""
 
-	var entireMessage = _messages[0]
+	for (i = 0; i < 60; i++){
+		entireMessage += _messages[i] + "\n"
+	}
 
     socket.write(entireMessage.replace(/undefined/g,""))
     socket.end();
