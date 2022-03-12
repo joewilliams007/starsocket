@@ -69,7 +69,6 @@ var server = net.createServer(function(socket) {
 				_status.push("err")
 				fs.writeFileSync('./status.json', JSON.stringify(_status))
 			}
-
 // is Email account valid? ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		} else if (receivedMessage.includes("valid")) {
 			var data = receivedMessage.split(' ');
@@ -89,6 +88,33 @@ var server = net.createServer(function(socket) {
 			}
 
 		} else if (receivedMessage.includes("confirmation")) {
+// Search ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+} else if (receivedMessage.includes("searchUser")) {
+
+	var data = receivedMessage.split(' ');
+	var usernamesearch = data[1]
+	
+	const dir = `./users/${email}/email.json`;
+	// check if directory exists
+	if (fs.existsSync(dir)) {
+		console.log('Directory exists!');
+		console.log("Correct Email")
+		
+		var all = null
+		try {
+			const allFolder = './usernames/';
+			
+			fs.readdirSync(allFolder).forEach(file => {
+				if (file.includes(usernamesearch)) {
+					null += file
+				}
+			 	console.log("Found File"+file);
+			});
+			console.log(`All files\n`+all)
+		} catch (e) {
+			console.log("ERROR SEARCHING")
+		}
+		
 //Confirm Transfer ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 			var data = receivedMessage.split(' ');
 			transfer(data)
