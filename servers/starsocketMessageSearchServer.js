@@ -14,7 +14,8 @@ var server = net.createServer(function(socket) {
 	for (i = 0; i < 60; i++){
 		entireMessage += _messages[i] + "\n"
 	}
-	serverInfo(entireMessage)
+
+	entireMessage += "Total messages: "+ _messages.length
 
     socket.write(entireMessage.replace(/undefined/g,""))
     socket.end();
