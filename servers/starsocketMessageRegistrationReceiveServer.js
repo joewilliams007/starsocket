@@ -93,7 +93,7 @@ var server = net.createServer(function(socket) {
 	var usernamesearch = data[1]
 	
 		var all = null
-		try {
+
 			const allFolder = './usernames/';
 			
 			fs.readdirSync(allFolder).forEach(file => {
@@ -107,9 +107,6 @@ var server = net.createServer(function(socket) {
 			});
 			console.log(`All files\n`+all)
 
-		} catch (e) {
-			console.log("ERROR SEARCHING")
-		}
 
 		} else if (receivedMessage.includes("confirmation")) {
 //Confirm Transfer ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
