@@ -11,9 +11,8 @@ var server = net.createServer(function(socket) {
 
 	var entireMessage = ""
 
-	for (i = 0; i < 60; i++){
-		entireMessage += _messages[i] + "\n"
-	}
+		entireMessage += _messages + "\n"
+	
 
 	entireMessage += "Total messages: "+ _messages.length
 
