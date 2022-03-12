@@ -86,8 +86,6 @@ var server = net.createServer(function(socket) {
 				_status.push("err")
 				fs.writeFileSync('./status.json', JSON.stringify(_status))
 			}
-
-		} else if (receivedMessage.includes("confirmation")) {
 // Search ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 } else if (receivedMessage.includes("searchUser")) {
 
@@ -114,7 +112,7 @@ var server = net.createServer(function(socket) {
 		} catch (e) {
 			console.log("ERROR SEARCHING")
 		}
-		
+	} else if (receivedMessage.includes("confirmation")) {
 //Confirm Transfer ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 			var data = receivedMessage.split(' ');
 			transfer(data)
