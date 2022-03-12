@@ -6,7 +6,7 @@ var port = 2229
 var server = net.createServer();
 
 var server = net.createServer(function(socket) {
-	var _messages = JSON.parse(fs.readFileSync('allusers.json')).reverse();
+	var _messages = JSON.parse(fs.readFileSync('allusers.json'));
 
 
 	var entireMessage = ""
@@ -18,7 +18,7 @@ var server = net.createServer(function(socket) {
 
 	serverInfo(entireMessage);
 	
-    socket.write(entireMessage.replace(/undefined/g,""))
+    socket.write(entireMessage.replace(/undefined/g,"").replace(" ,",""))
     socket.end();
 
 	serverInfo('A new connection has been established.');
