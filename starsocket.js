@@ -10,4 +10,6 @@ var messageReceiveServer = require("./servers/starsocketMessageReceiveServer.js"
 var messageSendServerRegistration = require("./servers/StarSocketMessageSendRegistrationServer.js")
 var messageReceiveServerRegistration = require("./servers/starsocketMessageRegistrationReceiveServer.js")
 
+var starsocketMessageSearchServer = require("./servers/starsocketMessageSearchServer.js")
+
 var legacySupport = require("./servers/starChatOld.js")

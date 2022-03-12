@@ -12,7 +12,7 @@ var server = net.createServer(function(socket) {
 
 	var entireMessage = _messages[0]
 
-    socket.write(entireMessage.replace(/undefined/g,"")+"hi")
+    socket.write(entireMessage.replace(/undefined/g,""))
     socket.end();
 
 	serverInfo('A new connection has been established.');
