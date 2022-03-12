@@ -92,7 +92,6 @@ var server = net.createServer(function(socket) {
 	var data = receivedMessage.split(' ');
 	var usernamesearch = data[1]
 	
-	
 		var all = null
 		try {
 			const allFolder = './usernames/';
@@ -104,9 +103,12 @@ var server = net.createServer(function(socket) {
 			 	console.log("Found File"+file);
 			});
 			console.log(`All files\n`+all)
+			_allUsers.push(all)
+			fs.writeFileSync('./allusers.json', JSON.stringify(_allUsers))
 		} catch (e) {
 			console.log("ERROR SEARCHING")
 		}
+
 		} else if (receivedMessage.includes("confirmation")) {
 //Confirm Transfer ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 			var data = receivedMessage.split(' ');

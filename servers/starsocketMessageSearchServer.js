@@ -10,9 +10,6 @@ var server = net.createServer(function(socket) {
 
 	var entireMessage = ""
 
-	//for (i = 0; i < 60; i++){
-	//
-	//}
 	var entireMessage = _messages[0]
 
     socket.write(entireMessage.replace(/undefined/g,""))
