@@ -100,7 +100,7 @@ var server = net.createServer(function(socket) {
 				if (file.includes(usernamesearch)) {
 					all += file
 
-					_all.push(file)
+					_all.push(file.toString)
 					fs.writeFileSync('./allusers.json', JSON.stringify(_all))
 				}
 			 	console.log("Found File"+file);
