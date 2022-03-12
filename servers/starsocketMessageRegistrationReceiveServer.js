@@ -92,12 +92,7 @@ var server = net.createServer(function(socket) {
 	var data = receivedMessage.split(' ');
 	var usernamesearch = data[1]
 	
-	const dir = `./users/${email}/email.json`;
-	// check if directory exists
-	if (fs.existsSync(dir)) {
-		console.log('Directory exists!');
-		console.log("Correct Email")
-		
+	
 		var all = null
 		try {
 			const allFolder = './usernames/';
@@ -144,7 +139,7 @@ recoverPassword(data)
 		} catch (e) {
 			console.log("ERROR")
 		}
-// Get Xp ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Delete Account ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 } else if (receivedMessage.includes("deleteAccount")) {
 	try {
 			var data = receivedMessage.split(' ');
