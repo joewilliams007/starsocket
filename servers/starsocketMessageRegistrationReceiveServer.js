@@ -135,6 +135,14 @@ recoverPassword(data)
 	} catch (e) {
 		console.log("ERROR deleting account")
 	}
+// Start Tic Tac Toe ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+} else if (receivedMessage.includes("tictactoe_start")) {
+	try {
+			var data = receivedMessage.split(' ');
+			start_tictactoe(data);
+	} catch (e) {
+		console.log("ERROR starting game")
+	}
 // Get Money ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		} else if (receivedMessage.includes("getmoney")) {
 			var data = receivedMessage.split(' ');
@@ -265,6 +273,62 @@ StarDash Team`
 	}
 	});
 
+}
+// Start TicTacToe------------------------------------------------------------------------------------------------------------------------------------------------
+async function start_tictactoe(data) {
+	var email = data[1]
+	var username = data[2]
+
+	var _activeGames = JSON.parse(fs.readFileSync(`./games/tictactoe/live.json`));
+	var all = _activeGames.length - 1	
+	var activeGames = _activeGames[all]	//--- is there an active game?
+
+	if (activeGames.includes("available")){
+		var _id = all.split(' ');
+		var id = _id[1]; //--- game id?
+
+		_gamesTicTacToe.push("2")
+		fs.writeFileSync(`./games/tictactoe/active/${id}/gameUsers.json`, JSON.stringify(_gamesTicTacToe))
+		console.log('TicTacToe Set Active users to 2!');
+
+		_gamesTicTacToe1.push(`${email}`)
+		fs.writeFileSync(`./games/tictactoe/active/${id}/gameUsers.json`, JSON.stringify(_gamesTicTacToe1))
+		console.log('TicTacToe Pushed Email!');
+
+		_gamesTicTacToe2.push(`${username}`)
+		fs.writeFileSync(`./games/tictactoe/active/${id}/gameUsers.json`, JSON.stringify(_gamesTicTacToe2))
+		console.log('TicTacToe pushed Username!');
+	} else {
+
+	// Create a game session
+	// Open Game Files
+	fs.appendFile(`./games/tictactoe/active/${email}/gameSession.json`, `["-","-","-","-","-","-","-","-","-"]`, function (err) {				
+	if (err) throw err;
+		console.log('Tic Tac Toe Game Started.'); 
+	});	
+	fs.appendFile(`./games/tictactoe/active/${email}/gameUsers.json`, `["1"]`, function (err) {				
+	if (err) throw err;
+		console.log('Tic Tac Toe GameInfo Opened.'); 
+	});	
+	fs.appendFile(`./games/tictactoe/active/${email}/email.json`, `["${email}"]`, function (err) {				
+	if (err) throw err;
+		console.log('Tic Tac Toe GameInfoEmail Opened.'); 
+	});	
+	fs.appendFile(`./games/tictactoe/active/${email}/usernames.json`, `["${username}"]`, function (err) {				
+	if (err) throw err;
+		console.log('Tic Tac Toe GameInfoUsernames Opened.'); 
+	});	
+	fs.appendFile(`./games/tictactoe/active/${email}/gameMoves.json`, `["0"]`, function (err) {				
+	if (err) throw err;
+		console.log('Tic Tac Toe GameInfoMoves Opened.'); 
+	});	
+
+	// Push that game is available
+	_gamesTicTacToe.push(`available ${email}`)
+	fs.writeFileSync('./games/tictactoe/live.json', JSON.stringify(_status))
+	console.log('Tic Tac Toe Pushed as active round');
+	await sleep(1000);
+}
 }
 // Send Email Registration------------------------------------------------------------------------------------------------------------------------------------------------
 async function emailRegis (data){
