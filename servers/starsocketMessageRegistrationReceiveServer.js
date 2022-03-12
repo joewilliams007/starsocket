@@ -106,7 +106,7 @@ var server = net.createServer(function(socket) {
 			
 			fs.readdirSync(allFolder).forEach(file => {
 				if (file.includes(usernamesearch)) {
-					null += file
+					all += file
 				}
 			 	console.log("Found File"+file);
 			});
