@@ -185,6 +185,7 @@ recoverPassword(data)
 							if (err) throw err;
 						})
 					})
+					sleep(1000)
 					fs.readFile(`./leaderboard/leader1.json`, 'utf-8', function(err, data) {
 						if (err) throw err;	
 						var newValue = data.replace(`${leader1}`, name);	
@@ -200,6 +201,7 @@ recoverPassword(data)
 							if (err) throw err;
 						})
 					})
+					sleep(1000)
 					fs.readFile(`./leaderboard/leader2.json`, 'utf-8', function(err, data) {
 						if (err) throw err;	
 						var newValue = data.replace(`${leader2}`, name);	
@@ -215,6 +217,7 @@ recoverPassword(data)
 							if (err) throw err;
 						})
 					})
+					sleep(1000)
 					fs.readFile(`./leaderboard/leader3.json`, 'utf-8', function(err, data) {
 						if (err) throw err;	
 						var newValue = data.replace(`${leader3}`, name);	
@@ -230,6 +233,7 @@ recoverPassword(data)
 							if (err) throw err;
 						})
 					})
+					sleep(1000)
 					fs.readFile(`./leaderboard/leader4.json`, 'utf-8', function(err, data) {
 						if (err) throw err;	
 						var newValue = data.replace(`${leader4}`, name);	
@@ -245,6 +249,7 @@ recoverPassword(data)
 							if (err) throw err;
 						})
 					})
+					sleep(1000)
 					fs.readFile(`./leaderboard/leader5.json`, 'utf-8', function(err, data) {
 						if (err) throw err;	
 						var newValue = data.replace(`${leader5}`, name);	
@@ -260,6 +265,7 @@ recoverPassword(data)
 							if (err) throw err;
 						})
 					})
+					sleep(1000)
 					fs.readFile(`./leaderboard/leader6.json`, 'utf-8', function(err, data) {
 						if (err) throw err;	
 						var newValue = data.replace(`${leader6}`, name);	
@@ -275,6 +281,7 @@ recoverPassword(data)
 							if (err) throw err;
 						})
 					})
+					sleep(1000)
 					fs.readFile(`./leaderboard/leader7.json`, 'utf-8', function(err, data) {
 						if (err) throw err;	
 						var newValue = data.replace(`${leader7}`, name);	
@@ -290,6 +297,7 @@ recoverPassword(data)
 							if (err) throw err;
 						})
 					})
+					sleep(1000)
 					fs.readFile(`./leaderboard/leader8.json`, 'utf-8', function(err, data) {
 						if (err) throw err;	
 						var newValue = data.replace(`${leader8}`, name);	
@@ -305,6 +313,7 @@ recoverPassword(data)
 							if (err) throw err;
 						})
 					})
+					sleep(1000)
 					fs.readFile(`./leaderboard/leader9.json`, 'utf-8', function(err, data) {
 						if (err) throw err;	
 						var newValue = data.replace(`${leader9}`, name);	
@@ -320,6 +329,7 @@ recoverPassword(data)
 							if (err) throw err;
 						})
 					})
+					sleep(1000)
 					fs.readFile(`./leaderboard/leader10.json`, 'utf-8', function(err, data) {
 						if (err) throw err;	
 						var newValue = data.replace(`${leader10}`, name);	
