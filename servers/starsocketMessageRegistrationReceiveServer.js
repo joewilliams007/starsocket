@@ -153,7 +153,25 @@ recoverPassword(data)
 			var leader10 = _leader[0]	//--- leaderxp
 			var leaderIs10 = _leader[1]	//--- leadername
 		try {
+				var data = receivedMessage.split(' ');
+				var email = data[1]
+			
+				var getXp = data[2]
+				var _xp = JSON.parse(fs.readFileSync(`./users/${email}/xp.json`));	
+				var xp = _xp[0]	//--- xp
 
+				var xpOld = Number(xp);
+				var xpUp = Number(getXp);
+
+				fs.readFile(`./users/${email}/xp.json`, 'utf-8', function(err, data) {
+					if (err) throw err;	
+					var newValue = data.replace(`${xpOld}`, xpUp);	
+					fs.writeFile(`./users/${email}/xp.json`, newValue, 'utf-8', function(err, data) {
+						if (err) throw err;
+						console.log('Gained xp!');
+					})
+				})
+				
 			try {
 
 				var xp = data[2]
