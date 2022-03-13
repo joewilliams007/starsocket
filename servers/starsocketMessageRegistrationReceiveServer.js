@@ -477,6 +477,9 @@ await sleep(1000)
 async function leader (data){
 var name = data[3]
 var xp = data[2]
+if (name.length<1){}
+break;
+}
 //-- Winner
 var winner1;
 try{
