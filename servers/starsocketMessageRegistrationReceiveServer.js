@@ -185,7 +185,7 @@ recoverPassword(data)
 					})
 					fs.readFile(`./leaderboard/leader1.json`, 'utf-8', function(err, data) {
 						if (err) throw err;	
-						var newValue = data.replace(`${leader}`, name);	
+						var newValue = data.replace(`${leader1}`, name);	
 						fs.writeFile(`./leaderboard/leader1.json`, newValue, 'utf-8', function(err, data) {
 							if (err) throw err;
 						})
@@ -326,7 +326,7 @@ recoverPassword(data)
 						})
 					})
 				} else {
-					
+
 				}
 
 
