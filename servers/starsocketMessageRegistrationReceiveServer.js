@@ -153,38 +153,19 @@ recoverPassword(data)
 // leaderboard ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 } else if (receivedMessage.includes("leaderboard?id=121212123213123213")) {
 	try {
-		var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader1.json`));	
-		var leader1 = _leader[0]	//--- leaderxp
-		var leaderIs1 = _leader[1]	//--- leadername
-		var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader2.json`));	
-		var leader2 = _leader[0]	//--- leaderxp
-		var leaderIs2 = _leader[1]	//--- leadername
-		var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader3.json`));	
-		var leader3 = _leader[0]	//--- leaderxp
-		var leaderIs3 = _leader[1]	//--- leadername
-		var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader4.json`));	
-		var leader4 = _leader[0]	//--- leaderxp
-		var leaderIs4 = _leader[1]	//--- leadername
-		var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader5.json`));	
-		var leader5 = _leader[0]	//--- leaderxp
-		var leaderIs5 = _leader[1]	//--- leadername
-		var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader6.json`));	
-		var leader6 = _leader[0]	//--- leaderxp
-		var leaderIs6 = _leader[1]	//--- leadername
-		var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader7.json`));	
-		var leader7 = _leader[0]	//--- leaderxp
-		var leaderIs7 = _leader[1]	//--- leadername
-		var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader8.json`));	
-		var leader8 = _leader[0]	//--- leaderxp
-		var leaderIs8 = _leader[1]	//--- leadername
-		var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader9.json`));	
-		var leader9 = _leader[0]	//--- leaderxp
-		var leaderIs9 = _leader[1]	//--- leadername
-		var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader10.json`));	
-		var leader10 = _leader[0]	//--- leaderxp
-		var leaderIs10 = _leader[1]	//--- leadername
-
-		_status.push("1. "+leaderIs1+", "+leader1+" xp\n"+"2. "+leaderIs2+", "+leader2+" xp\n"+"3. "+leaderIs3+", "+leader3+" xp\n"+"4. "+leaderIs4+", "+leader4+" xp\n"+"5. "+leaderIs5+", "+leader5+" xp\n"+"6. "+leaderIs6+", "+leader6+" xp\n"+"7. "+leaderIs7+", "+leader7+" xp\n"+"8. "+leaderIs8+", "+leader8+" xp\n"+"9. "+leaderIs9+", "+leader9+" xp\n"+"1. "+leaderIs10+", "+leader10+" xp")
+		var _winner11 = JSON.parse(fs.readFileSync(`./session/winner1.json`));	
+		var winner11 = _winner11[0]	//--- xp 
+		var winner11name = _winner11[1]	//--- name
+		
+		var _winner22 = JSON.parse(fs.readFileSync(`./session/winner2.json`));	
+		var winner22 = _winner22[0]	//--- xp 
+		var winner22name = _winner22[1]	//--- name
+		
+		var _winner33 = JSON.parse(fs.readFileSync(`./session/winner3.json`));	
+		var winner33 = _winner33[0]	//--- xp 
+		var winner33name = _winner33[1]	//--- name
+		
+		_status.push(winner11name+" "+winner11+"xp\n"+winner22name+" "+winner22+"xp\n"+winner33name+" "+winner33+"xp")
 		fs.writeFileSync('./status.json', JSON.stringify(_status))
 	} catch (e) {
 		console.log("ERROR leaderboard")
@@ -535,20 +516,19 @@ fs.appendFile(`./session/winner3.json`, `["${xp}", "${name}"]`, function (err) {
 else {} 
 await delay(1000) /// waiting 1 second.
 //-- Winner
-const _winner11 = JSON.parse(fs.readFileSync(`./session/winner1.json`));	
-const winner11 = _winner11[0]	//--- xp 
-const winner11name = _winner11[1]	//--- name
+var _winner11 = JSON.parse(fs.readFileSync(`./session/winner1.json`));	
+var winner11 = _winner11[0]	//--- xp 
+var winner11name = _winner11[1]	//--- name
 
-const _winner22 = JSON.parse(fs.readFileSync(`./session/winner2.json`));	
-const winner22 = _winner22[0]	//--- xp 
-const winner22name = _winner22[1]	//--- name
+var _winner22 = JSON.parse(fs.readFileSync(`./session/winner2.json`));	
+var winner22 = _winner22[0]	//--- xp 
+var winner22name = _winner22[1]	//--- name
 
-const _winner33 = JSON.parse(fs.readFileSync(`./session/winner3.json`));	
-const winner33 = _winner33[0]	//--- xp 
-const winner33name = _winner33[1]	//--- name
+var _winner33 = JSON.parse(fs.readFileSync(`./session/winner3.json`));	
+var winner33 = _winner33[0]	//--- xp 
+var winner33name = _winner33[1]	//--- name
 
-_status.push(winner11name+" "+winner11+"xp\n"+winner22name+" "+winner22+"xp\n"+winner33name+" "+winner33+"xp")
-fs.writeFileSync('./status.json', JSON.stringify(_status))
+
 }
 // Sleep x millis ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function sleep(ms) {
