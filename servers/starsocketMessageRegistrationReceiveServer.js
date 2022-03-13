@@ -124,36 +124,7 @@ recoverPassword(data)
 		} else if (receivedMessage.includes("getxp")) {
 
 		try {
-			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader1.json`));	
-			var leader1 = _leader[0]	//--- leaderxp
-			var leaderIs1 = _leader[1]	//--- leadername
-			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader2.json`));	
-			var leader2 = _leader[0]	//--- leaderxp
-			var leaderIs2 = _leader[1]	//--- leadername
-			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader3.json`));	
-			var leader3 = _leader[0]	//--- leaderxp
-			var leaderIs3 = _leader[1]	//--- leadername
-			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader4.json`));	
-			var leader4 = _leader[0]	//--- leaderxp
-			var leaderIs4 = _leader[1]	//--- leadername
-			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader5.json`));	
-			var leader5 = _leader[0]	//--- leaderxp
-			var leaderIs5 = _leader[1]	//--- leadername
-			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader6.json`));	
-			var leader6 = _leader[0]	//--- leaderxp
-			var leaderIs6 = _leader[1]	//--- leadername
-			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader7.json`));	
-			var leader7 = _leader[0]	//--- leaderxp
-			var leaderIs7 = _leader[1]	//--- leadername
-			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader8.json`));	
-			var leader8 = _leader[0]	//--- leaderxp
-			var leaderIs8 = _leader[1]	//--- leadername
-			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader9.json`));	
-			var leader9 = _leader[0]	//--- leaderxp
-			var leaderIs9 = _leader[1]	//--- leadername
-			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader10.json`));	
-			var leader10 = _leader[0]	//--- leaderxp
-			var leaderIs10 = _leader[1]	//--- leadername
+
 				var data = receivedMessage.split(' ');
 				var email = data[1]
 			
@@ -175,171 +146,66 @@ recoverPassword(data)
 
 			try {
 
-				var xp = data[2]
 				var name = data[3]
-				if (xp > leader1) {
-					fs.readFile(`./leaderboard/leader1.json`, 'utf-8', function(err, data) {
-						if (err) throw err;	
-						var newValue = data.replace(`${leader1}`, xp);	
-						fs.writeFile(`./leaderboard/leader1.json`, newValue, 'utf-8', function(err, data) {
-							if (err) throw err;
-						})
-					})
-					sleep(1000)
-					fs.readFile(`./leaderboard/leader1.json`, 'utf-8', function(err, data) {
-						if (err) throw err;	
-						var newValue = data.replace(`${leader1}`, name);	
-						fs.writeFile(`./leaderboard/leader1.json`, newValue, 'utf-8', function(err, data) {
-							if (err) throw err;
-						})
-					})
-				} 	else if (xp > leader2) {
-					fs.readFile(`./leaderboard/leader2.json`, 'utf-8', function(err, data) {
-						if (err) throw err;	
-						var newValue = data.replace(`${leader2}`, xp);	
-						fs.writeFile(`./leaderboard/leader2.json`, newValue, 'utf-8', function(err, data) {
-							if (err) throw err;
-						})
-					})
-					sleep(1000)
-					fs.readFile(`./leaderboard/leader2.json`, 'utf-8', function(err, data) {
-						if (err) throw err;	
-						var newValue = data.replace(`${leader2}`, name);	
-						fs.writeFile(`./leaderboard/leader2.json`, newValue, 'utf-8', function(err, data) {
-							if (err) throw err;
-						})
-					})
-				} 	else if (xp > leader3) {
-					fs.readFile(`./leaderboard/leader3.json`, 'utf-8', function(err, data) {
-						if (err) throw err;	
-						var newValue = data.replace(`${leader3}`, xp);	
-						fs.writeFile(`./leaderboard/leader3.json`, newValue, 'utf-8', function(err, data) {
-							if (err) throw err;
-						})
-					})
-					sleep(1000)
-					fs.readFile(`./leaderboard/leader3.json`, 'utf-8', function(err, data) {
-						if (err) throw err;	
-						var newValue = data.replace(`${leader3}`, name);	
-						fs.writeFile(`./leaderboard/leader3.json`, newValue, 'utf-8', function(err, data) {
-							if (err) throw err;
-						})
-					})
-				} 	else if (xp > leader4) {
-					fs.readFile(`./leaderboard/leader4.json`, 'utf-8', function(err, data) {
-						if (err) throw err;	
-						var newValue = data.replace(`${leader4}`, xp);	
-						fs.writeFile(`./leaderboard/leader4.json`, newValue, 'utf-8', function(err, data) {
-							if (err) throw err;
-						})
-					})
-					sleep(1000)
-					fs.readFile(`./leaderboard/leader4.json`, 'utf-8', function(err, data) {
-						if (err) throw err;	
-						var newValue = data.replace(`${leader4}`, name);	
-						fs.writeFile(`./leaderboard/leader4.json`, newValue, 'utf-8', function(err, data) {
-							if (err) throw err;
-						})
-					})
-				} 	else if (xp > leader5) {
-					fs.readFile(`./leaderboard/leader5.json`, 'utf-8', function(err, data) {
-						if (err) throw err;	
-						var newValue = data.replace(`${leader5}`, xp);	
-						fs.writeFile(`./leaderboard/leader.json`, newValue, 'utf-8', function(err, data) {
-							if (err) throw err;
-						})
-					})
-					sleep(1000)
-					fs.readFile(`./leaderboard/leader5.json`, 'utf-8', function(err, data) {
-						if (err) throw err;	
-						var newValue = data.replace(`${leader5}`, name);	
-						fs.writeFile(`./leaderboard/leader5.json`, newValue, 'utf-8', function(err, data) {
-							if (err) throw err;
-						})
-					})
-				} 	else if (xp > leader6) {
-					fs.readFile(`./leaderboard/leader6.json`, 'utf-8', function(err, data) {
-						if (err) throw err;	
-						var newValue = data.replace(`${leader6}`, xp);	
-						fs.writeFile(`./leaderboard/leader6.json`, newValue, 'utf-8', function(err, data) {
-							if (err) throw err;
-						})
-					})
-					sleep(1000)
-					fs.readFile(`./leaderboard/leader6.json`, 'utf-8', function(err, data) {
-						if (err) throw err;	
-						var newValue = data.replace(`${leader6}`, name);	
-						fs.writeFile(`./leaderboard/leader6.json`, newValue, 'utf-8', function(err, data) {
-							if (err) throw err;
-						})
-					})
-				} 	else if (xp > leader7) {
-					fs.readFile(`./leaderboard/leader7.json`, 'utf-8', function(err, data) {
-						if (err) throw err;	
-						var newValue = data.replace(`${leader7}`, xp);	
-						fs.writeFile(`./leaderboard/leader7.json`, newValue, 'utf-8', function(err, data) {
-							if (err) throw err;
-						})
-					})
-					sleep(1000)
-					fs.readFile(`./leaderboard/leader7.json`, 'utf-8', function(err, data) {
-						if (err) throw err;	
-						var newValue = data.replace(`${leader7}`, name);	
-						fs.writeFile(`./leaderboard/leader7.json`, newValue, 'utf-8', function(err, data) {
-							if (err) throw err;
-						})
-					})
-				} 	else if (xp > leader8) {
-					fs.readFile(`./leaderboard/leader8.json`, 'utf-8', function(err, data) {
-						if (err) throw err;	
-						var newValue = data.replace(`${leader8}`, xp);	
-						fs.writeFile(`./leaderboard/leader8.json`, newValue, 'utf-8', function(err, data) {
-							if (err) throw err;
-						})
-					})
-					sleep(1000)
-					fs.readFile(`./leaderboard/leader8.json`, 'utf-8', function(err, data) {
-						if (err) throw err;	
-						var newValue = data.replace(`${leader8}`, name);	
-						fs.writeFile(`./leaderboard/leader8.json`, newValue, 'utf-8', function(err, data) {
-							if (err) throw err;
-						})
-					})
-				} 	else if (xp > leader1) {
-					fs.readFile(`./leaderboard/leader9.json`, 'utf-8', function(err, data) {
-						if (err) throw err;	
-						var newValue = data.replace(`${leader9}`, xp);	
-						fs.writeFile(`./leaderboard/leader9.json`, newValue, 'utf-8', function(err, data) {
-							if (err) throw err;
-						})
-					})
-					sleep(1000)
-					fs.readFile(`./leaderboard/leader9.json`, 'utf-8', function(err, data) {
-						if (err) throw err;	
-						var newValue = data.replace(`${leader9}`, name);	
-						fs.writeFile(`./leaderboard/leader9.json`, newValue, 'utf-8', function(err, data) {
-							if (err) throw err;
-						})
-					})
-				} 	else if (xp > leader10) {
-					fs.readFile(`./leaderboard/leader10.json`, 'utf-8', function(err, data) {
-						if (err) throw err;	
-						var newValue = data.replace(`${leader10}`, xp);	
-						fs.writeFile(`./leaderboard/leader10.json`, newValue, 'utf-8', function(err, data) {
-							if (err) throw err;
-						})
-					})
-					sleep(1000)
-					fs.readFile(`./leaderboard/leader10.json`, 'utf-8', function(err, data) {
-						if (err) throw err;	
-						var newValue = data.replace(`${leader10}`, name);	
-						fs.writeFile(`./leaderboard/leader10.json`, newValue, 'utf-8', function(err, data) {
-							if (err) throw err;
-						})
-					})
-				} else {
+			//-- Winner
+			var winner1;
+			try{
+				var _winner1 = JSON.parse(fs.readFileSync(`./session/winner1.json`));	
+				winner1 = _winner1[0]	//--- xp 
+			}catch (err){
+			}
+			var winner2;
+			try{
+				var _winner2 = JSON.parse(fs.readFileSync(`./session/winner2.json`));	
+				winner2 = _winner2[0]	//--- xp 
+			}catch (err){
+			}
+			var winner3;
+			try{
+				var _winner3 = JSON.parse(fs.readFileSync(`./session/winner3.json`));	
+				winner3 = _winner3[0]	//--- xp 
+			}catch (err){
+			}
 
-				}
+
+			await delay(1000) /// waiting 1 second.		
+			if (Number(xp) > Number(winner1)) {						
+				exec(`rm -rf ./session/winner1.json`)
+				await delay(2000) /// waiting 1 second.
+			fs.appendFile(`./session/winner1.json`, `["${xp}", "${name}"]`, function (err) {				
+				if (err) throw err;
+			});
+			} else if (Number(xp) > Number(winner2)) {  
+				exec(`rm -rf ./session/winner2.json`)
+				await delay(2000) /// waiting 1 second.
+			fs.appendFile(`./session/winner2.json`, `["${xp}", "${name}"]`, function (err) {				
+				if (err) throw err;
+			});
+			} else if (Number(xp) > Number(winner3))  {						
+				exec(`rm -rf ./session/winner3.json`)
+				await delay(2000) /// waiting 1 second.
+			fs.appendFile(`./session/winner3.json`, `["${xp}", "${name}"]`, function (err) {				
+				if (err) throw err;
+			});
+			}
+
+			else {} 
+ await delay(1000) /// waiting 1 second.
+//-- Winner
+const _winner11 = JSON.parse(fs.readFileSync(`./session/winner1.json`));	
+const winner11 = _winner11[0]	//--- xp 
+const winner11name = _winner11[1]	//--- name
+
+const _winner22 = JSON.parse(fs.readFileSync(`./session/winner2.json`));	
+const winner22 = _winner22[0]	//--- xp 
+const winner22name = _winner22[1]	//--- name
+
+const _winner33 = JSON.parse(fs.readFileSync(`./session/winner3.json`));	
+const winner33 = _winner33[0]	//--- xp 
+const winner33name = _winner33[1]	//--- name
+
+_status.push(winner11name+" "+winner11+"xp\n"+winner22name+" "+winner22+"xp\n"+winner33name+" "+winner33+"xp")
+fs.writeFileSync('./status.json', JSON.stringify(_status))
 
 
 			} catch (e) {
