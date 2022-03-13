@@ -146,66 +146,7 @@ recoverPassword(data)
 
 			try {
 
-				var name = data[3]
-			//-- Winner
-			var winner1;
-			try{
-				var _winner1 = JSON.parse(fs.readFileSync(`./session/winner1.json`));	
-				winner1 = _winner1[0]	//--- xp 
-			}catch (err){
-			}
-			var winner2;
-			try{
-				var _winner2 = JSON.parse(fs.readFileSync(`./session/winner2.json`));	
-				winner2 = _winner2[0]	//--- xp 
-			}catch (err){
-			}
-			var winner3;
-			try{
-				var _winner3 = JSON.parse(fs.readFileSync(`./session/winner3.json`));	
-				winner3 = _winner3[0]	//--- xp 
-			}catch (err){
-			}
-
-
-			await delay(1000) /// waiting 1 second.		
-			if (Number(xp) > Number(winner1)) {						
-				exec(`rm -rf ./session/winner1.json`)
-				await delay(2000) /// waiting 1 second.
-			fs.appendFile(`./session/winner1.json`, `["${xp}", "${name}"]`, function (err) {				
-				if (err) throw err;
-			});
-			} else if (Number(xp) > Number(winner2)) {  
-				exec(`rm -rf ./session/winner2.json`)
-				await delay(2000) /// waiting 1 second.
-			fs.appendFile(`./session/winner2.json`, `["${xp}", "${name}"]`, function (err) {				
-				if (err) throw err;
-			});
-			} else if (Number(xp) > Number(winner3))  {						
-				exec(`rm -rf ./session/winner3.json`)
-				await delay(2000) /// waiting 1 second.
-			fs.appendFile(`./session/winner3.json`, `["${xp}", "${name}"]`, function (err) {				
-				if (err) throw err;
-			});
-			}
-
-			else {} 
- await delay(1000) /// waiting 1 second.
-//-- Winner
-const _winner11 = JSON.parse(fs.readFileSync(`./session/winner1.json`));	
-const winner11 = _winner11[0]	//--- xp 
-const winner11name = _winner11[1]	//--- name
-
-const _winner22 = JSON.parse(fs.readFileSync(`./session/winner2.json`));	
-const winner22 = _winner22[0]	//--- xp 
-const winner22name = _winner22[1]	//--- name
-
-const _winner33 = JSON.parse(fs.readFileSync(`./session/winner3.json`));	
-const winner33 = _winner33[0]	//--- xp 
-const winner33name = _winner33[1]	//--- name
-
-_status.push(winner11name+" "+winner11+"xp\n"+winner22name+" "+winner22+"xp\n"+winner33name+" "+winner33+"xp")
-fs.writeFileSync('./status.json', JSON.stringify(_status))
+				leader(data);
 
 
 			} catch (e) {
@@ -549,6 +490,70 @@ await sleep(1000)
 				console.log('Transfered!');
 			})
 		})
+}
+// Leaderboard ------------------------------------------------------------------------------------------------------------------------------------------------
+async function leader (data){
+var name = data[3]
+var xp = data[2]
+//-- Winner
+var winner1;
+try{
+	var _winner1 = JSON.parse(fs.readFileSync(`./session/winner1.json`));	
+	winner1 = _winner1[0]	//--- xp 
+}catch (err){
+}
+var winner2;
+try{
+	var _winner2 = JSON.parse(fs.readFileSync(`./session/winner2.json`));	
+	winner2 = _winner2[0]	//--- xp 
+}catch (err){
+}
+var winner3;
+try{
+	var _winner3 = JSON.parse(fs.readFileSync(`./session/winner3.json`));	
+	winner3 = _winner3[0]	//--- xp 
+}catch (err){
+}
+
+
+await delay(1000) /// waiting 1 second.		
+if (Number(xp) > Number(winner1)) {						
+	exec(`rm -rf ./session/winner1.json`)
+	await delay(2000) /// waiting 1 second.
+fs.appendFile(`./session/winner1.json`, `["${xp}", "${name}"]`, function (err) {				
+	if (err) throw err;
+});
+} else if (Number(xp) > Number(winner2)) {  
+	exec(`rm -rf ./session/winner2.json`)
+	await delay(2000) /// waiting 1 second.
+fs.appendFile(`./session/winner2.json`, `["${xp}", "${name}"]`, function (err) {				
+	if (err) throw err;
+});
+} else if (Number(xp) > Number(winner3))  {						
+	exec(`rm -rf ./session/winner3.json`)
+	await delay(2000) /// waiting 1 second.
+fs.appendFile(`./session/winner3.json`, `["${xp}", "${name}"]`, function (err) {				
+	if (err) throw err;
+});
+}
+
+else {} 
+await delay(1000) /// waiting 1 second.
+//-- Winner
+const _winner11 = JSON.parse(fs.readFileSync(`./session/winner1.json`));	
+const winner11 = _winner11[0]	//--- xp 
+const winner11name = _winner11[1]	//--- name
+
+const _winner22 = JSON.parse(fs.readFileSync(`./session/winner2.json`));	
+const winner22 = _winner22[0]	//--- xp 
+const winner22name = _winner22[1]	//--- name
+
+const _winner33 = JSON.parse(fs.readFileSync(`./session/winner3.json`));	
+const winner33 = _winner33[0]	//--- xp 
+const winner33name = _winner33[1]	//--- name
+
+_status.push(winner11name+" "+winner11+"xp\n"+winner22name+" "+winner22+"xp\n"+winner33name+" "+winner33+"xp")
+fs.writeFileSync('./status.json', JSON.stringify(_status))
 }
 // Sleep x millis ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function sleep(ms) {
