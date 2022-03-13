@@ -122,6 +122,36 @@ var data = receivedMessage.split(' ');
 recoverPassword(data)			
 // Get Xp ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		} else if (receivedMessage.includes("getxp")) {
+			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader1.json`));	
+			var leader1 = _leader[0]	//--- leaderxp
+			var leaderIs1 = _leader[1]	//--- leadername
+			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader2.json`));	
+			var leader2 = _leader[0]	//--- leaderxp
+			var leaderIs2 = _leader[1]	//--- leadername
+			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader3.json`));	
+			var leader3 = _leader[0]	//--- leaderxp
+			var leaderIs3 = _leader[1]	//--- leadername
+			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader4.json`));	
+			var leader4 = _leader[0]	//--- leaderxp
+			var leaderIs4 = _leader[1]	//--- leadername
+			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader5.json`));	
+			var leader5 = _leader[0]	//--- leaderxp
+			var leaderIs5 = _leader[1]	//--- leadername
+			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader6.json`));	
+			var leader6 = _leader[0]	//--- leaderxp
+			var leaderIs6 = _leader[1]	//--- leadername
+			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader7.json`));	
+			var leader7 = _leader[0]	//--- leaderxp
+			var leaderIs7 = _leader[1]	//--- leadername
+			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader8.json`));	
+			var leader8 = _leader[0]	//--- leaderxp
+			var leaderIs8 = _leader[1]	//--- leadername
+			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader9.json`));	
+			var leader9 = _leader[0]	//--- leaderxp
+			var leaderIs9 = _leader[1]	//--- leadername
+			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader10.json`));	
+			var leader10 = _leader[0]	//--- leaderxp
+			var leaderIs10 = _leader[1]	//--- leadername
 		try {
 				var data = receivedMessage.split(' ');
 				var email = data[1]
@@ -141,9 +171,210 @@ recoverPassword(data)
 						console.log('Gained xp!');
 					})
 				})
-		} catch (e) {
-			console.log("ERROR")
-		}
+			try {
+
+				var xp = data[2]
+				var name = data[3]
+				if (xp > leader1) {
+					fs.readFile(`./leaderboard/leader1.json`, 'utf-8', function(err, data) {
+						if (err) throw err;	
+						var newValue = data.replace(`${leader1}`, xp);	
+						fs.writeFile(`./leaderboard/leader1.json`, newValue, 'utf-8', function(err, data) {
+							if (err) throw err;
+						})
+					})
+					fs.readFile(`./leaderboard/leader1.json`, 'utf-8', function(err, data) {
+						if (err) throw err;	
+						var newValue = data.replace(`${leader}`, name);	
+						fs.writeFile(`./leaderboard/leader1.json`, newValue, 'utf-8', function(err, data) {
+							if (err) throw err;
+						})
+					})
+				} 	else if (xp > leader2) {
+					fs.readFile(`./leaderboard/leader2.json`, 'utf-8', function(err, data) {
+						if (err) throw err;	
+						var newValue = data.replace(`${leader2}`, xp);	
+						fs.writeFile(`./leaderboard/leader2.json`, newValue, 'utf-8', function(err, data) {
+							if (err) throw err;
+						})
+					})
+					fs.readFile(`./leaderboard/leader2.json`, 'utf-8', function(err, data) {
+						if (err) throw err;	
+						var newValue = data.replace(`${leader2}`, name);	
+						fs.writeFile(`./leaderboard/leader2.json`, newValue, 'utf-8', function(err, data) {
+							if (err) throw err;
+						})
+					})
+				} 	else if (xp > leader3) {
+					fs.readFile(`./leaderboard/leader3.json`, 'utf-8', function(err, data) {
+						if (err) throw err;	
+						var newValue = data.replace(`${leader3}`, xp);	
+						fs.writeFile(`./leaderboard/leader3.json`, newValue, 'utf-8', function(err, data) {
+							if (err) throw err;
+						})
+					})
+					fs.readFile(`./leaderboard/leader3.json`, 'utf-8', function(err, data) {
+						if (err) throw err;	
+						var newValue = data.replace(`${leader3}`, name);	
+						fs.writeFile(`./leaderboard/leader3.json`, newValue, 'utf-8', function(err, data) {
+							if (err) throw err;
+						})
+					})
+				} 	else if (xp > leader4) {
+					fs.readFile(`./leaderboard/leader4.json`, 'utf-8', function(err, data) {
+						if (err) throw err;	
+						var newValue = data.replace(`${leader4}`, xp);	
+						fs.writeFile(`./leaderboard/leader4.json`, newValue, 'utf-8', function(err, data) {
+							if (err) throw err;
+						})
+					})
+					fs.readFile(`./leaderboard/leader4.json`, 'utf-8', function(err, data) {
+						if (err) throw err;	
+						var newValue = data.replace(`${leader4}`, name);	
+						fs.writeFile(`./leaderboard/leader4.json`, newValue, 'utf-8', function(err, data) {
+							if (err) throw err;
+						})
+					})
+				} 	else if (xp > leader5) {
+					fs.readFile(`./leaderboard/leader5.json`, 'utf-8', function(err, data) {
+						if (err) throw err;	
+						var newValue = data.replace(`${leader5}`, xp);	
+						fs.writeFile(`./leaderboard/leader.json`, newValue, 'utf-8', function(err, data) {
+							if (err) throw err;
+						})
+					})
+					fs.readFile(`./leaderboard/leader5.json`, 'utf-8', function(err, data) {
+						if (err) throw err;	
+						var newValue = data.replace(`${leader5}`, name);	
+						fs.writeFile(`./leaderboard/leader5.json`, newValue, 'utf-8', function(err, data) {
+							if (err) throw err;
+						})
+					})
+				} 	else if (xp > leader6) {
+					fs.readFile(`./leaderboard/leader6.json`, 'utf-8', function(err, data) {
+						if (err) throw err;	
+						var newValue = data.replace(`${leader6}`, xp);	
+						fs.writeFile(`./leaderboard/leader6.json`, newValue, 'utf-8', function(err, data) {
+							if (err) throw err;
+						})
+					})
+					fs.readFile(`./leaderboard/leader6.json`, 'utf-8', function(err, data) {
+						if (err) throw err;	
+						var newValue = data.replace(`${leader6}`, name);	
+						fs.writeFile(`./leaderboard/leader6.json`, newValue, 'utf-8', function(err, data) {
+							if (err) throw err;
+						})
+					})
+				} 	else if (xp > leader7) {
+					fs.readFile(`./leaderboard/leader7.json`, 'utf-8', function(err, data) {
+						if (err) throw err;	
+						var newValue = data.replace(`${leader7}`, xp);	
+						fs.writeFile(`./leaderboard/leader7.json`, newValue, 'utf-8', function(err, data) {
+							if (err) throw err;
+						})
+					})
+					fs.readFile(`./leaderboard/leader7.json`, 'utf-8', function(err, data) {
+						if (err) throw err;	
+						var newValue = data.replace(`${leader7}`, name);	
+						fs.writeFile(`./leaderboard/leader7.json`, newValue, 'utf-8', function(err, data) {
+							if (err) throw err;
+						})
+					})
+				} 	else if (xp > leader8) {
+					fs.readFile(`./leaderboard/leader8.json`, 'utf-8', function(err, data) {
+						if (err) throw err;	
+						var newValue = data.replace(`${leader8}`, xp);	
+						fs.writeFile(`./leaderboard/leader8.json`, newValue, 'utf-8', function(err, data) {
+							if (err) throw err;
+						})
+					})
+					fs.readFile(`./leaderboard/leader8.json`, 'utf-8', function(err, data) {
+						if (err) throw err;	
+						var newValue = data.replace(`${leader8}`, name);	
+						fs.writeFile(`./leaderboard/leader8.json`, newValue, 'utf-8', function(err, data) {
+							if (err) throw err;
+						})
+					})
+				} 	else if (xp > leader1) {
+					fs.readFile(`./leaderboard/leader9.json`, 'utf-8', function(err, data) {
+						if (err) throw err;	
+						var newValue = data.replace(`${leader9}`, xp);	
+						fs.writeFile(`./leaderboard/leader9.json`, newValue, 'utf-8', function(err, data) {
+							if (err) throw err;
+						})
+					})
+					fs.readFile(`./leaderboard/leader9.json`, 'utf-8', function(err, data) {
+						if (err) throw err;	
+						var newValue = data.replace(`${leader9}`, name);	
+						fs.writeFile(`./leaderboard/leader9.json`, newValue, 'utf-8', function(err, data) {
+							if (err) throw err;
+						})
+					})
+				} 	else if (xp > leader10) {
+					fs.readFile(`./leaderboard/leader10.json`, 'utf-8', function(err, data) {
+						if (err) throw err;	
+						var newValue = data.replace(`${leader10}`, xp);	
+						fs.writeFile(`./leaderboard/leader10.json`, newValue, 'utf-8', function(err, data) {
+							if (err) throw err;
+						})
+					})
+					fs.readFile(`./leaderboard/leader10.json`, 'utf-8', function(err, data) {
+						if (err) throw err;	
+						var newValue = data.replace(`${leader10}`, name);	
+						fs.writeFile(`./leaderboard/leader10.json`, newValue, 'utf-8', function(err, data) {
+							if (err) throw err;
+						})
+					})
+				} else {
+					
+				}
+
+
+			} catch (e) {
+				console.log("ERROR")
+			}
+			} catch (e) {
+				console.log("ERROR")
+			}
+// leaderboard ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+} else if (receivedMessage.includes("leaderboard?id=121212123213123213")) {
+	try {
+		var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader1.json`));	
+		var leader1 = _leader[0]	//--- leaderxp
+		var leaderIs1 = _leader[1]	//--- leadername
+		var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader2.json`));	
+		var leader2 = _leader[0]	//--- leaderxp
+		var leaderIs2 = _leader[1]	//--- leadername
+		var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader3.json`));	
+		var leader3 = _leader[0]	//--- leaderxp
+		var leaderIs3 = _leader[1]	//--- leadername
+		var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader4.json`));	
+		var leader4 = _leader[0]	//--- leaderxp
+		var leaderIs4 = _leader[1]	//--- leadername
+		var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader5.json`));	
+		var leader5 = _leader[0]	//--- leaderxp
+		var leaderIs5 = _leader[1]	//--- leadername
+		var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader6.json`));	
+		var leader6 = _leader[0]	//--- leaderxp
+		var leaderIs6 = _leader[1]	//--- leadername
+		var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader7.json`));	
+		var leader7 = _leader[0]	//--- leaderxp
+		var leaderIs7 = _leader[1]	//--- leadername
+		var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader8.json`));	
+		var leader8 = _leader[0]	//--- leaderxp
+		var leaderIs8 = _leader[1]	//--- leadername
+		var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader9.json`));	
+		var leader9 = _leader[0]	//--- leaderxp
+		var leaderIs9 = _leader[1]	//--- leadername
+		var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader10.json`));	
+		var leader10 = _leader[0]	//--- leaderxp
+		var leaderIs10 = _leader[1]	//--- leadername
+
+		_status.push("1. "+leaderIs1+", "+leader1+" xp\n"+"2. "+leaderIs2+", "+leader2+" xp\n"+"3. "+leaderIs3+", "+leader3+" xp\n"+"4. "+leaderIs4+", "+leader4+" xp\n"+"5. "+leaderIs5+", "+leader5+" xp\n"+"6. "+leaderIs6+", "+leader6+" xp\n"+"7. "+leaderIs7+", "+leader7+" xp\n"+"8. "+leaderIs8+", "+leader8+" xp\n"+"9. "+leaderIs9+", "+leader9+" xp\n"+"1. "+leaderIs10+", "+leader10+" xp")
+		fs.writeFileSync('./status.json', JSON.stringify(_status))
+	} catch (e) {
+		console.log("ERROR leaderboard")
+	}
 // Delete Account ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 } else if (receivedMessage.includes("deleteAccount")) {
 	try {
