@@ -122,6 +122,8 @@ var data = receivedMessage.split(' ');
 recoverPassword(data)			
 // Get Xp ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		} else if (receivedMessage.includes("getxp")) {
+
+		try {
 			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader1.json`));	
 			var leader1 = _leader[0]	//--- leaderxp
 			var leaderIs1 = _leader[1]	//--- leadername
@@ -152,7 +154,6 @@ recoverPassword(data)
 			var _leader = JSON.parse(fs.readFileSync(`./leaderboard/leader10.json`));	
 			var leader10 = _leader[0]	//--- leaderxp
 			var leaderIs10 = _leader[1]	//--- leadername
-		try {
 				var data = receivedMessage.split(' ');
 				var email = data[1]
 			
@@ -171,7 +172,7 @@ recoverPassword(data)
 						console.log('Gained xp!');
 					})
 				})
-				
+
 			try {
 
 				var xp = data[2]
