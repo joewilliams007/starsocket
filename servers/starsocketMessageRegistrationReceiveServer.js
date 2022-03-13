@@ -150,10 +150,10 @@ recoverPassword(data)
 
 
 			} catch (e) {
-				console.log("ERROR")
+				console.log("ERROR0")
 			}
 			} catch (e) {
-				console.log("ERROR")
+				console.log("ERROR1")
 			}
 // leaderboard ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 } else if (receivedMessage.includes("leaderboard?id=121212123213123213")) {
