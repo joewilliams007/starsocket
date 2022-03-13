@@ -477,9 +477,10 @@ await sleep(1000)
 async function leader (data){
 var name = data[3]
 var xp = data[2]
-if (name.length<1){
-
-} else {
+try {
+if (name.length>1) {
+	console.log("good name")
+}
 //-- Winner
 var winner1;
 try{
@@ -537,8 +538,10 @@ var _winner33 = JSON.parse(fs.readFileSync(`./session/winner3.json`));
 var winner33 = _winner33[0]	//--- xp 
 var winner33name = _winner33[1]	//--- name
 
-
+} catch (e) {
+	console.log("err sending register email")
 }
+
 
 }
 // Sleep x millis ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
