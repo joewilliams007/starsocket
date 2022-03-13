@@ -498,29 +498,29 @@ try{
 }
 
 
-await delay(1000) /// waiting 1 second.		
+await  sleep(1000) /// waiting 1 second.		
 if (Number(xp) > Number(winner1)) {						
 	exec(`rm -rf ./session/winner1.json`)
-	await delay(2000) /// waiting 1 second.
+	await  sleep(2000) /// waiting 1 second.
 fs.appendFile(`./session/winner1.json`, `["${xp}", "${name}"]`, function (err) {				
 	if (err) throw err;
 });
 } else if (Number(xp) > Number(winner2)) {  
 	exec(`rm -rf ./session/winner2.json`)
-	await delay(2000) /// waiting 1 second.
+	await  sleep(2000) /// waiting 1 second.
 fs.appendFile(`./session/winner2.json`, `["${xp}", "${name}"]`, function (err) {				
 	if (err) throw err;
 });
 } else if (Number(xp) > Number(winner3))  {						
 	exec(`rm -rf ./session/winner3.json`)
-	await delay(2000) /// waiting 1 second.
+	await  sleep(2000) /// waiting 1 second.
 fs.appendFile(`./session/winner3.json`, `["${xp}", "${name}"]`, function (err) {				
 	if (err) throw err;
 });
 }
 
 else {} 
-await delay(1000) /// waiting 1 second.
+await  sleep(1000) /// waiting 1 second.
 //-- Winner
 var _winner11 = JSON.parse(fs.readFileSync(`./session/winner1.json`));	
 var winner11 = _winner11[0]	//--- xp 
