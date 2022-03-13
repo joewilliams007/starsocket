@@ -129,6 +129,7 @@ recoverPassword(data)
 				var email = data[1]
 			
 				var getXp = data[2]
+				try {
 				var _xp = JSON.parse(fs.readFileSync(`./users/${email}/xp.json`));	
 				var xp = _xp[0]	//--- xp
 
@@ -144,7 +145,12 @@ recoverPassword(data)
 					})
 				})
 
-			
+			} catch (e) {
+				fs.appendFile(`./users/${email}/xp.json`, `["${xp}"]`, function (err) {				
+					if (err) throw err;
+						console.log('Xp renewed.'); 
+					});	
+			}
 
 				leader(data);
 
