@@ -5,6 +5,7 @@ const { exec } = require('child_process');
 const _status = JSON.parse(fs.readFileSync('status.json'));
 const _all = JSON.parse(fs.readFileSync('allusers.json'));
 var port = 2227;
+try {
 var server = net.createServer();
 var server = net.createServer(function(socket) {
 // Start Server ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -124,12 +125,12 @@ recoverPassword(data)
 		} else if (receivedMessage.includes("getxp")) {
 
 	
-
+try {
 				var data = receivedMessage.split(' ');
 				var email = data[1]
 			
 				var getXp = data[2]
-				try {
+			
 				var _xp = JSON.parse(fs.readFileSync(`./users/${email}/xp.json`));	
 				var xp = _xp[0]	//--- xp
 
@@ -145,7 +146,8 @@ recoverPassword(data)
 					})
 				})
 
-			} catch (e) {
+			} 
+			catch (e) {
 				fs.appendFile(`./users/${email}/xp.json`, `["${xp}"]`, function (err) {				
 					if (err) throw err;
 						console.log('Xp renewed.'); 
@@ -551,3 +553,4 @@ return new Promise((resolve) => {
 });
 }
 // End of file ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+} catch (e) {}
