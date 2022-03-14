@@ -4,7 +4,7 @@ const _messages = JSON.parse(fs.readFileSync('messages.json'));
 
 var port = 2224;
 var server = net.createServer();
-
+try {
 
 async function getIP(ip6) {
 
@@ -90,3 +90,4 @@ server.listen(port);
 serverInfo("Started server on port: " + port)
 
 
+} catch (e){}
