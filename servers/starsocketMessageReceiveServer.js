@@ -5,8 +5,6 @@ const _messages = JSON.parse(fs.readFileSync('messages.json'));
 var port = 2224;
 var server = net.createServer();
 // DataBase ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-const mysql = require('mysql');
-
 // First you need to create a connection to the database
 // Be sure to replace 'user' and 'password' with the correct values
 const con = mysql.createConnection({
