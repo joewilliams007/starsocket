@@ -7,7 +7,7 @@ var server = net.createServer();
 
 var server = net.createServer(function(socket) {
 
-	serverInfo('A new connection has been established.')1;
+	serverInfo('A new connection has been established.');
     var imageData = Buffer.alloc(0)
 
 	socket.setEncoding("binary")
