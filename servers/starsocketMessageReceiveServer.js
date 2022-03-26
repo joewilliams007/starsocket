@@ -5,31 +5,16 @@ const _messages = JSON.parse(fs.readFileSync('messages.json'));
 var port = 2224;
 var server = net.createServer();
 // DataBase ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// First you need to create a connection to the database
-// Be sure to replace 'user' and 'password' with the correct values
-const con = mysql.createConnection({
+const mysql = require('mysql');
+const connection = mysql.createConnection({
   host: 'localhost',
   user: 'user',
   password: 'password',
+  database: 'database name'
 });
-
-con.connect((err) => {
-  if(err){
-    console.log('Error connecting to Db');
-    return;
-  }
-  console.log('Connection established');
-});
-con.query('SELECT * FROM authors', (err,rows) => {
-	if(err) throw err;
-  
-	console.log('Data received from Db:');
-	console.log(rows);
-  });
-con.end((err) => {
-  // The connection is terminated gracefully
-  // Ensures all remaining queries are executed
-  // Then sends a quit packet to the MySQL server.
+connection.connect((err) => {
+  if (err) throw err;
+  console.log('Connected!');
 });
 // StartServer ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var server = net.createServer(function(socket) {
