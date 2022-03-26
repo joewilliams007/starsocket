@@ -4,12 +4,9 @@ const _messages = JSON.parse(fs.readFileSync('messages.json'));
 
 var port = 2224;
 var server = net.createServer();
-try {
 
 async function getIP(ip6) {
-
 	try {
-
 		var ip1 = ip.replace('f', '');
 		var ip2 = ip1.replace('f', '');
 		var ip3 = ip2.replace('f', '');
@@ -21,16 +18,15 @@ async function getIP(ip6) {
 		var geoip = require('geoip-lite');
 		var geo = geoip.lookup(ip);
 		console.log('------------remote client location info --------------');
-
 		console.log('REMOTE Socket is in Country ' + geo.country);
 		console.log('REMOTE Socket is in Region ' + geo.region);
 		console.log('REMOTE Socket is in City ' + geo.city);
 		console.log('REMOTE Socket is in Timezone ' + geo.timezone);
-
 		} catch (e) {
 			console.log('could not get ip details');	
 		}
   }
+  
 
 var server = net.createServer(function(socket) {
 
@@ -90,4 +86,3 @@ server.listen(port);
 serverInfo("Started server on port: " + port)
 
 
-} catch (e){}
