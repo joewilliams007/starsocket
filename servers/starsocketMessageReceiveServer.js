@@ -26,10 +26,21 @@ var server = net.createServer(function(socket) {
 		}
 		serverInfo('Closing connection with the client')
 		console.log('--------------------------------------------')
-		
+
 		 //-- Save Message         		
 		 _messages.push(receivedMessage.toString())
 		 fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+
+		 switch(receivedMessage.split(" ")) {
+			case hi:
+			  serverInfo("case was hi")
+			  break;
+			case y:
+				serverInfo("case was y")
+			  break;
+			default:
+				serverInfo("case was none")
+		  }
 
 		socket.destroy()
 	});
