@@ -32,10 +32,10 @@ var server = net.createServer(function(socket) {
 		 fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 
 		 switch(receivedMessage.split(" ")) {
-			case hi:
+			case "hi":
 			  serverInfo("case was hi")
 			  break;
-			case y:
+			case "y":
 				serverInfo("case was y")
 			  break;
 			default:
