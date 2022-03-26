@@ -5,50 +5,10 @@ const _messages = JSON.parse(fs.readFileSync('messages.json'));
 var port = 2224;
 var server = net.createServer();
 
-async function getIP(ip6) {
-	try {
-		var ip1 = ip.replace('f', '');
-		var ip2 = ip1.replace('f', '');
-		var ip3 = ip2.replace('f', '');
-
-		var ip4 = ip3.replace(':', '');
-		var ip5 = ip4.replace(':', '');
-		var ip6 = ip5.replace(':', '');
-
-		var geoip = require('geoip-lite');
-		var geo = geoip.lookup(ip);
-		console.log('------------remote client location info --------------');
-		console.log('REMOTE Socket is in Country ' + geo.country);
-		console.log('REMOTE Socket is in Region ' + geo.region);
-		console.log('REMOTE Socket is in City ' + geo.city);
-		console.log('REMOTE Socket is in Timezone ' + geo.timezone);
-		} catch (e) {
-			console.log('could not get ip details');	
-		}
-  }
-  
 
 var server = net.createServer(function(socket) {
 
-		serverInfo('A new connection has been established.');
-
-		var ip = socket.remoteAddress.replace('f', '');
-		getIP(ip)
-
-
-
-	console.log('------------remote client info --------------');
-
-	var rport = socket.remotePort;
-	var raddr = socket.remoteAddress;
-	var rfamily = socket.remoteFamily;
-  
-	console.log('REMOTE Socket is listening at port' + rport);
-	console.log('REMOTE Socket ip :' + raddr);
-	console.log('REMOTE Socket is IP4/IP6 : ' + rfamily);
-
-
-
+	serverInfo('A new connection has been established.');
 	console.log('--------------------------------------------')
 
 	
