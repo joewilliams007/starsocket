@@ -9,6 +9,11 @@ var connection = mysql.createConnection({
  
 connection.connect();
  
+connection.query('DELETE * FROM Users', function (error, results, fields) {
+    if (error) throw error;
+    console.log('Deleted all right?: ', results);
+  });
+
 connection.query('INSERT INTO Users (username) VALUES ("JoeJoe")', function (error, results, fields) {
     if (error) throw error;
 });
