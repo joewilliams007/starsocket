@@ -1,6 +1,23 @@
 var net = require('net');
 let fs = require('fs');
 const _messages = JSON.parse(fs.readFileSync('messages.json'));
+// mySql ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'me',
+  password : 'secret',
+  database : 'my_db'
+});
+ 
+connection.connect();
+ 
+connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+  if (error) throw error;
+  console.log('The solution is: ', results[0].solution);
+});
+ 
+connection.end();
 // Server Ports------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var port = 2224;
 var server = net.createServer();
@@ -29,17 +46,24 @@ var server = net.createServer(function(socket) {
 		 //-- Save Message         		
 		 _messages.push(receivedMessage.toString())
 		 fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+		
+		 var message = receivedMessage.toString();
+		 var args = message.split(" ");
+		 switch(args[0]) {
+// Case message starts with ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "register":
+	serverInfo("new registration")
+break;
 
-		 switch(receivedMessage.toString().split(" ")[0]) {
-			case "hi":
-			  serverInfo("case was hi")
-			  break;
-			case "y":
-				serverInfo("case was y")
-			  break;
-			default:
-				serverInfo("case was none")
-		  }
+case "login":
+	serverInfo("new login")
+break;
+
+default:
+serverInfo("case was none")
+
+// End of cases ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------					
+			}
 
 		socket.destroy()
 	});
