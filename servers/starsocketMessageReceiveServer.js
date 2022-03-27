@@ -61,7 +61,7 @@ case "register":
 		
 		connection.query(`SELECT * FROM Users WHERE username = "${args[1]}"`, function (error, results, fields) {
 			if (error) throw error;
-			console.log('Deleted all right?: ', results);
+			console.log('Deleted all right?: ', results+" "+fields);
 		});
 
 		connection.query('DELETE FROM Users WHERE username = "JoeJoe"', function (error, results, fields) {
