@@ -9,9 +9,14 @@ var connection = mysql.createConnection({
  
 connection.connect();
  
-connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+connection.query('INSERT INTO Users (username) VALUES ("JoeJoe")', function (error, results, fields) {
+    if (error) throw error;
+    console.log("REULT: "+results)
+});
+
+connection.query('SELECT username FROM Users', function (error, results, fields) {
   if (error) throw error;
-  console.log('The solution is: ', results[0].solution);
+  console.log('The usernames are: ', results);
 });
  
 connection.end();
