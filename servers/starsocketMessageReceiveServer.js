@@ -113,12 +113,11 @@ case "setXp":
 	
 			, function (error, results, fields) {
 				if (error) throw error;
-				serverInfo(results[0])
+				
 			});
 	
 			//logAll();
-
-	serverInfo("xp updated")
+	serverInfo("xp updated of user #"+args[1])
 break;
 // set energy ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setEnergy":
@@ -139,7 +138,7 @@ case "setEnergy":
 	
 			logAll();
 
-	serverInfo("energy updated")
+	serverInfo("energy updated of user #"+args[1])
 break;
 // if no case was set ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 default:
