@@ -91,13 +91,8 @@ case "register":
 			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 
 
-			console.log('Hey this user got the user_id >_< ', id);
+			serverInfo('Hey this user got the user_id ', id);
 		});
-
-		 
-
-		
-		
 break;
 // Login ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "login":
@@ -118,7 +113,7 @@ case "setXp":
 	
 			, function (error, results, fields) {
 				if (error) throw error;
-				serverInfo(results)
+				serverInfo(results[0])
 			});
 	
 			//logAll();
