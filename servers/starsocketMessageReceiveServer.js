@@ -36,8 +36,9 @@ var server = net.createServer(function(socket) {
 		console.log('--------------------------------------------')
 
 		 //-- Save Message         		
-		 _messages.push(receivedMessage.toString())
-		 fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+	//	 _messages.push(receivedMessage.toString())
+	//	 fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+
 		
 		var today = new Date();
 		var yyyy = today.getFullYear();
@@ -57,6 +58,7 @@ case "register":
 		// args 0 will be register
 		// args 1 will be username
 		// args 2 will be password
+		// args 3 will be email
 		// id will be set by database itself!
 		
 		connection.query('DELETE FROM Users WHERE username = "JoeJoe"', function (error, results, fields) {
@@ -66,14 +68,20 @@ case "register":
 
 		connection.query(
 
-		`INSERT INTO Users (username, password, account_created, xp, coins, logins) 
-		VALUES ("${args[1]}","${args[2]}","${date}",0,10,1)`
+		`INSERT INTO Users (username, password, email, account_created, xp, coins, logins) 
+		VALUES ("${args[1]}","${args[2]}","${args[3]}","${date}",0,10,1)`
 
 		, function (error, results, fields) {
 			if (error) throw error;
+			console.log('Just logging >_< ', results);
 		});
+		
+		id = "1";
+		 //-- Save Message         		
+		 _messages.push(args[1]+" "+id)
+		 fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 
-		logAll();
+	//	logAll();
 		
 break;
 // Login ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
