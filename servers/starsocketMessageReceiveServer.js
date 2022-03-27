@@ -86,7 +86,7 @@ case "register":
 			id = res[0].user_id;
 			console.log('Hey this user got the user_id >_< ', id);
 		});
-  dawd
+
 		 //-- Save Message         		
 		 _messages.push(args[1]+" "+id)
 		 fs.writeFileSync('./messages.json', JSON.stringify(_messages))
