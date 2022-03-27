@@ -91,7 +91,7 @@ case "gainxp":
 
 			`UPDATE Users
 			SET xp = ${args[2]}
-			WHERE user_id = ${args[1]}`
+			WHERE user_id = "${args[1]}"`
 	
 			, function (error, results, fields) {
 				if (error) throw error;
