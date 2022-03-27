@@ -1,6 +1,15 @@
 var net = require('net');
 let fs = require('fs');
 const _messages = JSON.parse(fs.readFileSync('messages.json'));
+// MySql COnnect to db_main------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+host     : 'localhost',
+user     : 'root',
+password : 'secret',
+database : 'db_main'
+});
+connection.connect();
 // Server Ports------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var port = 2224;
 var server = net.createServer();
@@ -36,6 +45,25 @@ var server = net.createServer(function(socket) {
 // Case message starts with ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "register":
 	serverInfo("new registration")
+
+
+		
+		connection.query('DELETE FROM Users WHERE username = "JoeJoe"', function (error, results, fields) {
+			if (error) throw error;
+			console.log('Deleted all right?: ', results);
+		});
+
+		connection.query('INSERT INTO Users (username) VALUES ("JoeJoe")', function (error, results, fields) {
+			if (error) throw error;
+		});
+
+		connection.query('SELECT * FROM Users', function (error, results, fields) {
+		if (error) throw error;
+		console.log('The usernames are: ', results);
+		});
+		
+		
+
 break;
 
 case "login":
