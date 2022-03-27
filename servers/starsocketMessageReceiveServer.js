@@ -84,7 +84,8 @@ case "register":
 
 		, function (error, results, fields) {
 			if (error) throw error;
-			console.log('Just logging >_< ', JSON.parse(JSON.stringify(results)));
+			var res = JSON.parse(JSON.stringify(results));
+			console.log('Just logging >_< ', res[0].user_id);
 		});
 
 		id = "1";
