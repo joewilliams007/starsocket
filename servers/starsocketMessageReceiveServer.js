@@ -75,13 +75,25 @@ case "register":
 					if (error) throw error;
 					console.log('Yey a new registration! >_< ');
 				});
+		connection.query( // get usernames
+
+		`SELECT user_id FROM Users
+		WHERE username="${args[1]}"`
+
+		, function (error, results, fields) {
+			if (error) serverInfo(error.message);
+			var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
+			username = res[0].username;
+			console.log('This username does not exist yet >_< ');
+		});
+
 		connection.query( // get the users id
 
 		`SELECT user_id FROM Users
 		WHERE username="${args[1]}" AND password = "${args[2]}"`
 
 		, function (error, results, fields) {
-			if (error) throw error;
+			if (error) serverInfo(error.message);
 			var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
 			id = res[0].user_id;
 			console.log('Hey this user got the user_id >_< ', id);
