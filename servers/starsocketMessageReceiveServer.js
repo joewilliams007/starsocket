@@ -103,12 +103,34 @@ break;
 case "login":
 	serverInfo("new login")
 break;
-// Case message starts with ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-case "gainxp":
+// set xp ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "setXp":
 
-		// args 0 will be "gainxp"
+		// args 0 will be "setxp"
 		// args 1 will be id
 		// args 2 will be newxp
+		
+		connection.query(
+
+			`UPDATE Users
+			SET xp = ${args[2]}
+			WHERE user_id = ${args[1]}`
+	
+			, function (error, results, fields) {
+				if (error) throw error;
+				serverInfo(results)
+			});
+	
+			//logAll();
+
+	serverInfo("xp updated")
+break;
+// set energy ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "setEnergy":
+
+		// args 0 will be "setenergy"
+		// args 1 will be id
+		// args 2 will be newenergy
 		
 		connection.query(
 
@@ -122,9 +144,9 @@ case "gainxp":
 	
 			logAll();
 
-	serverInfo("xp updated")
+	serverInfo("energy updated")
 break;
-// Case message starts with ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// if no case was set ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 default:
 //-- Save Message         		
 _messages.push(args[1]+" "+id)
@@ -143,7 +165,7 @@ serverInfo("case was none")
 });
 
 function serverInfo(info){
-	console.log("-> @Message Receive Server: " + info)
+	console.log(">_< " + info)
 }
 
 function logAll(){
