@@ -60,11 +60,12 @@ case "register":
 		// args 2 will be password
 		// args 3 will be email
 		// id will be set by database itself!
-		
-		connection.query('DELETE FROM Users WHERE username = "JoeJoe"', function (error, results, fields) {
-			if (error) throw error;
-			console.log('Deleted all right?: ', results);
-		});
+		var id;
+
+		// connection.query('DELETE FROM Users WHERE username = "JoeJoe"', function (error, results, fields) {
+		//	if (error) throw error;
+			// console.log('Deleted all right?: ', results);
+		// });
 
 		connection.query(
 
@@ -81,14 +82,16 @@ case "register":
 
 		`SELECT user_id FROM Users
 		WHERE username="${args[1]}" AND password = "${args[2]}"`
+		
 
 		, function (error, results, fields) {
 			if (error) throw error;
-			var res = JSON.parse(JSON.stringify(results));
-			console.log('Just logging >_< ', res[0].user_id);
+			var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
+			id = res[0].user_id;
+			console.log('Hey this user got the user_id >_< ', id);
 		});
 
-		id = "1";
+		
 		 //-- Save Message         		
 		 _messages.push(args[1]+" "+id)
 		 fs.writeFileSync('./messages.json', JSON.stringify(_messages))
