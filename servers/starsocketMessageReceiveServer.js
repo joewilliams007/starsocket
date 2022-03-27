@@ -73,17 +73,35 @@ case "register":
 			if (error) throw error;
 		});
 
-		connection.query('SELECT * FROM Users', function (error, results, fields) {
-		if (error) throw error;
-		console.log('All tables: ', results);
-		});
+		logAll();
 		
 break;
-
+// Login ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "login":
 	serverInfo("new login")
 break;
+// Case message starts with ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "gainxp":
 
+		// args 0 will be "gainxp"
+		// args 1 will be id
+		// args 2 will be newxp
+		
+		connection.query(
+
+			`UPDATE Users
+			SET xp = ${args[2]}
+			WHERE user_id = ${args[1]}`
+	
+			, function (error, results, fields) {
+				if (error) throw error;
+			});
+	
+			logAll();
+
+	serverInfo("xp updated")
+break;
+// Case message starts with ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 default:
 serverInfo("case was none")
 
@@ -100,6 +118,13 @@ serverInfo("case was none")
 
 function serverInfo(info){
 	console.log("-> @Message Receive Server: " + info)
+}
+
+function logAll(){
+	connection.query('SELECT * FROM Users', function (error, results, fields) {
+		if (error) throw error;
+		console.log('All tables: ', results);
+	});
 }
 
 server.listen(port);
