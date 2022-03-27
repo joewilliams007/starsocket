@@ -85,12 +85,16 @@ case "register":
 			if (error) serverInfo(error.message);
 			var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
 			id = res[0].user_id;
+
+			//-- Save Message         		
+			_messages.push(args[1]+" "+id)
+			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+
+
 			console.log('Hey this user got the user_id >_< ', id);
 		});
 
-		 //-- Save Message         		
-		 _messages.push(args[1]+" "+id)
-		 fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+		 
 
 		
 		
@@ -122,6 +126,9 @@ case "gainxp":
 break;
 // Case message starts with ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 default:
+//-- Save Message         		
+_messages.push(args[1]+" "+id)
+fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 serverInfo("case was none")
 
 // End of cases ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------					
