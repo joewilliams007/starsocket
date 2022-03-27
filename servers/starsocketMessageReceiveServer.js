@@ -64,10 +64,10 @@ case "register":
 			console.log('Deleted all right?: ', results);
 		});
 
-		connection.query(`
+		connection.query(
 
-		INSERT INTO Users (username, password, account_created, xp, coins) 
-		VALUES ("${args[1]}","${args[2]}","${date}","0","10")`
+		`INSERT INTO Users (username, password, account_created, xp, coins, logins) 
+		VALUES ("${args[1]}","${args[2]}","${date}",0,10,1)`
 
 		, function (error, results, fields) {
 			if (error) throw error;
