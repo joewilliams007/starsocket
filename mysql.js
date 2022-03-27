@@ -11,10 +11,9 @@ connection.connect();
  
 connection.query('INSERT INTO Users (username) VALUES ("JoeJoe")', function (error, results, fields) {
     if (error) throw error;
-    console.log("REULT: "+results)
 });
 
-connection.query('SELECT username FROM Users', function (error, results, fields) {
+connection.query('SELECT * FROM Users', function (error, results, fields) {
   if (error) throw error;
   console.log('The usernames are: ', results);
 });
