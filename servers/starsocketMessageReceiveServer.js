@@ -83,8 +83,8 @@ case "register":
 		, function (error, results, fields) {
 			if (error) serverInfo(error.message);
 			var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
-			username = res[0].username;
-			console.log('This username does not exist yet >_< '+username);
+			id = res[0].id;
+			console.log('This username does not exist yet >_< '+id);
 		});
 
 		connection.query( // get the users id
