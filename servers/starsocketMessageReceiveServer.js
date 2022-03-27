@@ -67,22 +67,18 @@ case "register":
 			// console.log('Deleted all right?: ', results);
 		// });
 
-		connection.query(
+		connection.query( // register userstuff
+				`INSERT INTO Users (username, password, email, account_created, xp, coins, logins) 
+				VALUES ("${args[1]}","${args[2]}","${args[3]}","${date}",0,10,1)`
 
-		`INSERT INTO Users (username, password, email, account_created, xp, coins, logins) 
-		VALUES ("${args[1]}","${args[2]}","${args[3]}","${date}",0,10,1)`
-
-		, function (error, results, fields) {
-			if (error) throw error;
-			console.log('Just logging >_< ', results);
-		});
-		
-		
-		connection.query(
+				, function (error, results, fields) {
+					if (error) throw error;
+					console.log('Yey a new registration! >_< ');
+				});
+		connection.query( // get the users id
 
 		`SELECT user_id FROM Users
 		WHERE username="${args[1]}" AND password = "${args[2]}"`
-		
 
 		, function (error, results, fields) {
 			if (error) throw error;
@@ -90,13 +86,12 @@ case "register":
 			id = res[0].user_id;
 			console.log('Hey this user got the user_id >_< ', id);
 		});
-
-		
+  dawd
 		 //-- Save Message         		
 		 _messages.push(args[1]+" "+id)
 		 fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 
-	//	logAll();
+		logAll();
 		
 break;
 // Login ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
