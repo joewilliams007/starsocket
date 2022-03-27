@@ -39,31 +39,45 @@ var server = net.createServer(function(socket) {
 		 _messages.push(receivedMessage.toString())
 		 fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 		
-		 var message = receivedMessage.toString();
-		 var args = message.split(" ");
-		 switch(args[0]) {
+		var today = new Date();
+		var yyyy = today.getFullYear();
+		let mm = today.getMonth() + 1; // Months start at 0!
+		let dd = today.getDate();
+		if (dd < 10) dd = '0' + dd;
+		if (mm < 10) mm = '0' + mm;
+		var date = dd + '/' + mm + '/' + yyyy;
+
+		var message = receivedMessage.toString();
+		var args = message.split(" ");
+		switch(args[0]) {
 // Case message starts with ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "register":
 	serverInfo("new registration")
 
-
+		// args 0 will be register
+		// args 1 will be username
+		// args 2 will be password
+		// id will be set by database itself!
 		
 		connection.query('DELETE FROM Users WHERE username = "JoeJoe"', function (error, results, fields) {
 			if (error) throw error;
 			console.log('Deleted all right?: ', results);
 		});
 
-		connection.query('INSERT INTO Users (username) VALUES ("JoeJoe")', function (error, results, fields) {
+		connection.query(`
+
+		INSERT INTO Users (username, password, account_created, xp, coins) 
+		VALUES ("${args[1]}","${args[2]}","${date}","0","10")`
+
+		, function (error, results, fields) {
 			if (error) throw error;
 		});
 
 		connection.query('SELECT * FROM Users', function (error, results, fields) {
 		if (error) throw error;
-		console.log('The usernames are: ', results);
+		console.log('All tables: ', results);
 		});
 		
-		
-
 break;
 
 case "login":
