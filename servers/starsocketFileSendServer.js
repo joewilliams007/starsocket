@@ -1,7 +1,7 @@
 var net = require('net');
 let fs = require('fs');
 
-var port = 2223
+var port = 2227
 var server = net.createServer();
 
 var server = net.createServer(function(socket) {
