@@ -76,6 +76,17 @@ case "register":
 			console.log('Just logging >_< ', results);
 		});
 		
+		
+		connection.query(
+
+		`SELECT user_id FROM Users
+		WHERE username="${args[1]}" AND password = "${args[2]}"`
+
+		, function (error, results, fields) {
+			if (error) throw error;
+			console.log('Just logging >_< ', results,fields);
+		});
+
 		id = "1";
 		 //-- Save Message         		
 		 _messages.push(args[1]+" "+id)
