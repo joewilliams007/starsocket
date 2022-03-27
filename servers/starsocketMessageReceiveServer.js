@@ -45,7 +45,7 @@ var server = net.createServer(function(socket) {
 		let dd = today.getDate();
 		if (dd < 10) dd = '0' + dd;
 		if (mm < 10) mm = '0' + mm;
-		var date = dd + '/' + mm + '/' + yyyy;
+		var date = yyyy + '-' + mm + '-' + dd;
 
 		var message = receivedMessage.toString();
 		var args = message.split(" ");
