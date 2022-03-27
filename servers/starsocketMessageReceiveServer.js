@@ -4,19 +4,6 @@ const _messages = JSON.parse(fs.readFileSync('messages.json'));
 // Server Ports------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var port = 2224;
 var server = net.createServer();
-// DataBase ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-const mysql = require('mysql');
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'user',
-  port: "3306",
-  password: 'password',
-  database: 'database name'
-});
-connection.connect((err) => {
-  if (err) throw err;
-  console.log('Connected!');
-});
 // StartServer ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var server = net.createServer(function(socket) {
 
