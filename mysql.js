@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
  
 connection.connect();
  
-connection.query('DELETE FROM Users WHERE username = "JoeJoe', function (error, results, fields) {
+connection.query('DELETE FROM Users WHERE username = "JoeJoe"', function (error, results, fields) {
     if (error) throw error;
     console.log('Deleted all right?: ', results);
   });
