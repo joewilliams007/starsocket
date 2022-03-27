@@ -59,6 +59,11 @@ case "register":
 		// args 2 will be password
 		// id will be set by database itself!
 		
+		connection.query(`SELECT * FROM Users WHERE username = ${args[0]}`, function (error, results, fields) {
+			if (error) throw error;
+			console.log('Deleted all right?: ', results);
+		});
+
 		connection.query('DELETE FROM Users WHERE username = "JoeJoe"', function (error, results, fields) {
 			if (error) throw error;
 			console.log('Deleted all right?: ', results);
