@@ -84,7 +84,7 @@ case "register":
 
 		, function (error, results, fields) {
 			if (error) throw error;
-			console.log('Just logging >_< ', results,fields);
+			console.log('Just logging >_< ', results.RowDataPacket.user_id);
 		});
 
 		id = "1";
