@@ -110,6 +110,14 @@ case "login":
 			if (error) serverInfo(error.message);
 			var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
 			serverInfo(res[0].xp)
+			serverInfo(res[0].age)
+			serverInfo(res[0].weight)
+			serverInfo(res[0].coins)
+			serverInfo(res[0].email)
+			serverInfo(res[0].account_created)
+			serverInfo(res[0].username)
+			serverInfo(res[0].logins)
+
 			//-- Save Message         		
 			_messages.push(socket.remoteAddress+` ${args[1]} ${args[2]}`)
 			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
