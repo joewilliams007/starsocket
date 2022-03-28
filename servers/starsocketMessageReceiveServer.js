@@ -112,7 +112,7 @@ case "login":
 			id = res[0].user_id;
 
 			//-- Save Message         		
-			_messages.push(socket.remoteAddress+"login data!")
+			_messages.push(socket.remoteAddress+` ${args[1]} ${args[2]}`)
 			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 			serverInfo('Hey this user got the user_id ', id);
 		});
