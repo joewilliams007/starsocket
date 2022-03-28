@@ -105,7 +105,7 @@ case "setXp":
 		// args 0 will be "setxp"
 		// args 1 will be id
 		// args 2 will be newxp
-		
+		try {
 		connection.query(
 
 			`UPDATE Users
@@ -119,6 +119,9 @@ case "setXp":
 	
 			//logAll();
 	serverInfo("xp updated of user #"+args[1])
+		} catch (err){
+			serverInfo("error updating xp of #"+args[1])	
+		}
 break;
 // set energy ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setEnergy":
