@@ -15,9 +15,13 @@ var server = net.createServer(function(socket) {
 	// }
 
 	entireMessage += "Total messages: "+ _messages.length
-	if (_messages[_messages.length-1].split(" ",2)[0].includes(socket.remoteAddress)){
-		serverInfo("sending"+_messages[_messages.length-1]+" to ip of "+socket.remoteAddress)
-		socket.write(_messages[_messages.length-1].split(" ",2)[1].toString())
+
+	var lastOfFile = _messages[_messages.length-1]
+	serverInfo("last in file is "+lastOfFile)
+	if (lastOfFile.split(" ",1)[0].includes(socket.remoteAddress)){
+		serverInfo(" valid ip! "+lastOfFile+" to ip of "+socket.remoteAddress)
+		socket.write(lastOfFile.split(" ",1)[1].toString())
+		serverInfo("writing "+lastOfFile.split(" ",1)[1].toString())
 	} else {
 		socket.write("invalid_ip")
 		serverInfo("invalid ip")
