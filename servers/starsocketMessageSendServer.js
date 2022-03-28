@@ -14,14 +14,22 @@ var server = net.createServer(function(socket) {
 	// 	entireMessage += _messages[i] + "\n"
 	// }
 
+	function removeFirstWord(str) {
+		const indexOfSpace = str.indexOf(' ');
+		if (indexOfSpace === -1) {
+		  return '';
+		}
+		return str.substring(indexOfSpace + 1);
+	  }
+
 	entireMessage += "Total messages: "+ _messages.length
 
 	var lastOfFile = _messages[_messages.length-1]
 	serverInfo("last in file is "+lastOfFile)
 	if (lastOfFile.split(" ",2)[0].includes(socket.remoteAddress)){
-		serverInfo(" valid ip! "+lastOfFile+" to ip of "+socket.remoteAddress)
-		socket.write(lastOfFile.split(" ",2)[1].toString())
-		serverInfo("writing "+lastOfFile.split(" ",2)[1].toString())
+		serverInfo("valid ip! "+lastOfFile+" to ip of "+socket.remoteAddress)
+		socket.write(removeFirstWord(lastOfFile))
+		serverInfo("writing "+removeFirstWord(lastOfFile))
 	} else {
 		socket.write("invalid_ip")
 		serverInfo("invalid ip")
@@ -45,7 +53,7 @@ var server = net.createServer(function(socket) {
 
 
 function serverInfo(info){
-	console.log(">_> (sending)" + info)
+	console.log(">_> (sending) " + info)
 }
 
 server.listen(port);
