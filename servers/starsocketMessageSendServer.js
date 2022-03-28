@@ -17,7 +17,7 @@ var server = net.createServer(function(socket) {
 	entireMessage += "Total messages: "+ _messages.length
 	if (_messages[_messages.length-1].split(" ",2)[0].includes(socket.remoteAddress)){
 		serverInfo("sending"+_messages[_messages.length-1]+" to ip of "+socket.remoteAddress)
-		socket.write(_messages[_messages.length-1].split(" ",2)[2])
+		socket.write(_messages[_messages.length-1].split(" ",2)[1].toString())
 	} else {
 		socket.write("invalid_ip")
 		serverInfo("invalid ip")
