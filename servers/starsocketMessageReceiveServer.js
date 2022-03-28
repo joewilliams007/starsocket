@@ -98,6 +98,24 @@ break;
 // Login ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "login":
 	serverInfo("new login")
+	// args 0 will be login
+	// args 1 will be id
+	// args 2 will be password
+	connection.query( // get the users stuff
+
+		`SELECT * FROM Users
+		WHERE user_id="${args[1]}" AND password = "${args[2]}" AND email= "${args[3]}"`
+
+		, function (error, results, fields) {
+			if (error) serverInfo(error.message);
+			var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
+			id = res[0].user_id;
+
+			//-- Save Message         		
+			_messages.push(socket.remoteAddress+"login data!")
+			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+			serverInfo('Hey this user got the user_id ', id);
+		});
 break;
 // set xp ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setXp":
