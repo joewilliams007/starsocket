@@ -23,7 +23,7 @@ var server = net.createServer(function(socket) {
 	serverInfo('A new connection has been established.');
 	
 	socket.on('end', function() {
-		serverInfo("sending data to ip of "+req.socket.remoteAddress)
+		serverInfo("sending data to ip of "+server.socket.remoteAddress)
 		socket.destroy()
 	});
 
