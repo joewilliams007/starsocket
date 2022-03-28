@@ -48,6 +48,7 @@ var server = net.createServer(function(socket) {
 		if (mm < 10) mm = '0' + mm;
 		var date = yyyy + '-' + mm + '-' + dd;
 
+		serverInfo("now processing received data of ip "+req.socket.remoteAddress)
 		var message = receivedMessage.toString();
 		var args = message.split(" ");
 		switch(args[0]) {

@@ -19,10 +19,11 @@ var server = net.createServer(function(socket) {
     socket.write(entireMessage.replace(/undefined/g,""))
     socket.end();
 
+
 	serverInfo('A new connection has been established.');
 	
 	socket.on('end', function() {
-		serverInfo('Message sent. Closing connection with the client')
+		serverInfo("sending data to ip of "+req.socket.remoteAddress)
 		socket.destroy()
 	});
 
@@ -33,7 +34,7 @@ var server = net.createServer(function(socket) {
 
 
 function serverInfo(info){
-	console.log("-> @Message Send Server: " + info)
+	console.log(">_> " + info)
 }
 
 server.listen(port);
