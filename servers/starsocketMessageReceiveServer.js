@@ -91,7 +91,7 @@ case "get":
 
 	connection.query( // get the users stuff
 
-		`SELECT * FROM Users
+		`SELECT * FROM Usersa
 		WHERE user_id="${args[2]}" AND password = "${args[3]}"`
 
 		, function (error, results, fields) {
@@ -170,11 +170,39 @@ case "login":
 
 		//	serverInfo(res[0].account_created)
 		//	serverInfo(res[0].username)
-
+try {
 			//-- Save Message         		
-			_messages.push(socket.remoteAddress+" "+args[1]+" "+args[2]+" "+res[0].username+" "+res[0].xp+" "+res[0].age+" "+res[0].weight+" "+res[0].coins+" "+res[0].email+" "+res[0].logins)
+			_messages.push(socket.remoteAddress+" "+args[1]+" "+args[2]+" "
+			+res[0].username+" "
+			+res[0].xp+" "
+			+res[0].age+" "
+			+res[0].weight+" "
+			+res[0].coins+" "
+			+res[0].email+" "
+			+res[0].energy+" "
+			+res[0].error_styles+" "
+			+res[0].log
+			+"PLANS"
+			+res[0].plan1+" "
+			+res[0].plan2+" "
+			+res[0].plan3+" "
+			+res[0].plan4+" "
+			+res[0].plan5
+			+"PROGRESS"
+			+res[0].todayProgress+" "
+			+res[0].weekProgress+" "
+			+res[0].day+" "
+			+res[0].week+" "
+			)
+
 			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 			serverInfo('Hey this user got the user_id ', args[1]);
+} catch (err) {
+	_messages.push(socket.remoteAddress+" err")
+	fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+	serverInfo('error ', args[1]);
+}
+			
 		});
 break;
 // 4.3 set password ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
