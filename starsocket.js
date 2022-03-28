@@ -1,4 +1,4 @@
-console.log('-> S T A R T I N G  U w U');
+console.log('-> S T A R T I N G  >_<');
 console.log(' ');
 
 var fileSendServer = require("./servers/starsocketFileSendServer.js")
