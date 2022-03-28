@@ -15,7 +15,7 @@ var server = net.createServer(function(socket) {
 	}
 
 	entireMessage += "Total messages: "+ _messages.length
-
+	serverInfo("sending data to ip of "+server.socket.remoteAddress)
     socket.write(entireMessage.replace(/undefined/g,""))
     socket.end();
 
@@ -23,7 +23,7 @@ var server = net.createServer(function(socket) {
 	serverInfo('A new connection has been established.');
 	
 	socket.on('end', function() {
-		serverInfo("sending data to ip of "+server.socket.remoteAddress)
+	
 		socket.destroy()
 	});
 

@@ -18,7 +18,7 @@ var server = net.createServer(function(socket) {
 
 	console.log('--------------------------------------------')
 	serverInfo('A new connection has been established.');
-	
+	serverInfo("now processing received data of ip "+server.socket.remoteAddress)
     var receivedMessage = ""
 
 	socket.on('data', function(chunk) {
@@ -48,7 +48,7 @@ var server = net.createServer(function(socket) {
 		if (mm < 10) mm = '0' + mm;
 		var date = yyyy + '-' + mm + '-' + dd;
 
-		serverInfo("now processing received data of ip "+server.socket.remoteAddress)
+		
 		var message = receivedMessage.toString();
 		var args = message.split(" ");
 		switch(args[0]) {
