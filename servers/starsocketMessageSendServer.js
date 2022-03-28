@@ -10,13 +10,14 @@ var server = net.createServer(function(socket) {
 
 	var entireMessage = ""
 
-	for (i = 0; i < 60; i++){
-		entireMessage += _messages[i] + "\n"
-	}
+	// for (i = 0; i < 60; i++){
+	// 	entireMessage += _messages[i] + "\n"
+	// }
 
 	entireMessage += "Total messages: "+ _messages.length
-	serverInfo("sending data to ip of "+socket.remoteAddress)
-    socket.write(entireMessage.replace(/undefined/g,""))
+	serverInfo("sending"+_messages[_messages.length-1]+" to ip of "+socket.remoteAddress)
+	socket.write(_messages[_messages.length-1])
+    // socket.write(entireMessage.replace(/undefined/g,""))
     socket.end();
 
 
@@ -34,7 +35,7 @@ var server = net.createServer(function(socket) {
 
 
 function serverInfo(info){
-	console.log(">_> " + info)
+	console.log(">_> (sending)" + info)
 }
 
 server.listen(port);

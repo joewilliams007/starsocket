@@ -88,7 +88,7 @@ case "register":
 			id = res[0].user_id;
 
 			//-- Save Message         		
-			_messages.push(args[1]+" "+id)
+			_messages.push(args[1]+" "+id+" "+socket.remoteAddress)
 			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 
 
@@ -160,7 +160,7 @@ serverInfo("case was none")
 });
 
 function serverInfo(info){
-	console.log(">_< " + info)
+	console.log(">_< (receiving) " + info)
 }
 
 function logAll(){
