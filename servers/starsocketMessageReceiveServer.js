@@ -88,7 +88,7 @@ case "register":
 			id = res[0].user_id;
 
 			//-- Save Message         		
-			_messages.push(args[1]+" "+id+" "+socket.remoteAddress)
+			_messages.push(socket.remoteAddress+" "+args[1]+" "+id)
 			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 
 
