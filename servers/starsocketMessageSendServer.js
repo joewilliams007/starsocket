@@ -15,7 +15,7 @@ var server = net.createServer(function(socket) {
 	}
 
 	entireMessage += "Total messages: "+ _messages.length
-	serverInfo("sending data to ip of "+server.socket.remoteAddress)
+	serverInfo("sending data to ip of "+socket.remoteAddress)
     socket.write(entireMessage.replace(/undefined/g,""))
     socket.end();
 

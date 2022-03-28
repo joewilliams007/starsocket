@@ -18,7 +18,7 @@ var server = net.createServer(function(socket) {
 
 	console.log('--------------------------------------------')
 	serverInfo('A new connection has been established.');
-	serverInfo("now processing received data of ip "+server.socket.remoteAddress)
+	serverInfo("now processing received data of ip "+socket.remoteAddress)
     var receivedMessage = ""
 
 	socket.on('data', function(chunk) {
