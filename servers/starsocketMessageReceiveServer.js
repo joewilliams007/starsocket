@@ -105,7 +105,7 @@ case "setXp":
 		// args 0 will be "setxp"
 		// args 1 will be id
 		// args 2 will be newxp
-		try {
+		
 		connection.query(
 
 			`UPDATE Users
@@ -113,15 +113,13 @@ case "setXp":
 			WHERE user_id = ${args[1]}`
 	
 			, function (error, results, fields) {
-				if (error) throw error;
+				if (error) serverInfo("error updating xp of #"+args[1]);
 				
 			});
 	
 			//logAll();
 	serverInfo("xp updated of user #"+args[1])
-		} catch (err){
-			serverInfo("error updating xp of #"+args[1])	
-		}
+	
 break;
 // set energy ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setEnergy":
@@ -129,7 +127,7 @@ case "setEnergy":
 		// args 0 will be "setenergy"
 		// args 1 will be id
 		// args 2 will be newenergy
-		try {
+
 		connection.query(
 
 			`UPDATE Users
@@ -137,15 +135,13 @@ case "setEnergy":
 			WHERE user_id = ${args[1]}`
 	
 			, function (error, results, fields) {
-				if (error) throw error;
+				if (error) serverInfo("error updating energy of #"+args[1]);
 			});
 	
 			logAll();
 
 	serverInfo("energy updated of user #"+args[1])
-	} catch (err){
-		serverInfo("error updating energy of #"+args[1])	
-	}
+
 break;
 // if no case was set ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 default:
