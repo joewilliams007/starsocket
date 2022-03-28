@@ -109,19 +109,14 @@ case "login":
 		, function (error, results, fields) {
 			if (error) serverInfo(error.message);
 			var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
-			serverInfo(res[0].xp)
-			serverInfo(res[0].age)
-			serverInfo(res[0].weight)
-			serverInfo(res[0].coins)
-			serverInfo(res[0].email)
-			serverInfo(res[0].account_created)
-			serverInfo(res[0].username)
-			serverInfo(res[0].logins)
+
+		//	serverInfo(res[0].account_created)
+		//	serverInfo(res[0].username)
 
 			//-- Save Message         		
-			_messages.push(socket.remoteAddress+` ${args[1]} ${args[2]}`)
+			_messages.push(socket.remoteAddress+" "+args[1]+" "+args[2]+" "+res[0].username+" "+res[0].xp+" "+res[0].age+" "+res[0].weight+" "+res[0].coins+" "+res[0].email+" "+res[0].logins)
 			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
-			serverInfo('Hey this user got the user_id ', id);
+			serverInfo('Hey this user got the user_id ', args[1]);
 		});
 break;
 // set xp ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
