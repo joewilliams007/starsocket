@@ -17,6 +17,7 @@
 // 		4.8 set weight
 // 		4.9 set energy
 // 		4.10 set logins
+// 		4.11 feedback
 // 	5 default case
 // 		5.1 end of cases
 // 	6 functions
@@ -28,6 +29,7 @@
 var net = require('net');
 let fs = require('fs');
 const _messages = JSON.parse(fs.readFileSync('messages.json'));
+const _feedback = JSON.parse(fs.readFileSync('feedback.json'));
 // 2 MySql COnnect to db_main------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var mysql = require('mysql');
 var connection = mysql.createConnection({
@@ -79,6 +81,7 @@ var server = net.createServer(function(socket) {
 		
 		var message = receivedMessage.toString();
 		var args = message.split(" ");
+		var value = receivedMessage.split(" ",1)[1]
 		switch(args[0]) {
 // 4 Case message starts with ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // 4.0 get anything ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -333,6 +336,15 @@ case "setLogins":
 				
 			});
 	serverInfo(changing+" updated of user #"+args[1])
+
+break;
+// 4.11 feedback ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "feedback":
+		
+	_feedback.push(value)
+	fs.writeFileSync('./feedback.json', JSON.stringify(_feedback))
+
+	serverInfo("RECEIVED FEEDBACK!!!!!\n"+value)
 
 break;
 // 5 if no case was set ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
