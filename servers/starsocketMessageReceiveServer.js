@@ -129,8 +129,8 @@ case "register":
 		// });
 
 		connection.query( // register userstuff
-				`INSERT INTO Users (username, password, email, account_created, xp, coins, logins) 
-				VALUES ("${args[1]}","${args[2]}","${args[3]}","${date}",0,10,1)`
+				`INSERT INTO Users (username, password, email, account_created, xp, coins, logins, weight, age, energy) 
+				VALUES ("${args[1]}","${args[2]}","${args[3]}","${date}",0,10,1, 0, 0, 0)`
 
 				, function (error, results, fields) {
 					if (error) throw error;
