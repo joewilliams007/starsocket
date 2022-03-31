@@ -184,13 +184,13 @@ try {
 			+res[0].energy+" "
 			+res[0].error_styles+" "
 			+res[0].log
-			+"PLANS"
+			+" PLANS "
 			+res[0].plan1+" "
 			+res[0].plan2+" "
 			+res[0].plan3+" "
 			+res[0].plan4+" "
 			+res[0].plan5
-			+"PROGRESS"
+			+" PROGRESS "
 			+res[0].todayProgress+" "
 			+res[0].weekProgress+" "
 			+res[0].day+" "
