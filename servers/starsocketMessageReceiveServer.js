@@ -195,6 +195,11 @@ try {
 			+res[0].weekProgress+" "
 			+res[0].day+" "
 			+res[0].week+" "
+			+res[0].login_streak+" "
+			+res[0].last_login+" "
+			+res[0].logins+" "
+			+res[0].theme+" "
+			+res[0].log
 			)
 
 			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
