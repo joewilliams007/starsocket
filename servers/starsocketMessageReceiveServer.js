@@ -46,7 +46,7 @@ var server = net.createServer();
 // 3.2 StartServer ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var server = net.createServer(function(socket) {
 
-	console.log('--------------------------------------------')
+	console.log('-------------------------------------------- RECEIVING DATA FROM CLIENT ✅')
 	serverInfo('A new connection has been established.');
 	serverInfo("now processing received data of ip "+socket.remoteAddress)
     var receivedMessage = ""
@@ -62,8 +62,7 @@ var server = net.createServer(function(socket) {
 			serverInfo("received message: " + receivedMessage)
 			
 		}
-		serverInfo('Closing connection with the client')
-		console.log('--------------------------------------------')
+		console.log('-------------------------------------------- FINISHED RECEIVING ✅')
 
 		 //-- Save Message         		
 	//	 _messages.push(receivedMessage.toString())
@@ -174,17 +173,15 @@ case "login":
 		//	serverInfo(res[0].username)
 try {
 			//-- Save Message         		
-			_messages.push(socket.remoteAddress+" "+args[1]+" "+args[2]+" "
-			+res[0].username+" "
-			+res[0].xp+" "
-			+res[0].age+" "
-			+res[0].weight+" "
-			+res[0].coins+" "
-			+res[0].email+" "
-			+res[0].energy+" "
-			+res[0].error_styles+" "
-			+res[0].log
-			+" PLANS "
+			_messages.push(socket.remoteAddress+" %SPORTDASH%"+args[1]+"%SPORTDASH%"+args[2]+"%SPORTDASH%"
+			+res[0].username+"%SPORTDASH%"
+			+res[0].xp+"%SPORTDASH%"
+			+res[0].age+"%SPORTDASH%"
+			+res[0].weight+"%SPORTDASH%"
+			+res[0].coins+"%SPORTDASH%"
+			+res[0].energy+"%SPORTDASH%"
+
+			/* +" PLANS "
 			+res[0].plan1+" "
 			+res[0].plan2+" "
 			+res[0].plan3+" "
@@ -199,7 +196,10 @@ try {
 			+res[0].last_login+" "
 			+res[0].logins+" "
 			+res[0].theme+" "
-			+res[0].log
+			+res[0].error_styles+" "
+			+res[0].log 
+			*/
+
 			)
 
 			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
