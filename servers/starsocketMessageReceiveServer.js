@@ -342,6 +342,85 @@ case "setLogins":
 	serverInfo(changing+" updated of user #"+args[1])
 
 break;
+// 4.11 upload plans ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "uploadPlans":
+
+var plan = args[1].split("x#x#x#x#x#")
+		
+		connection.query(
+			`UPDATE Users
+			SET plan1 = ${plan[1]}
+			WHERE user_id = ${args[1]}`
+			, function (error, results, fields) {
+				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
+			});
+			connection.query(
+				`UPDATE Users
+				SET plan2 = ${plan[2]}
+				WHERE user_id = ${args[1]}`
+				, function (error, results, fields) {
+					if (error) serverInfo("error updating "+changing+" of #"+args[1]);
+				});
+				connection.query(
+					`UPDATE Users
+					SET plan3 = ${plan[3]}
+					WHERE user_id = ${args[1]}`
+					, function (error, results, fields) {
+						if (error) serverInfo("error updating "+changing+" of #"+args[1]);
+					});
+					connection.query(
+						`UPDATE Users
+						SET plan4 = ${plan[4]}
+						WHERE user_id = ${args[1]}`
+						, function (error, results, fields) {
+							if (error) serverInfo("error updating "+changing+" of #"+args[1]);
+						});
+						connection.query(
+							`UPDATE Users
+							SET plan5 = ${plan[5]}
+							WHERE user_id = ${args[1]}`
+							, function (error, results, fields) {
+								if (error) serverInfo("error updating "+changing+" of #"+args[1]);
+							});
+
+	serverInfo("uploading plans of user #"+args[1])
+break;
+// 4.12 download plans ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "uploadPlans":
+	connection.query( // get the users stuff
+
+		`SELECT * FROM Users
+		WHERE user_id="${args[1]}"`
+
+		, function (error, results, fields) {
+			if (error) serverInfo(error.message);
+			var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
+
+try {
+			//-- Save Message         		
+			_messages.push(socket.remoteAddress+
+			 +" x#x#x#x#x#"
+			+res[0].plan1+"x#x#x#x#x#"
+			+res[0].plan2+"x#x#x#x#x#"
+			+res[0].plan3+"x#x#x#x#x#"
+			+res[0].plan4+"x#x#x#x#x#"
+			+res[0].plan5
+
+
+			)
+
+			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+			serverInfo('Hey this user got the user_id ', args[1]);
+} catch (err) {
+	_messages.push(socket.remoteAddress+" err")
+	fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+	serverInfo('error ', args[1]);
+}
+			
+		});
+break;
+
+break;
 // 4.11 feedback ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "feedback":
 		
