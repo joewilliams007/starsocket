@@ -396,7 +396,7 @@ case "downloadPlans":
 			if (error) serverInfo(error.message);
 			var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
 
-try {
+
 			//-- Save Message         		
 			_messages.push(socket.remoteAddress+
 			 +" x#x#x#x#x#"
@@ -411,11 +411,7 @@ try {
 
 			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 			serverInfo('Hey this user got the user_id ', args[1]);
-} catch (err) {
-	_messages.push(socket.remoteAddress+" err")
-	fs.writeFileSync('./messages.json', JSON.stringify(_messages))
-	serverInfo('error ', args[1]);
-}
+
 			
 		});
 break;
