@@ -128,8 +128,8 @@ case "register":
 		// });
 
 		connection.query( // register userstuff
-				`INSERT INTO Users (username, password, email, account_created, xp, coins, logins, weight, age, energy) 
-				VALUES ("${args[1]}","${args[2]}","${args[3]}","${date}",0,10,1, 0, 0, 0)`
+				`INSERT INTO Users (username, password, email, account_created, xp, coins, logins, weight, age, energy, plan1, plan2, plan3, plan4, plan5) 
+				VALUES ("${args[1]}","${args[2]}","${args[3]}","${date}",0,10,1, 0, 0, 0,"none","none","none","none","none")`
 
 				, function (error, results, fields) {
 					if (error) throw error;
@@ -349,35 +349,35 @@ var plan = args[1].split("x#x#x#x#x#")
 		
 		connection.query(
 			`UPDATE Users
-			SET plan1 = ${plan[1]}
+			SET plan1 = "${plan[1]}"
 			WHERE user_id = ${args[1]}`
 			, function (error, results, fields) {
 				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
 			});
 			connection.query(
 				`UPDATE Users
-				SET plan2 = ${plan[2]}
+				SET plan2 = "${plan[2]}"
 				WHERE user_id = ${args[1]}`
 				, function (error, results, fields) {
 					if (error) serverInfo("error updating "+changing+" of #"+args[1]);
 				});
 				connection.query(
 					`UPDATE Users
-					SET plan3 = ${plan[3]}
+					SET plan3 = "${plan[3]}"
 					WHERE user_id = ${args[1]}`
 					, function (error, results, fields) {
 						if (error) serverInfo("error updating "+changing+" of #"+args[1]);
 					});
 					connection.query(
 						`UPDATE Users
-						SET plan4 = ${plan[4]}
+						SET plan4 = "${plan[4]}"
 						WHERE user_id = ${args[1]}`
 						, function (error, results, fields) {
 							if (error) serverInfo("error updating "+changing+" of #"+args[1]);
 						});
 						connection.query(
 							`UPDATE Users
-							SET plan5 = ${plan[5]}
+							SET plan5 = "${plan[5]}"
 							WHERE user_id = ${args[1]}`
 							, function (error, results, fields) {
 								if (error) serverInfo("error updating "+changing+" of #"+args[1]);
@@ -400,11 +400,11 @@ case "downloadPlans":
 			//-- Save Message         		
 			_messages.push(socket.remoteAddress+
 			 +" x#x#x#x#x#"
-		//	+res[0].plan1+"x#x#x#x#x#"
+			+res[0].plan1+"x#x#x#x#x#"
 			+res[0].plan2+"x#x#x#x#x#"
-		//	+res[0].plan3+"x#x#x#x#x#"
-		//	+res[0].plan4+"x#x#x#x#x#"
-		//	+res[0].plan5
+			+res[0].plan3+"x#x#x#x#x#"
+			+res[0].plan4+"x#x#x#x#x#"
+			+res[0].plan5
 
 
 			)
