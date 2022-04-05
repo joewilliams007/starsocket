@@ -386,7 +386,7 @@ var plan = args[1].split("x#x#x#x#x#")
 	serverInfo("uploading plans of user #"+args[1])
 break;
 // 4.12 download plans ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-case "uploadPlans":
+case "downloadPlans":
 	connection.query( // get the users stuff
 
 		`SELECT * FROM Users
