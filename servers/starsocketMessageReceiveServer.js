@@ -62,7 +62,7 @@ var server = net.createServer(function(socket) {
 			serverInfo("received message: " + receivedMessage)
 			
 		}
-		console.log('-------------------------------------------- FINISHED RECEIVING ✅')
+		
 
 		 //-- Save Message         		
 	//	 _messages.push(receivedMessage.toString())
@@ -357,7 +357,7 @@ default:
 
 // 5.1 End of cases ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------					
 			}
-
+			console.log('-------------------------------------------- FINISHED RECEIVING ✅')
 		socket.destroy()
 	});
 
