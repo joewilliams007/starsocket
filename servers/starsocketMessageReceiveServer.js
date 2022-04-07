@@ -362,13 +362,45 @@ case "setUsername":
 break;
 // 4.11 upload plans ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "upload_plans":
-
+var changing = "plans"
 console.log("-----------------------------------------------------------------------------------------------------------------------------------")
 console.log("\n\nFUCK YOU THIS IS PLAN 1 "+message.split("##########")[1]+"\n\n\n\n")
 console.log("-----------------------------------------------------------------------------------------------------------------------------------")
 		connection.query(
 			`UPDATE Users
 			SET plan1 = "${message.split("##########")[1]}"
+			WHERE user_id = ${args[1]}`
+			, function (error, results, fields) {
+				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
+		});
+
+		connection.query(
+			`UPDATE Users
+			SET plan2 = "${message.split("##########")[2]}"
+			WHERE user_id = ${args[1]}`
+			, function (error, results, fields) {
+				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
+		});
+
+		connection.query(
+			`UPDATE Users
+			SET plan3 = "${message.split("##########")[3]}"
+			WHERE user_id = ${args[1]}`
+			, function (error, results, fields) {
+				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
+		});
+
+		connection.query(
+			`UPDATE Users
+			SET plan4 = "${message.split("##########")[4]}"
+			WHERE user_id = ${args[1]}`
+			, function (error, results, fields) {
+				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
+		});
+
+		connection.query(
+			`UPDATE Users
+			SET plan5 = "${message.split("##########")[5]}"
 			WHERE user_id = ${args[1]}`
 			, function (error, results, fields) {
 				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
