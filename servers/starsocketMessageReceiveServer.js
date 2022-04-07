@@ -445,7 +445,7 @@ try{
 	let _plan = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan5.json"));
 	plan5 = _plan[0]	//---
 }catch (err){}
-
+console.log(plan2)
 			//-- Save Message         		
 			_messages.push(socket.remoteAddress
 			+" ##########"
