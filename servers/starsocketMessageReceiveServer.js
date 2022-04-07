@@ -373,7 +373,7 @@ console.log("-------------------------------------------------------------------
 			, function (error, results, fields) {
 				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
 		});
-
+		await new Promise(r => setTimeout(r, 2000));
 		connection.query(
 			`UPDATE Users
 			SET plan2 = "${message.split("##########")[2]}"
@@ -381,7 +381,7 @@ console.log("-------------------------------------------------------------------
 			, function (error, results, fields) {
 				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
 		});
-
+		await new Promise(r => setTimeout(r, 2000));
 		connection.query(
 			`UPDATE Users
 			SET plan3 = "${message.split("##########")[3]}"
@@ -389,7 +389,7 @@ console.log("-------------------------------------------------------------------
 			, function (error, results, fields) {
 				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
 		});
-
+		await new Promise(r => setTimeout(r, 2000));
 		connection.query(
 			`UPDATE Users
 			SET plan4 = "${message.split("##########")[4]}"
@@ -397,7 +397,7 @@ console.log("-------------------------------------------------------------------
 			, function (error, results, fields) {
 				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
 		});
-
+		await new Promise(r => setTimeout(r, 2000));
 		connection.query(
 			`UPDATE Users
 			SET plan5 = "${message.split("##########")[5]}"
@@ -429,7 +429,7 @@ case "downloadPlans":
 			+res[0].plan2+"##########"
 			+res[0].plan3+"##########"
 			+res[0].plan4+"##########"
-			+res[0].plan5
+			+res[0].plan5+"##########"
 
 			)
 
