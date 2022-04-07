@@ -152,32 +152,32 @@ case "register":
 			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 
 			exec("mkdir users/"+id)
-			fs.appendFile('users/'+id+'/log.json', '[]', function (err) {
+			fs.appendFile('./users/'+id+'/log.json', '[]', function (err) {
 				if (err) throw err;
 				console.log('Saved!');
 			  });
 			  
-			  fs.appendFile('users/'+id+'/plan1.json', '[]', function (err) {
+			  fs.appendFile('./users/'+id+'/plan1.json', '[]', function (err) {
 				if (err) throw err;
 				console.log('Saved!');
 			  });
 
-			  fs.appendFile('users/'+id+'/plan2.json', '[]', function (err) {
+			  fs.appendFile('./users/'+id+'/plan2.json', '[]', function (err) {
 				if (err) throw err;
 				console.log('Saved!');
 			  });
 
-			  fs.appendFile('users/'+id+'/plan3.json', '[]', function (err) {
+			  fs.appendFile('./users/'+id+'/plan3.json', '[]', function (err) {
 				if (err) throw err;
 				console.log('Saved!');
 			  });
 
-			  fs.appendFile('users/'+id+'/plan4.json', '[]', function (err) {
+			  fs.appendFile('./users/'+id+'/plan4.json', '[]', function (err) {
 				if (err) throw err;
 				console.log('Saved!');
 			  });
 
-			  fs.appendFile('users/'+id+'/plan5.json', '[]', function (err) {
+			  fs.appendFile('./users/'+id+'/plan5.json', '[]', function (err) {
 				if (err) throw err;
 				console.log('Saved!');
 			  });
