@@ -420,7 +420,7 @@ var plan3;
 var plan4;
 var plan5;
 
-		fs.readFile("./users/"+args[1]+"plan1.json", "utf8", (err, response) => {
+		fs.readFile("./users/"+args[1]+"/plan1.json", "utf8", (err, response) => {
 			if (err) {
 			  console.error(err);
 			  return;
@@ -428,7 +428,7 @@ var plan5;
 			var data = JSON.parse(response);
 			plan1 = JSON.stringify(data);
 		  });
-		  fs.readFile("./users/"+args[1]+"plan2.json", "utf8", (err, response) => {
+		  fs.readFile("./users/"+args[1]+"/plan2.json", "utf8", (err, response) => {
 			if (err) {
 			  console.error(err);
 			  return;
@@ -436,7 +436,7 @@ var plan5;
 			var data = JSON.parse(response);
 			plan2 = JSON.stringify(data);
 		  });
-		  fs.readFile("./users/"+args[1]+"plan3.json", "utf8", (err, response) => {
+		  fs.readFile("./users/"+args[1]+"/plan3.json", "utf8", (err, response) => {
 			if (err) {
 			  console.error(err);
 			  return;
@@ -444,7 +444,7 @@ var plan5;
 			var data = JSON.parse(response);
 			plan3 = JSON.stringify(data);
 		  });
-		  fs.readFile("./users/"+args[1]+"plan4.json", "utf8", (err, response) => {
+		  fs.readFile("./users/"+args[1]+"/plan4.json", "utf8", (err, response) => {
 			if (err) {
 			  console.error(err);
 			  return;
@@ -452,7 +452,7 @@ var plan5;
 			var data = JSON.parse(response);
 			plan4 = JSON.stringify(data);
 		  });
-		  fs.readFile("./users/"+args[1]+"plan5.json", "utf8", (err, response) => {
+		  fs.readFile("./users/"+args[1]+"/plan5.json", "utf8", (err, response) => {
 			if (err) {
 			  console.error(err);
 			  return;
