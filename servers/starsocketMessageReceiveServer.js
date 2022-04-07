@@ -452,18 +452,13 @@ fs.appendFile('users/'+id+'/plan'+args[2]+'.txt', data, function (err) {
 break;
 // 4.12 download plans ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "downloadPlans":
-
-
-
-
+try {
 
 	let plan1 = fs.readFileSync("./users/"+args[1]+"/plan1.txt");
 	let plan2 = fs.readFileSync("./users/"+args[1]+"/plan2.txt");
 	let plan3 = fs.readFileSync("./users/"+args[1]+"/plan3.txt");
 	let plan4 = fs.readFileSync("./users/"+args[1]+"/plan4.txt");
 	let plan5 = fs.readFileSync("./users/"+args[1]+"/plan5.txt");
-
-
 
 
 			//-- Save Message         		
@@ -479,6 +474,11 @@ case "downloadPlans":
 
 			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 			serverInfo('Hey this user got the user_id ', args[1]);
+		} catch (err) {
+			_messages.push(socket.remoteAddress+" err")
+			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+			serverInfo('error ', args[1]);
+		}
 break;
 
 break;
