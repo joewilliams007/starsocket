@@ -418,11 +418,6 @@ break;
 case "downloadPlans":
 
 
-var plan1;
-var plan2;
-var plan3;
-var plan4;
-var plan5;
 
 
 
