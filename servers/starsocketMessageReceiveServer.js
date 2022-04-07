@@ -255,14 +255,12 @@ case "getProfile":
 	connection.query( // get the users stuff
 
 		`SELECT * FROM Users
-		WHERE user_id="${args[1]}" AND password = "${args[2]}"`
+		WHERE user_id="${args[1]}"`
 
 		, function (error, results, fields) {
 			if (error) serverInfo(error.message);
 			var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
 
-		//	serverInfo(res[0].account_created)
-		//	serverInfo(res[0].username)
 try {
 			//-- Save Message         		
 			_messages.push(socket.remoteAddress+" "
@@ -274,9 +272,6 @@ try {
 			+res[0].age+" "
 			+res[0].weight+" "
 		
-		
-
-
 
 			)
 
