@@ -424,46 +424,28 @@ var plan3;
 var plan4;
 var plan5;
 
-		fs.readFile("./users/"+args[1]+"/plan1.json", "utf8", (err, response) => {
-			if (err) {
-			  console.error(err);
-			  return;
-			}
-			var data = JSON.parse(response);
-			plan1 = JSON.stringify(data);
-		  });
-		  fs.readFile("./users/"+args[1]+"/plan2.json", "utf8", (err, response) => {
-			if (err) {
-			  console.error(err);
-			  return;
-			}
-			var data = JSON.parse(response);
-			plan2 = JSON.stringify(data);
-		  });
-		  fs.readFile("./users/"+args[1]+"/plan3.json", "utf8", (err, response) => {
-			if (err) {
-			  console.error(err);
-			  return;
-			}
-			var data = JSON.parse(response);
-			plan3 = JSON.stringify(data);
-		  });
-		  fs.readFile("./users/"+args[1]+"/plan4.json", "utf8", (err, response) => {
-			if (err) {
-			  console.error(err);
-			  return;
-			}
-			var data = JSON.parse(response);
-			plan4 = JSON.stringify(data);
-		  });
-		  fs.readFile("./users/"+args[1]+"/plan5.json", "utf8", (err, response) => {
-			if (err) {
-			  console.error(err);
-			  return;
-			}
-			var data = JSON.parse(response);
-			plan5 = JSON.stringify(data);
-		  });
+
+try{	
+	let _plan = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan1.json"));
+	plan1 = _plan[0]	//---
+}catch (err){}
+try{	
+	let _plan = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan2.json"));
+	plan2 = _plan[0]	//---
+}catch (err){}
+try{	
+	let _plan = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan3.json"));
+	plan3 = _plan[0]	//---
+}catch (err){}
+try{	
+	let _plan = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan4.json"));
+	plan4 = _plan[0]	//---
+}catch (err){}
+try{	
+	let _plan = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan5.json"));
+	plan5 = _plan[0]	//---
+}catch (err){}
+
 			//-- Save Message         		
 			_messages.push(socket.remoteAddress
 			+" ##########"
