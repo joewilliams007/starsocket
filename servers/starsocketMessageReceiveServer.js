@@ -408,7 +408,7 @@ fs.unlink('users/'+id+'/plan'+args[2]+'.json', function (err) {
     if (err) throw err;
     console.log('File deleted!');
 });
-fs.appendFile('users/'+id+'/plan'+args[2]+'.json', '['+data+']', function (err) {
+fs.appendFile('users/'+id+'/plan'+args[2]+'.json', '["'+data+'"]', function (err) {
 	if (err) throw err;
   });
 
