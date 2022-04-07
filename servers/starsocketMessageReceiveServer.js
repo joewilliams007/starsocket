@@ -427,23 +427,23 @@ var plan5;
 
 try{	
 	let _plan = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan1.json"));
-	plan1 = _plan[0]	//---
+	plan1 = _plan	//---
 }catch (err){}
 try{	
 	let _plan = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan2.json"));
-	plan2 = _plan[0]	//---
+	plan2 = _plan	//---
 }catch (err){}
 try{	
 	let _plan = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan3.json"));
-	plan3 = _plan[0]	//---
+	plan3 = _plan	//---
 }catch (err){}
 try{	
 	let _plan = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan4.json"));
-	plan4 = _plan[0]	//---
+	plan4 = _plan	//---
 }catch (err){}
 try{	
 	let _plan = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan5.json"));
-	plan5 = _plan[0]	//---
+	plan5 = _plan	//---
 }catch (err){}
 console.log(plan2)
 			//-- Save Message         		
