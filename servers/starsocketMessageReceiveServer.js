@@ -347,7 +347,7 @@ case "upload_plans":
 
 var plan = args[2]
 console.log("-----------------------------------------------------------------------------------------------------------------------------------")
-console.log("\n\nFUCK YOU THIS IS PLAN 1 "+plan.split("x#x#x#x#x#")[1]+"\n\n\n\n")
+console.log("\n\nFUCK YOU THIS IS PLAN 1 "+plan.split("##########")[1]+"\n\n\n\n")
 console.log("-----------------------------------------------------------------------------------------------------------------------------------")
 		connection.query(
 			`UPDATE Users
@@ -403,10 +403,10 @@ case "downloadPlans":
 			//-- Save Message         		
 			_messages.push(socket.remoteAddress
 			+" x#x#x#x#x#"
-			+res[0].plan1+"x#x#x#x#x#"
-			+res[0].plan2+"x#x#x#x#x#"
-			+res[0].plan3+"x#x#x#x#x#"
-			+res[0].plan4+"x#x#x#x#x#"
+			+res[0].plan1+"##########"
+			+res[0].plan2+"##########"
+			+res[0].plan3+"##########"
+			+res[0].plan4+"##########"
 			+res[0].plan5
 
 			)
