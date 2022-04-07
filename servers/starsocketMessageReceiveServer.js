@@ -249,6 +249,47 @@ try {
 			
 		});
 break;
+// 4.2.1 get user profile ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "getProfile":
+
+	connection.query( // get the users stuff
+
+		`SELECT * FROM Users
+		WHERE user_id="${args[1]}" AND password = "${args[2]}"`
+
+		, function (error, results, fields) {
+			if (error) serverInfo(error.message);
+			var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
+
+		//	serverInfo(res[0].account_created)
+		//	serverInfo(res[0].username)
+try {
+			//-- Save Message         		
+			_messages.push(socket.remoteAddress+" "
+			+args[1]+" "
+			+res[0].username+" "
+			+res[0].xp+" "
+			+res[0].today_progress+" "
+			+res[0].week_progress+" "
+			+res[0].age+" "
+			+res[0].weight+" "
+		
+		
+
+
+
+			)
+
+			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+			serverInfo('Hey this user got the user_id ', args[1]);
+} catch (err) {
+	_messages.push(socket.remoteAddress+" err")
+	fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+	serverInfo('error ', args[1]);
+}
+			
+		});
+break;
 // 4.3 set password ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setPassword":
 	var changing = "password"
