@@ -396,7 +396,7 @@ case "downloadPlans":
 			if (error) serverInfo(error.message);
 			var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
 
-			console.log(res.toString())
+			console.log(res)
 
 			//-- Save Message         		
 			_messages.push(socket.remoteAddress+
