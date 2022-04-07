@@ -32,6 +32,7 @@ const _messages = JSON.parse(fs.readFileSync('messages.json'));
 const _feedback = JSON.parse(fs.readFileSync('feedback.json'));
 // 2 MySql COnnect to db_main------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var mysql = require('mysql');
+const { exec } = require('child_process');
 var connection = mysql.createConnection({
 host     : 'localhost',
 user     : 'root',
@@ -150,6 +151,36 @@ case "register":
 			_messages.push(socket.remoteAddress+" "+args[1]+" "+id)
 			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 
+			exec("mkdir users/"+id)
+			fs.appendFile('users/'+id+'/log.json', '[]', function (err) {
+				if (err) throw err;
+				console.log('Saved!');
+			  });
+			  
+			  fs.appendFile('users/'+id+'/plan1.json', '[]', function (err) {
+				if (err) throw err;
+				console.log('Saved!');
+			  });
+
+			  fs.appendFile('users/'+id+'/plan2.json', '[]', function (err) {
+				if (err) throw err;
+				console.log('Saved!');
+			  });
+
+			  fs.appendFile('users/'+id+'/plan3.json', '[]', function (err) {
+				if (err) throw err;
+				console.log('Saved!');
+			  });
+
+			  fs.appendFile('users/'+id+'/plan4.json', '[]', function (err) {
+				if (err) throw err;
+				console.log('Saved!');
+			  });
+
+			  fs.appendFile('users/'+id+'/plan5.json', '[]', function (err) {
+				if (err) throw err;
+				console.log('Saved!');
+			  });
 
 			serverInfo('Hey this user got the user_id ', id);
 		});
@@ -363,59 +394,79 @@ break;
 // 4.11 upload plans ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "upload_plans":
 var changing = "plans"
-console.log("-----------------------------------------------------------------------------------------------------------------------------------")
-console.log("\n\nFUCK YOU THIS IS THE PLAN "+message.split("##########")[1]+"\n\n\n\n")
-console.log("-----------------------------------------------------------------------------------------------------------------------------------")
-
-'use strict';
 
 let data = message.split("##########")[1].replace("Λ","A");
-let buff = new Buffer(data);
-let base64data = buff.toString('base64');
+var id = args[1];
 
-console.log(" converted to Base64 is \n\n " + base64data );
-
-		connection.query(
-			`UPDATE Users
-			SET plan${args[2]} = "${base64data}"
-			WHERE user_id = ${args[1]}`
-			, function (error, results, fields) {
-				if (error) throw error;
-		});
-
-	
+fs.appendFile('users/'+id+'/plan'+args[2]+'.json', '['+data+']', function (err) {
+	if (err) throw err;
+  });
 
 	serverInfo("uploading plan "+args[2]+" of user #"+args[1])
 break;
 // 4.12 download plans ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "downloadPlans":
-	connection.query( // get the users stuff
 
-		`SELECT * FROM Users
-		WHERE user_id="${args[1]}"`
 
-		, function (error, results, fields) {
-			if (error) serverInfo(error.message);
-			var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
+var plan1;
+var plan2;
+var plan3;
+var plan4;
+var plan5;
 
-			console.log(res)
-
+		fs.readFile("./users/"+args[1]+"plan1.json", "utf8", (err, response) => {
+			if (err) {
+			  console.error(err);
+			  return;
+			}
+			var data = JSON.parse(response);
+			plan1 = JSON.stringify(data);
+		  });
+		  fs.readFile("./users/"+args[1]+"plan2.json", "utf8", (err, response) => {
+			if (err) {
+			  console.error(err);
+			  return;
+			}
+			var data = JSON.parse(response);
+			plan2 = JSON.stringify(data);
+		  });
+		  fs.readFile("./users/"+args[1]+"plan3.json", "utf8", (err, response) => {
+			if (err) {
+			  console.error(err);
+			  return;
+			}
+			var data = JSON.parse(response);
+			plan3 = JSON.stringify(data);
+		  });
+		  fs.readFile("./users/"+args[1]+"plan4.json", "utf8", (err, response) => {
+			if (err) {
+			  console.error(err);
+			  return;
+			}
+			var data = JSON.parse(response);
+			plan4 = JSON.stringify(data);
+		  });
+		  fs.readFile("./users/"+args[1]+"plan5.json", "utf8", (err, response) => {
+			if (err) {
+			  console.error(err);
+			  return;
+			}
+			var data = JSON.parse(response);
+			plan5 = JSON.stringify(data);
+		  });
 			//-- Save Message         		
 			_messages.push(socket.remoteAddress
 			+" ##########"
-			+res[0].plan1+"##########"
-			+res[0].plan2+"##########"
-			+res[0].plan3+"##########"
-			+res[0].plan4+"##########"
-			+res[0].plan5+"##########"
+			+plan1+"##########"
+			+plan2+"##########"
+			+plan3+"##########"
+			+plan4+"##########"
+			+plan5+"##########"
 
 			)
 
 			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 			serverInfo('Hey this user got the user_id ', args[1]);
-
-			
-		});
 break;
 
 break;
