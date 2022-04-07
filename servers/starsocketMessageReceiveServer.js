@@ -425,28 +425,23 @@ var plan4;
 var plan5;
 
 
-try{	
-	let _plan = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan1.json"));
-	plan1 = _plan[0]	//---
-}catch (err){}
-try{	
-	let _plan = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan2.json"));
-	const data = require("./users/"+args[1]+"/plan2.json");
-	plan2 = data.toString()	//---
-}catch (err){}
-try{	
-	let _plan = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan3.json"));
-	plan3 = _plan[0]	//---
-}catch (err){}
-try{	
-	let _plan = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan4.json"));
-	plan4 = _plan[0]	//---
-}catch (err){}
-try{	
-	let _plan = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan5.json"));
-	plan5 = _plan[0]	//---
-}catch (err){}
-console.log(plan2)
+
+	let _plan1 = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan1.json"));
+	plan1 = _plan1[0]	//---
+
+	let _plan2 = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan2.json"));
+	plan2 = _plan2[0]	//---
+
+	let _plan3 = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan3.json"));
+	plan3 = _plan3[0]	//---
+
+	let _plan4 = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan4.json"));
+	plan4 = _plan4[0]	//---
+
+	let _plan5 = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan5.json"));
+	plan5 = _plan5[0]	//---
+
+
 			//-- Save Message         		
 			_messages.push(socket.remoteAddress
 			+" ##########"
