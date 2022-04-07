@@ -350,7 +350,7 @@ console.log("\n\nFUCK YOU THIS IS PLAN 1 "+message.split("##########")[1]+"\n\n\
 console.log("-----------------------------------------------------------------------------------------------------------------------------------")
 		connection.query(
 			`UPDATE Users
-			SET plan1 = "${plan.split("##########")[1]}"
+			SET plan1 = "${message.split("##########")[1]}"
 			WHERE user_id = ${args[1]}`
 			, function (error, results, fields) {
 				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
