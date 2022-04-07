@@ -151,7 +151,13 @@ case "register":
 			_messages.push(socket.remoteAddress+" "+args[1]+" "+id)
 			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 
-			exec("mkdir users/"+id)
+
+			var dir = "./users/"+id
+
+			if (!fs.existsSync(dir)){
+				fs.mkdirSync(dir, { recursive: true });
+			}
+
 			fs.appendFile('./users/'+id+'/log.json', '[]', function (err) {
 				if (err) throw err;
 				console.log('Saved!');
