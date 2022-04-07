@@ -366,9 +366,18 @@ var changing = "plans"
 console.log("-----------------------------------------------------------------------------------------------------------------------------------")
 console.log("\n\nFUCK YOU THIS IS THE PLAN "+message.split("##########")[1]+"\n\n\n\n")
 console.log("-----------------------------------------------------------------------------------------------------------------------------------")
+
+'use strict';
+
+let data = message.split("##########")[1].replace("Λ","A");
+let buff = new Buffer(data);
+let base64data = buff.toString('base64');
+
+console.log(" converted to Base64 is \n\n " + base64data );
+
 		connection.query(
 			`UPDATE Users
-			SET plan${args[2]} = "${message.split("##########")[1].replace("Λ","A")}
+			SET plan${args[2]} = "${base64data}"
 			WHERE user_id = ${args[1]}`
 			, function (error, results, fields) {
 				if (error) throw error;
