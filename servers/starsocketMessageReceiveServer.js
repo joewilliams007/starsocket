@@ -364,50 +364,19 @@ break;
 case "upload_plans":
 var changing = "plans"
 console.log("-----------------------------------------------------------------------------------------------------------------------------------")
-console.log("\n\nFUCK YOU THIS IS PLAN 1 "+message.split("##########")[1]+"\n\n\n\n")
+console.log("\n\nFUCK YOU THIS IS THE PLAN "+message.split("##########")[1]+"\n\n\n\n")
 console.log("-----------------------------------------------------------------------------------------------------------------------------------")
 		connection.query(
 			`UPDATE Users
-			SET plan1 = "${message.split("##########")[1]}"
-			WHERE user_id = ${args[1]}`
-			, function (error, results, fields) {
-				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
-		});
-		await new Promise(r => setTimeout(r, 2000));
-		connection.query(
-			`UPDATE Users
-			SET plan2 = "${message.split("##########")[2]}"
-			WHERE user_id = ${args[1]}`
-			, function (error, results, fields) {
-				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
-		});
-		await new Promise(r => setTimeout(r, 2000));
-		connection.query(
-			`UPDATE Users
-			SET plan3 = "${message.split("##########")[3]}"
-			WHERE user_id = ${args[1]}`
-			, function (error, results, fields) {
-				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
-		});
-		await new Promise(r => setTimeout(r, 2000));
-		connection.query(
-			`UPDATE Users
-			SET plan4 = "${message.split("##########")[4]}"
-			WHERE user_id = ${args[1]}`
-			, function (error, results, fields) {
-				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
-		});
-		await new Promise(r => setTimeout(r, 2000));
-		connection.query(
-			`UPDATE Users
-			SET plan5 = "${message.split("##########")[5]}"
+			SET plan${args[2]} = "${message.split("##########")[1]}"
 			WHERE user_id = ${args[1]}`
 			, function (error, results, fields) {
 				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
 		});
 
+	
 
-	serverInfo("uploading plans of user #"+args[1])
+	serverInfo("uploading plan "+args[2]+" of user #"+args[1])
 break;
 // 4.12 download plans ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "downloadPlans":
