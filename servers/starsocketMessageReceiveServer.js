@@ -368,7 +368,7 @@ console.log("\n\nFUCK YOU THIS IS THE PLAN "+message.split("##########")[1]+"\n\
 console.log("-----------------------------------------------------------------------------------------------------------------------------------")
 		connection.query(
 			`UPDATE Users
-			SET plan${args[2]} = "${message.split("##########")[1]}"
+			SET plan${args[2]} = "${message.split("##########")[1].replace("Λ","A")}
 			WHERE user_id = ${args[1]}`
 			, function (error, results, fields) {
 				if (error) throw error;
