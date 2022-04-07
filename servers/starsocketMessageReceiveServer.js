@@ -351,39 +351,12 @@ console.log("\n\nFUCK YOU THIS IS PLAN 1 "+plan.split("##########")[1]+"\n\n\n\n
 console.log("-----------------------------------------------------------------------------------------------------------------------------------")
 		connection.query(
 			`UPDATE Users
-			SET plan1 = "${plan[1]}"
+			SET plan1 = "${plan.split("##########")[1]}"
 			WHERE user_id = ${args[1]}`
 			, function (error, results, fields) {
 				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
-			});
-			connection.query(
-				`UPDATE Users
-				SET plan2 = "${plan[2]}"
-				WHERE user_id = ${args[1]}`
-				, function (error, results, fields) {
-					if (error) serverInfo("error updating "+changing+" of #"+args[1]);
-				});
-				connection.query(
-					`UPDATE Users
-					SET plan3 = "${plan[3]}"
-					WHERE user_id = ${args[1]}`
-					, function (error, results, fields) {
-						if (error) serverInfo("error updating "+changing+" of #"+args[1]);
-					});
-					connection.query(
-						`UPDATE Users
-						SET plan4 = "${plan[4]}"
-						WHERE user_id = ${args[1]}`
-						, function (error, results, fields) {
-							if (error) serverInfo("error updating "+changing+" of #"+args[1]);
-						});
-						connection.query(
-							`UPDATE Users
-							SET plan5 = "${plan[5]}"
-							WHERE user_id = ${args[1]}`
-							, function (error, results, fields) {
-								if (error) serverInfo("error updating "+changing+" of #"+args[1]);
-							});
+		});
+
 
 	serverInfo("uploading plans of user #"+args[1])
 break;
