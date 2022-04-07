@@ -399,8 +399,8 @@ case "downloadPlans":
 			console.log(res)
 
 			//-- Save Message         		
-			_messages.push(socket.remoteAddress+
-			 +" x#x#x#x#x#"
+			_messages.push(socket.remoteAddress
+			+" x#x#x#x#x#"
 			+res[0].plan1+"x#x#x#x#x#"
 			+res[0].plan2+"x#x#x#x#x#"
 			+res[0].plan3+"x#x#x#x#x#"
