@@ -404,6 +404,10 @@ var changing = "plans"
 let data = message.split("##########")[1].replace("Λ","A");
 var id = args[1];
 
+fs.unlink('users/'+id+'/plan'+args[2]+'.json', function (err) {
+    if (err) throw err;
+    console.log('File deleted!');
+});
 fs.appendFile('users/'+id+'/plan'+args[2]+'.json', '['+data+']', function (err) {
 	if (err) throw err;
   });
