@@ -347,11 +347,11 @@ case "upload_plans":
 
 var plan = args[2]
 console.log("-----------------------------------------------------------------------------------------------------------------------------------")
-console.log("\n\nFUCK YOU THIS IS PLAN 1 "+plan.split("##########")[1]+"\n\n\n\n")
+console.log("\n\nFUCK YOU THIS IS PLAN 1 "+plan+"\n\n\n\n")
 console.log("-----------------------------------------------------------------------------------------------------------------------------------")
 		connection.query(
 			`UPDATE Users
-			SET plan1 = "${plan}"
+			SET plan1 = "${plan.split("##########")[1]}"
 			WHERE user_id = ${args[1]}`
 			, function (error, results, fields) {
 				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
@@ -375,7 +375,7 @@ case "downloadPlans":
 
 			//-- Save Message         		
 			_messages.push(socket.remoteAddress
-			+" x#x#x#x#x#"
+			+" ##########"
 			+res[0].plan1+"##########"
 			+res[0].plan2+"##########"
 			+res[0].plan3+"##########"
