@@ -371,7 +371,7 @@ console.log("-------------------------------------------------------------------
 			SET plan${args[2]} = "${message.split("##########")[1]}"
 			WHERE user_id = ${args[1]}`
 			, function (error, results, fields) {
-				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
+				if (error) throw error;
 		});
 
 	
