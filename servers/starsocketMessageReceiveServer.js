@@ -158,32 +158,32 @@ case "register":
 				fs.mkdirSync(dir, { recursive: true });
 			}
 
-			fs.appendFile('./users/'+id+'/log.json', '[]', function (err) {
+			fs.appendFile('./users/'+id+'/log.json', '', function (err) {
 				if (err) throw err;
 				console.log('Saved!');
 			  });
 			  
-			  fs.appendFile('./users/'+id+'/plan1.json', '[]', function (err) {
+			  fs.appendFile('./users/'+id+'/plan1.txt', '', function (err) {
 				if (err) throw err;
 				console.log('Saved!');
 			  });
 
-			  fs.appendFile('./users/'+id+'/plan2.json', '[]', function (err) {
+			  fs.appendFile('./users/'+id+'/plan2.txt', '', function (err) {
 				if (err) throw err;
 				console.log('Saved!');
 			  });
 
-			  fs.appendFile('./users/'+id+'/plan3.json', '[]', function (err) {
+			  fs.appendFile('./users/'+id+'/plan3.txt', '', function (err) {
 				if (err) throw err;
 				console.log('Saved!');
 			  });
 
-			  fs.appendFile('./users/'+id+'/plan4.json', '[]', function (err) {
+			  fs.appendFile('./users/'+id+'/plan4.txt', '', function (err) {
 				if (err) throw err;
 				console.log('Saved!');
 			  });
 
-			  fs.appendFile('./users/'+id+'/plan5.json', '[]', function (err) {
+			  fs.appendFile('./users/'+id+'/plan5.txt', '', function (err) {
 				if (err) throw err;
 				console.log('Saved!');
 			  });
@@ -404,11 +404,11 @@ var changing = "plans"
 let data = message.split("##########")[1].replace("Λ","A");
 var id = args[1];
 
-fs.unlink('users/'+id+'/plan'+args[2]+'.json', function (err) {
+fs.unlink('users/'+id+'/plan'+args[2]+'.txt', function (err) {
     if (err) throw err;
     console.log('File deleted!');
 });
-fs.appendFile('users/'+id+'/plan'+args[2]+'.json', '["'+data+'"]', function (err) {
+fs.appendFile('users/'+id+'/plan'+args[2]+'.txt', data, function (err) {
 	if (err) throw err;
   });
 
@@ -426,20 +426,13 @@ var plan5;
 
 
 
-	let _plan1 = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan1.json"));
-	plan1 = _plan1[0]	//---
+	let plan1 = fs.readFileSync("./users/"+args[1]+"/plan1.txt");
+	let plan2 = fs.readFileSync("./users/"+args[1]+"/plan2.txt");
+	let plan3 = fs.readFileSync("./users/"+args[1]+"/plan3.txt");
+	let plan4 = fs.readFileSync("./users/"+args[1]+"/plan4.txt");
+	let plan5 = fs.readFileSync("./users/"+args[1]+"/plan5.txt");
 
-	let _plan2 = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan2.json"));
-	plan2 = _plan2[0]	//---
 
-	let _plan3 = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan3.json"));
-	plan3 = _plan3[0]	//---
-
-	let _plan4 = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan4.json"));
-	plan4 = _plan4[0]	//---
-
-	let _plan5 = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan5.json"));
-	plan5 = _plan5[0]	//---
 
 
 			//-- Save Message         		
