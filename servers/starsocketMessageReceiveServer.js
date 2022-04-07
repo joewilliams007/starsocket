@@ -347,7 +347,7 @@ case "uploadPlans":
 
 var plan = args[2].split("x#x#x#x#x#")
 console.log("-----------------------------------------------------------------------------------------------------------------------------------")
-console.log("\n\nFUCK YOU THIS IS PLAN 1"+plan[1]+"\n\n\n\n")
+console.log("\n\nFUCK YOU THIS IS PLAN 1"+plan[2]+"\n\n\n\n")
 console.log("-----------------------------------------------------------------------------------------------------------------------------------")
 		connection.query(
 			`UPDATE Users
