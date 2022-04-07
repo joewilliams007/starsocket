@@ -342,6 +342,24 @@ case "setLogins":
 	serverInfo(changing+" updated of user #"+args[1])
 
 break;
+// 4.10.1 set energy ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "setUsername":
+
+		connection.query(
+
+			`UPDATE Users
+			SET username = ${args[2]}
+			WHERE user_id = ${args[1]}`
+	
+			, function (error, results, fields) {
+				if (error) serverInfo("error updating username of #"+args[1]);
+			});
+	
+		
+
+	serverInfo("username updated of user #"+args[1])
+
+break;
 // 4.11 upload plans ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "upload_plans":
 
