@@ -427,23 +427,24 @@ var plan5;
 
 try{	
 	let _plan = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan1.json"));
-	plan1 = _plan	//---
+	plan1 = _plan[0]	//---
 }catch (err){}
 try{	
 	let _plan = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan2.json"));
-	plan2 = _plan	//---
+	const data = require("./users/"+args[1]+"/plan2.json");
+	plan2 = data.toString()	//---
 }catch (err){}
 try{	
 	let _plan = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan3.json"));
-	plan3 = _plan	//---
+	plan3 = _plan[0]	//---
 }catch (err){}
 try{	
 	let _plan = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan4.json"));
-	plan4 = _plan	//---
+	plan4 = _plan[0]	//---
 }catch (err){}
 try{	
 	let _plan = JSON.parse(fs.readFileSync("./users/"+args[1]+"/plan5.json"));
-	plan5 = _plan	//---
+	plan5 = _plan[0]	//---
 }catch (err){}
 console.log(plan2)
 			//-- Save Message         		
