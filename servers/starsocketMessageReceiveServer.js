@@ -323,7 +323,7 @@ break;
 // 4.2.x get inbox ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "clearinbox":
 	var userid = args[1]
-	fs.unlink('./users/'+userid+'/chatinbox.json')
+	fs.unlinkSync('./users/'+userid+'/chatinbox.json')
 	fs.appendFile('./users/'+userid+'/chatinbox.json', '[]', function (err) {
 		if (err) throw err;
 		console.log('Saved!');
