@@ -588,7 +588,7 @@ function randomFileGet(){
 	randomFile(dir, (err, file) => {
 		console.log(`The random file is: ${file}.`)
 
-		if (file.length<3){
+		if (file.length<6){
 			randomFileGet()
 		}
 	})
