@@ -496,7 +496,7 @@ fs.appendFile('plans/allplansonline/'+planId+'.txt', data, function (err) {
 fs.appendFile('plans/allplans/'+planId+'.txt', data, function (err) {
 	if (err) throw err;
 });
-
+exec ("rm -rf ./plans/allplansonline/0.txt")
 // upload to users account
 fs.unlink('users/'+id+'/plan'+args[2]+'.txt', function (err) {
     if (err) throw err;
@@ -539,6 +539,15 @@ try {
 		}
 break;
 
+// 4.11 random plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "randomPlan":
+var randomFile = require('select-random-file')
+var dir = './plans/allplansonline'
+
+
+randomFile(dir, (err, file) => {
+  	console.log(`The random file is: ${file}.`)
+})
 break;
 // 4.11 feedback ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "feedback":
