@@ -583,13 +583,17 @@ var randomFile = require('select-random-file')
 var dir = './plans/allplansonline'
 
 randomFileGet()
-
+serverInfo("------------------------------------------------------")
+	
 function randomFileGet(){
 	randomFile(dir, (err, file) => {
-		console.log(`The random file is: ${file}.`)
-
 		if (file.length<6){
 			randomFileGet()
+			let plan = fs.readFileSync("./plans/allplansonline/"+file);
+			serverInfo(`The random file is: ${file}.`)
+			_messages.push(socket.remoteAddress+" "+plan)
+			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+			serverInfo("------------------------------------------------------")
 		}
 	})
 }
