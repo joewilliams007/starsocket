@@ -300,6 +300,32 @@ try {
 			
 		});
 break;
+// 4.2.x send message ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "chat":
+	var FROM = args[1]
+	var to =  args[2]
+	var datetime = new Date();
+	var date = datetime.toISOString().slice(0,10)
+	var time = datetime.toLocaleTimeString();
+	var chatM = message.split("MESSAGE&")[1]
+	var finalMessage = date+" "+time+" "+FROM+" "+chatM
+
+	var _inbox = JSON.parse(fs.readFileSync("./users/"+to+"/chatinbox.json"));
+	_inbox.push("\n"+finalMessage)
+	fs.writeFileSync("./users/"+to+"/chatinbox.json", JSON.stringify(_inobx))
+
+	serverInfo("saving message to #"+to+" from "+FROM)
+	
+break;
+// 4.2.x get inbox ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "mychatinbox":
+	var userid = args[1]
+
+	var _inbox = JSON.parse(fs.readFileSync("./users/"+userid+"/chatinbox.json"));
+	serverInfo(_inbox.toString())
+
+	
+break;
 // 4.3 set password ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setPassword":
 	var changing = "password"
