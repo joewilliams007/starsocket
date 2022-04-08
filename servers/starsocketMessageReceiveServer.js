@@ -23,8 +23,16 @@
 // 	6 functions
 // 	7 end of server
 // 		7.1 end of file
-
 // server index ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// create directories
+var dir = './plans/allplans';
+if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir, { recursive: true });
+}
+var dir = './plans/allplansonline';
+if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir, { recursive: true });
+}
 // 1 requiere plugins ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var net = require('net');
 let fs = require('fs');
@@ -436,10 +444,11 @@ break;
 // 4.11 upload plans ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "upload_plans":
 var changing = "plans"
-
-let data = message.split("##########")[1].replace("Λ","A");
+var planId = args[3];
+var data = message.split("##########")[1].replace("Λ","A");
 var id = args[1];
 
+// upload to my account
 fs.unlink('users/'+id+'/plan'+args[2]+'.txt', function (err) {
     if (err) throw err;
     console.log('File deleted!');
@@ -447,6 +456,48 @@ fs.unlink('users/'+id+'/plan'+args[2]+'.txt', function (err) {
 fs.appendFile('users/'+id+'/plan'+args[2]+'.txt', data, function (err) {
 	if (err) throw err;
   });
+// upload to all 
+fs.appendFile('plans/allplans/'+planId+'.txt', data, function (err) {
+	if (err) throw err;
+});
+
+	serverInfo("uploading plan "+args[2]+" of user #"+args[1])
+break;
+// 4.11.1 upload plans ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "upload_plans_everyone":
+var changing = "plans"
+
+var data = message.split("##########")[1].replace("Λ","A");
+var id = args[1];
+var category = args[3];
+var planId = args[4];
+// upload to specific category
+var dir = './plans/'+category;
+
+if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir, { recursive: true });
+}
+
+fs.appendFile('plans/'+category+'/'+planId+'.txt', data, function (err) {
+	if (err) throw err;
+});
+// upload to all online
+fs.appendFile('plans/allplansonline/'+planId+'.txt', data, function (err) {
+	if (err) throw err;
+});
+// upload to all 
+fs.appendFile('plans/allplans/'+planId+'.txt', data, function (err) {
+	if (err) throw err;
+});
+
+// upload to users account
+fs.unlink('users/'+id+'/plan'+args[2]+'.txt', function (err) {
+    if (err) throw err;
+    console.log('File deleted!');
+});
+fs.appendFile('users/'+id+'/plan'+args[2]+'.txt', data, function (err) {
+	if (err) throw err;
+});
 
 	serverInfo("uploading plan "+args[2]+" of user #"+args[1])
 break;
