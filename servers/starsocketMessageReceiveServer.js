@@ -166,15 +166,15 @@ case "register":
 				fs.mkdirSync(dir, { recursive: true });
 			}
 
-			fs.appendFile('./users/'+id+'/log.json', '', function (err) {
+			fs.appendFile('./users/'+id+'/log.json', '[]', function (err) {
 				if (err) throw err;
 				console.log('Saved!');
 			  });
-			  fs.appendFile('./users/'+id+'/inbox.json', '', function (err) {
+			  fs.appendFile('./users/'+id+'/inbox.json', '[]', function (err) {
 				if (err) throw err;
 				console.log('Saved!');
 			  });
-			  fs.appendFile('./users/'+id+'/chatinbox.json', '', function (err) {
+			  fs.appendFile('./users/'+id+'/chatinbox.json', '[]', function (err) {
 				if (err) throw err;
 				console.log('Saved!');
 			  });
