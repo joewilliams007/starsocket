@@ -170,7 +170,14 @@ case "register":
 				if (err) throw err;
 				console.log('Saved!');
 			  });
-			  
+			  fs.appendFile('./users/'+id+'/inbox.json', '', function (err) {
+				if (err) throw err;
+				console.log('Saved!');
+			  });
+			  fs.appendFile('./users/'+id+'/chatinbox.json', '', function (err) {
+				if (err) throw err;
+				console.log('Saved!');
+			  });
 			  fs.appendFile('./users/'+id+'/plan1.txt', '', function (err) {
 				if (err) throw err;
 				console.log('Saved!');
