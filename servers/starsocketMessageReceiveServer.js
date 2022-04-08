@@ -589,6 +589,7 @@ function randomFileGet(){
 	randomFile(dir, (err, file) => {
 		if (file.length<6){
 			randomFileGet()
+		} else {
 			let plan = fs.readFileSync("./plans/allplansonline/"+file);
 			serverInfo(`The random file is: ${file}.`)
 			_messages.push(socket.remoteAddress+" "+plan)
