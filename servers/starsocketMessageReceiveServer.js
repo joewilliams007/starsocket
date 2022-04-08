@@ -308,7 +308,7 @@ case "chat":
 	var date = datetime.toISOString().slice(0,10)
 	var time = datetime.toLocaleTimeString();
 	var chatM = message.toString().split("MESSAGE&")[1]
-	var finalMessage = date+" "+time+" "+FROM+" "+chatM
+	var finalMessage = date+" "+time+" by user #"+FROM+" "+chatM
 
 	serverInfo(finalMessage)
 try {
