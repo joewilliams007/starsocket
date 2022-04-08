@@ -325,8 +325,8 @@ case "mychatinbox":
 
 	var _inbox = JSON.parse(fs.readFileSync("./users/"+userid+"/chatinbox.json"));
 	serverInfo(_inbox.toString())
-
-	
+	_messages.push(socket.remoteAddress+" "+_inbox.toString())
+	fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 break;
 // 4.3 set password ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setPassword":
