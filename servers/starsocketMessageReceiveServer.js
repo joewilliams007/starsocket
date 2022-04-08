@@ -582,10 +582,17 @@ case "randomPlan":
 var randomFile = require('select-random-file')
 var dir = './plans/allplansonline'
 
+randomFileGet()
 
-randomFile(dir, (err, file) => {
-  	console.log(`The random file is: ${file}.`)
-})
+function randomFileGet(){
+	randomFile(dir, (err, file) => {
+		console.log(`The random file is: ${file}.`)
+
+		if (file.length<3){
+			randomFileGet()
+		}
+	})
+}
 break;
 // 4.11 feedback ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "feedback":
