@@ -514,8 +514,8 @@ var changing = "plans"
 
 var data = message.split("##########")[1].replace("Λ","A");
 var id = args[1];
-var category = args[3];
-var planId = args[4];
+var category = args[4].split("XXXXXXXX")[1];
+var planId = args[3];
 // upload to specific category
 var dir = './plans/'+category;
 
