@@ -309,12 +309,12 @@ case "chat":
 	var time = datetime.toLocaleTimeString();
 	var chatM = message.toString().split("MESSAGE&")[1]
 	var finalMessage = date+" "+time+" "+FROM+" "+chatM
-	
+
 	serverInfo(finalMessage)
 
 	var _inbox = JSON.parse(fs.readFileSync("./users/"+to+"/chatinbox.json"));
 	_inbox.push("\n"+finalMessage)
-	fs.writeFileSync("./users/"+to+"/chatinbox.json", JSON.stringify(_inobx))
+	fs.writeFileSync("./users/"+to+"/chatinbox.json", JSON.stringify(_inbox))
 
 	serverInfo("saving message to #"+to+" from "+FROM)
 	
