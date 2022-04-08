@@ -307,8 +307,10 @@ case "chat":
 	var datetime = new Date();
 	var date = datetime.toISOString().slice(0,10)
 	var time = datetime.toLocaleTimeString();
-	var chatM = message.split("MESSAGE&")[1]
+	var chatM = message.toString().split("MESSAGE&")[1]
 	var finalMessage = date+" "+time+" "+FROM+" "+chatM
+	
+	serverInfo(finalMessage)
 
 	var _inbox = JSON.parse(fs.readFileSync("./users/"+to+"/chatinbox.json"));
 	_inbox.push("\n"+finalMessage)
