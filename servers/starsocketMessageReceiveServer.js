@@ -311,15 +311,25 @@ case "chat":
 	var finalMessage = date+" "+time+" "+FROM+" "+chatM
 
 	serverInfo(finalMessage)
-
+try {
 	var _inbox = JSON.parse(fs.readFileSync("./users/"+to+"/chatinbox.json"));
 	_inbox.push("\n"+finalMessage)
 	fs.writeFileSync("./users/"+to+"/chatinbox.json", JSON.stringify(_inbox))
-
 	serverInfo("saving message to #"+to+" from "+FROM)
-	
+} catch (err) {
+
+}
 break;
 // 4.2.x get inbox ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "clearinbox":
+	var userid = args[1]
+	fs.unlink('./users/'+userid+'/chatinbox.json')
+	fs.appendFile('./users/'+userid+'/chatinbox.json', '[]', function (err) {
+		if (err) throw err;
+		console.log('Saved!');
+	  });
+break;
+// 4.2.x.x get inbox ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "mychatinbox":
 	var userid = args[1]
 
