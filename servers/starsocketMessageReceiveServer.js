@@ -535,7 +535,7 @@ fs.appendFile('users/'+id+'/plan'+args[2]+'.txt', data, function (err) {
 fs.appendFile('plans/allplans/'+planId+'.txt', data, function (err) {
 	if (err) throw err;
 });
-fs.appendFile('plans/comments/'+planId+'.txt', "-\n", function (err) {
+fs.appendFile('plans/comments/'+planId+'.txt', "\n", function (err) {
 	if (err) throw err;
 });
 
@@ -567,7 +567,7 @@ fs.appendFile('plans/allplansonline/'+planId+'.txt', data, function (err) {
 fs.appendFile('plans/allplans/'+planId+'.txt', data, function (err) {
 	if (err) throw err;
 });
-fs.appendFile('plans/comments/'+planId+'.txt', "-\n", function (err) {
+fs.appendFile('plans/comments/'+planId+'.txt', "\n", function (err) {
 	if (err) throw err;
 });
 
@@ -636,9 +636,14 @@ try {
 break;
 // 4.12.2  comment on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "commentPlan":
-	var planid = args[1].replace("#","")
-	var comment = "- - - - -\n"+message.split("THECOMMENTISSTAR")[1]
-
+	var userid = args[1]
+	var username = args[2]
+	var planid = args[3].replace("#","")
+	var comment = message.split("THECOMMENTISSTAR")[1]
+	
+	var date = datetime.toISOString().slice(0,10)
+	var time = datetime.toLocaleTimeString();
+	var finalMessage = "- - - - -\n"+date+" "+time+" by user "+username+" (#"+userid+")\n- "+comment
 
 	fs.appendFile('plans/comments/'+planid+'.txt', "\n"+comment, function (err) {
 	if (err) {
