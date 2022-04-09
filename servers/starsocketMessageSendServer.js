@@ -25,11 +25,16 @@ var server = net.createServer(function(socket) {
 	entireMessage += "Total messages: "+ _messages.length
 
 	var lastOfFile = _messages[_messages.length-1]
-	serverInfo("last in file is "+lastOfFile)
+	// serverInfo("last in file is "+lastOfFile)
 	if (lastOfFile.split(" ",2)[0].includes(socket.remoteAddress)){
 		serverInfo("valid ip! "+lastOfFile+" to ip of "+socket.remoteAddress)
 		socket.write(removeFirstWord(lastOfFile))
+
+		if (removeFirstWord(lastOfFile).length>20){
+			serverInfo("writing sth over 20 characters") 
+		} else {
 		serverInfo("writing "+removeFirstWord(lastOfFile))
+		}
 	} else {
 		socket.write("invalid_ip")
 		serverInfo("invalid ip")
