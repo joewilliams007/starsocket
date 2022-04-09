@@ -641,6 +641,7 @@ case "commentPlan":
 	var planid = args[3].replace("#","")
 	var comment = message.split("THECOMMENTISSTAR")[1]
 	
+	var datetime = new Date();
 	var date = datetime.toISOString().slice(0,10)
 	var time = datetime.toLocaleTimeString();
 	var finalMessage = "- - - - -\n"+date+" "+time+" by user "+username+" (#"+userid+")\n- "+comment
