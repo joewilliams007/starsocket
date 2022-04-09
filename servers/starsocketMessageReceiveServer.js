@@ -637,7 +637,7 @@ var datetime = new Date();
 var date = datetime.toISOString().slice(0,10)
 var time = datetime.toLocaleTimeString();
 var chatM = message.toString().split("MESSAGE&")[1]
-var finalMessage = "- - - - -\n"+date+" "+time+" \n- feedback/report submitted!"
+var finalMessage = "- - - - -\n"+date+" "+time+" \n- you submitted feedback/report!"
 
 	_feedback.push(message)
 	fs.writeFileSync('./feedback.json', JSON.stringify(_feedback))
