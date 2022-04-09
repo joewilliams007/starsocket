@@ -418,12 +418,12 @@ case "leaderboard":
 					
 					for (const item of res.values()) {  
 						console.log(`Cache item: ${JSON.stringify(item)}`)
-						leaderboard+="\n"+JSON.stringify(item.username).toString()
+						leaderboard+="\n"+JSON.stringify(item.username)+" "+JSON.stringify(item.user_id)+" "+JSON.stringify(item.xp)
 					}
 
 					console.log(leaderboard)
 	
-				serverInfo('Hey this user got the user_id ', args[1]);
+			
 			});
 
 
