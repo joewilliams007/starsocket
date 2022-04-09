@@ -415,10 +415,12 @@ case "leaderboard":
 					console.log(res)
 
 					var leaderboard = "";
+					var position = 1
 					
 					for (const item of res.values()) {  
+						position++
 						console.log(`Cache item: ${JSON.stringify(item)}`)
-						leaderboard+="\n"+JSON.stringify(item.username)+" "+JSON.stringify(item.user_id)+" "+JSON.stringify(item.xp)
+						leaderboard+="\n"+position+" "+JSON.stringify(item.xp)+" "+JSON.stringify(item.username)+" "+JSON.stringify(item.user_id)
 					}
 
 					console.log(leaderboard)
