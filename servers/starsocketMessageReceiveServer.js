@@ -636,9 +636,9 @@ try {
 break;
 // 4.12.2  comment on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "commentPlan":
-	var userid = args[1]
-	var username = args[2]
-	var planid = args[3].replace("#","")
+	var userid = args[2]
+	var username = args[3]
+	var planid = args[1].replace("#","")
 	var comment = message.split("THECOMMENTISSTAR")[1]
 	
 	var datetime = new Date();
