@@ -670,8 +670,8 @@ case "getFeedback":
 serverInfo("sending feedback to developer")
 break;
 // 4.11.2 clear feedback ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-case "clearinbox":
-	var userid = args[1]
+case "clearAllFeedbackDev":
+
 	fs.unlinkSync('./feedback.json')
 	fs.appendFile('./feedback.json', '[]', function (err) {
 		if (err) throw err;
