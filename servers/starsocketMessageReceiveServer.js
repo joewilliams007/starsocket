@@ -413,6 +413,7 @@ case "leaderboard":
 				result = "";
 	
 					console.log(res)
+					console.log(res.length())
 	
 	
 				serverInfo('Hey this user got the user_id ', args[1]);
