@@ -643,13 +643,11 @@ var to = args[1];
 	var finalMessage = "- - - - -\nfeedback/report submitted!\n"
 
 	serverInfo(finalMessage)
-try {
+
 	var _inbox = JSON.parse(fs.readFileSync("./users/"+to+"/chatinbox.json"));
 	_inbox.push("\n"+finalMessage)
 	fs.writeFileSync("./users/"+to+"/chatinbox.json", JSON.stringify(_inbox))
-} catch (err) {
 
-}
 break;
 // 5 if no case was set ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 default:
