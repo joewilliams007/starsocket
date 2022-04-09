@@ -403,7 +403,7 @@ break;
 case "leaderboard":	
 		connection.query(
 
-			`SELECT username, user_id 
+			`SELECT username, user_id, xp
 			FROM Users
 			ORDER BY xp DESC`
 	
@@ -412,7 +412,7 @@ case "leaderboard":
 				var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
 				result = "";
 	
-					console.log(res[0])
+					console.log(res)
 	
 	
 				serverInfo('Hey this user got the user_id ', args[1]);
