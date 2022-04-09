@@ -535,6 +535,9 @@ fs.appendFile('users/'+id+'/plan'+args[2]+'.txt', data, function (err) {
 fs.appendFile('plans/allplans/'+planId+'.txt', data, function (err) {
 	if (err) throw err;
 });
+fs.appendFile('plans/comments/'+planId+'.txt', "-\n", function (err) {
+	if (err) throw err;
+});
 
 	serverInfo("uploading plan "+args[2]+" of user #"+args[1])
 break;
@@ -564,6 +567,11 @@ fs.appendFile('plans/allplansonline/'+planId+'.txt', data, function (err) {
 fs.appendFile('plans/allplans/'+planId+'.txt', data, function (err) {
 	if (err) throw err;
 });
+fs.appendFile('plans/comments/'+planId+'.txt', "-\n", function (err) {
+	if (err) throw err;
+});
+
+
 exec ("rm -rf ./plans/allplansonline/0.txt")
 // upload to users account
 fs.unlink('users/'+id+'/plan'+args[2]+'.txt', function (err) {
@@ -602,6 +610,26 @@ try {
 			serverInfo('Hey this user got the user_id ', args[1]);
 		} catch (err) {
 			_messages.push(socket.remoteAddress+" err")
+			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+			serverInfo('error ', args[1]);
+		}
+break;
+// 4.12.1 get plan comments ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "getComments":
+	var planid = args[1]
+try {
+	var comments = fs.readFileSync('plans/comments/'+planId+'.txt');
+
+			//-- Save Message         		
+			_messages.push(socket.remoteAddress
+			+" "
+			+comments
+			)
+
+			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+			serverInfo('Hey this user got the user_id ', args[1]);
+		} catch (err) {
+			_messages.push(socket.remoteAddress+" errasdasdasdasdasdasdasdasd")
 			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 			serverInfo('error ', args[1]);
 		}
