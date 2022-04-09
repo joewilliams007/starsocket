@@ -37,7 +37,7 @@ if (!fs.existsSync(dir)){
 // 1 requiere plugins ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var net = require('net');
 const _messages = JSON.parse(fs.readFileSync('messages.json'));
-const _feedback = JSON.parse(fs.readFileSync('feedback.json'));
+
 // 2 MySql COnnect to db_main------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var mysql = require('mysql');
 const { exec } = require('child_process');
@@ -631,7 +631,7 @@ function randomFileGet(){
 break;
 // 4.11 feedback ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "feedback":
-	
+	var _feedback = JSON.parse(fs.readFileSync('feedback.json'));
 var to = args[1];
 var datetime = new Date();
 var date = datetime.toISOString().slice(0,10)
@@ -660,7 +660,7 @@ break;
 // 4.11.1 get feedback ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getFeedback":
 	
-
+	var _feedback = JSON.parse(fs.readFileSync('feedback.json'));
 	_feedback.push(message)
 	fs.writeFileSync('./feedback.json', JSON.stringify(_feedback))
 
@@ -671,7 +671,7 @@ serverInfo("sending feedback to developer")
 break;
 // 4.11.2 clear feedback ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "clearAllFeedbackDev":
-
+	var _feedback = JSON.parse(fs.readFileSync('feedback.json'));
 	fs.unlinkSync('./feedback.json')
 	fs.appendFile('./feedback.json', '[]', function (err) {
 		if (err) throw err;
