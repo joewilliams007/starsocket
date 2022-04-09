@@ -308,7 +308,7 @@ case "chat":
 	var date = datetime.toISOString().slice(0,10)
 	var time = datetime.toLocaleTimeString();
 	var chatM = message.toString().split("MESSAGE&")[1]
-	var finalMessage = "- - - - -\n"+date+" "+time+" by user #"+FROM+"\n- "+chatM+"\n"
+	var finalMessage = "- - - - -\n"+date+" "+time+" by user #"+FROM+"\n- "+chatM
 
 	serverInfo(finalMessage)
 try {
@@ -637,7 +637,7 @@ var datetime = new Date();
 var date = datetime.toISOString().slice(0,10)
 var time = datetime.toLocaleTimeString();
 var chatM = message.toString().split("MESSAGE&")[1]
-var finalMessage = "- - - - -\n"+date+" "+time+" \n- feedback/report submitted!\n"
+var finalMessage = "- - - - -\n"+date+" "+time+" \n- feedback/report submitted!"
 
 	_feedback.push(message)
 	fs.writeFileSync('./feedback.json', JSON.stringify(_feedback))
