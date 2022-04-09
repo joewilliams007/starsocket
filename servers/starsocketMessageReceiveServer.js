@@ -418,7 +418,7 @@ case "leaderboard":
 					
 					for (const item of res.values()) {  
 						console.log(`Cache item: ${JSON.stringify(item)}`)
-						leaderboard+="\n"+JSON.stringify(item.username)
+						leaderboard+="\n"+JSON.stringify(item.username).toString()
 					}
 
 					console.log(leaderboard)
