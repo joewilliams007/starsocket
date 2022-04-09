@@ -641,7 +641,7 @@ case "commentPlan":
 try {
 
 	var _comments = JSON.parse(fs.readFileSync('plans/comments/'+planid+'.txt'));
-	_comments.push("\n"+finalMessage)
+	_comments.push("\n"+comment)
 	fs.writeFileSync('plans/comments/'+planid+'.txt', JSON.stringify(_comments))
 
 		} catch (err) {
