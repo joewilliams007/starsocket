@@ -412,19 +412,25 @@ case "leaderboard":
 				var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
 				result = "";
 	
-					console.log(res)
+				//	console.log(res)
 
 					var leaderboard = "";
-					var position = 1
+					var position = 0
 					
 					for (const item of res.values()) {  
 						position++
-						console.log(`Cache item: ${JSON.stringify(item)}`)
+					//	console.log(`Cache item: ${JSON.stringify(item)}`)
+					if (position<4){
+						leaderboard+="\n"+JSON.stringify(item.xp)+" "+JSON.stringify(item.username)+" "+JSON.stringify(item.user_id)
+					} else {
 						leaderboard+="\n"+position+" "+JSON.stringify(item.xp)+" "+JSON.stringify(item.username)+" "+JSON.stringify(item.user_id)
+					}
+						
 					}
 
 					console.log(leaderboard)
-	
+					_messages.push(socket.remoteAddress+" "+leaderboard)
+					fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 			
 			});
 
