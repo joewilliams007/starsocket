@@ -639,13 +639,14 @@ var time = datetime.toLocaleTimeString();
 var chatM = message.toString().split("MESSAGE&")[1]
 var finalMessage = "- - - - -\n"+date+" "+time+" \n- you submitted a feedback/report!"
 
+try{
 	_feedback.push(message)
 	fs.writeFileSync('./feedback.json', JSON.stringify(_feedback))
+} catch (err) {
 
+}
 	serverInfo("RECEIVED FEEDBACK!!!!!\n"+message)
 
-
-	
 
 	serverInfo(finalMessage)
 try {
@@ -667,6 +668,15 @@ case "getFeedback":
 	fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 
 serverInfo("sending feedback to developer")
+break;
+// 4.11.2 clear feedback ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "clearinbox":
+	var userid = args[1]
+	fs.unlinkSync('./feedback.json')
+	fs.appendFile('./feedback.json', '[]', function (err) {
+		if (err) throw err;
+		console.log('deleted feedback!');
+	  });
 break;
 // 5 if no case was set ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 default:
