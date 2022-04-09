@@ -661,8 +661,7 @@ break;
 case "getFeedback":
 	
 	var _feedback = JSON.parse(fs.readFileSync('feedback.json'));
-	_feedback.push(message)
-	fs.writeFileSync('./feedback.json', JSON.stringify(_feedback))
+
 
 	_messages.push(socket.remoteAddress+" "+_feedback.toString())
 	fs.writeFileSync('./messages.json', JSON.stringify(_messages))
