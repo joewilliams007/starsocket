@@ -640,9 +640,15 @@ case "commentPlan":
 	var comment = "- - - - -\n"+message.split("THECOMMENTISSTAR")[1]
 
 
-	var _comments = JSON.parse(fs.readFileSync('plans/comments/'+planid+'.txt'));
-	_comments.push("\n"+comment)
-	fs.writeFileSync('plans/comments/'+planid+'.txt', JSON.stringify(_comments))
+	fs.appendFile('plans/comments/'+planid+'.txt', "\n"+comment, function (err) {
+	if (err) {
+		// append failed
+	} else {
+		// done
+	}
+	})
+
+
 
 
 break;
