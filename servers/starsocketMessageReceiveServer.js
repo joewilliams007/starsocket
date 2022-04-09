@@ -640,7 +640,7 @@ var chatM = message.toString().split("MESSAGE&")[1]
 var finalMessage = "- - - - -\n"+date+" "+time+" \n- you submitted a feedback/report!"
 
 try{
-	_feedback.push(message)
+	_feedback.push(message.replace("feedback 14","\n\n"))
 	fs.writeFileSync('./feedback.json', JSON.stringify(_feedback))
 } catch (err) {
 
