@@ -399,6 +399,29 @@ case "setXp":
 	serverInfo("xp updated of user #"+args[1])
 	
 break;
+// 4.6,1 Leaderboard ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "leaderboard":	
+		connection.query(
+
+			`SELECT username, user_id 
+			FROM Users
+			ORDER BY xp DESC`
+	
+			, function (error, results, fields) {
+				if (error) serverInfo(error.message);
+				var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
+				result = "";
+	
+					console.log(res[0])
+	
+	
+				serverInfo('Hey this user got the user_id ', args[1]);
+			});
+
+
+	
+break;
+
 // 4.6.1 set todays progress ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setTodayProgress":	
 		connection.query(
