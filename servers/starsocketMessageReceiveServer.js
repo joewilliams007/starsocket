@@ -421,7 +421,7 @@ case "leaderboard":
 						leaderboard+="\n"+JSON.stringify(item)
 					}
 
-					console.log(leaderboard)
+					console.log(leaderboard.replace(`{"username:""`,""))
 	
 				serverInfo('Hey this user got the user_id ', args[1]);
 			});
