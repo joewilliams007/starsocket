@@ -646,7 +646,7 @@ case "commentPlan":
 	var time = datetime.toLocaleTimeString();
 	var finalMessage = "- - - - -\n"+date+" "+time+" by user "+username+" (#"+userid+")\n- "+comment
 
-	fs.appendFile('plans/comments/'+planid+'.txt', "\n"+comment, function (err) {
+	fs.appendFile('plans/comments/'+planid+'.txt', "\n"+finalMessage, function (err) {
 	if (err) {
 		// append failed
 	} else {
