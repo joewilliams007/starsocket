@@ -634,7 +634,22 @@ try {
 			serverInfo('error ', args[1]);
 		}
 break;
+// 4.12.2  comment on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "commentPlan":
+	var planid = args[1].replace("#","")
+	var comment = "- - - - -\n"+message.split("THECOMMENTISSTAR")[1]
+try {
 
+	var _comments = JSON.parse(fs.readFileSync('plans/comments/'+planid+'.txt'));
+	_comments.push("\n"+finalMessage)
+	fs.writeFileSync('plans/comments/'+planid+'.txt', JSON.stringify(_comments))
+
+		} catch (err) {
+			_messages.push(socket.remoteAddress+" errasdasdasdasdasdasdasdasd")
+			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+			serverInfo('error ', args[1]);
+		}
+break;
 // 4.11 random plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "randomPlan":
 var randomFile = require('select-random-file')
