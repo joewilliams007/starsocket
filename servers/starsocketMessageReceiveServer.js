@@ -413,8 +413,10 @@ case "leaderboard":
 				result = "";
 	
 					console.log(res)
-					console.log(res.length())
-	
+					
+					for (const item of res.values()) {  
+						console.log(`Cache item: ${JSON.stringify(item)}`)
+					}
 	
 				serverInfo('Hey this user got the user_id ', args[1]);
 			});
