@@ -633,6 +633,11 @@ break;
 case "feedback":
 	
 var to = args[1];
+var datetime = new Date();
+var date = datetime.toISOString().slice(0,10)
+var time = datetime.toLocaleTimeString();
+var chatM = message.toString().split("MESSAGE&")[1]
+var finalMessage = "- - - - -\n"+date+" "+time+" \n- feedback/report submitted!\n"
 
 	_feedback.push(message)
 	fs.writeFileSync('./feedback.json', JSON.stringify(_feedback))
@@ -640,7 +645,7 @@ var to = args[1];
 	serverInfo("RECEIVED FEEDBACK!!!!!\n"+message)
 
 
-	var finalMessage = "- - - - -\nfeedback/report submitted!\n"
+	
 
 	serverInfo(finalMessage)
 try {
