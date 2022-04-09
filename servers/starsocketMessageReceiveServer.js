@@ -308,7 +308,7 @@ case "chat":
 	var date = datetime.toISOString().slice(0,10)
 	var time = datetime.toLocaleTimeString();
 	var chatM = message.toString().split("MESSAGE&")[1]
-	var finalMessage = "- - - - -\n"+date+" "+time+" by user #"+FROM+"\n- "+chatM
+	var finalMessage = "- - - - -\n"+date+" "+time+" by user #"+FROM+"\n- "+chatM+"\n"
 
 	serverInfo(finalMessage)
 try {
@@ -631,12 +631,25 @@ function randomFileGet(){
 break;
 // 4.11 feedback ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "feedback":
-		
+	
+var to = args[1];
+
 	_feedback.push(message)
 	fs.writeFileSync('./feedback.json', JSON.stringify(_feedback))
 
 	serverInfo("RECEIVED FEEDBACK!!!!!\n"+message)
 
+
+	var finalMessage = "- - - - -\nfeedback/report submitted!\n"
+
+	serverInfo(finalMessage)
+try {
+	var _inbox = JSON.parse(fs.readFileSync("./users/"+to+"/chatinbox.json"));
+	_inbox.push("\n"+finalMessage)
+	fs.writeFileSync("./users/"+to+"/chatinbox.json", JSON.stringify(_inbox))
+} catch (err) {
+
+}
 break;
 // 5 if no case was set ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 default:
