@@ -616,9 +616,9 @@ try {
 break;
 // 4.12.1 get plan comments ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getComments":
-	var planid = args[1]
+	var planid = args[1].replace("#","")
 try {
-	var comments = fs.readFileSync('plans/comments/'+planId+'.txt');
+	var comments = fs.readFileSync('plans/comments/'+planid+'.txt');
 
 			//-- Save Message         		
 			_messages.push(socket.remoteAddress
