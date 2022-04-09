@@ -399,6 +399,36 @@ case "setXp":
 	serverInfo("xp updated of user #"+args[1])
 	
 break;
+// 4.6.1 set todays progress ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "setTodayProgress":	
+		connection.query(
+
+			`UPDATE Users
+			SET today_progress = ${args[2]}
+			WHERE user_id = ${args[1]}`
+	
+			, function (error, results, fields) {
+				if (error) serverInfo("error updating day xp of #"+args[1]);
+				
+			});
+	serverInfo("day xp updated of user #"+args[1])
+	
+break;
+// 4.6.2 set weeks progress ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "setWeekProgress":	
+		connection.query(
+
+			`UPDATE Users
+			SET week_progress = ${args[2]}
+			WHERE user_id = ${args[1]}`
+	
+			, function (error, results, fields) {
+				if (error) serverInfo("error updating week xp of #"+args[1]);
+				
+			});
+	serverInfo("week xp updated of user #"+args[1])
+	
+break;
 // 4.7 set age ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setAge":
 	
