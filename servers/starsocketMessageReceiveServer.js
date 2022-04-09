@@ -653,10 +653,15 @@ case "commentPlan":
 		// done
 	}
 	})
-
-
-
-
+break;
+// 4.12.2 clear comments ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "clearComments":
+	var planid = args[1]
+	fs.unlinkSync('plans/comments/'+planid+'.txt')
+	fs.appendFile('plans/comments/'+planid+'.txt', '\n', function (err) {
+		if (err) throw err;
+		console.log('comments deleted!');
+	  });
 break;
 // 4.11 random plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "randomPlan":
