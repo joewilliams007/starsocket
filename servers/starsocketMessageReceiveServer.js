@@ -420,8 +420,10 @@ case "leaderboard":
 					for (const item of res.values()) {  
 						position++
 					//	console.log(`Cache item: ${JSON.stringify(item)}`)
-					if (position<4){
-						leaderboard+="\n"+JSON.stringify(item.xp)+" "+JSON.stringify(item.username)+" "+JSON.stringify(item.user_id)
+					if (position<2){
+						leaderboard+=JSON.stringify(item.xp)+" xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
+					} else if (position<4){
+						leaderboard+="\n"+JSON.stringify(item.xp)+" xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
 					} else {
 						leaderboard+="\n"+position+" "+JSON.stringify(item.xp)+" "+JSON.stringify(item.username)+" "+JSON.stringify(item.user_id)
 					}
