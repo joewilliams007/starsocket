@@ -423,17 +423,22 @@ case "leaderboard":
 					var position = 0
 					
 					for (const item of res.values()) {  
+
+						if (Number(JSON.stringify(item.xp))<1){
+
+						} else {
+							
 						position++
-					//	console.log(`Cache item: ${JSON.stringify(item)}`)
-					if (position<2){
-						leaderboard+=JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
-					} else if (position<4){
-						leaderboard+="\n"+JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
-					} else if (position>100){
-					} else {
-						leaderboard+="\n "+position+". "+JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
-					}
-						
+								//	console.log(`Cache item: ${JSON.stringify(item)}`)
+								if (position<2){
+									leaderboard+=JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
+								} else if (position<4){
+									leaderboard+="\n"+JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
+								} else if (position>100){
+								} else {
+									leaderboard+="\n "+position+". "+JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
+								}
+						}
 					}
 
 					console.log(leaderboard)
@@ -442,8 +447,6 @@ case "leaderboard":
 			
 			});
 
-
-	
 break;
 
 // 4.6.1 set todays progress ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
