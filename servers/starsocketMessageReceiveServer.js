@@ -425,7 +425,7 @@ case "leaderboard":
 					} else if (position<4){
 						leaderboard+="\n"+JSON.stringify(item.xp)+" xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
 					} else {
-						leaderboard+="\n"+position+" "+JSON.stringify(item.xp)+" "+JSON.stringify(item.username)+" "+JSON.stringify(item.user_id)
+						leaderboard+="\n"+position+". - "+JSON.stringify(item.xp)+" xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
 					}
 						
 					}
