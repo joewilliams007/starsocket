@@ -421,11 +421,11 @@ case "leaderboard":
 						position++
 					//	console.log(`Cache item: ${JSON.stringify(item)}`)
 					if (position<2){
-						leaderboard+=JSON.stringify(item.xp)+" xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
+						leaderboard+=JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
 					} else if (position<4){
-						leaderboard+="\n"+JSON.stringify(item.xp)+" xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
+						leaderboard+="\n"+JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
 					} else {
-						leaderboard+="\nplace "+position+". - "+JSON.stringify(item.xp)+" xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
+						leaderboard+="\n "+position+". "+JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
 					}
 						
 					}
