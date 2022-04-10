@@ -129,6 +129,11 @@ plans
 
 What is stored on our servers? 
 
+NOTΞ: 
+everything we store is for the users good only! 
+for example we only store your plans for you to have a Backup when you log back in and for your friends to view them
+no data is being sold and this will always stay that way
+
 After registering and agreeing to the terms and conditions, we store
 
 all the entrys you give us, such as ...
