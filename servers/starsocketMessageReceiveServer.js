@@ -111,7 +111,50 @@ H O W  C Λ N  I  C O N T Λ C T  S U P P O R T ?
 
 The best way is to send "feedback" in the app via SportDash/Settings/send-feedback
 
-You can also contact us via our email: johannimus2004@gmail.com`
+You can also contact us via our email: johannimus2004@gmail.com
+
+P R I V Λ C Y
+
+What can others see?
+
+other users can view your ... via your user id
+
+username
+age
+id
+level
+progress
+weight
+plans
+
+What is stored on our servers? 
+
+After registering and agreeing to the terms and conditions, we store
+
+all the entrys you give us, such as ...
+
+username
+age
+weight
+email
+
+by using the app ...
+
+training plans
+xp
+coins
+progress
+theme
+styles
+comments
+last log in
+
+when sending feedback/reports ...
+
+when selected your hardware/software information
+after your feedback/report is reviewed it will be deleted
+
+an option to delete your account will follow soon!`
 
 			//-- Save Message         		
 			_messages.push(socket.remoteAddress+" "+about)
