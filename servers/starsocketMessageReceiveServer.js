@@ -94,9 +94,16 @@ var server = net.createServer(function(socket) {
 // 4 about sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "aboutSportDash":
 	
-var about = `W H O  A R E  W E?
+var about = `W H Λ T  I S  S P O R T D Λ S H ?
 
-SportDash is an application owned by StarDash.inc`
+SportDash is an application owned by StarDash.inc
+it aims to help motivate everyone doing sports by comparing scores with friends. It also gives users the ability to create training plans and share them with their friends. Users can send messages to each others via the inbox
+Everything in SportDash works via your StarDash account. You can find your user id associated with your StarDash account in the settings and on your main page. Friends can find your account via your id. You should also never forget your ID in order to log back in!
+
+H O W  C Λ N  I  C O N T Λ C T  S U P P O R T ?
+
+The best way is to send "feedback" in the app via SportDash/Settings/send-feedback
+You can also contact us via our email: johannimus2004@gmail.com`
 
 			//-- Save Message         		
 			_messages.push(socket.remoteAddress+" "+about)
