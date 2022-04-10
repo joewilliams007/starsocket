@@ -186,13 +186,10 @@ last updated : 10.04.2022
 
 - - - a l l  u p d a t e s
 
-version name :
-0.1
-
-version status :
-private
-
+version name : 0.1
+version status : private
 update :
+
 [NEW] app base
 [FIX] no fixes`
 			
