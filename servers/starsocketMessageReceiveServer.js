@@ -427,7 +427,7 @@ case "leaderboard":
 						if (Number(JSON.stringify(item.xp))<1){
 
 						} else {
-							
+
 						position++
 								//	console.log(`Cache item: ${JSON.stringify(item)}`)
 								if (position<2){
@@ -435,6 +435,7 @@ case "leaderboard":
 								} else if (position<4){
 									leaderboard+="\n"+JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
 								} else if (position>100){
+									break
 								} else {
 									leaderboard+="\n "+position+". "+JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
 								}
