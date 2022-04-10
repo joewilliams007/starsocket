@@ -184,7 +184,7 @@ var about =
 `newest version : 0.1
 last updated : 10.04.2022
 
-- - - all versions - - - 
+- - - a l l  u p d a t e s
 
 version name :
 0.1
