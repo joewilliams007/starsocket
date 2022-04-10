@@ -96,8 +96,7 @@ case "aboutSportDash":
 	
 var about = `W H O  A R E  W E?
 
-SportDash is an application owned by StarDash.inc
-`
+SportDash is an application owned by StarDash.inc`
 
 			//-- Save Message         		
 			_messages.push(socket.remoteAddress+" "+about)
