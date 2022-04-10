@@ -91,6 +91,21 @@ var server = net.createServer(function(socket) {
 		var args = message.split(" ");
 		switch(args[0]) {
 // 4 Case message starts with ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// 4 about sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "aboutSportDash":
+	
+var about = `W H O  A R E  W E?
+
+SportDash is an application owned by StarDash.inc
+`
+
+			//-- Save Message         		
+			_messages.push(socket.remoteAddress+" "+about)
+			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+
+	
+break;
+
 // 4.0 get anything ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "get":
 	serverInfo("new get-request")
@@ -427,7 +442,7 @@ case "leaderboard":
 						if (Number(JSON.stringify(item.xp))<1){
 
 						} else {
-
+							
 						position++
 								//	console.log(`Cache item: ${JSON.stringify(item)}`)
 								if (position<2){
@@ -435,7 +450,6 @@ case "leaderboard":
 								} else if (position<4){
 									leaderboard+="\n"+JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
 								} else if (position>100){
-									break
 								} else {
 									leaderboard+="\n "+position+". "+JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
 								}
