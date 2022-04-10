@@ -166,7 +166,9 @@ when sending feedback/reports ...
 when selected your hardware/software information
 after your feedback/report is reviewed it will be deleted
 
-an option to delete your account will follow soon!`
+an option to delete your account will follow soon!
+
+>_< this page is stored on our server and was last updated: 10.04.22 19:37 (CEST)`
 
 			//-- Save Message         		
 			_messages.push(socket.remoteAddress+" "+about)
