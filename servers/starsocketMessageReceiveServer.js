@@ -166,15 +166,15 @@ case "register":
 				fs.mkdirSync(dir, { recursive: true });
 			}
 
-			fs.appendFile('./users/'+id+'/log.json', '[]', function (err) {
+			fs.appendFile('./users/'+id+'/log.txt', '', function (err) {
 				if (err) throw err;
 				console.log('Saved!');
 			  });
-			  fs.appendFile('./users/'+id+'/inbox.json', '[]', function (err) {
+			  fs.appendFile('./users/'+id+'/inbox.txt', '', function (err) {
 				if (err) throw err;
 				console.log('Saved!');
 			  });
-			  fs.appendFile('./users/'+id+'/chatinbox.json', '[]', function (err) {
+			  fs.appendFile('./users/'+id+'/chatinbox.txt', '', function (err) {
 				if (err) throw err;
 				console.log('Saved!');
 			  });
@@ -312,9 +312,15 @@ case "chat":
 
 	serverInfo(finalMessage)
 try {
-	var _inbox = JSON.parse(fs.readFileSync("./users/"+to+"/chatinbox.json"));
-	_inbox.push("\n"+finalMessage)
-	fs.writeFileSync("./users/"+to+"/chatinbox.json", JSON.stringify(_inbox))
+
+	fs.appendFile("./users/"+to+"/chatinbox.txt","\n"+finalMessage, function (err) {
+		if (err) {
+			// append failed
+		} else {
+			// done
+		}
+		})
+
 	serverInfo("saving message to #"+to+" from "+FROM)
 } catch (err) {
 
@@ -323,8 +329,8 @@ break;
 // 4.2.x get inbox ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "clearinbox":
 	var userid = args[1]
-	fs.unlinkSync('./users/'+userid+'/chatinbox.json')
-	fs.appendFile('./users/'+userid+'/chatinbox.json', '[]', function (err) {
+	fs.unlinkSync('./users/'+userid+'/chatinbox.txt')
+	fs.appendFile('./users/'+userid+'/chatinbox.txt', '', function (err) {
 		if (err) throw err;
 		console.log('Saved!');
 	  });
@@ -333,9 +339,8 @@ break;
 case "mychatinbox":
 	var userid = args[1]
 
-	var _inbox = JSON.parse(fs.readFileSync("./users/"+userid+"/chatinbox.json"));
-	serverInfo(_inbox.toString())
-	_messages.push(socket.remoteAddress+" "+_inbox.toString())
+	var comments = fs.readFileSync("./users/"+userid+"/chatinbox.txt");
+	_messages.push(socket.remoteAddress+" "+comments)
 	fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 break;
 // 4.3 set password ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -425,7 +430,6 @@ case "leaderboard":
 					} else if (position<4){
 						leaderboard+="\n"+JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
 					} else if (position>100){
-	
 					} else {
 						leaderboard+="\n "+position+". "+JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
 					}
@@ -749,9 +753,14 @@ try{
 
 	serverInfo(finalMessage)
 try {
-	var _inbox = JSON.parse(fs.readFileSync("./users/"+to+"/chatinbox.json"));
-	_inbox.push("\n"+finalMessage)
-	fs.writeFileSync("./users/"+to+"/chatinbox.json", JSON.stringify(_inbox))
+	
+	fs.appendFile("./users/"+to+"/chatinbox.txt","\n"+finalMessage, function (err) {
+		if (err) {
+			// append failed
+		} else {
+			// done
+		}
+		})
 } catch (err) {
 
 }
