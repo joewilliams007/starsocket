@@ -424,10 +424,13 @@ break;
 // 4.2.x.x get inbox ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "mychatinbox":
 	var userid = args[1]
-
+try {
 	var comments = fs.readFileSync("./users/"+userid+"/chatinbox.txt");
 	_messages.push(socket.remoteAddress+" "+comments)
 	fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+} catch (err){
+	
+}
 break;
 // 4.3 set password ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setPassword":
