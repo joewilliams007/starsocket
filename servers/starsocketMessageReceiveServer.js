@@ -109,7 +109,7 @@ You should also never forget your ID in order to log back in!
 
 H O W  C Λ N  I  C O N T Λ C T  S U P P O R T ?
 
-The best way is to send "feedback" in the app via SportDash/Settings/send-
+The best way is to send "feedback" in the app via SportDash/Settings/send-feedback
 
 You can also contact us via our email: johannimus2004@gmail.com`
 
