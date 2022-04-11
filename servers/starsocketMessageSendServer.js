@@ -26,7 +26,7 @@ var server = net.createServer(function(socket) {
 
 	var lastOfFile = _messages[_messages.length-1]
 	// serverInfo("last in file is "+lastOfFile)
-	if (lastOfFile.split(" ",2)[0].includes(socket.remoteAddress)){
+//	if (lastOfFile.split(" ",2)[0].includes(socket.remoteAddress)){
 		serverInfo("valid ip! to ip of "+socket.remoteAddress)
 		socket.write(removeFirstWord(lastOfFile))
 
@@ -35,10 +35,10 @@ var server = net.createServer(function(socket) {
 		} else {
 		serverInfo("writing and the message is "+removeFirstWord(lastOfFile))
 		}
-	} else {
-		socket.write("invalid_ip")
-		serverInfo("invalid ip"+socket.remoteAddress)
-	}
+//	} else {
+//		socket.write("invalid_ip")
+//		serverInfo("invalid ip"+socket.remoteAddress)
+//	}
 
     // socket.write(entireMessage.replace(/undefined/g,""))
     socket.end();
