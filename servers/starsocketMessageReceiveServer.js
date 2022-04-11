@@ -198,6 +198,27 @@ _messages.push(socket.remoteAddress+" "+about)
 fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 	
 break;
+// 4.0 shop sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "shop":
+	
+var codeVersion = args[1]
+if (Number(codeVersion)<1){
+//-- Save Message         		
+_messages.push(socket.remoteAddress+" outdated-app")
+fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+} else {
+var shop =
+
+`-_-!-s t e v e!-20!-1
+<_<!-f r a n k!-20!-2
+~_~!-h u a n!-30!-3`
+			
+	//-- Save Message         		
+	_messages.push(socket.remoteAddress+" "+shop)
+	fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+}
+	
+break;
 // 4.0 terms of service sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "terms_of_service":
 	
