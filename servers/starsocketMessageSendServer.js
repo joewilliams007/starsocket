@@ -37,7 +37,7 @@ var server = net.createServer(function(socket) {
 		}
 	} else {
 		socket.write("invalid_ip")
-		serverInfo("invalid ip")
+		serverInfo("invalid ip"+socket.remoteAddress)
 	}
 
     // socket.write(entireMessage.replace(/undefined/g,""))
