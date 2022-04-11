@@ -209,7 +209,8 @@ fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 } else {
 var shop =
 
-`-_-!-s t e v e!-20!-1
+`12 h
+-_-!-s t e v e!-20!-1
 <_<!-f r a n k!-20!-2
 ~_~!-h u a n!-30!-3`
 			
