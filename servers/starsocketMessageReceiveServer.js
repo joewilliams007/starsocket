@@ -243,7 +243,7 @@ function beforeMidnight(){
   
 var shop =
 
-`${beforeMidnight()/60} h
+`${beforeMidnight()/60} h!-${beforeMidnight()}
 ${item1}!-${desc1}!-${coins1}!-${id1}
 ${item2}!-${desc2}!-${coins2}!-${id2}
 ${item3}!-${desc3}!-${coins3}!-${id3}
