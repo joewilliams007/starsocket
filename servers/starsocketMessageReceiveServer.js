@@ -908,7 +908,7 @@ case "getStars":
 	var planid = args[1]
 
 	var stars = fs.readFileSync('plans/stars/'+planid+'.txt');
-	var message = stars.replace("#", "").length;
+	var message = stars.split('#').length-1;
 	
 	
 	//-- Save Message         		
