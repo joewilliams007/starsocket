@@ -244,7 +244,7 @@ function minsToMidnight() {
 console.log(minsToMidnight());
 var shop =
 
-`${Number(minsToMidnight.toString().split(".")[0])/60} h
+`${Number(minsToMidnight)} min
 ${item1}!-${desc1}!-${coins1}!-${id1}
 ${item2}!-${desc2}!-${coins2}!-${id2}
 ${item3}!-${desc3}!-${coins3}!-${id3}
