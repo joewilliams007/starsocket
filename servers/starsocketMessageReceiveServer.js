@@ -241,7 +241,7 @@ console.log(d)
 console.log(d.toString());
 var shop =
 
-`${minsToMidnight} min
+`${d.toString()} min
 ${item1}!-${desc1}!-${coins1}!-${id1}
 ${item2}!-${desc2}!-${coins2}!-${id2}
 ${item3}!-${desc3}!-${coins3}!-${id3}
