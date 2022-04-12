@@ -233,9 +233,18 @@ var desc5 ="g r e e n s t a r  b o x"
 var coins5 = "200"
 var id5 = "b2" 
 
+
+function minsToMidnight() {
+	var now = new Date();
+	var then = new Date(now);
+	then.setHours(24, 0, 0, 0);
+	return (then - now) / 6e4;
+  }
+  
+  console.log(minsToMidnight());
 var shop =
 
-`12 h
+`${minsToMidnight/60} h
 ${item1}!-${desc1}!-${coins1}!-${id1}
 ${item2}!-${desc2}!-${coins2}!-${id2}
 ${item3}!-${desc3}!-${coins3}!-${id3}
