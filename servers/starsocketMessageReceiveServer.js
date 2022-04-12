@@ -908,18 +908,17 @@ case "getStars":
 	var planid = args[1]
 try {
 	var stars = fs.readFileSync('plans/comments/'+planid+'.txt');
+	var message = stars.replace("#", "").length;
 	
 	
 	//-- Save Message         		
-			_messages.push(socket.remoteAddress
-			+" "
-			+stars.replace("#", "").length
-			)
+			_messages.push(socket.remoteAddress+" "+message)
 
 			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 	
 		} catch (err) {
 			serverInfo('error ', args[1]);
+			console.log("ERRRORRR")
 		}
 break;
 // 4.12..  star on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
