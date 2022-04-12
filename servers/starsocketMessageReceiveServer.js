@@ -212,7 +212,9 @@ var shop =
 `12 h
 -_-!-s t e v e!-20!-1
 <_<!-f r a n k!-20!-2
-~_~!-h u a n!-30!-3`
+~_~!-h u a n!-30!-3
+1!l i g h t  b o x!100!-b1
+2!g r e e n s t a r  b o x!200! -b2`
 			
 	//-- Save Message         		
 	_messages.push(socket.remoteAddress+" "+shop)
