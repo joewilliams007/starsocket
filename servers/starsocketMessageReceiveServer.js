@@ -234,14 +234,11 @@ var coins5 = "200"
 var id5 = "b2" 
 
 
-function minsToMidnight() {
-	var now = new Date();
-	var then = new Date(now);
-	then.setHours(24, 0, 0, 0);
-	return (then - now) / 6e4;
-  }
+var d = new Date();
+d.setHours(0, 0, 0, 0);
+console.log(d)
   
-console.log(minsToMidnight().toString());
+console.log(d.toString());
 var shop =
 
 `${minsToMidnight} min
