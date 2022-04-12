@@ -906,7 +906,7 @@ break;
 // 4.12.. get plan stars ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getStars":
 	var planid = args[1]
-try {
+
 	var stars = fs.readFileSync('plans/stars/'+planid+'.txt');
 	var message = stars.replace("#", "").length;
 	
@@ -916,10 +916,7 @@ try {
 
 			fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 	
-		} catch (err) {
-			serverInfo('error ', args[1]);
-	
-		}
+
 break;
 // 4.12..  star on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "starPlan":
