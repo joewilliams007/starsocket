@@ -903,6 +903,42 @@ case "commentPlan":
 	}
 	})
 break;
+// 4.12.2  comment on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "starPlan":
+	var userid = "+#"+args[1]+"+"
+	var planid = args[2]
+	var stars = "none"
+
+try {
+stars = fs.readFileSync('plans/stars/'+planid+'.txt');
+} catch (err) { }
+
+if (stars.includes(userid)){
+		try {
+		_messages.push(socket.remoteAddress+" star-removed")
+		fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+		
+		var replace = require("replace");
+		replace({
+			regex: userid,
+			replacement: "",
+			paths: ['plans/stars/'+planid+'.txt'],
+			recursive: true,
+			silent: true,
+		});
+	} catch (err) { }
+} else {
+	fs.appendFile('plans/stars/'+planid+'.txt', userid, function (err) {
+	if (err) {
+		// append failed
+	} else {
+		// done
+	}
+	})
+	_messages.push(socket.remoteAddress+" star-added")
+	fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+}
+break;
 // 4.12.2 clear comments ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "clearComments":
 	var planid = args[1]
