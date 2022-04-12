@@ -918,14 +918,22 @@ if (stars.includes(userid)){
 		_messages.push(socket.remoteAddress+" star-removed")
 		fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 		
-		var replace = require("replace");
-		replace({
-			regex: userid,
-			replacement: "",
-			paths: ['plans/stars/'+planid+'.txt'],
-			recursive: true,
-			silent: true,
-		});
+		var replace = require('replace-in-file');
+		var options = {
+
+			files: 'plans/stars/'+planid+'.txt',
+			from: userid,
+			to: ' ',
+		  };
+
+		  replace(options)
+		  .then(changedFiles => {
+			console.log('Modified files:', changedFiles.join(', '));
+		  })
+		  .catch(error => {
+			console.error('Error occurred:', error);
+		  });
+
 	} catch (err) { }
 } else {
 	fs.appendFile('plans/stars/'+planid+'.txt', userid, function (err) {
