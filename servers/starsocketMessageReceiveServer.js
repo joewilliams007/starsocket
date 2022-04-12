@@ -234,14 +234,16 @@ var coins5 = "200"
 var id5 = "b2" 
 
 
-var d = new Date();
-d.setHours(0, 0, 0, 0);
-console.log(d)
+function beforeMidnight(){
+    var mid= new Date(), 
+    ts= mid.getTime();
+    mid.setHours(24, 0, 0, 0);
+    return Math.floor((mid - ts)/60000);
+}
   
-console.log(d.toString());
 var shop =
 
-`${d.toString()} min
+`${beforeMidnight.toString()} min
 ${item1}!-${desc1}!-${coins1}!-${id1}
 ${item2}!-${desc2}!-${coins2}!-${id2}
 ${item3}!-${desc3}!-${coins3}!-${id3}
