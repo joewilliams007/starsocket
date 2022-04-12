@@ -240,10 +240,10 @@ function beforeMidnight(){
     mid.setHours(24, 0, 0, 0);
     return Math.floor((mid - ts)/60000);
 }
-  console.log(beforeMidnight)
+  
 var shop =
 
-`13 min
+`${beforeMidnight()/60} h
 ${item1}!-${desc1}!-${coins1}!-${id1}
 ${item2}!-${desc2}!-${coins2}!-${id2}
 ${item3}!-${desc3}!-${coins3}!-${id3}
