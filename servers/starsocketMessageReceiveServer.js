@@ -207,14 +207,40 @@ if (Number(codeVersion)<1){
 _messages.push(socket.remoteAddress+" outdated-app")
 fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 } else {
+
+var item1 = "-_-"
+var desc1 ="s t e v e"
+var coins1 = "20"
+var id1 = "1" 
+
+var item2 = "<_<"
+var desc2 ="f r a n k"
+var coins2 = "25"
+var id2 = "2" 
+
+var item3 = "~_~"
+var desc3 ="h u a n"
+var coins3 = "30"
+var id3 = "3" 
+
+var item4 = "1"
+var desc4 ="l i g h t  b o x"
+var coins4 = "100"
+var id4 = "b1" 
+
+var item5 = "2"
+var desc5 ="g r e e n s t a r  b o x"
+var coins5 = "200"
+var id5 = "b2" 
+
 var shop =
 
 `12 h
--_-!-s t e v e!-20!-1
-<_<!-f r a n k!-25!-2
-~_~!-h u a n!-30!-3
-1!-l i g h t  b o x!-100!-b1
-2!-g r e e n s t a r  b o x!-200!-b2`
+${item1}!-${desc1}!-${coins1}!-${id1}
+${item2}!-${desc2}!-${coins2}!-${id2}
+${item3}!-${desc3}!-${coins3}!-${id3}
+${item4}!-${desc4}!-${coins4}!-${id4}
+${item5}!-${desc5}!-${coins5}!-${id5}`
 			
 	//-- Save Message         		
 	_messages.push(socket.remoteAddress+" "+shop)
