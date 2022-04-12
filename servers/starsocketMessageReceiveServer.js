@@ -241,7 +241,7 @@ function minsToMidnight() {
 	return (then - now) / 6e4;
   }
   
-console.log(minsToMidnight());
+console.log(minsToMidnight().toString());
 var shop =
 
 `${minsToMidnight} min
