@@ -579,7 +579,7 @@ case "getChat":
 	var chatId = args[2]
 try{
 	var chat = fs.readFileSync("./chat/"+userid+"/"+chatId+".txt");
-	var array = string.split("\n");
+	var array,[] = string.split("\n");
 
 	_messages.push(socket.remoteAddress+" "+reverseArray(array))
 	fs.writeFileSync('./messages.json', JSON.stringify(_messages))
