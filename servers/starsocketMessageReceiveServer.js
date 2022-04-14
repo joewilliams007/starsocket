@@ -544,7 +544,7 @@ case "chat":
 	var finalMessageChat = time+"@"+FROM+"@"+chatM+"\n"
 
 	serverInfo(finalMessage)
-try {
+
 
 	fs.appendFile("./users/"+to+"/chatinbox.txt","\n"+finalMessage, function (err) {
 		if (err) {
@@ -555,27 +555,28 @@ try {
 		})
 
 		fs.appendFile("./chat/"+to+"/"+from+".txt","\n"+finalMessageChat, function (err) {
-		if (err) {} else {}
+		if (err) {throw err} else {}
 		})
 		fs.appendFile("./chat/"+from+"/"+to+".txt","\n"+finalMessageChat, function (err) {
-		if (err) {} else {}
+		if (err) {throw err} else {}
 		})
 
 	serverInfo("saving message to #"+to+" from "+FROM)
-} catch (err) {
 
-}
 break;
 // 4.2.x.x get chat ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getChat":
 	var userid = args[1]
 	var chatId = args[2]
-
+try{
 	var chat = fs.readFileSync("./chat/"+userid+"/"+chatId+".txt");
 	_messages.push(socket.remoteAddress+" "+chat)
 	fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 	console.log("\n\n\n\n\n"+chat)
 
+}catch (err){
+
+}
 break;
 // 4.2.x get inbox ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "clearinbox":
