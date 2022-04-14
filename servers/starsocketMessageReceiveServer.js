@@ -544,11 +544,11 @@ case "chat":
 	var time = time1[0]+":"+time1[1]+" "+time2[1]
 	var chatM = message.toString().split("MESSAGE&")[1]
 	var finalMessage = "- - - - -\n"+date+" "+time+" by user #"+FROM+"\n- "+chatM
-	var finalMessageChat = time+"@"+username+"@"+chatM+"\n"
+	var finalMessageChat = time+"@"+username+"@"+chatM+"NEXTMESSAGEIS:;"
 
 	serverInfo(finalMessage)
 
-
+	try{
 	fs.appendFile("./users/"+to+"/chatinbox.txt","\n"+finalMessage, function (err) {
 		if (err) {
 			// append failed
@@ -567,14 +567,16 @@ case "chat":
 		}
 
 		fs.appendFile("./chat/"+to+"/"+FROM+".txt","\n"+finalMessageChat, function (err) {
-		if (err) {throw err} else {}
+		if (err) {} else {}
 		})
 		fs.appendFile("./chat/"+FROM+"/"+to+".txt","\n"+finalMessageChat, function (err) {
-		if (err) {throw err} else {}
+		if (err) {} else {}
 		})
 
 	serverInfo("saving message to #"+to+" from "+FROM)
+}catch (err){
 
+}
 break;
 // 4.2.x.x get chat ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getChat":
@@ -585,7 +587,6 @@ try{
 
 	_messages.push(socket.remoteAddress+" "+chat)
 	fs.writeFileSync('./messages.json', JSON.stringify(_messages))
-	console.log("\n\n\n\n\n"+chat)
 
 }catch (err){
 
