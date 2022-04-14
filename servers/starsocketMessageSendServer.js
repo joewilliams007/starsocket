@@ -11,7 +11,12 @@ var server = net.createServer(function(socket) {
 	var dir = "./user_messages/"+ip+"/messages.json";
 	var user_folder = dir
 
-	var _messages = JSON.parse(fs.readFileSync(user_folder));
+	var _messages = "none"
+	try {
+	_messages = JSON.parse(fs.readFileSync(user_folder));
+	} catch (err){
+
+	}
 
 
 	var entireMessage = ""

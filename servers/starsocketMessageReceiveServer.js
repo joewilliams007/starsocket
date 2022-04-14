@@ -73,9 +73,7 @@ var server = net.createServer(function(socket) {
 	}
 	
 	var _messages;
-	try {
-	_messages = JSON.parse(fs.readFileSync("./user_messages/"+ip+"/messages.json"));
-	} catch (err){
+
 		try {
 		fs.unlinkSync("./user_messages/"+ip+"/messages.json")
 		} catch (err){
@@ -87,7 +85,7 @@ var server = net.createServer(function(socket) {
 			_messages = JSON.parse(fs.readFileSync("./user_messages/"+ip+"/messages.json"));
 		  });
 		  
-	}
+	
 
 	
 
