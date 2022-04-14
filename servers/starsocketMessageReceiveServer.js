@@ -615,22 +615,12 @@ case "getChat":
 	var chatId = args[2]
 try{
 	var chat = fs.readFileSync("./chat/"+userid+"/"+chatId+".txt");
-
-	var lastOfFile = _messages[_messages.length-1]
-	if (removeFirstWord(lastOfFile).contains(chat)){
 	
-	} else {
-		_messages.push(socket.remoteAddress+" "+chat)
-		fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-	}
 
-	function removeFirstWord(str) {
-		const indexOfSpace = str.indexOf(' ');
-		if (indexOfSpace === -1) {
-		  return '';
-		}
-		return str.substring(indexOfSpace + 1);
-	  }
+
+	_messages.push(socket.remoteAddress+" "+chat)
+	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
+
 }catch (err){
 
 }
