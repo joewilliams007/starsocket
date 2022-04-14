@@ -39,7 +39,7 @@ var server = net.createServer(function(socket) {
 
 
 
-	try {
+	
 	var lastOfFile = _messages[_messages.length-1]
 	var messageText = removeFirstWord(lastOfFile)
 
@@ -56,10 +56,7 @@ var server = net.createServer(function(socket) {
 		}
 		lastMessage = messageText;
 	}
-	} catch (err){
-		serverInfo("error sending!!!!!!!!!!!!!!")
-		socket.write("error")
-	}
+
 
 	
     socket.end();
