@@ -585,7 +585,7 @@ case "getChat":
 try{
 	var chat = fs.readFileSync("./chat/"+userid+"/"+chatId+".txt");
 
-var length = 2000;
+var length = 20000;
 var trimmedString = chat.substring(0, length);
 
 	_messages.push(socket.remoteAddress+" "+trimmedString)
