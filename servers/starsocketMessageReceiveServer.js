@@ -574,6 +574,7 @@ try {
 	var chat = fs.readFileSync("./chat/"+userid+"/"+chatId+".txt");
 	_messages.push(socket.remoteAddress+" "+chat)
 	fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+	console.log("\n\n\n\n\n"+chat)
 } catch (err){
 	
 }
