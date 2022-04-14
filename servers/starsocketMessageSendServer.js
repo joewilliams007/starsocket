@@ -18,7 +18,6 @@ var server = net.createServer(function(socket) {
 
 	}
 
-	var lastMessage = "";
 
 
 	var entireMessage = ""
@@ -39,24 +38,20 @@ var server = net.createServer(function(socket) {
 
 
 
-	
+	try {
 	var lastOfFile = _messages[_messages.length-1]
-	var messageText = removeFirstWord(lastOfFile)
 
-	if (lastMessage.toString().equals(messageText)) {
-		socket.write("sameText")
-	} else {
+		socket.write(removeFirstWord(lastOfFile))
 
-		socket.write(messageText)
-
-		if (messageText.length>20){
+		if (removeFirstWord(lastOfFile).length>20){
 			serverInfo("writing sth over 20 characters") 
 		} else {
-		serverInfo("writing and the message is "+messageText)
+		serverInfo("writing and the message is "+removeFirstWord(lastOfFile))
 		}
-		lastMessage = messageText;
+	} catch (err){
+		serverInfo("error sending!!!!!!!!!!!!!!")
+		socket.write("error")
 	}
-
 
 	
     socket.end();
