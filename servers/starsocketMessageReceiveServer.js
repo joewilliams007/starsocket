@@ -541,6 +541,7 @@ case "chat":
 	var time = datetime.toLocaleTimeString();
 	var chatM = message.toString().split("MESSAGE&")[1]
 	var finalMessage = "- - - - -\n"+date+" "+time+" by user #"+FROM+"\n- "+chatM
+	var finalMessageChat = time+"@"+FROM+"@"+chatM+"\n"
 
 	serverInfo(finalMessage)
 try {
@@ -553,9 +554,28 @@ try {
 		}
 		})
 
+		fs.appendFile("./chat/"+to+"/"+from+".txt","\n"+finalMessageChat, function (err) {
+		if (err) {} else {}
+		})
+		fs.appendFile("./chat/"+from+"/"+to+".txt","\n"+finalMessageChat, function (err) {
+		if (err) {} else {}
+		})
+
 	serverInfo("saving message to #"+to+" from "+FROM)
 } catch (err) {
 
+}
+break;
+// 4.2.x.x get chat ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "getChat":
+	var userid = args[1]
+	var chatId = args[2]
+try {
+	var chat = fs.readFileSync("./chat/"+userid+"/"+chatId+".txt");
+	_messages.push(socket.remoteAddress+" "+chat)
+	fs.writeFileSync('./messages.json', JSON.stringify(_messages))
+} catch (err){
+	
 }
 break;
 // 4.2.x get inbox ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
