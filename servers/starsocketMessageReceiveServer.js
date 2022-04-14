@@ -538,7 +538,9 @@ case "chat":
 	var to =  args[2]
 	var datetime = new Date();
 	var date = datetime.toISOString().slice(0,10)
-	var time = datetime.toLocaleTimeString();
+	var time1 = datetime.toLocaleTimeString().split(":");
+	var time2 = datetime.toLocaleTimeString().split(" ");
+	var time = time1[0]+time1[2]+" "+time2[1]
 	var chatM = message.toString().split("MESSAGE&")[1]
 	var finalMessage = "- - - - -\n"+date+" "+time+" by user #"+FROM+"\n- "+chatM
 	var finalMessageChat = time+"@"+FROM+"@"+chatM+"\n"
