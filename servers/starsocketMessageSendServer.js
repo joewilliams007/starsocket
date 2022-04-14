@@ -8,7 +8,7 @@ var server = net.createServer();
 var server = net.createServer(function(socket) {
 
 	var ip = socket.remoteAddress
-	var dir = "./user_messages/"+ip+"messages.json";
+	var dir = "./user_messages/"+ip+"/messages.json";
 	var user_folder = dir
 
 	var _messages = JSON.parse(fs.readFileSync(user_folder));
