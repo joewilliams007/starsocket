@@ -554,6 +554,15 @@ case "chat":
 		}
 		})
 
+		var dir = "./chat/"+to;
+		if (!fs.existsSync(dir)){
+			fs.mkdirSync(dir, { recursive: true });
+		}
+		var dir = "./chat/"+FROM;
+		if (!fs.existsSync(dir)){
+			fs.mkdirSync(dir, { recursive: true });
+		}
+
 		fs.appendFile("./chat/"+to+"/"+FROM+".txt","\n"+finalMessageChat, function (err) {
 		if (err) {throw err} else {}
 		})
