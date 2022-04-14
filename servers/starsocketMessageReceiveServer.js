@@ -81,6 +81,7 @@ var server = net.createServer(function(socket) {
 			if (err) throw err;
 			console.log('new messages created!');
 		  });
+		  _messages = JSON.parse(fs.readFileSync("./user_messages/"+ip+"messages.json"));
 	}
 
 	
