@@ -43,7 +43,7 @@ var server = net.createServer(function(socket) {
 	var lastOfFile = _messages[_messages.length-1]
 	var messageText = removeFirstWord(lastOfFile)
 
-	if (lastMessage.equals(messageText)) {
+	if (lastMessage.toString().equals(messageText)) {
 		socket.write("sameText")
 	} else {
 
