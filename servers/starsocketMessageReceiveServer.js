@@ -36,11 +36,12 @@ if (!fs.existsSync(dir)){
 }
 // 1 requiere plugins ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var net = require('net');
-const _messages = JSON.parse(fs.readFileSync('messages.json'));
+
 
 // 2 MySql COnnect to db_main------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var mysql = require('mysql');
 const { exec } = require('child_process');
+const { isPromise } = require('util/types');
 var connection = mysql.createConnection({
 host     : 'localhost',
 user     : 'root',
@@ -59,6 +60,18 @@ var server = net.createServer(function(socket) {
 	serverInfo('A new connection has been established.');
 	serverInfo("now processing received data of ip "+socket.remoteAddress)
     var receivedMessage = ""
+	var ip = socket.remoteAddress
+	var dir = "./user_messages/"+ip;
+	var user_folder = dir
+	if (!fs.existsSync(dir)){
+		fs.mkdirSync(dir, { recursive: true });
+		
+		fs.appendFile("./user_messages/"+ip+"messages.json", '', function (err) {
+			if (err) throw err;
+			console.log('Saved!');
+		  });
+	}
+	var _messages = JSON.parse(fs.readFileSync(user_folder));
 
 	socket.on('data', function(chunk) {
 		//serverInfo(`receiving message chunk...`)
