@@ -71,7 +71,7 @@ var server = net.createServer(function(socket) {
 			console.log('Saved!');
 		  });
 	}
-	var _messages = JSON.parse(fs.readFileSync(user_folder));
+	var _messages = JSON.parse(fs.readFileSync("./user_messages/"+ip+"messages.json"));
 
 	socket.on('data', function(chunk) {
 		//serverInfo(`receiving message chunk...`)
