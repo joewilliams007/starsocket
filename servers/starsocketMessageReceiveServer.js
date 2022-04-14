@@ -554,10 +554,10 @@ case "chat":
 		}
 		})
 
-		fs.appendFile("./chat/"+to+"/"+from+".txt","\n"+finalMessageChat, function (err) {
+		fs.appendFile("./chat/"+to+"/"+FROM+".txt","\n"+finalMessageChat, function (err) {
 		if (err) {throw err} else {}
 		})
-		fs.appendFile("./chat/"+from+"/"+to+".txt","\n"+finalMessageChat, function (err) {
+		fs.appendFile("./chat/"+FROM+"/"+to+".txt","\n"+finalMessageChat, function (err) {
 		if (err) {throw err} else {}
 		})
 
