@@ -51,7 +51,20 @@ var server = net.createServer(function(socket) {
 		serverInfo("error sending!!!!!!!!!!!!!!")
 		socket.write("error")
 	}
+	try {
 
+		fs.unlinkSync("./user_messages/"+ip+"/messages.json")
+
+		fs.appendFile("./user_messages/"+ip+"/messages.json", '[]', function (err) {
+			if (err) throw err;
+			console.log('new messages created!');
+			_messages = JSON.parse(fs.readFileSync("./user_messages/"+ip+"/messages.json"));
+		  });
+		  serverInfo("deleting file")
+	
+	} catch (err){
+		serverInfo("error deleting file")
+	}
 	
     socket.end();
 
