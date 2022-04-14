@@ -579,7 +579,9 @@ case "getChat":
 	var chatId = args[2]
 try{
 	var chat = fs.readFileSync("./chat/"+userid+"/"+chatId+".txt");
-	_messages.push(socket.remoteAddress+" "+chat.reverse())
+	var array = string.split("\n");
+
+	_messages.push(socket.remoteAddress+" "+reverseArray(array))
 	fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 	console.log("\n\n\n\n\n"+chat)
 
@@ -587,6 +589,14 @@ try{
 
 }
 break;
+
+function reverseArray(arr) {
+	var newArray = [];
+	for (var i = arr.length - 1; i >= 0; i--) {
+	  newArray.push(arr[i]);
+	}
+	return newArray;
+  }
 // 4.2.x get inbox ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "clearinbox":
 	var userid = args[1]
