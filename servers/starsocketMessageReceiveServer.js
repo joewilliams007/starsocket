@@ -570,14 +570,12 @@ break;
 case "getChat":
 	var userid = args[1]
 	var chatId = args[2]
-try {
+
 	var chat = fs.readFileSync("./chat/"+userid+"/"+chatId+".txt");
 	_messages.push(socket.remoteAddress+" "+chat)
 	fs.writeFileSync('./messages.json', JSON.stringify(_messages))
 	console.log("\n\n\n\n\n"+chat)
-} catch (err){
-	
-}
+
 break;
 // 4.2.x get inbox ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "clearinbox":
