@@ -1009,6 +1009,8 @@ case "commentPlan":
 	var time = datetime.toLocaleTimeString();
 	var finalMessage = "\n"+date+" "+time+" by user "+username+" (#"+userid+")\n- "+comment
 
+	var finalMessageChat = time+" "+date+"@"+username+" #"+userid+"@"+comment+"NEXTMESSAGEIS:;"
+
 	fs.appendFile('plans/comments/'+planid+'.txt', "\n"+finalMessage, function (err) {
 	if (err) {
 		// append failed
