@@ -656,6 +656,23 @@ try {
 	
 }
 break;
+// 4.2.x.x boost ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "boost":
+
+	try {
+		
+		fs.unlinkSync("./user_messages/"+ip+"/messages.json")
+		fs.appendFile("./user_messages/"+ip+"/messages.json", '[]', function (err) {
+			if (err) throw err;
+			console.log('ACCOUNT BOOSTED!');
+			_messages = JSON.parse(fs.readFileSync("./user_messages/"+ip+"/messages.json"));
+		});
+
+	} catch (err){
+
+	}
+
+	  break;
 // 4.3 set password ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setPassword":
 	var changing = "password"
@@ -1006,7 +1023,9 @@ case "commentPlan":
 	
 	var datetime = new Date();
 	var date = datetime.toISOString().slice(0,10)
-	var time = datetime.toLocaleTimeString();
+	var time1 = datetime.toLocaleTimeString().split(":");
+	var time2 = datetime.toLocaleTimeString().split(" ");
+	var time = time1[0]+":"+time1[1]+" "+time2[1]
 	var finalMessageChat = time+" "+date+"@"+username+" #"+userid+"@"+comment+"NEXTMESSAGEIS:;"
 
 	fs.appendFile('plans/comments/'+planid+'.txt', "\n"+finalMessageChat, function (err) {
