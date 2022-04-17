@@ -10,28 +10,44 @@ var server = net.createServer(function(socket) {
 	var ip = socket.remoteAddress
 	var dir = "./user_messages/"+ip+"/messages.json";
 	var user_folder = dir
-	var _messages = "none"
 
+	var _messages = "none"
 	try {
-		_messages = JSON.parse(fs.readFileSync(user_folder));
-	} catch (err){}
+	_messages = JSON.parse(fs.readFileSync(user_folder));
+	} catch (err){
+
+	}
 
 
 
 	var entireMessage = ""
+
+	// for (i = 0; i < 60; i++){
+	// 	entireMessage += _messages[i] + "\n"
+	// }
+
+	function removeFirstWord(str) {
+		const indexOfSpace = str.indexOf(' ');
+		if (indexOfSpace === -1) {
+		  return '';
+		}
+		return str.substring(indexOfSpace + 1);
+	  }
+
 	entireMessage += "Total messages: "+ _messages.length
+
+
 
 	try {
 	var lastOfFile = _messages[_messages.length-1]
 
-		socket.write(lastOfFile)
+		socket.write(removeFirstWord(lastOfFile))
 
-		if (lastOfFile.length>20){
+		if (removeFirstWord(lastOfFile).length>20){
 			serverInfo("writing sth over 20 characters") 
 		} else {
-		serverInfo("writing and the message is "+lastOfFile)
+		serverInfo("writing and the message is "+removeFirstWord(lastOfFile))
 		}
-		
 	} catch (err){
 		serverInfo("error sending!!!!!!!!!!!!!!")
 		socket.write("error")
@@ -39,16 +55,18 @@ var server = net.createServer(function(socket) {
 
 	
     socket.end();
-	serverInfo('A new connection has been established.');
 
+
+	serverInfo('A new connection has been established.');
+	
 	socket.on('end', function() {
+	
 		socket.destroy()
 	});
 
 	socket.on('error', function(err) {
 		socket.destroy()
 	});
-
 });
 
 
