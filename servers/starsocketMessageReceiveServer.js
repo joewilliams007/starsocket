@@ -52,7 +52,7 @@ var server = net.createServer(function(socket) {
 	var _messages;
 	try {
 		_messages = JSON.parse(fs.readFileSync("./user_messages/"+ip+"/messages.json"));
-		_messages.push(comments)
+		_messages.push(" ")
 		fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 	} catch (err){
 			try {
