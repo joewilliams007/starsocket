@@ -81,11 +81,6 @@ var server = net.createServer(function(socket) {
 		}
 		
 
-		 //-- Save Message         		
-	//	 _messages.push(receivedMessage.toString())
-	//	 fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-
-		
 		var today = new Date();
 		var yyyy = today.getFullYear();
 		let mm = today.getMonth() + 1; // Months start at 0!
@@ -94,12 +89,11 @@ var server = net.createServer(function(socket) {
 		if (mm < 10) mm = '0' + mm;
 		var date = yyyy + '-' + mm + '-' + dd;
 
-		
 		var message = receivedMessage.toString();
 		var args = message.split(" ");
 		switch(args[0]) {
-// 4 Case message starts with ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// 4 about sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Case message starts with ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// about sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "aboutSportDash":
 	
 var about = `W H Λ T  I S  S P O R T D Λ S H ?
@@ -184,7 +178,7 @@ an option to delete your account will follow soon!
 
 	
 break;
-// 4.0 changelog sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// changelog sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "changelog":
 	
 var about =
@@ -206,13 +200,13 @@ _messages.push(about)
 fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 	
 break;
-// 4.0 shop sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// shop sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "shop":
 	
 var codeVersion = args[1]
 if (Number(codeVersion)<1){
 //-- Save Message         		
-_messages.push(+" outdated-app")
+_messages.push("outdated-app")
 fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 } else {
 
@@ -264,7 +258,7 @@ ${item5}!-${desc5}!-${coins5}!-${id5}`
 }
 	
 break;
-// 4.0 terms of service sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// terms of service sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "terms_of_service":
 	
 var about =
@@ -331,7 +325,7 @@ _messages.push(about)
 fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 	
 break;
-// 4.0 get anything ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// get anything ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "get":
 	serverInfo("new get-request")
 	// args 0 will be login
@@ -433,7 +427,6 @@ case "register":
 				console.log('Saved!');
 			  });
 
-			serverInfo('Hey this user got the user_id ', id);
 		});
 break;
 // 4.2 Login ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -451,11 +444,9 @@ case "login":
 			if (error) serverInfo(error.message);
 			var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
 
-		//	serverInfo(res[0].account_created)
-		//	serverInfo(res[0].username)
 try {
 			//-- Save Message         		
-			_messages.push(+" %SPORTDASH%"+args[1]+"%SPORTDASH%"+args[2]+"%SPORTDASH%"
+			_messages.push("%SPORTDASH%"+args[1]+"%SPORTDASH%"+args[2]+"%SPORTDASH%"
 			+res[0].username+"%SPORTDASH%"
 			+res[0].xp+"%SPORTDASH%"
 			+res[0].age+"%SPORTDASH%"
@@ -486,11 +477,13 @@ try {
 
 			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 			serverInfo('Hey this user got the user_id ', args[1]);
-} catch (err) {
-	_messages.push(+" err")
-	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-	serverInfo('error ', args[1]);
-}
+		} catch (err) {
+
+			_messages.push("err")
+			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
+			serverInfo('error ', args[1]);
+
+		}
 			
 		});
 break;
@@ -523,7 +516,7 @@ try {
 			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 			serverInfo('Hey this user got the user_id ', args[1]);
 } catch (err) {
-	_messages.push(+" err")
+	_messages.push(" err")
 	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 	serverInfo('error ', args[1]);
 }
@@ -955,7 +948,7 @@ try {
 			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 			serverInfo('Hey this user got the user_id ', args[1]);
 		} catch (err) {
-			_messages.push(+" err")
+			_messages.push(" err")
 			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 			serverInfo('error ', args[1]);
 		}
@@ -975,7 +968,7 @@ try {
 			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 			serverInfo('Hey this user got the user_id ', args[1]);
 		} catch (err) {
-			_messages.push(+" errasdasdasdasdasdasdasdasd")
+			_messages.push(+"errasdasdasdasdasdasdasdasd")
 			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 			serverInfo('error ', args[1]);
 		}
@@ -1029,7 +1022,7 @@ stars = fs.readFileSync('plans/stars/'+planid+'.txt');
 
 if (stars.includes(userid)){
 		try {
-		_messages.push(+" star-removed")
+		_messages.push("star-removed")
 		fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 		
 		var replace = require('replace-in-file');
@@ -1057,7 +1050,7 @@ if (stars.includes(userid)){
 		// done
 	}
 	})
-	_messages.push(+" star-added")
+	_messages.push("star-added")
 	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 }
 break;
