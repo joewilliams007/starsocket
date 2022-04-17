@@ -590,16 +590,15 @@ break;
 case "getChat":
 	var userid = args[1]
 	var chatId = args[2]
+
 try{
 	var chat = fs.readFileSync("./chat/"+userid+"/"+chatId+".txt");
 	
-
-
 	_messages.push(chat)
 	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 
 }catch (err){
-
+serverInfo("ERROR GETTING CHAT")
 }
 break;
 // 4.2.x clear chat ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
