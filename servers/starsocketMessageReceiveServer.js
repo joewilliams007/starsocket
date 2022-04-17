@@ -988,11 +988,7 @@ case "commentPlan":
 	var finalMessageChat = time+" "+date+"@"+username+" #"+userid+"@"+comment+"NEXTMESSAGEIS:;"
 
 	fs.appendFile('plans/comments/'+planid+'.txt', "\n"+finalMessageChat, function (err) {
-	if (err) {
-		// append failed
-	} else {
-		// done
-	}
+	if (err) {} else {}
 	})
 break;
 // 4.12.. get plan stars ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1000,15 +996,15 @@ case "getStars":
 	var planid = args[1]
 
 	var stars = fs.readFileSync('plans/stars/'+planid+'.txt');
-	var message = stars.toString().split('#').length-1;
+	var message = stars.toString().split('#').length-1;    	
 	
-	
-	//-- Save Message         		
-			_messages.push(message)
+	sendMessage(message)
+			
 
-			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-	
-
+function sendMessage(message) {
+	_messages.push(message)
+	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
+}
 break;
 // 4.12..  star on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "starPlan":
