@@ -21,7 +21,7 @@ var server = net.createServer(function(socket) {
 	var entireMessage = ""
 	entireMessage += "Total messages: "+ _messages.length
 
-	try {
+	
 	var lastOfFile = _messages[_messages.length-1]
 
 		socket.write(lastOfFile)
@@ -31,11 +31,11 @@ var server = net.createServer(function(socket) {
 		} else {
 		serverInfo("writing and the message is "+lastOfFile)
 		}
-		
-	} catch (err){
+
+
 		serverInfo("error sending!!!!!!!!!!!!!!")
 		socket.write("error")
-	}
+	
 
 	
     socket.end();
