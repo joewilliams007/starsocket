@@ -48,39 +48,24 @@ var server = net.createServer(function(socket) {
 		  });
 	}
 	
+	
 	var _messages;
 	try {
-	_messages = JSON.parse(fs.readFileSync("./user_messages/"+ip+"/messages.json"));
-	} catch (err){
-		try {
-		fs.unlinkSync("./user_messages/"+ip+"/messages.json")
-		} catch (err){
-
-		}
-		fs.appendFile("./user_messages/"+ip+"/messages.json", '[]', function (err) {
-			if (err) throw err;
-			console.log('new messages created!');
-			_messages = JSON.parse(fs.readFileSync("./user_messages/"+ip+"/messages.json"));
-		  });
-		  
-	}
-
-	try {
+		_messages = JSON.parse(fs.readFileSync("./user_messages/"+ip+"/messages.json"));
 		_messages.push(comments)
 		fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 	} catch (err){
-		try {
-		fs.unlinkSync("./user_messages/"+ip+"/messages.json")
-		} catch (err){
-
-		}
-	fs.appendFile("./user_messages/"+ip+"/messages.json", '[]', function (err) {
-		if (err) throw err;
-		console.log('new messages created!');
-		_messages = JSON.parse(fs.readFileSync("./user_messages/"+ip+"/messages.json"));
-	  });
-	  
-}
+			try {
+			fs.unlinkSync("./user_messages/"+ip+"/messages.json")
+			fs.appendFile("./user_messages/"+ip+"/messages.json", '[]', function (err) {
+				if (err) throw err;
+				console.log('new messages created!');
+				_messages = JSON.parse(fs.readFileSync("./user_messages/"+ip+"/messages.json"));
+			});
+			} catch (err){
+				
+			}
+	}		
 	
 
 	socket.on('data', function(chunk) {
