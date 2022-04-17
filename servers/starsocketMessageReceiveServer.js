@@ -594,7 +594,7 @@ case "getChat":
 try{
 	var chat = fs.readFileSync("./chat/"+userid+"/"+chatId+".txt");
 	
-	_messages.push(chat)
+	_messages.push(chat.toString())
 	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 
 }catch (err){
