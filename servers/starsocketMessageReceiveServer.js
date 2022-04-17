@@ -1,28 +1,4 @@
 // >_< server index ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-// 	1 requiere plugins
-// 	2 connect do database
-// 	3 server
-// 		3.1 server config
-// 		3.2 start server
-// 	4 switch4cases
-//		4.0 get anything
-// 		4.1 register
-// 		4.2 login
-// 		4.3 set password
-// 		4.4 set username
-// 		4.5 set email
-// 		4.6 set xp
-// 		4.7 set age
-// 		4.8 set weight
-// 		4.9 set energy
-// 		4.10 set logins
-// 		4.11 feedback
-// 	5 default case
-// 		5.1 end of cases
-// 	6 functions
-// 	7 end of server
-// 		7.1 end of file
 // server index ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // create directories
 let fs = require('fs');
@@ -89,6 +65,22 @@ var server = net.createServer(function(socket) {
 		  
 	}
 
+	try {
+		_messages.push(comments)
+		fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
+	} catch (err){
+		try {
+		fs.unlinkSync("./user_messages/"+ip+"/messages.json")
+		} catch (err){
+
+		}
+	fs.appendFile("./user_messages/"+ip+"/messages.json", '[]', function (err) {
+		if (err) throw err;
+		console.log('new messages created!');
+		_messages = JSON.parse(fs.readFileSync("./user_messages/"+ip+"/messages.json"));
+	  });
+	  
+}
 	
 
 	socket.on('data', function(chunk) {
@@ -202,7 +194,7 @@ an option to delete your account will follow soon!
 >_< this page is stored on our server and was last updated: 10.04.22 19:37 (CEST)`
 
 			//-- Save Message         		
-			_messages.push(socket.remoteAddress+" "+about)
+			_messages.push(about)
 			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 
 	
@@ -225,7 +217,7 @@ update :
 [FIX] no fixes`
 			
 //-- Save Message         		
-_messages.push(socket.remoteAddress+" "+about)
+_messages.push(about)
 fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 	
 break;
@@ -235,7 +227,7 @@ case "shop":
 var codeVersion = args[1]
 if (Number(codeVersion)<1){
 //-- Save Message         		
-_messages.push(socket.remoteAddress+" outdated-app")
+_messages.push(+" outdated-app")
 fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 } else {
 
@@ -282,7 +274,7 @@ ${item4}!-${desc4}!-${coins4}!-${id4}
 ${item5}!-${desc5}!-${coins5}!-${id5}`
 			
 	//-- Save Message         		
-	_messages.push(socket.remoteAddress+" "+shop)
+	_messages.push(shop)
 	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 }
 	
@@ -350,7 +342,7 @@ an option to delete your account will follow soon!
 >_< this page is stored on our server and was last updated: 10.04.22 19:37 (CEST)`
 			
 //-- Save Message         		
-_messages.push(socket.remoteAddress+" "+about)
+_messages.push(about)
 fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 	
 break;
@@ -378,7 +370,7 @@ case "get":
 
 
 			//-- Save Message         		
-			_messages.push(socket.remoteAddress+" "+args[2]+" "+args[3]+" "+result)
+			_messages.push(args[2]+" "+args[3]+" "+result)
 			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 			serverInfo('Hey this user got the user_id ', args[1]);
 		});
@@ -419,7 +411,7 @@ case "register":
 			id = res[0].user_id;
 
 			//-- Save Message         		
-			_messages.push(socket.remoteAddress+" "+args[1]+" "+id)
+			_messages.push(args[1]+" "+id)
 			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 
 
@@ -488,7 +480,7 @@ case "login":
 		//	serverInfo(res[0].username)
 try {
 			//-- Save Message         		
-			_messages.push(socket.remoteAddress+" %SPORTDASH%"+args[1]+"%SPORTDASH%"+args[2]+"%SPORTDASH%"
+			_messages.push(+" %SPORTDASH%"+args[1]+"%SPORTDASH%"+args[2]+"%SPORTDASH%"
 			+res[0].username+"%SPORTDASH%"
 			+res[0].xp+"%SPORTDASH%"
 			+res[0].age+"%SPORTDASH%"
@@ -520,7 +512,7 @@ try {
 			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 			serverInfo('Hey this user got the user_id ', args[1]);
 } catch (err) {
-	_messages.push(socket.remoteAddress+" err")
+	_messages.push(+" err")
 	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 	serverInfo('error ', args[1]);
 }
@@ -541,7 +533,7 @@ case "getProfile":
 
 try {
 			//-- Save Message         		
-			_messages.push(socket.remoteAddress+" "
+			_messages.push(+" "
 			+args[1]+" "
 			+res[0].username+" "
 			+res[0].xp+" "
@@ -556,7 +548,7 @@ try {
 			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 			serverInfo('Hey this user got the user_id ', args[1]);
 } catch (err) {
-	_messages.push(socket.remoteAddress+" err")
+	_messages.push(+" err")
 	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 	serverInfo('error ', args[1]);
 }
@@ -618,7 +610,7 @@ try{
 	
 
 
-	_messages.push(socket.remoteAddress+" "+chat)
+	_messages.push(chat)
 	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 
 }catch (err){
@@ -650,7 +642,7 @@ case "mychatinbox":
 	var userid = args[1]
 try {
 	var comments = fs.readFileSync("./users/"+userid+"/chatinbox.txt");
-	_messages.push(socket.remoteAddress+" "+comments)
+	_messages.push(comments)
 	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 } catch (err){
 	
@@ -772,7 +764,7 @@ case "leaderboard":
 					}
 
 					console.log(leaderboard)
-					_messages.push(socket.remoteAddress+" "+leaderboard)
+					_messages.push(leaderboard)
 					fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 			
 			});
@@ -976,7 +968,7 @@ try {
 
 
 			//-- Save Message         		
-			_messages.push(socket.remoteAddress
+			_messages.push(
 			+" ##########"
 			+plan1+"##########"
 			+plan2+"##########"
@@ -989,7 +981,7 @@ try {
 			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 			serverInfo('Hey this user got the user_id ', args[1]);
 		} catch (err) {
-			_messages.push(socket.remoteAddress+" err")
+			_messages.push(+" err")
 			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 			serverInfo('error ', args[1]);
 		}
@@ -1001,7 +993,7 @@ try {
 	var comments = fs.readFileSync('plans/comments/'+planid+'.txt');
 
 			//-- Save Message         		
-			_messages.push(socket.remoteAddress
+			_messages.push(
 			+" "
 			+comments
 			)
@@ -1009,7 +1001,7 @@ try {
 			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 			serverInfo('Hey this user got the user_id ', args[1]);
 		} catch (err) {
-			_messages.push(socket.remoteAddress+" errasdasdasdasdasdasdasdasd")
+			_messages.push(+" errasdasdasdasdasdasdasdasd")
 			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 			serverInfo('error ', args[1]);
 		}
@@ -1045,7 +1037,7 @@ case "getStars":
 	
 	
 	//-- Save Message         		
-			_messages.push(socket.remoteAddress+" "+message)
+			_messages.push(message)
 
 			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 	
@@ -1063,7 +1055,7 @@ stars = fs.readFileSync('plans/stars/'+planid+'.txt');
 
 if (stars.includes(userid)){
 		try {
-		_messages.push(socket.remoteAddress+" star-removed")
+		_messages.push(+" star-removed")
 		fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 		
 		var replace = require('replace-in-file');
@@ -1091,7 +1083,7 @@ if (stars.includes(userid)){
 		// done
 	}
 	})
-	_messages.push(socket.remoteAddress+" star-added")
+	_messages.push(+" star-added")
 	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 }
 break;
@@ -1119,7 +1111,7 @@ function randomFileGet(){
 		} else {
 			let plan = fs.readFileSync("./plans/allplansonline/"+file);
 			serverInfo(`The random file is: ${file}.`)
-			_messages.push(socket.remoteAddress+" "+plan)
+			_messages.push(plan)
 			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 			serverInfo("------------------------------------------------------")
 		}
@@ -1165,7 +1157,7 @@ case "getFeedback":
 	var _feedback = JSON.parse(fs.readFileSync('feedback.json'));
 
 
-	_messages.push(socket.remoteAddress+" "+_feedback.toString())
+	_messages.push(_feedback.toString())
 	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 
 serverInfo("sending feedback to developer")
