@@ -994,13 +994,15 @@ break;
 // 4.12.. get plan stars ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getStars":
 	var planid = args[1]
+	var stars = "";
 
 	try {
-			var stars = fs.readFileSync('plans/stars/'+planid+'.txt');
+			stars = fs.readFileSync('plans/stars/'+planid+'.txt');
 	} catch (err){
 			fs.appendFile('plans/stars/'+planid+'.txt', userid, function (err) {
 			if (err) {} else {}
 			})
+			stars = fs.readFileSync('plans/stars/'+planid+'.txt');
 	}
 
 
