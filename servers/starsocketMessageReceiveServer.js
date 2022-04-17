@@ -341,7 +341,7 @@ case "get":
 
 	connection.query( // get the users stuff
 
-		`SELECT * FROM Usersa
+		`SELECT * FROM Users
 		WHERE user_id="${args[2]}" AND password = "${args[3]}"`
 
 		, function (error, results, fields) {
@@ -360,21 +360,11 @@ case "get":
 			serverInfo('Hey this user got the user_id ', args[1]);
 		});
 break;
-// 4.1 register ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// register ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "register":
 	serverInfo("new registration")
 
-		// args 0 will be register
-		// args 1 will be username
-		// args 2 will be password
-		// args 3 will be email
-		// id will be set by database itself!
 		var id;
-
-		// connection.query('DELETE FROM Users WHERE username = "JoeJoe"', function (error, results, fields) {
-		//	if (error) throw error;
-			// console.log('Deleted all right?: ', results);
-		// });
 
 		connection.query( // register userstuff
 				`INSERT INTO Users (username, password, email, account_created, xp, coins, logins, weight, age, energy) 
@@ -518,7 +508,7 @@ case "getProfile":
 
 try {
 			//-- Save Message         		
-			_messages.push(+" "
+			_messages.push(
 			+args[1]+" "
 			+res[0].username+" "
 			+res[0].xp+" "
