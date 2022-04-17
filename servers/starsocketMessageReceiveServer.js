@@ -998,13 +998,10 @@ case "getStars":
 	var stars = fs.readFileSync('plans/stars/'+planid+'.txt');
 	var message = stars.toString().split('#').length-1;    	
 	
-	sendMessage(message)
-			
 
-function sendMessage(message) {
 	_messages.push(message)
 	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-}
+
 break;
 // 4.12..  star on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "starPlan":
