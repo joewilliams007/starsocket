@@ -999,7 +999,7 @@ case "getStars":
 	try {
 			stars = fs.readFileSync('plans/stars/'+planid+'.txt');
 	} catch (err){
-			fs.appendFile('plans/stars/'+planid+'.txt', userid, function (err) {
+			fs.appendFile('plans/stars/'+planid+'.txt', " ", function (err) {
 			if (err) {} else {}
 			})
 			stars = fs.readFileSync('plans/stars/'+planid+'.txt');
