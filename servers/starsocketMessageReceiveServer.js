@@ -15,7 +15,7 @@ var net = require('net');
 // plugins
 const starPlan = require("../plugins/plans/starPlan.js") 
 const aboutSportdash = require("../plugins/sportdash/about.js") 
-const changelog = require("../plugins/sportdash/changelog.js") 
+const changelogApp = require("../plugins/sportdash/changelog.js") 
 const chat = require("../plugins/online/chat.js") 
 // MySql COnnect to db_main------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var mysql = require('mysql');
@@ -98,7 +98,7 @@ case "aboutSportDash":
 break;
 // 4.0 changelog sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "changelog":
-	reply(changelog())
+	reply(changelogApp())
 break;
 // 4.0 shop sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "shop":
