@@ -1179,43 +1179,6 @@ case "clearAllFeedbackDev":
 		console.log('deleted feedback!');
 	  });
 break;
-// get image ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-case "saveImage":
-	var imageBit = args[1]
-
-	fs.appendFile('./imageBits.txt', imageBit, function (err) {
-		if (err) throw err;
-		console.log('added to imageBit');
-	  });
-
-	break;
-
-case "decodeImage":
-
-var req = JSON.parse(fs.readFileSync('imageBits.txt'));
-
-var base64Data = req.rawBody.replace(/^data:image\/png;base64,/, "");
-
-fs.writeFile("theImage.png", base64Data, 'base64', function(err) {
-  console.log(err);
-});
-
-fs.unlinkSync('imageBits.txt')
-
-
-var base64str = base64_encode('theImage.png');
-console.log(base64str);
-
-// Helper function
-function base64_encode(file) {
-    return "data:image/gif;base64," + fs.readFileSync(file, 'base64');
-}
-
-
-_messages.push(socket.remoteAddress+" "+_feedback.toString())
-fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-
-break;
 // 5 if no case was set ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 default:
     serverInfo("no valid case")
