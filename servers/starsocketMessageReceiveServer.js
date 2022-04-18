@@ -1038,13 +1038,10 @@ case "commentPlan":
 break;
 // 4.12.. get plan stars ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getStars":
-	var starPlan = require("../plugins/plans/starPlan.js")
-	var message = starPlan(args[1])
 
+	var starPlan = require("../plugins/plans/starPlan.js") 
+	reply(starPlan(args[1]))
 
-	_messages.push(socket.remoteAddress+" "+message)
-	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-	
 break;
 // 4.12..  star on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "starPlan":
@@ -1198,6 +1195,11 @@ function logAll(){
 		if (error) throw error;
 		console.log('All tables: ', results);
 	});
+}
+
+function reply (message){
+	_messages.push(socket.remoteAddress+" "+message)
+	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 }
 // 7 End of server ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------					
 server.listen(port);
