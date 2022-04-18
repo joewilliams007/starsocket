@@ -46,4 +46,4 @@ function chat(message){
 
     return message;
 }
-module.exports = changelog;
+module.exports = chat;
