@@ -1039,7 +1039,7 @@ case "commentPlan":
 break;
 // 4.12.. get plan stars ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getStars":
-	var starPlan = require("./plugins/plans/star_plan.js")
+	var starPlan = require("../plugins/plans/starPlan.js")
 	starPlan(args[1])
 
 
