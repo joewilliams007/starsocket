@@ -42,7 +42,6 @@ var net = require('net');
 var mysql = require('mysql');
 const { exec } = require('child_process');
 const { isPromise } = require('util/types');
-const starPlan = require('../plugins/plans/star_plan.js');
 var connection = mysql.createConnection({
 host     : 'localhost',
 user     : 'root',
