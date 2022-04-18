@@ -137,7 +137,7 @@ case "register":
 		WHERE username="${args[1]}" AND password = "${args[2]}" AND email= "${args[3]}"`
 		, function (error, results, fields) {
 			if (error) serverInfo(error.message);
-			reply(register(message, JSON.parse(JSON.stringify(results))))
+			reply(register(message, results))
 		});
 break;
 // Login ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -148,7 +148,7 @@ case "login":
 		WHERE user_id="${args[1]}" AND password = "${args[2]}"`
 		, function (error, results, fields) {
 			if (error) serverInfo(error.message);
-			reply(login(message, JSON.parse(JSON.stringify(results))))
+			reply(login(message, results))
 });
 break;
 // get user profile ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -159,7 +159,7 @@ connection.query( // get the users stuff
 
 		, function (error, results, fields) {
 			if (error) serverInfo(error.message);
-			reply(profile(message, JSON.stringify(results)))			
+			reply(profile(message, results))			
 });
 break;
 // send message ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

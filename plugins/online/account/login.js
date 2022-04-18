@@ -1,12 +1,13 @@
 let fs = require('fs');
 
-function login(message, res){
+function login(message, results){
 
     var args = message.split(" ") 
     var loginMessage;
-    
-   
+    var res = JSON.parse(JSON.stringify(results))
 
+    try {
+        
         //-- Save Message         		
         loginMessage = "%SPORTDASH%"+args[1]+"%SPORTDASH%"+args[2]+"%SPORTDASH%"
         +res[0].username+"%SPORTDASH%"
@@ -35,7 +36,9 @@ function login(message, res){
         +res[0].log 
         */
         
-
+    } catch (err) {
+        loginMessage = "err"
+    }
 
     return loginMessage;
 }

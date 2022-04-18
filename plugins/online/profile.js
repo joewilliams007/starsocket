@@ -1,9 +1,10 @@
 let fs = require('fs');
 
-function profile(message, res){
+function profile(message, results){
 
     var args = message.split(" ") 
     var profile;
+    var res = JSON.parse(JSON.stringify(results))
 
     try {
         profile = args[1]+" "

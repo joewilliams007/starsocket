@@ -1,6 +1,8 @@
 let fs = require('fs');
 
-function register(message, res){
+function register(message, results){
+
+    var res = JSON.parse(JSON.stringify(results))
 
     var args = message.split(" ")  
     var id = res[0].user_id;
