@@ -16,7 +16,9 @@ var net = require('net');
 const starPlan = require("../plugins/plans/starPlan.js") 
 const aboutSportdash = require("../plugins/sportdash/about.js") 
 const changelogApp = require("../plugins/sportdash/changelog.js") 
+const leaderboard = require("../plugins/sportdash/leaderboard.js") 
 const sendChatMessage = require("../plugins/online/chat.js") 
+const boost = require("../plugins/sportdash/boost.js") 
 const getChatMessages = require("../plugins/online/getChatMessages.js") 
 const clearChatMessages = require("../plugins/online/clearChatMessages.js") 
 // MySql COnnect to db_main------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -436,15 +438,15 @@ try {
 			
 		});
 break;
-// 4.2.x send message ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// send message ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "chat":
 	sendChatMessage(message)
 break;
-// 4.2.x.x get chat ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// get chat ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getChat":
 	reply(getChatMessages(message))
 break;
-// 4.2.x clear chat ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// clear chat ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "clearChat":
 	clearChatMessages(message);
 break;
@@ -457,7 +459,7 @@ case "clearinbox":
 		console.log('Saved!');
 	  });
 break;
-// 4.2.x.x get inbox ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// get inbox ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "mychatinbox":
 	var userid = args[1]
 try {
@@ -468,23 +470,10 @@ try {
 	
 }
 break;
-// 4.2.x.x boost ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// boost ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "boost":
-
-	try {
-		
-		fs.unlinkSync("./user_messages/"+ip+"/messages.json")
-		fs.appendFile("./user_messages/"+ip+"/messages.json", '[]', function (err) {
-			if (err) throw err;
-			console.log('ACCOUNT BOOSTED!');
-			_messages = JSON.parse(fs.readFileSync("./user_messages/"+ip+"/messages.json"));
-		});
-
-	} catch (err){
-
-	}
-
-	  break;
+	boost(ip)
+break;
 // 4.3 set password ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setPassword":
 	var changing = "password"
@@ -546,51 +535,17 @@ case "setXp":
 	serverInfo("xp updated of user #"+args[1])
 	
 break;
-// 4.6,1 Leaderboard ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Leaderboard ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "leaderboard":	
 		connection.query(
-
 			`SELECT username, user_id, xp
 			FROM Users
 			ORDER BY xp DESC`
-	
 			, function (error, results, fields) {
 				if (error) serverInfo(error.message);
-				var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
-				result = "";
-	
-				//	console.log(res)
-
-					var leaderboard = "";
-					var position = 0
-					
-					for (const item of res.values()) {  
-
-						if (Number(JSON.stringify(item.xp))<1){
-
-						} else {
-							
-						position++
-								//	console.log(`Cache item: ${JSON.stringify(item)}`)
-								if (position<2){
-									leaderboard+=JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
-								} else if (position<4){
-									leaderboard+="\n"+JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
-								} else if (position>100){
-								} else {
-									leaderboard+="\n "+position+". "+JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
-								}
-						}
-					}
-
-					console.log(leaderboard)
-					_messages.push(socket.remoteAddress+" "+leaderboard)
-					fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-			
+				reply(leaderboard(JSON.parse(JSON.stringify(results))))
 			});
-
 break;
-
 // 4.6.1 set todays progress ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setTodayProgress":	
 		connection.query(
