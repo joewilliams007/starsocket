@@ -13,8 +13,10 @@ if (!fs.existsSync(dir)){
 // requiere plugins ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var net = require('net');
 // plugins
-var starPlan = require("../plugins/plans/starPlan.js") 
-var aboutSportdash = require("../plugins/sportdash/about.js") 
+const starPlan = require("../plugins/plans/starPlan.js") 
+const aboutSportdash = require("../plugins/sportdash/about.js") 
+const changelog = require("../plugins/sportdash/changelog.js") 
+const chat = require("../plugins/online/chat.js") 
 // MySql COnnect to db_main------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var mysql = require('mysql');
 const { exec } = require('child_process');
@@ -96,25 +98,7 @@ case "aboutSportDash":
 break;
 // 4.0 changelog sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "changelog":
-	
-var about =
-
-`newest version : 0.1
-last updated : 10.04.2022
-
-- - - a l l  u p d a t e s
-
-version name : 0.1
-version status : private
-update :
-
-[NEW] app base
-[FIX] no fixes`
-			
-//-- Save Message         		
-_messages.push(socket.remoteAddress+" "+about)
-fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-	
+reply(changelog())
 break;
 // 4.0 shop sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "shop":
@@ -452,49 +436,7 @@ try {
 break;
 // 4.2.x send message ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "chat":
-	var FROM = args[1]
-	var to =  args[2]
-	var username = message.toString().split("MESSAGE&")[2]
-	var datetime = new Date();
-	var date = datetime.toISOString().slice(0,10)
-	var time1 = datetime.toLocaleTimeString().split(":");
-	var time2 = datetime.toLocaleTimeString().split(" ");
-	var time = time1[0]+":"+time1[1]+" "+time2[1]
-	var chatM = message.toString().split("MESSAGE&")[1]
-	var finalMessage = "- - - - -\n"+date+" "+time+" by user #"+FROM+"\n- "+chatM
-	var finalMessageChat = time+"@"+username+"@"+chatM+"NEXTMESSAGEIS:;"
-
-	serverInfo(finalMessage)
-
-	try{
-	fs.appendFile("./users/"+to+"/chatinbox.txt","\n"+finalMessage, function (err) {
-		if (err) {
-			// append failed
-		} else {
-			// done
-		}
-		})
-
-		var dir = "./chat/"+to;
-		if (!fs.existsSync(dir)){
-			fs.mkdirSync(dir, { recursive: true });
-		}
-		var dir = "./chat/"+FROM;
-		if (!fs.existsSync(dir)){
-			fs.mkdirSync(dir, { recursive: true });
-		}
-
-		fs.appendFile("./chat/"+to+"/"+FROM+".txt","\n"+finalMessageChat, function (err) {
-		if (err) {} else {}
-		})
-		fs.appendFile("./chat/"+FROM+"/"+to+".txt","\n"+finalMessageChat, function (err) {
-		if (err) {} else {}
-		})
-
-	serverInfo("saving message to #"+to+" from "+FROM)
-}catch (err){
-
-}
+	chat(message)
 break;
 // 4.2.x.x get chat ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getChat":
