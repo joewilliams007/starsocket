@@ -1,5 +1,5 @@
 function changelog(){
-    var message = 
+    var changelog = 
 
 `newest version : 0.1
 last updated : 10.04.2022
@@ -13,6 +13,6 @@ update :
 [NEW] app base
 [FIX] no fixes`
 
-return message;
+return changelog;
 }
 module.exports = changelog;
