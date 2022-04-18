@@ -1,3 +1,5 @@
+let fs = require('fs');
+
 function starPlan (planid) {
 
 var stars = fs.readFileSync('plans/stars/'+planid+'.txt');
