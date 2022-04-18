@@ -1,4 +1,4 @@
-function changelog(){
+function changelogs(){
 
     var changelog = 
 
@@ -16,4 +16,4 @@ update :
 
     return changelog;
 }
-module.exports = changelog;
+module.exports = changelogs;
