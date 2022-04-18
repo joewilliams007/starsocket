@@ -19,7 +19,7 @@ function leaderboard(res){
 									leaderboard+="\n"+JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
 								} else if (position>100){
 								} else {
-									leaderboard+="\n "+position+". "+JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
+									leaderboard+="\n "+position+".@"+JSON.stringify(item.xp)+"xp@"+JSON.stringify(item.username)+"@ #"+JSON.stringify(item.user_id)
 								}
 						}
 					}
