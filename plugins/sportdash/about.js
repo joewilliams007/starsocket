@@ -1,5 +1,7 @@
 function about (){
-var about = `W H Λ T  I S  S P O R T D Λ S H ?
+var message = 
+
+`W H Λ T  I S  S P O R T D Λ S H ?
 
 SportDash is an application owned by StarDash.inc
 
@@ -74,7 +76,7 @@ after your feedback/report is reviewed it will be deleted
 an option to delete your account will follow soon!
 
 >_< this page is stored on our server and was last updated: 10.04.22 19:37 (CEST)`
-    return about;
+    return message;
 }
 
 module.exports = about;
