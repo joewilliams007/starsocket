@@ -15,12 +15,21 @@ var net = require('net');
 // plugins
 const starPlan = require("../plugins/plans/starPlan.js") 
 const aboutSportdash = require("../plugins/sportdash/about.js") 
+const termsOfService = require("../plugins/sportdash/termsOfService.js") 
+const shop = require("../plugins/sportdash/shop.js") 
 const changelogApp = require("../plugins/sportdash/changelog.js") 
 const leaderboard = require("../plugins/sportdash/leaderboard.js") 
 const sendChatMessage = require("../plugins/online/chat.js") 
 const boost = require("../plugins/sportdash/boost.js") 
+const downloadPlans = require("../plugins/plans/downloadPlans.js") 
 const getChatMessages = require("../plugins/online/getChatMessages.js") 
+const profile = require("../plugins/online/profile.js") 
 const clearChatMessages = require("../plugins/online/clearChatMessages.js") 
+const register = require("../plugins/online/account/register.js") 
+const login = require("../plugins/online/account/login.js") 
+const downloadComments = require("../plugins/plans/comments/downloadComments.js") 
+
+
 // MySql COnnect to db_main------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var mysql = require('mysql');
 const { exec } = require('child_process');
@@ -100,343 +109,58 @@ var server = net.createServer(function(socket) {
 case "aboutSportDash":
 	reply(aboutSportdash())
 break;
-// 4.0 changelog sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// changelog sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "changelog":
 	reply(changelogApp())
 break;
-// 4.0 shop sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// shop sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "shop":
-	
-var codeVersion = args[1]
-if (Number(codeVersion)<1){
-//-- Save Message         		
-_messages.push(socket.remoteAddress+" outdated-app")
-fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-} else {
-
-var item1 = "-_-"
-var desc1 ="s t e v e"
-var coins1 = "20"
-var id1 = "1" 
-
-var item2 = "<_<"
-var desc2 ="f r a n k"
-var coins2 = "25"
-var id2 = "2" 
-
-var item3 = "~_~"
-var desc3 ="h u a n"
-var coins3 = "30"
-var id3 = "3" 
-
-var item4 = "1"
-var desc4 ="l i g h t  b o x"
-var coins4 = "100"
-var id4 = "b1" 
-
-var item5 = "2"
-var desc5 ="g r e e n s t a r  b o x"
-var coins5 = "200"
-var id5 = "b2" 
-
-
-function beforeMidnight(){
-    var mid= new Date(), 
-    ts= mid.getTime();
-    mid.setHours(24, 0, 0, 0);
-    return Math.floor((mid - ts)/60000);
-}
-  
-var shop =
-
-`${beforeMidnight()/60}h${beforeMidnight()}
-${item1}!-${desc1}!-${coins1}!-${id1}
-${item2}!-${desc2}!-${coins2}!-${id2}
-${item3}!-${desc3}!-${coins3}!-${id3}
-${item4}!-${desc4}!-${coins4}!-${id4}
-${item5}!-${desc5}!-${coins5}!-${id5}`
-			
-	//-- Save Message         		
-	_messages.push(socket.remoteAddress+" "+shop)
-	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-}
-	
+	reply(shop(message))
 break;
-// 4.0 terms of service sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// terms of service sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "terms_of_service":
-	
-var about =
-
-`P R I V Λ C Y
-
-What can others see?
-
-other users can view your ... via your user id
-
-username
-age
-id
-level
-progress
-weight
-plans
-
-What is stored on our servers? 
-
-- - - - - 
-
-n o t e : 
-
-everything we store is for the users good only! 
-
-for example we only store your plans for you to have a Backup when you log back in and for your friends to view them
-
-no data is being sold and this will always stay that way
-
-- - - - - 
-
-After registering and agreeing to the terms and conditions, we store
-
-all the entrys you give us, such as ...
-
-username
-age
-weight
-email
-
-by using the app ...
-
-training plans
-xp
-coins
-progress
-theme
-styles
-comments
-last log in
-
-when sending feedback/reports ...
-
-when selected your hardware/software information
-after your feedback/report is reviewed it will be deleted
-
-an option to delete your account will follow soon!
-
->_< this page is stored on our server and was last updated: 10.04.22 19:37 (CEST)`
-			
-//-- Save Message         		
-_messages.push(socket.remoteAddress+" "+about)
-fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-	
+	reply(termsOfService)
 break;
-// 4.0 get anything ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-case "get":
-	serverInfo("new get-request")
-	// args 0 will be login
-	// args 1 will be what to get
-	// args 2 will be id
-	// args 3 will be password
-
-	connection.query( // get the users stuff
-
-		`SELECT * FROM Usersa
-		WHERE user_id="${args[2]}" AND password = "${args[3]}"`
-
-		, function (error, results, fields) {
-			if (error) serverInfo(error.message);
-			var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
-			result = "";
-
-			if (args[0]=="xp") {
-				result = res[0].xp
-			} // ... etc add more when needed !
-
-
-			//-- Save Message         		
-			_messages.push(socket.remoteAddress+" "+args[2]+" "+args[3]+" "+result)
-			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-			serverInfo('Hey this user got the user_id ', args[1]);
-		});
-break;
-// 4.1 register ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// register ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "register":
 	serverInfo("new registration")
-
-		// args 0 will be register
-		// args 1 will be username
-		// args 2 will be password
-		// args 3 will be email
-		// id will be set by database itself!
-		var id;
-
-		// connection.query('DELETE FROM Users WHERE username = "JoeJoe"', function (error, results, fields) {
-		//	if (error) throw error;
-			// console.log('Deleted all right?: ', results);
-		// });
-
 		connection.query( // register userstuff
 				`INSERT INTO Users (username, password, email, account_created, xp, coins, logins, weight, age, energy) 
 				VALUES ("${args[1]}","${args[2]}","${args[3]}","${date}",0,10,1, 0, 0, 0)`
-
 				, function (error, results, fields) {
 					if (error) throw error;
 					console.log('Yey a new registration! >_< ');
-				});
+		});
 
 		connection.query( // get the users id
-
 		`SELECT user_id FROM Users
 		WHERE username="${args[1]}" AND password = "${args[2]}" AND email= "${args[3]}"`
-
 		, function (error, results, fields) {
 			if (error) serverInfo(error.message);
-			var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
-			id = res[0].user_id;
-
-			//-- Save Message         		
-			_messages.push(socket.remoteAddress+" "+args[1]+" "+id)
-			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-
-
-			var dir = "./users/"+id
-
-			if (!fs.existsSync(dir)){
-				fs.mkdirSync(dir, { recursive: true });
-			}
-
-			fs.appendFile('./users/'+id+'/log.txt', '', function (err) {
-				if (err) throw err;
-				console.log('Saved!');
-			  });
-			  fs.appendFile('./users/'+id+'/inbox.txt', '', function (err) {
-				if (err) throw err;
-				console.log('Saved!');
-			  });
-			  fs.appendFile('./users/'+id+'/chatinbox.txt', '', function (err) {
-				if (err) throw err;
-				console.log('Saved!');
-			  });
-			  fs.appendFile('./users/'+id+'/plan1.txt', '', function (err) {
-				if (err) throw err;
-				console.log('Saved!');
-			  });
-
-			  fs.appendFile('./users/'+id+'/plan2.txt', '', function (err) {
-				if (err) throw err;
-				console.log('Saved!');
-			  });
-
-			  fs.appendFile('./users/'+id+'/plan3.txt', '', function (err) {
-				if (err) throw err;
-				console.log('Saved!');
-			  });
-
-			  fs.appendFile('./users/'+id+'/plan4.txt', '', function (err) {
-				if (err) throw err;
-				console.log('Saved!');
-			  });
-
-			  fs.appendFile('./users/'+id+'/plan5.txt', '', function (err) {
-				if (err) throw err;
-				console.log('Saved!');
-			  });
-
-			serverInfo('Hey this user got the user_id ', id);
+			register(message, JSON.parse(JSON.stringify(results)))
 		});
 break;
-// 4.2 Login ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Login ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "login":
 	serverInfo("new login")
-	// args 0 will be login
-	// args 1 will be id
-	// args 2 will be password
 	connection.query( // get the users stuff
-
 		`SELECT * FROM Users
 		WHERE user_id="${args[1]}" AND password = "${args[2]}"`
-
 		, function (error, results, fields) {
 			if (error) serverInfo(error.message);
-			var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
-
-		//	serverInfo(res[0].account_created)
-		//	serverInfo(res[0].username)
-try {
-			//-- Save Message         		
-			_messages.push(socket.remoteAddress+" %SPORTDASH%"+args[1]+"%SPORTDASH%"+args[2]+"%SPORTDASH%"
-			+res[0].username+"%SPORTDASH%"
-			+res[0].xp+"%SPORTDASH%"
-			+res[0].age+"%SPORTDASH%"
-			+res[0].weight+"%SPORTDASH%"
-			+res[0].coins+"%SPORTDASH%"
-			+res[0].energy+"%SPORTDASH%"
-
-			/* +" PLANS "
-			+res[0].plan1+" "
-			+res[0].plan2+" "
-			+res[0].plan3+" "
-			+res[0].plan4+" "
-			+res[0].plan5
-			+" PROGRESS "
-			+res[0].todayProgress+" "
-			+res[0].weekProgress+" "
-			+res[0].day+" "
-			+res[0].week+" "
-			+res[0].login_streak+" "
-			+res[0].last_login+" "
-			+res[0].logins+" "
-			+res[0].theme+" "
-			+res[0].error_styles+" "
-			+res[0].log 
-			*/
-
-			)
-
-			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-			serverInfo('Hey this user got the user_id ', args[1]);
-} catch (err) {
-	_messages.push(socket.remoteAddress+" err")
-	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-	serverInfo('error ', args[1]);
-}
-			
-		});
+			reply(login(JSON.parse(JSON.stringify(results))))
+});
 break;
-// 4.2.1 get user profile ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// get user profile ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getProfile":
-
-	connection.query( // get the users stuff
-
+connection.query( // get the users stuff
 		`SELECT * FROM Users
 		WHERE user_id="${args[1]}"`
-
+		
 		, function (error, results, fields) {
 			if (error) serverInfo(error.message);
-			var res = JSON.parse(JSON.stringify(results)); // Stringify makes it easy to access
-
-try {
-			//-- Save Message         		
-			_messages.push(socket.remoteAddress+" "
-			+args[1]+" "
-			+res[0].username+" "
-			+res[0].xp+" "
-			+res[0].today_progress+" "
-			+res[0].week_progress+" "
-			+res[0].age+" "
-			+res[0].weight+" "
-		
-
-			)
-
-			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-			serverInfo('Hey this user got the user_id ', args[1]);
-} catch (err) {
-	_messages.push(socket.remoteAddress+" err")
-	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-	serverInfo('error ', args[1]);
-}
-			
-		});
+			reply(profile(message,JSON.stringify(results)))			
+});
 break;
 // send message ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "chat":
@@ -731,55 +455,13 @@ fs.appendFile('users/'+id+'/plan'+args[2]+'.txt', data, function (err) {
 
 	serverInfo("uploading plan "+args[2]+" of user #"+args[1])
 break;
-// 4.12 download plans ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// download plans ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "downloadPlans":
-try {
-
-	let plan1 = fs.readFileSync("./users/"+args[1]+"/plan1.txt");
-	let plan2 = fs.readFileSync("./users/"+args[1]+"/plan2.txt");
-	let plan3 = fs.readFileSync("./users/"+args[1]+"/plan3.txt");
-	let plan4 = fs.readFileSync("./users/"+args[1]+"/plan4.txt");
-	let plan5 = fs.readFileSync("./users/"+args[1]+"/plan5.txt");
-
-
-			//-- Save Message         		
-			_messages.push(socket.remoteAddress
-			+" ##########"
-			+plan1+"##########"
-			+plan2+"##########"
-			+plan3+"##########"
-			+plan4+"##########"
-			+plan5+"##########"
-
-			)
-
-			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-			serverInfo('Hey this user got the user_id ', args[1]);
-		} catch (err) {
-			_messages.push(socket.remoteAddress+" err")
-			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-			serverInfo('error ', args[1]);
-		}
+	downloadPlans(message)
 break;
-// 4.12.1 get plan comments ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// plan comments ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getComments":
-	var planid = args[1].replace("#","")
-try {
-	var comments = fs.readFileSync('plans/comments/'+planid+'.txt');
-
-			//-- Save Message         		
-			_messages.push(socket.remoteAddress
-			+" "
-			+comments
-			)
-
-			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-			serverInfo('Hey this user got the user_id ', args[1]);
-		} catch (err) {
-			_messages.push(socket.remoteAddress+" errasdasdasdasdasdasdasdasd")
-			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-			serverInfo('error ', args[1]);
-		}
+	reply(downloadComments(message))
 break;
 // 4.12.2  comment on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "commentPlan":
