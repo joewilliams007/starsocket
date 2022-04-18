@@ -1,8 +1,6 @@
 function termsOfService(){
 
-var tos =
-
-`P R I V Λ C Y
+var tos = `P R I V Λ C Y
 
 What can others see?
 
