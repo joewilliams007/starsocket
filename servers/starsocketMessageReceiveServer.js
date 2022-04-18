@@ -148,7 +148,7 @@ case "login":
 		WHERE user_id="${args[1]}" AND password = "${args[2]}"`
 		, function (error, results, fields) {
 			if (error) serverInfo(error.message);
-			reply(login(JSON.parse(JSON.stringify(results))))
+			reply(login(message, JSON.parse(JSON.stringify(results))))
 });
 break;
 // get user profile ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
