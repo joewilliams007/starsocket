@@ -5,7 +5,7 @@ function profile(message, res){
     var args = message.split(" ") 
     var profile;
 
-    try {
+ 
         profile = args[1]+" "
         +res[0].username+" "
         +res[0].xp+" "
@@ -15,9 +15,7 @@ function profile(message, res){
         +res[0].weight+" "
 
        
-    } catch (err) {
-        profile = "err"
-    }
+
 
     return profile;
 }
