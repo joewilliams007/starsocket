@@ -18,6 +18,7 @@ const aboutSportdash = require("../plugins/sportdash/about.js")
 const changelogApp = require("../plugins/sportdash/changelog.js") 
 const sendChatMessage = require("../plugins/online/chat.js") 
 const getChatMessages = require("../plugins/online/getChatMessages.js") 
+const clearChatMessages = require("../plugins/online/clearChatMessages.js") 
 // MySql COnnect to db_main------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var mysql = require('mysql');
 const { exec } = require('child_process');
@@ -445,14 +446,7 @@ case "getChat":
 break;
 // 4.2.x clear chat ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "clearChat":
-	var userid = args[1]
-	var chatId = args[2]
-
-	fs.unlinkSync("./chat/"+userid+"/"+chatId+".txt")
-	fs.appendFile("./chat/"+userid+"/"+chatId+".txt", '', function (err) {
-		if (err) throw err;
-		console.log('cleared chat');
-	  });
+	clearChatMessages();
 break;
 // 4.2.x get inbox ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "clearinbox":
