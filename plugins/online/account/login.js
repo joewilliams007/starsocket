@@ -37,7 +37,7 @@ function login(message, results){
         */
         
     } catch (err) {
-        loginMessage = "err"
+        loginMessage = "WRONG"
     }
 
     return loginMessage;
