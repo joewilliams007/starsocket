@@ -1039,7 +1039,7 @@ break;
 // 4.12.. get plan stars ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getStars":
 	var starPlan = require("../plugins/plans/starPlan.js")
-	starPlan(args[1])
+	var message = starPlan(args[1])
 
 
 	_messages.push(socket.remoteAddress+" "+message)
