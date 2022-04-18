@@ -1,28 +1,4 @@
 // >_< server index ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-// 	1 requiere plugins
-// 	2 connect do database
-// 	3 server
-// 		3.1 server config
-// 		3.2 start server
-// 	4 switch4cases
-//		4.0 get anything
-// 		4.1 register
-// 		4.2 login
-// 		4.3 set password
-// 		4.4 set username
-// 		4.5 set email
-// 		4.6 set xp
-// 		4.7 set age
-// 		4.8 set weight
-// 		4.9 set energy
-// 		4.10 set logins
-// 		4.11 feedback
-// 	5 default case
-// 		5.1 end of cases
-// 	6 functions
-// 	7 end of server
-// 		7.1 end of file
 // server index ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // create directories
 let fs = require('fs');
@@ -34,11 +10,12 @@ var dir = './plans/allplansonline';
 if (!fs.existsSync(dir)){
     fs.mkdirSync(dir, { recursive: true });
 }
-// 1 requiere plugins ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// requiere plugins ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var net = require('net');
-
-
-// 2 MySql COnnect to db_main------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// plugins
+var starPlan = require("../plugins/plans/starPlan.js") 
+var about = require("../plugins/sportdash/about.js") 
+// MySql COnnect to db_main------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var mysql = require('mysql');
 const { exec } = require('child_process');
 const { isPromise } = require('util/types');
@@ -49,11 +26,11 @@ password : 'secret',
 database : 'db_main'
 });
 connection.connect();
-// 3 Server ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// 3.1 Server Ports------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Server ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Server Ports------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var port = 2224;
 var server = net.createServer();
-// 3.2 StartServer ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// StartServer ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var server = net.createServer(function(socket) {
 
 	console.log('-------------------------------------------- RECEIVING DATA FROM CLIENT ✅')
@@ -89,8 +66,6 @@ var server = net.createServer(function(socket) {
 		  
 	}
 
-	
-
 	socket.on('data', function(chunk) {
 		//serverInfo(`receiving message chunk...`)
 		receivedMessage += chunk.toString()
@@ -103,12 +78,6 @@ var server = net.createServer(function(socket) {
 			
 		}
 		
-
-		 //-- Save Message         		
-	//	 _messages.push(receivedMessage.toString())
-	//	 fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-
-		
 		var today = new Date();
 		var yyyy = today.getFullYear();
 		let mm = today.getMonth() + 1; // Months start at 0!
@@ -117,95 +86,13 @@ var server = net.createServer(function(socket) {
 		if (mm < 10) mm = '0' + mm;
 		var date = yyyy + '-' + mm + '-' + dd;
 
-		
 		var message = receivedMessage.toString();
 		var args = message.split(" ");
 		switch(args[0]) {
-// 4 Case message starts with ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// 4 about sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Case message starts with ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// about sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "aboutSportDash":
-	
-var about = `W H Λ T  I S  S P O R T D Λ S H ?
-
-SportDash is an application owned by StarDash.inc
-
-SportDash aims to help motivate everyone doing sports by comparing scores with friends. 
-It also gives users the ability to create training plans and share them with their friends. 
-Users can send messages to each others via the inbox
-
-Everything in SportDash works via your StarDash account. 
-You can find your user id associated with your StarDash account in the settings and on your main page. 
-Friends can find your account via your id. 
-You should also never forget your ID in order to log back in!
-
-H O W  C Λ N  I  C O N T Λ C T  S U P P O R T ?
-
-The best way is to send "feedback" in the app via SportDash/Settings/send-feedback
-
-You can also contact us via our email: johannimus2004@gmail.com
-
-P R I V Λ C Y
-
-What can others see?
-
-other users can view your ... via your user id
-
-username
-age
-id
-level
-progress
-weight
-plans
-
-What is stored on our servers? 
-
-- - - - - 
-
-n o t e : 
-
-everything we store is for the users good only! 
-
-for example we only store your plans for you to have a Backup when you log back in and for your friends to view them
-
-no data is being sold and this will always stay that way
-
-- - - - - 
-
-After registering and agreeing to the terms and conditions, we store
-
-all the entrys you give us, such as ...
-
-username
-age
-weight
-email
-
-by using the app ...
-
-training plans
-xp
-coins
-progress
-theme
-styles
-comments
-last log in
-
-when sending feedback/reports ...
-
-when selected your hardware/software information
-after your feedback/report is reviewed it will be deleted
-
-an option to delete your account will follow soon!
-
->_< this page is stored on our server and was last updated: 10.04.22 19:37 (CEST)`
-
-			//-- Save Message         		
-			_messages.push(socket.remoteAddress+" "+about)
-			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-
-	
+	reply(about)
 break;
 // 4.0 changelog sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "changelog":
@@ -1038,10 +925,7 @@ case "commentPlan":
 break;
 // 4.12.. get plan stars ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getStars":
-
-	var starPlan = require("../plugins/plans/starPlan.js") 
 	reply(starPlan(args[1]))
-
 break;
 // 4.12..  star on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "starPlan":
