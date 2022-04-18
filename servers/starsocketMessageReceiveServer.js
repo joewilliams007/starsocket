@@ -16,7 +16,7 @@ var net = require('net');
 const starPlan = require("../plugins/plans/starPlan.js") 
 const aboutSportdash = require("../plugins/sportdash/about.js") 
 const changelogApp = require("../plugins/sportdash/changelog.js") 
-const chat = require("../plugins/online/chat.js") 
+const sendChatMessage = require("../plugins/online/chat.js") 
 // MySql COnnect to db_main------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var mysql = require('mysql');
 const { exec } = require('child_process');
@@ -436,7 +436,7 @@ try {
 break;
 // 4.2.x send message ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "chat":
-	chat(message)
+	sendChatMessage(message)
 break;
 // 4.2.x.x get chat ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getChat":
