@@ -1,4 +1,4 @@
-function about (){
+function about(){
 var message = 
 
 `W H Λ T  I S  S P O R T D Λ S H ?

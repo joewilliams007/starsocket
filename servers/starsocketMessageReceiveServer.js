@@ -14,7 +14,7 @@ if (!fs.existsSync(dir)){
 var net = require('net');
 // plugins
 var starPlan = require("../plugins/plans/starPlan.js") 
-var about = require("../plugins/sportdash/about.js") 
+var aboutSportdash = require("../plugins/sportdash/about.js") 
 // MySql COnnect to db_main------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var mysql = require('mysql');
 const { exec } = require('child_process');
@@ -92,7 +92,7 @@ var server = net.createServer(function(socket) {
 // Case message starts with ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // about sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "aboutSportDash":
-	reply(about())
+	reply(aboutSportdash())
 break;
 // 4.0 changelog sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "changelog":
