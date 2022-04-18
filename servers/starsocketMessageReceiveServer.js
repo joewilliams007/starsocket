@@ -137,7 +137,7 @@ case "register":
 		WHERE username="${args[1]}" AND password = "${args[2]}" AND email= "${args[3]}"`
 		, function (error, results, fields) {
 			if (error) serverInfo(error.message);
-			register(message, JSON.parse(JSON.stringify(results)))
+			reply(register(message, JSON.parse(JSON.stringify(results))))
 		});
 break;
 // Login ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
