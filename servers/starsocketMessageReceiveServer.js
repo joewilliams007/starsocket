@@ -42,6 +42,7 @@ var net = require('net');
 var mysql = require('mysql');
 const { exec } = require('child_process');
 const { isPromise } = require('util/types');
+const starPlan = require('../plugins/plans/star_plan.js');
 var connection = mysql.createConnection({
 host     : 'localhost',
 user     : 'root',
@@ -1038,18 +1039,13 @@ case "commentPlan":
 break;
 // 4.12.. get plan stars ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getStars":
-	var planid = args[1]
+	var starPlan = require("./plugins/plans/star_plan.js")
+	starPlan(args[1])
 
-	var stars = fs.readFileSync('plans/stars/'+planid+'.txt');
-	var message = stars.toString().split('#').length-1;
-	
-	
-	//-- Save Message         		
-			_messages.push(socket.remoteAddress+" "+message)
 
-			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
+	_messages.push(socket.remoteAddress+" "+message)
+	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 	
-
 break;
 // 4.12..  star on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "starPlan":
