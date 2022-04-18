@@ -5,8 +5,8 @@ function login(message, res){
     var args = message.split(" ") 
     var loginMessage;
     
-    try {
-        
+   
+
         //-- Save Message         		
         loginMessage = "%SPORTDASH%"+args[1]+"%SPORTDASH%"+args[2]+"%SPORTDASH%"
         +res[0].username+"%SPORTDASH%"
@@ -35,9 +35,7 @@ function login(message, res){
         +res[0].log 
         */
         
-    } catch (err) {
-        loginMessage = "err"
-    }
+
 
     return loginMessage;
 }
