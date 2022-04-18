@@ -17,6 +17,7 @@ const starPlan = require("../plugins/plans/starPlan.js")
 const aboutSportdash = require("../plugins/sportdash/about.js") 
 const changelogApp = require("../plugins/sportdash/changelog.js") 
 const sendChatMessage = require("../plugins/online/chat.js") 
+const getChatMessages = require("../plugins/online/getChatMessages.js") 
 // MySql COnnect to db_main------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var mysql = require('mysql');
 const { exec } = require('child_process');
@@ -440,19 +441,7 @@ case "chat":
 break;
 // 4.2.x.x get chat ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getChat":
-	var userid = args[1]
-	var chatId = args[2]
-try{
-	var chat = fs.readFileSync("./chat/"+userid+"/"+chatId+".txt");
-	
-
-
-	_messages.push(socket.remoteAddress+" "+chat)
-	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-
-}catch (err){
-
-}
+	reply(getChatMessages(message))
 break;
 // 4.2.x clear chat ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "clearChat":

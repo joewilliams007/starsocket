@@ -5,7 +5,8 @@ function chat(message){
     var args = message.split(" ")
 
     var FROM = args[1]
-	var to =  args[2]
+	var TO =  args[2]
+
 	var username = message.toString().split("MESSAGE&")[2]
 	var datetime = new Date();
 	var date = datetime.toISOString().slice(0,10)
@@ -17,7 +18,7 @@ function chat(message){
 	var finalMessageChat = time+"@"+username+"@"+chatM+"NEXTMESSAGEIS:;"
 
 	try{
-            fs.appendFile("./users/"+to+"/chatinbox.txt","\n"+finalMessage, function (err) {
+            fs.appendFile("./users/"+TO+"/chatinbox.txt","\n"+finalMessage, function (err) {
                 if (err) {
                     // append failed
                 } else {
@@ -25,19 +26,23 @@ function chat(message){
                 }
                 })
 
-                var dir = "./chat/"+to;
+                var dir = "./chat/"+TO;
                 if (!fs.existsSync(dir)){
                     fs.mkdirSync(dir, { recursive: true });
                 }
+
+
                 var dir = "./chat/"+FROM;
                 if (!fs.existsSync(dir)){
                     fs.mkdirSync(dir, { recursive: true });
                 }
 
-                fs.appendFile("./chat/"+to+"/"+FROM+".txt","\n"+finalMessageChat, function (err) {
+                fs.appendFile("./chat/"+TO+"/"+FROM+".txt","\n"+finalMessageChat, function (err) {
                 if (err) {} else {}
                 })
-                fs.appendFile("./chat/"+FROM+"/"+to+".txt","\n"+finalMessageChat, function (err) {
+
+                
+                fs.appendFile("./chat/"+FROM+"/"+TO+".txt","\n"+finalMessageChat, function (err) {
                 if (err) {} else {}
                 })
 
