@@ -156,10 +156,10 @@ case "getProfile":
 connection.query( // get the users stuff
 		`SELECT * FROM Users
 		WHERE user_id="${args[1]}"`
-		
+
 		, function (error, results, fields) {
 			if (error) serverInfo(error.message);
-			reply(profile(message,JSON.stringify(results)))			
+			reply(profile(message, JSON.stringify(results)))			
 });
 break;
 // send message ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
