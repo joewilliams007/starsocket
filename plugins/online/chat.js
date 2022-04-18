@@ -1,3 +1,5 @@
+let fs = require('fs');
+
 function chat(message){
 
     var args = message.split(" ")
@@ -13,8 +15,6 @@ function chat(message){
 	var chatM = message.toString().split("MESSAGE&")[1]
 	var finalMessage = "- - - - -\n"+date+" "+time+" by user #"+FROM+"\n- "+chatM
 	var finalMessageChat = time+"@"+username+"@"+chatM+"NEXTMESSAGEIS:;"
-
-	serverInfo(finalMessage)
 
 	try{
             fs.appendFile("./users/"+to+"/chatinbox.txt","\n"+finalMessage, function (err) {
@@ -41,7 +41,6 @@ function chat(message){
                 if (err) {} else {}
                 })
 
-            serverInfo("saving message to #"+to+" from "+FROM)
     }catch (err){}
 
     return message;
