@@ -1,8 +1,6 @@
-function changelogs(){
+function log(){
 
-    var changelog = 
-
-`newest version : 0.1
+var changelog = `newest version : 0.1
 last updated : 10.04.2022
 
 - - - a l l  u p d a t e s
@@ -16,4 +14,4 @@ update :
 
     return changelog;
 }
-module.exports = changelogs;
+module.exports = log;
