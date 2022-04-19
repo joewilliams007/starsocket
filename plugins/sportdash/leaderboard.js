@@ -13,11 +13,7 @@ function leaderboard(res){
 							
 						position++
 								//	console.log(`Cache item: ${JSON.stringify(item)}`)
-								if (position<2){
-									leaderboard+=JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
-								} else if (position<4){
-									leaderboard+="\n"+JSON.stringify(item.xp)+"xp "+JSON.stringify(item.username)+" #"+JSON.stringify(item.user_id)
-								} else if (position>100){
+								if (position>100){
 								} else {
 									leaderboard+="\n "+position+".@"+JSON.stringify(item.xp)+"xp@"+JSON.stringify(item.username)+"@ #"+JSON.stringify(item.user_id)
 								}
