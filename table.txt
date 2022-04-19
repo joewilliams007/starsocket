@@ -7,6 +7,7 @@ email varchar(255),
 password varchar(255),
 follows varchar(2000),
 followers varchar(2000),
+bio varchar(2000),
 country varchar(255),
 weight int,
 age int,
@@ -26,3 +27,7 @@ theme varchar(200),
 privacy varchar(200),
 PRIMARY KEY ( user_id )
 );
+
+login :
+
+mysql -uroot -psecret
