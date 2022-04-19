@@ -22,6 +22,7 @@ const leaderboard = require("../plugins/sportdash/leaderboard.js")
 const sendChatMessage = require("../plugins/online/chat.js") 
 const boost = require("../plugins/sportdash/boost.js") 
 const downloadPlans = require("../plugins/plans/downloadPlans.js") 
+const downloadPlanById = require("../plugins/plans/downloadPlanById.js") 
 const getChatMessages = require("../plugins/online/getChatMessages.js") 
 const profile = require("../plugins/online/profile.js") 
 const clearChatMessages = require("../plugins/online/clearChatMessages.js") 
@@ -457,7 +458,11 @@ fs.appendFile('users/'+id+'/plan'+args[2]+'.txt', data, function (err) {
 break;
 // download plans ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "downloadPlans":
-	downloadPlans(message)
+	reply(downloadPlans(message))
+break;
+// download plan by id ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "downloadPlans":
+	reply(downloadPlanById(message))
 break;
 // plan comments ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getComments":
