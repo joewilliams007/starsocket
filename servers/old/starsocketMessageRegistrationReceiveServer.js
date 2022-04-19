@@ -243,7 +243,10 @@ serverInfo("Started server on port: " + port)
 async function makeAccount (email, username, password){
 	exec(`rm -rf ./users/${email}`)
 	await sleep(2000);
-	exec(`mkdir ./users/${email}`)
+	var dir = `./users/${email}`;
+	if (!path.existsSync(dir)) {
+		fs.mkdirSync(dir, 0744);
+	}
 	await sleep(2000);
 	fs.appendFile(`./users/${email}/email.json`, `["${email}"]`, function (err) {				
 	if (err) throw err;
