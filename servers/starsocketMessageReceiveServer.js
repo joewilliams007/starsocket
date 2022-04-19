@@ -34,7 +34,6 @@ const downloadComments = require("../plugins/plans/comments/downloadComments.js"
 // MySql COnnect to db_main------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var mysql = require('mysql');
 const { exec } = require('child_process');
-const { isPromise } = require('util/types');
 var connection = mysql.createConnection({
 host     : 'localhost',
 user     : 'root',
