@@ -10,6 +10,7 @@ UPGRADED@leaderboard added functionality
 - new colors added
 - own user account in blue@0.1.1#
 FIX@profile plan download crashing randomly@0.1.1#
+FIX@user profile not opening with link@0.1.1#
 NEWVER@new app version@0.1#
 UPGRADED@first iteration of beta launch@0.1#`
 
