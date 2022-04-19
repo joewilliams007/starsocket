@@ -57,12 +57,13 @@ var server = net.createServer(function(socket) {
 
 	if (!fs.existsSync(dir)){
 		fs.mkdirSync(dir, { recursive: true });
-		
+	}
+
 		fs.appendFile("./user_messages/"+ip+"/messages.json", '[]', function (err) {
 			if (err) throw err;
 			console.log('Saved!');
 		  });
-	}
+	
 	
 	var _messages;
 	try {
