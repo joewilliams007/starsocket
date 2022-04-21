@@ -30,4 +30,4 @@ PRIMARY KEY ( user_id )
 
 login :
 
-mysql -uroot -psecret
+mysql -uroot -pjohannw2004
