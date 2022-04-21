@@ -37,7 +37,7 @@ const { exec } = require('child_process');
 var connection = mysql.createConnection({
 host     : 'localhost',
 user     : 'root',
-password : '',
+password : 'johannw2004',
 database : 'db_main'
 });
 connection.connect();
