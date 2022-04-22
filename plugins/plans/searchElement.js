@@ -7,15 +7,23 @@ function search(message, results){
     var res = JSON.parse(JSON.stringify(results))
 
     try { 		
-        searchMessage = 
-        res[0].element_name+"@"
-        +res[0].description+"@"
-        +res[0].duration+"@"
-        +res[0].type+"@"
-        +res[0].element_usage+"@"
-        +res[0].reports+"@"
-        +res[0].creator_name+"@"
-        +res[0].creator_id+"@"
+ 
+  
+        for(var i = 0; i < 10;i++){
+           
+               searchMessage += res[i].element_name+"@"
+                +res[i].description+"@"
+                +res[i].duration+"@"
+                +res[i].type+"@"
+                +res[i].element_usage+"@"
+                +res[i].reports+"@"
+                +res[i].creator_name+"@"
+                +res[i].creator_id+"\n"
+            
+         }
+    
+  
+  
     } catch (err) {
         searchMessage = "no results"
     }
