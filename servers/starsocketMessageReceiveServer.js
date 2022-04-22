@@ -193,7 +193,7 @@ break;
 case "searchElement":
 	connection.query( // get the users stuff
 		`SELECT * FROM Elements
-		WHERE element_name LIKE '${message.split("=")[1]}%';`
+		WHERE element_name LIKE '%${message.split("=")[1]}%';`
 
 		, function (error, results, fields) {
 			
