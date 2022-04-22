@@ -49,12 +49,7 @@ var server = net.createServer();
 var server = net.createServer(function(socket) {
 
 	var activeUsers = 0;
-	setInterval(function(){ 
-		console.log("active users "+activeUsers)
-	},1000)
-	setInterval(function(){ 
-		activeUsers = 0
-	},12345)
+
 
 	console.log('-------------------------------------------- RECEIVING DATA FROM CLIENT ✅')
 	serverInfo('A new connection has been established.');
@@ -110,7 +105,7 @@ var server = net.createServer(function(socket) {
 			
 		}
 
-		activeUsers++
+		
 		
 		var today = new Date();
 		var yyyy = today.getFullYear();
