@@ -559,22 +559,25 @@ break;
 case "randomPlan":
 var randomFile = require('select-random-file')
 var dir = './plans/allplansonline'
+try {
+	randomFileGet()
+	serverInfo("------------------------------------------------------")
+		
+	function randomFileGet(){
+		randomFile(dir, (err, file) => {
+			if (file.length<6){
+				randomFileGet()
+			} else {
+				let plan = fs.readFileSync("./plans/allplansonline/"+file);
+				serverInfo(`The random file is: ${file}.`)
+				_messages.push(socket.remoteAddress+" "+plan)
+				fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
+				serverInfo("------------------------------------------------------")
+			}
+		})
+	}
+} catch (err) {
 
-randomFileGet()
-serverInfo("------------------------------------------------------")
-	
-function randomFileGet(){
-	randomFile(dir, (err, file) => {
-		if (file.length<6){
-			randomFileGet()
-		} else {
-			let plan = fs.readFileSync("./plans/allplansonline/"+file);
-			serverInfo(`The random file is: ${file}.`)
-			_messages.push(socket.remoteAddress+" "+plan)
-			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-			serverInfo("------------------------------------------------------")
-		}
-	})
 }
 break;
 // 4.11 feedback ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
