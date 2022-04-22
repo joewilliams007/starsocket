@@ -48,6 +48,14 @@ var server = net.createServer();
 // StartServer ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var server = net.createServer(function(socket) {
 
+	var activeUsers = 0;
+	setInterval(function(){ 
+		console.log("active users "+activeUsers)
+	},1000)
+	setInterval(function(){ 
+		activeUsers = 0
+	},12345)
+
 	console.log('-------------------------------------------- RECEIVING DATA FROM CLIENT ✅')
 	serverInfo('A new connection has been established.');
 	serverInfo("now processing received data of ip "+socket.remoteAddress)
@@ -92,7 +100,7 @@ var server = net.createServer(function(socket) {
 
 	socket.on('data', function(chunk) {
 		//serverInfo(`receiving message chunk...`)
-		receivedMessage += chunk.toString()
+		receivedMessage += chunk.toString() 
 	});
 	
 	socket.on('end', function() {
@@ -101,6 +109,8 @@ var server = net.createServer(function(socket) {
 			serverInfo("received message: " + receivedMessage)
 			
 		}
+
+		activeUsers++
 		
 		var today = new Date();
 		var yyyy = today.getFullYear();
