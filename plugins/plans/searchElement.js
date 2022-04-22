@@ -3,7 +3,7 @@ let fs = require('fs');
 function search(message, results){
 
     var args = message.split(" ") 
-    var loginMessage;
+    var searchMessage;
     var res = JSON.parse(JSON.stringify(results))
 
     try { 		
