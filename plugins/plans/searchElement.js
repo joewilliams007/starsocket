@@ -8,7 +8,7 @@ function search(message, results){
 
     try { 		
         searchMessage = 
-        +res[0].element_name+"@"
+        res[0].element_name+"@"
         +res[0].description+"@"
         +res[0].duration+"@"
         +res[0].type+"@"
