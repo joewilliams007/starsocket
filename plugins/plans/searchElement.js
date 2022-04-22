@@ -10,6 +10,8 @@ function search(message, results){
  
   
         for(var i = 0; i < 10;i++){
+
+            try {
            
                searchMessage += res[i].element_name+"@"
                 +res[i].description+"@"
@@ -19,6 +21,10 @@ function search(message, results){
                 +res[i].reports+"@"
                 +res[i].creator_name+"@"
                 +res[i].creator_id+"\n"
+
+            } catch (err) {
+             
+            }
             
          }
     
