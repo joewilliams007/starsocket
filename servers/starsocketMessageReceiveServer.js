@@ -224,6 +224,19 @@ creator_id = element[6]
 		});
 
 break;
+// delete elements ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "deleteElement":
+
+
+	connection.query( // register userstuff
+	`DELETE FROM Elements 
+	WHERE element_id = ${args[1]};`
+	, function (error, results, fields) {
+		if (error) serverInfo("error");
+		console.log('deleted element! >_< ');
+});
+
+break;
 // 4.2.x get inbox ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "clearinbox":
 	var userid = args[1]

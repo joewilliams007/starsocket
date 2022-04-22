@@ -20,7 +20,8 @@ function search(message, results){
                 +res[i].element_usage+"@"
                 +res[i].reports+"@"
                 +res[i].creator_name+"@"
-                +res[i].creator_id+"\n"
+                +res[i].creator_id+"@"
+                +res[i].element_id+"\n"
 
             } catch (err) {
              
