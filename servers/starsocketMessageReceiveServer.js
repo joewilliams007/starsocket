@@ -48,7 +48,7 @@ var server = net.createServer();
 // StartServer ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var server = net.createServer(function(socket) {
 
-	var activeUsers = 0;
+
 
 
 	console.log('-------------------------------------------- RECEIVING DATA FROM CLIENT ✅')
