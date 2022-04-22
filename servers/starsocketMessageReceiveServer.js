@@ -14,6 +14,7 @@ if (!fs.existsSync(dir)){
 var net = require('net');
 // plugins
 const starPlan = require("../plugins/plans/starPlan.js") 
+const searchElement = require("../plugins/plans/searchElement.js") 
 const aboutSportdash = require("../plugins/sportdash/about.js") 
 const termsOfService = require("../plugins/sportdash/termsOfService.js") 
 const shop = require("../plugins/sportdash/shop.js") 
@@ -187,6 +188,42 @@ break;
 // clear chat ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "clearChat":
 	clearChatMessages(message);
+break;
+// search elements ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "searchElement":
+	connection.query( // get the users stuff
+		`SELECT * FROM Elements
+		WHERE element_name LIKE '${message.split("=")[1]}';`
+
+		, function (error, results, fields) {
+			
+			if (error) serverInfo(error.message);
+			reply(searchElement(message, results))
+
+});
+break;
+// add to elements ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "addElement":
+
+element = message.split("@")
+element_name = element[0]
+description = element[1]
+duration = element[2]
+type = element[3]
+creator_name = element[4]
+creator_id = element[5]
+
+
+
+		connection.query( // register userstuff
+				`INSERT INTO Elements (element_name, description, duration, type, element_usage, reports,creator_name,creator_id) 
+				VALUES ("${element_name}","${description}","${duration}","${type}",0,0,"${creator_name}","${creator_id}")`
+				, function (error, results, fields) {
+					if (error) throw error;
+					console.log('Yey new element! >_< ');
+		});
+
+});
 break;
 // 4.2.x get inbox ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "clearinbox":

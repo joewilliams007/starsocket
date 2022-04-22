@@ -28,6 +28,20 @@ privacy varchar(200),
 PRIMARY KEY ( user_id )
 );
 
+CREATE TABLE Elements (
+element_id INT NOT NULL AUTO_INCREMENT,
+element_name varchar(255),
+creator_name varchar(255),
+creator_id varchar(255),
+description varchar(2000),
+duration varchar(255),
+type varchar(255),
+reports int,
+element_usage int,
+PRIMARY KEY ( element_id )
+);
+
+
 login :
 
 mysql -uroot -pjohannw2004
