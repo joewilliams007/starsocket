@@ -206,12 +206,12 @@ break;
 case "addElement":
 
 element = message.split("@")
-element_name = element[0]
-description = element[1]
-duration = element[2]
-type = element[3]
-creator_name = element[4]
-creator_id = element[5]
+element_name = element[1]
+description = element[2]
+duration = element[3]
+type = element[4]
+creator_name = element[5]
+creator_id = element[6]
 
 
 
@@ -223,7 +223,6 @@ creator_id = element[5]
 					console.log('Yey new element! >_< ');
 		});
 
-});
 break;
 // 4.2.x get inbox ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "clearinbox":
