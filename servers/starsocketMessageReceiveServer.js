@@ -199,9 +199,11 @@ case "searchFriends":
 		, function (error, results, fields) {
 			
 			if (error) serverInfo(error.message);
-			reply(searchUser(message, results))
+
+	reply(searchUser(message, results))
 
 });
+break;
 // search elements ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "searchElement":
 	connection.query( // get the users stuff
