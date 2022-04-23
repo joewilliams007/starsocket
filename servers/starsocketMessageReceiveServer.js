@@ -191,7 +191,7 @@ case "clearChat":
 	clearChatMessages(message);
 break;
 // search users ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-case "searchElement":
+case "searchFriends":
 	connection.query( // get the users stuff
 		`SELECT * FROM Users
 		WHERE username LIKE '%${message.split("=")[1]}%';`
