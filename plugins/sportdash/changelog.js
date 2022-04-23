@@ -2,7 +2,22 @@ function log(){
 
 // NEWVER NEW FIX REMOVED ADDED UPGRADED
 
-var changelog = `NEWVER@new app version@0.1.1#
+var changelog = `
+NEWVER@new app version@0.1.2#
+UPGRADED@friends profile
+
+- new animations
+- new design
+- faster access@0.1.2#
+NEW@Beta plan creator
+
+- search for elements online
+- upload your own elements
+- delete own uploaded elements
+- notice: 
+not complete yet
+old version remains available@0.1.2#
+NEWVER@new app version@0.1.1#
 ADDED@ability to share plan id and find plans by id@0.1.1#
 UPGRADED@leaderboard added functionality
 
