@@ -15,7 +15,7 @@ function search(message, results){
            
                searchMessage += res[i].user_id+"@"
                 +res[i].username+"@"
-                +res[i].error_style+"\n"
+                +res[i].error_style+"-\n"
                 console.log(res[i].username)
 
             } catch (err) {
