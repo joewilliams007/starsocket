@@ -30,6 +30,6 @@ function search(message, results){
         searchMessage = "no results"
     }
 
-    return searchMessage.replaceAll("undefined","");
+    return searchMessage;
 }
 module.exports = search;
