@@ -2,8 +2,7 @@ function log(){
 
 // NEWVER NEW FIX REMOVED ADDED UPGRADED
 
-var changelog = `
-NEWVER@new app version@0.1.2#
+var changelog = `NEWVER@new app version@0.1.2#
 UPGRADED@friends profile
 
 - new animations
