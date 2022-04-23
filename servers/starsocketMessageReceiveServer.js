@@ -26,6 +26,7 @@ const downloadPlans = require("../plugins/plans/downloadPlans.js")
 const downloadPlanById = require("../plugins/plans/downloadPlanById.js") 
 const getChatMessages = require("../plugins/online/getChatMessages.js") 
 const profile = require("../plugins/online/profile.js") 
+const searchUser = require("../plugins/online/searchUser.js") 
 const clearChatMessages = require("../plugins/online/clearChatMessages.js") 
 const register = require("../plugins/online/account/register.js") 
 const login = require("../plugins/online/account/login.js") 
@@ -189,6 +190,18 @@ break;
 case "clearChat":
 	clearChatMessages(message);
 break;
+// search users ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "searchElement":
+	connection.query( // get the users stuff
+		`SELECT * FROM Users
+		WHERE username LIKE '%${message.split("=")[1]}%';`
+
+		, function (error, results, fields) {
+			
+			if (error) serverInfo(error.message);
+			reply(searchUser(message, results))
+
+});
 // search elements ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "searchElement":
 	connection.query( // get the users stuff
