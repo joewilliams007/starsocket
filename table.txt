@@ -41,6 +41,20 @@ element_usage int,
 PRIMARY KEY ( element_id )
 );
 
+CREATE TABLE Plans (
+plan_name varchar(255),
+creator_name varchar(255),
+creator_id varchar(255),
+plan_name varchar(2000),
+duration varchar(255),
+category varchar(255),
+difficulty varchar(255),
+reports int,
+plan_usage int,
+plan_views,
+PRIMARY KEY ( plan_name )
+);
+
 
 login :
 

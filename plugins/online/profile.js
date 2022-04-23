@@ -14,6 +14,8 @@ function profile(message, results){
         +res[0].week_progress+" "
         +res[0].age+" "
         +res[0].weight+" "
+        +">_<"
+      //  +res[0].active_style+" "
 
        
     } catch (err) {
