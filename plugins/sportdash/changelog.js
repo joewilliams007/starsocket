@@ -5,6 +5,7 @@ function log(){
 var changelog = `NEWVER@new app version@0.1.2#
 UPGRADED@friends profile
 
+- option to search friends by username
 - new animations
 - new design
 - faster access@0.1.2#

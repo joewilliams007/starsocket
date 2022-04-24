@@ -26,12 +26,12 @@ function shop(message){
     var item4 = "1"
     var desc4 ="l i g h t  b o x"
     var coins4 = "100"
-    var id4 = "b1" 
+    var id4 = "box1" 
     
     var item5 = "2"
     var desc5 ="g r e e n s t a r  b o x"
     var coins5 = "200"
-    var id5 = "b2" 
+    var id5 = "box2" 
     
     
     function beforeMidnight(){
