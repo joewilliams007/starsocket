@@ -118,7 +118,22 @@ var server = net.createServer(function(socket) {
 		if (mm < 10) mm = '0' + mm;
 		var date = yyyy + '-' + mm + '-' + dd;
 
-		var message = receivedMessage.toString();
+		var messageSec = receivedMessage.toString();
+		var message = messageSec.split("§")[1];
+		var user_id = messageSec.split(" ")[0];
+		var password = messageSec.split(" ")[1];
+		var username = messageSec.split(" ")[2];
+
+
+	/*	serverInfo("new login")
+		connection.query( // get the users stuff
+		`SELECT * FROM Users
+		WHERE user_id="${args[1]}" AND password = "${args[2]}"`
+		, function (error, results, fields) {
+		});
+
+	*/
+		
 		var args = message.split(" ");
 		switch(args[0]) {
 // Case message starts with ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
