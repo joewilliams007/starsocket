@@ -1,8 +1,9 @@
 function log(){
 
-// NEWVER NEW FIX REMOVED ADDED UPGRADED
+// NEWVER NEW FIX REMOVED ADDED UPGRADED RELEASED
 
-var changelog = `NEWVER@24.04.22 new app version@0.1.2#
+var changelog = `NEWVER@new app version@0.1.2#
+RELEASED@version date 24.04.22@0.1.2
 UPGRADED@friends profile
 
 - option to search friends by username
