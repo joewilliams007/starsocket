@@ -44,11 +44,11 @@ function shop(message){
     shop =
     
     `${beforeMidnight()/60}h${beforeMidnight()}
-    ${item1}!-${desc1}!-${coins1}!-${id1}
-    ${item2}!-${desc2}!-${coins2}!-${id2}
-    ${item3}!-${desc3}!-${coins3}!-${id3}
-    ${item4}!-${desc4}!-${coins4}!-${id4}
-    ${item5}!-${desc5}!-${coins5}!-${id5}`
+${item1}!-${desc1}!-${coins1}!-${id1}
+${item2}!-${desc2}!-${coins2}!-${id2}
+${item3}!-${desc3}!-${coins3}!-${id3}
+${item4}!-${desc4}!-${coins4}!-${id4}
+${item5}!-${desc5}!-${coins5}!-${id5}`
                 
     }
 
