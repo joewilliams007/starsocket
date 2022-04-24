@@ -22,6 +22,7 @@ const changelogApp = require("../plugins/sportdash/changelog.js")
 const leaderboard = require("../plugins/sportdash/leaderboard.js") 
 const sendChatMessage = require("../plugins/online/chat.js") 
 const boost = require("../plugins/sportdash/boost.js") 
+const futureLogApp = require("../plugins/sportdash/futureLogApp.js") 
 const downloadPlans = require("../plugins/plans/downloadPlans.js") 
 const downloadPlanById = require("../plugins/plans/downloadPlanById.js") 
 const getChatMessages = require("../plugins/online/getChatMessages.js") 
@@ -128,6 +129,10 @@ break;
 // changelog sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "changelog":
 	reply(changelogApp())
+break;
+// future sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "futureLog":
+	reply(futureLogApp())
 break;
 // shop sportdash ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "shop":
