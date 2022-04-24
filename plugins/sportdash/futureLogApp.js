@@ -12,6 +12,7 @@ NEW@style upgrade
 
 - buy style animations in the shop
 - change style theme color
+- styles have sounds
 - buy style particles@soon`
     
         return changelog;
