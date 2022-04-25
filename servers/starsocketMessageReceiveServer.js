@@ -54,7 +54,7 @@ var server = net.createServer(function(socket) {
 
 
 
-	console.log('✅ - - - - - - - -  RECEIVING DATA FROM CLIENT - - - - - - - -')
+	console.log('✅ - - - - - - - -  RECEIVING DATA FROM CLIENT - - - - - - - -\n')
 	serverInfo('NEW CONNECTION OF IP: '+socket.remoteAddress);
     var receivedMessage = ""
 	var ip = socket.remoteAddress
@@ -739,7 +739,7 @@ default:
 
 // 5.1 End of cases ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------					
 			}
-			console.log('✅ - - - - - - - - FINISHED RECEIVING - - - - - - - -')
+			console.log('✅ - - - - - - - - FINISHED RECEIVING - - - - - - - -\n')
 		socket.destroy()
 	});
 
