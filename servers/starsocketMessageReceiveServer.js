@@ -560,7 +560,7 @@ fs.unlink('users/'+id+'/plan'+args[2]+'.txt', function (err) {
 fs.appendFile('users/'+id+'/plan'+args[2]+'.txt', data, function (err) {
 	if (err) throw err;
 });
-
+var db =  message.split("##########");
 connection.query( // register userstuff
 `INSERT INTO Plans (plan_name, plan_description, creator_name, creator_id,plan_id, duration, category, difficulty, reports, plan_usage, plan_stars,privacy,plan_views) 
 VALUES ("${db[2]}","${db[3]}","${db[4]}","${db[5]}","${db[6]}",Number(${db[7]}),"${db[8]}","${db[9]}",Number(${db[10]}),0,0,0,1,0)`
