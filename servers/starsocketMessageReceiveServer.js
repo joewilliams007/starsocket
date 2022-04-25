@@ -54,9 +54,8 @@ var server = net.createServer(function(socket) {
 
 
 
-	console.log('-------------------------------------------- RECEIVING DATA FROM CLIENT ✅')
-	serverInfo('A new connection has been established.');
-	serverInfo("now processing received data of ip "+socket.remoteAddress)
+	console.log('✅ - - - - - - - -  RECEIVING DATA FROM CLIENT - - - - - - - -')
+	serverInfo('NEW CONNECTION OF IP: '+socket.remoteAddress);
     var receivedMessage = ""
 	var ip = socket.remoteAddress
 	var dir = "./user_messages/"+ip;
@@ -102,9 +101,9 @@ var server = net.createServer(function(socket) {
 	});
 	
 	socket.on('end', function() {
-		serverInfo("size of received message string: " + receivedMessage.length.toString())
+		serverInfo("SIZE OF MEESAGE: " + receivedMessage.length.toString()+" characters")
 		if(receivedMessage.length > 0){
-			serverInfo("received message: " + receivedMessage)
+			serverInfo("RECEIVED MESSAGE: " + receivedMessage)
 			
 		}
 
@@ -740,7 +739,7 @@ default:
 
 // 5.1 End of cases ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------					
 			}
-			console.log('-------------------------------------------- FINISHED RECEIVING ✅')
+			console.log('✅ - - - - - - - - FINISHED RECEIVING - - - - - - - -')
 		socket.destroy()
 	});
 
