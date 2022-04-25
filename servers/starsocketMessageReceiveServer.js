@@ -124,6 +124,8 @@ var server = net.createServer(function(socket) {
 		var password = messageSec.split(" ")[1];
 		var username = messageSec.split(" ")[2];
 
+		serverInfo("CONNECTED USER: "+username+" #"+user_id)
+
 
 	/*	serverInfo("new login")
 		connection.query( // get the users stuff
