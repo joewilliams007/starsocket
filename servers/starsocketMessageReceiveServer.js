@@ -513,7 +513,7 @@ var db =  message.split("##########");
 
 connection.query( // register userstuff
 `INSERT INTO Plans (plan_name, plan_description, creator_name, creator_id,plan_id, duration, category, difficulty, reports, plan_usage, plan_stars,privacy,plan_views) 
-VALUES ("${db[2]}","${db[3]}","${db[4]}","${db[5]}","${db[6]}",Number(${db[7]}),"${db[8]}","${db[9]}",Number(${db[10]}),0,0,0,0,0)`
+VALUES ("${db[2]}","${db[3]}","${db[4]}","${db[5]}","${db[6]}",${db[7]},"${db[8]}","${db[9]}",0,0,0,1,0)`
 , function (error, results, fields) {
 	if (error) throw error;
 });
