@@ -55,8 +55,8 @@ var server = net.createServer(function(socket) {
 	serverInfo('NEW CONNECTION OF IP: '+socket.remoteAddress);
     var receivedMessage = ""
 	var ip = socket.remoteAddress
-	ipFolder(ip)
-	
+	var _messages = ipFolder(ip)
+
 	socket.on('data', function(chunk) {
 		//serverInfo(`receiving message chunk...`)
 		receivedMessage += chunk.toString() 

@@ -37,5 +37,7 @@ function ipFolder(ip){
 		}	  
 	}
 
+    return _messages;
+
 }
 module.exports = ipFolder;
