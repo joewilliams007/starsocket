@@ -178,13 +178,9 @@ case "searchFriends":
 	connection.query( // get the users stuff
 		`SELECT * FROM Users
 		WHERE username LIKE '%${message.split("=")[1]}%';`
-
 		, function (error, results, fields) {
-			
 			if (error) serverInfo(error.message);
-
 	reply(searchUser(message, results))
-
 });
 break;
 // search elements ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -192,17 +188,13 @@ case "searchElement":
 	connection.query( // get the users stuff
 		`SELECT * FROM Elements
 		WHERE element_name LIKE '%${message.split("=")[1]}%';`
-
 		, function (error, results, fields) {
-			
 			if (error) serverInfo(error.message);
 			reply(searchElement(message, results))
-
 });
 break;
 // add to elements ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "addElement":
-
 element = message.split("@")
 element_name = element[1]
 description = element[2]
@@ -210,9 +202,6 @@ duration = element[3]
 type = element[4]
 creator_name = element[5]
 creator_id = element[6]
-
-
-
 		connection.query( // register userstuff
 				`INSERT INTO Elements (element_name, description, duration, type, element_usage, reports,creator_name,creator_id) 
 				VALUES ("${element_name}","${description}","${duration}","${type}",0,0,"${creator_name}","${creator_id}")`
@@ -224,8 +213,6 @@ creator_id = element[6]
 break;
 // delete elements ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "deleteElement":
-
-
 	connection.query( // register userstuff
 	`DELETE FROM Elements 
 	WHERE element_id = ${args[1]};`
@@ -233,7 +220,6 @@ case "deleteElement":
 		if (error) serverInfo("error");
 		console.log('deleted element! >_< ');
 });
-
 break;
 // 4.2.x get inbox ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "clearinbox":
@@ -251,9 +237,7 @@ try {
 	var comments = fs.readFileSync("./users/"+userid+"/chatinbox.txt");
 	_messages.push(socket.remoteAddress+" "+comments)
 	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-} catch (err){
-	
-}
+} catch (err){}
 break;
 // boost ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "boost":
@@ -262,18 +246,15 @@ break;
 // 4.3 set password ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setPassword":
 	var changing = "password"
-
 		connection.query(
 			`UPDATE Users
 			SET ${changing} = "${args[2]}"
 			WHERE user_id = ${args[1]}`
-	
 			, function (error, results, fields) {
 				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
 				
 			});
 	serverInfo(changing+" updated of user #"+args[1])
-	
 break;
 // 4.4 set username ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setUsername":
