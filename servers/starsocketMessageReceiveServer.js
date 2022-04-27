@@ -245,61 +245,19 @@ case "boost":
 break;
 // 4.3 set password ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setPassword":
-	var changing = "password"
-		connection.query(
-			`UPDATE Users
-			SET ${changing} = "${args[2]}"
-			WHERE user_id = ${args[1]}`
-			, function (error, results, fields) {
-				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
-				
-			});
-	serverInfo(changing+" updated of user #"+args[1])
+	set("password")
 break;
 // 4.4 set username ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setUsername":
-	var changing = "username"
-		connection.query(
-			`UPDATE Users
-			SET ${changing} = "${args[2]}"
-			WHERE user_id = ${args[1]}`
-	
-			, function (error, results, fields) {
-				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
-				
-			});
-	serverInfo(changing+" updated of user #"+args[1])
-	
+	set("username")
 break;
 // 4.5 set email ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setEmail":
-	var changing = "email"
-		connection.query(
-			`UPDATE Users
-			SET ${changing} = "${args[2]}"
-			WHERE user_id = ${args[1]}`
-	
-			, function (error, results, fields) {
-				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
-				
-			});
-	serverInfo(changing+" updated of user #"+args[1])
-	
+	set("email")
 break;
 // 4.6 set xp ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setXp":	
-		connection.query(
-
-			`UPDATE Users
-			SET xp = ${args[2]}
-			WHERE user_id = ${args[1]}`
-	
-			, function (error, results, fields) {
-				if (error) serverInfo("error updating xp of #"+args[1]);
-				
-			});
-	serverInfo("xp updated of user #"+args[1])
-	
+	set("xp")
 break;
 // Leaderboard ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "leaderboard":	
@@ -314,120 +272,31 @@ case "leaderboard":
 break;
 // 4.6.1 set todays progress ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setTodayProgress":	
-		connection.query(
-
-			`UPDATE Users
-			SET today_progress = ${args[2]}
-			WHERE user_id = ${args[1]}`
-	
-			, function (error, results, fields) {
-				if (error) serverInfo("error updating day xp of #"+args[1]);
-				
-			});
-	serverInfo("day xp updated of user #"+args[1])
-	
+	set("today_progress")
 break;
 // 4.6.2 set weeks progress ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setWeekProgress":	
-		connection.query(
-
-			`UPDATE Users
-			SET week_progress = ${args[2]}
-			WHERE user_id = ${args[1]}`
-	
-			, function (error, results, fields) {
-				if (error) serverInfo("error updating week xp of #"+args[1]);
-				
-			});
-	serverInfo("week xp updated of user #"+args[1])
-	
+	set("week_progress")
 break;
 // 4.7 set age ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setAge":
-	
-		var changing = "age"
-		connection.query(
-
-			`UPDATE Users
-			SET ${changing} = ${args[2]}
-			WHERE user_id = ${args[1]}`
-	
-			, function (error, results, fields) {
-				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
-				
-			});
-	
-	serverInfo(changing+" updated of user #"+args[1])
-
+	set("age")
 break;
 // 4.8 set weight ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setWeight":
-	var changing = "weight"
-		
-		connection.query(
-			`UPDATE Users
-			SET ${changing} = ${args[2]}
-			WHERE user_id = ${args[1]}`
-	
-			, function (error, results, fields) {
-				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
-				
-			});
-	serverInfo(changing+" updated of user #"+args[1])
-	
+	set("weight")
 break;
 // 4.9 set energy ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setEnergy":
-
-		connection.query(
-
-			`UPDATE Users
-			SET xp = ${args[2]}
-			WHERE user_id = ${args[1]}`
-	
-			, function (error, results, fields) {
-				if (error) serverInfo("error updating energy of #"+args[1]);
-			});
-	
-			logAll();
-
-	serverInfo("energy updated of user #"+args[1])
-
+	set("energy")
 break;
 // 4.10 set logins ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-case "setLogins":
-
-	var changing = "logins"
-		
-		connection.query(
-			`UPDATE Users
-			SET ${changing} = ${args[2]}
-			WHERE user_id = ${args[1]}`
-	
-			, function (error, results, fields) {
-				if (error) serverInfo("error updating "+changing+" of #"+args[1]);
-				
-			});
-	serverInfo(changing+" updated of user #"+args[1])
-
+case "setLogins":	
+	set("logins")
 break;
 // 4.10.1 set energy ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setUsername":
-
-		connection.query(
-
-			`UPDATE Users
-			SET username = ${args[2]}
-			WHERE user_id = ${args[1]}`
-	
-			, function (error, results, fields) {
-				if (error) serverInfo("error updating username of #"+args[1]);
-			});
-	
-		
-
-	serverInfo("username updated of user #"+args[1])
-
+	set(username)	
 break;
 // 4.11 upload plans ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "upload_plans":
@@ -718,10 +587,18 @@ function logAll(){
 	});
 }
 
+function set(option) {
+	connection.query(
+		`UPDATE Users
+		SET ${option} = ${args[2]}
+		WHERE user_id = ${args[1]}`
+		, function (error, results, fields) {
+			if (error) serverInfo("error updating "+option+" of #"+args[1]);
+		});
+		serverInfo(option+" updated of user #"+args[1])
+}
 
 // 7 End of server ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------					
 server.listen(port);
 serverInfo("Started server on port: " + port)
 // 7.1 End of file >_< ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------					
-
-
