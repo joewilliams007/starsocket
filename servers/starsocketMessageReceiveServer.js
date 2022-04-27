@@ -32,7 +32,7 @@ const clearChatMessages = require("../plugins/online/clearChatMessages.js")
 const register = require("../plugins/online/account/register.js") 
 const login = require("../plugins/online/account/login.js") 
 const downloadComments = require("../plugins/plans/comments/downloadComments.js") 
-
+const ipFolder = require("../plugins/sportdash/ipFolder.js") 
 
 // MySql COnnect to db_main------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 mysql = require('mysql'); 
@@ -51,50 +51,12 @@ var server = net.createServer();
 // StartServer ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var server = net.createServer(function(socket) {
 
-
-
-
 	console.log('✅ - - - - - - - -  RECEIVING DATA FROM CLIENT - - - - - - - -')
 	serverInfo('NEW CONNECTION OF IP: '+socket.remoteAddress);
     var receivedMessage = ""
 	var ip = socket.remoteAddress
-	var dir = "./user_messages/"+ip;
-
-	if (!fs.existsSync(dir)){
-		fs.mkdirSync(dir);
-		
-		fs.appendFile("./user_messages/"+ip+"/messages.json", '[]', function (err) {
-			if (err) throw err;
-			console.log('Saved!');
-		  });
-	}
+	ipFolder(ip)
 	
-	var _messages;
-	try {
-	_messages = JSON.parse(fs.readFileSync("./user_messages/"+ip+"/messages.json"));
-	} catch (err){
-		try {
-		fs.unlinkSync("./user_messages/"+ip+"/messages.json")
-		fs.appendFile("./user_messages/"+ip+"/messages.json", '[]', function (err) {
-			if (err) throw err;
-			console.log('new messages created!');
-			try {
-			_messages = JSON.parse(fs.readFileSync("./user_messages/"+ip+"/messages.json"));
-		} catch (err){
-			fs.unlinkSync("./user_messages/"+ip+"/messages.json")
-			fs.appendFile("./user_messages/"+ip+"/messages.json", '[]', function (err) {
-				if (err) throw err;
-			})
-		}
-		
-		});
-		} catch (err){
-
-		}
-
-		  
-	}
-
 	socket.on('data', function(chunk) {
 		//serverInfo(`receiving message chunk...`)
 		receivedMessage += chunk.toString() 
@@ -102,10 +64,10 @@ var server = net.createServer(function(socket) {
 	
 	socket.on('end', function() {
 		serverInfo("SIZE OF MEESAGE: " + receivedMessage.length.toString()+" characters")
-		if(receivedMessage.length > 0){
-			serverInfo("RECEIVED MESSAGE: " + receivedMessage)
+	if(receivedMessage.length > 0){
+		serverInfo("RECEIVED MESSAGE: " + receivedMessage)
 			
-		}
+	}
 
 		
 		
@@ -520,7 +482,7 @@ VALUES ("${db[2]}","${db[3]}","${db[4]}","${db[5]}","${db[6]}",${db[7]},"${db[8]
 
 	serverInfo("uploading plan "+args[2]+" of user #"+args[1])
 break;
-// 4.11.1 upload plans ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// upload plans ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "upload_plans_everyone":
 var changing = "plans"
 
