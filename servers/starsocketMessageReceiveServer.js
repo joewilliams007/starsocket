@@ -565,27 +565,25 @@ default:
 		fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 	}
 // 6 functions ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------					
-function serverInfo(info){
-	console.log(">_< (receiving) " + info)
-}
 
-function logAll(){
-	connection.query('SELECT * FROM Users', function (error, results, fields) {
-		if (error) throw error;
-		console.log('All tables: ', results);
-	});
-}
 
-function set(option) {
-	connection.query(
-		`UPDATE Users
-		SET ${option} = ${args[2]}
-		WHERE user_id = ${args[1]}`
-		, function (error, results, fields) {
-			if (error) serverInfo("error updating "+option+" of #"+args[1]);
+	function logAll(){
+		connection.query('SELECT * FROM Users', function (error, results, fields) {
+			if (error) throw error;
+			console.log('All tables: ', results);
 		});
-		serverInfo(option+" updated of user #"+args[1])
-}
+	}
+
+	function set(option) {
+		connection.query(
+			`UPDATE Users
+			SET ${option} = ${args[2]}
+			WHERE user_id = ${args[1]}`
+			, function (error, results, fields) {
+				if (error) serverInfo("error updating "+option+" of #"+args[1]);
+			});
+			serverInfo(option+" updated of user #"+args[1])
+	}
 // 5.1 End of cases ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------					
 			}
 			console.log('✅✅ - - - - - - - - FINISHED RECEIVING - - - - - - - -')
@@ -597,6 +595,9 @@ function set(option) {
 	});
 });
 
+function serverInfo(info){
+	console.log(">_< (receiving) " + info)
+}
 
 // 7 End of server ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------					
 server.listen(port);
