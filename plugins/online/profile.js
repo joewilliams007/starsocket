@@ -9,7 +9,7 @@ function profile(message, results){
 
     try {
 
-        var date = res[0].account_created.split("-");
+        var date = res[0]
         var day = date[2]
         var month = date[1]
         var year = date[0]
@@ -23,7 +23,7 @@ function profile(message, results){
         +res[0].age+" "
         +res[0].weight+" "
         +">_<"+" "
-        +day+"."+month+"."+year
+        +date
       //  +res[0].active_style+" "
 
        
