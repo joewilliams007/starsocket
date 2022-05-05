@@ -481,7 +481,7 @@ if (stars.includes(userid)){
 		SET plan_stars = Number(${stars1})
 		WHERE plan_id = ${planid}`
 		, function (error, results, fields) {
-			if (error) throw err;
+			if (error) throw serverInfo(error);
 		});
 	}
 	})
