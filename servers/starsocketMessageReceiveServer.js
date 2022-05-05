@@ -442,7 +442,7 @@ if (stars.includes(userid)){
 		connection.query(
 			`UPDATE Plans
 			SET plan_stars = Number(${stars1})
-			WHERE plan_id = "${planid}"`
+			WHERE plan_id = "${planid.replace("'","")}"`
 			, function (error, results, fields) {
 				if (error) serverInfo("error updating ");
 			});
