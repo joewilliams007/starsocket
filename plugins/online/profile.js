@@ -9,7 +9,7 @@ function profile(message, results){
 
     try {
 
-        var date = res[0]
+        var date = res[0].account_created
         var day = date[2]
         var month = date[1]
         var year = date[0]
