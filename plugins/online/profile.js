@@ -6,7 +6,15 @@ function profile(message, results){
     var profile;
     var res = JSON.parse(JSON.stringify(results))
 
+
     try {
+
+        var date = res[0].account_created.split("-");
+        var day = date[2]
+        var month = date[1]
+        var year = date[0]
+
+
         profile = args[1]+" "
         +res[0].username+" "
         +res[0].xp+" "
@@ -14,7 +22,8 @@ function profile(message, results){
         +res[0].week_progress+" "
         +res[0].age+" "
         +res[0].weight+" "
-        +">_<"
+        +">_<"+" "
+        +day+"."+month+"."+year
       //  +res[0].active_style+" "
 
        
