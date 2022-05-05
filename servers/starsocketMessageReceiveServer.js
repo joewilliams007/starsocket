@@ -434,6 +434,18 @@ if (stars.includes(userid)){
 		try {
 		_messages.push(socket.remoteAddress+" star-removed")
 		fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
+
+
+var stars = fs.readFileSync('plans/stars/'+planid+'.txt');
+stars1 = stars.toString().split('#').length-2;
+
+connection.query(
+	`UPDATE Plans
+	SET plan_stars = Number(${stars1})
+	WHERE plan_id = ${planid}`
+	, function (error, results, fields) {
+		if (error) serverInfo("error updating "+option+" of #"+args[1]);
+	});
 		
 		var replace = require('replace-in-file');
 		var options = {
@@ -453,6 +465,17 @@ if (stars.includes(userid)){
 
 	} catch (err) { }
 } else {
+	var stars = fs.readFileSync('plans/stars/'+planid+'.txt');
+	stars1 = stars.toString().split('#').length;
+
+	connection.query(
+	`UPDATE Plans
+	SET plan_stars = Number(${stars1})
+	WHERE plan_id = ${planid}`
+	, function (error, results, fields) {
+		if (error) serverInfo("error updating "+option+" of #"+args[1]);
+	});
+
 	fs.appendFile('plans/stars/'+planid+'.txt', userid, function (err) {
 	if (err) {
 		// append failed
