@@ -442,7 +442,7 @@ if (stars.includes(userid)){
 		connection.query(
 			`UPDATE Plans
 			SET plan_stars = Number(${stars1})
-			WHERE plan_id = ${planid}`
+			WHERE plan_id = "${planid}"`
 			, function (error, results, fields) {
 				if (error) serverInfo("error updating ");
 			});
@@ -479,7 +479,7 @@ if (stars.includes(userid)){
 		connection.query(
 		`UPDATE Plans
 		SET plan_stars = Number(${stars1})
-		WHERE plan_id = ${planid}`
+		WHERE plan_id = "${planid}"`
 		, function (error, results, fields) {
 			if (error) throw serverInfo(error);
 		});
