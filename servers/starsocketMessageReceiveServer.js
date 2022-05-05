@@ -325,7 +325,7 @@ var db =  message.split("##########");
 
 connection.query( // register userstuff
 `INSERT INTO Plans (plan_name, plan_description, creator_name, creator_id,plan_id, duration, category, difficulty, reports, plan_usage, plan_stars,privacy,plan_views) 
-VALUES ("${db[2]}","${db[3]}","${db[4]}","${db[5]}","${db[6]}",${db[7]},"${db[8]}","${db[8]}-${db[9]}",0,0,0,1,0)`
+VALUES ("${db[2]}","${db[3]}","${db[4]}","${db[5]}","${planId}",${db[7]},"${db[8]}","${db[9]}",0,0,0,1,0)`
 , function (error, results, fields) {
 	if (error) throw error;
 });
@@ -375,7 +375,7 @@ fs.appendFile('users/'+id+'/plan'+args[2]+'.txt', data, function (err) {
 var db =  message.split("##########");
 connection.query( // register userstuff
 `INSERT INTO Plans (plan_name, plan_description, creator_name, creator_id,plan_id, duration, category, difficulty, reports, plan_usage, plan_stars,privacy,plan_views) 
-VALUES ("${db[2]}","${db[3]}","${db[4]}","${db[5]}","${db[6]}",${db[7]},"${db[8]}","${db[8]}-${db[9]}",0,0,0,1,0)`
+VALUES ("${db[2]}","${db[3]}","${db[4]}","${db[5]}","${planId}",${db[7]},"${db[8]}",${db[9]}",0,0,0,1,0)`
 , function (error, results, fields) {
 	if (error) throw error;
 });
@@ -444,7 +444,7 @@ if (stars.includes(userid)){
 			SET plan_stars = Number(${stars1})
 			WHERE plan_id = ${planid}`
 			, function (error, results, fields) {
-				if (error) serverInfo("error updating "+planid);
+				if (error) serverInfo("error updating ");
 			});
 
 			
