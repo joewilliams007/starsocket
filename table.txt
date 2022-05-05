@@ -54,6 +54,7 @@ reports int,
 plan_usage int,
 plan_stars int,
 privacy int,
+date DATE,
 plan_views int,
 PRIMARY KEY ( plan_name )
 );
