@@ -2,7 +2,10 @@ function log(){
 
 // NEWVER NEW FIX REMOVED ADDED UPGRADED RELEASED
 
-var changelog = `NEWVER@new app version@0.1.2.1#
+var changelog = `NEWVER@new app version@0.1.2.2#
+NEW@Stars && Views of plans have been added@0.1.2.2#
+UPGRADE@"friends" page has been improved@0.1.2.2#
+NEWVER@new app version@0.1.2.1#
 RELEASED@version 0.1.2 release date 5.05.22@0.1.2.1#
 UPGRADED@beta plan creator
 
