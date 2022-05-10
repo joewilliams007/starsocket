@@ -165,7 +165,7 @@ case "login":
 
 	connection.query( // get the users stuff
 		`SELECT * FROM Users
-		WHERE user_id="${args[1]}" AND password = "${encryptedPassword}"`
+		WHERE user_id="${args[1]}"`
 		, function (error, results, fields) {
 			if (error) serverInfo(error.message);
 			var res = JSON.parse(JSON.stringify(results))
