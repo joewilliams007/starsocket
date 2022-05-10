@@ -35,6 +35,18 @@ const login = require("../plugins/online/account/login.js")
 const downloadComments = require("../plugins/plans/comments/downloadComments.js") 
 const ipFolder = require("../plugins/sportdash/ipFolder.js") 
 
+// Encryption 
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('sportdashIsFireBroThisIsSickHeheheKeepSecret');
+
+/*
+var encryptedString = cryptr.encrypt('bacon');
+var decryptedString = cryptr.decrypt(encryptedString);
+
+console.log(encryptedString); // 2a3260f5ac4754b8ee3021ad413ddbc11f04138d01fe0c5889a0dd7b4a97e342a4f43bb43f3c83033626a76f7ace2479705ec7579e4c151f2e2196455be09b29bfc9055f82cdc92a1fe735825af1f75cfb9c94ad765c06a8abe9668fca5c42d45a7ec233f0
+console.log(decryptedString); // bacon
+*/
+
 // MySql COnnect to db_main------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 mysql = require('mysql'); 
 const { exec } = require('child_process');
@@ -124,9 +136,16 @@ break;
 // register ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "register":
 	serverInfo("new registration")
+
+	
+	var encryptedPassword = cryptr.encrypt(args[2]);
+	
+// var decryptedString = cryptr.decrypt(encryptedString);
+//	console.log(decryptedString); // bacon
+
 		connection.query( // register userstuff
 				`INSERT INTO Users (username, password, email, account_created, xp, coins, logins, weight, age, energy) 
-				VALUES ("${args[1]}","${args[2]}","${args[3]}","${date}",0,10,1, 0, 0, 0)`
+				VALUES ("${args[1]}","${encryptedPassword}","${args[3]}","${date}",0,10,1, 0, 0, 0)`
 				, function (error, results, fields) {
 					if (error) throw error;
 					console.log('Yey a new registration! >_< ');
@@ -134,7 +153,7 @@ case "register":
 
 		connection.query( // get the users id
 		`SELECT user_id FROM Users
-		WHERE username="${args[1]}" AND password = "${args[2]}" AND email= "${args[3]}"`
+		WHERE username="${args[1]}" AND password = "${encryptedPassword}" AND email= "${args[3]}"`
 		, function (error, results, fields) {
 			if (error) serverInfo(error.message);
 			reply(register(message, results))
@@ -143,9 +162,10 @@ break;
 // Login ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "login":
 	serverInfo("new login")
+	var encryptedPassword = cryptr.encrypt(args[2]);
 	connection.query( // get the users stuff
 		`SELECT * FROM Users
-		WHERE user_id="${args[1]}" AND password = "${args[2]}"`
+		WHERE user_id="${args[1]}" AND password = "${encryptedPassword}"`
 		, function (error, results, fields) {
 			if (error) serverInfo(error.message);
 			reply(login(message, results))
@@ -246,7 +266,17 @@ case "boost":
 break;
 // 4.3 set password ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setPassword":
-	set("password")
+	
+	var encryptedPassword = cryptr.encrypt(args[2]);
+	connection.query(
+		`UPDATE Users
+		SET password = ${encryptedPassword}
+		WHERE user_id = ${args[1]}`
+		, function (error, results, fields) {
+			if (error) serverInfo("error updating "+option+" of #"+args[1]);
+		});
+		serverInfo(option+" updated of user #"+args[1])
+
 break;
 // 4.4 set username ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setUsername":
