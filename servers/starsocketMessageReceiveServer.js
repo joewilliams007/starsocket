@@ -163,6 +163,8 @@ break;
 case "login":
 	serverInfo("new login")
 	var encryptedPassword = cryptr.encrypt(args[2]);
+
+	console.log(encryptedPassword)
 	connection.query( // get the users stuff
 		`SELECT * FROM Users
 		WHERE user_id="${args[1]}" AND password = "${encryptedPassword}"`
