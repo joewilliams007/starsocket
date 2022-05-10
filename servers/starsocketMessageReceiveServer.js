@@ -13,7 +13,8 @@ if (!fs.existsSync(dir)){
 // requiere plugins ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var net = require('net');
 // plugins
-const starPlan = require("../plugins/plans/starPlan.js") 
+const starPlan = require("../plugins/plans/stasrPlan.js") 
+const viewPlan = require("../plugins/plans/viewPlan.js") 
 const searchElement = require("../plugins/plans/searchElement.js") 
 const aboutSportdash = require("../plugins/sportdash/about.js") 
 const termsOfService = require("../plugins/sportdash/termsOfService.js") 
@@ -418,9 +419,43 @@ case "commentPlan":
 	}
 	})
 break;
-// 4.12.. get plan stars ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-case "getStars":
-	reply(starPlan(args[1]))
+// get plan stars ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "getStars": // (and views)
+	var viewsAndStars = starPlan(args[1])+"#"+viewPlan(args[1])
+	reply(viewsAndStars)
+break;
+// view on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "viewPlan":
+	var userid = "+#"+args[1]+"+"
+	var planid = args[2]
+	var views = "none"
+
+try {
+	views = fs.readFileSync('plans/views/'+planid+'.txt');
+} catch (err) { }
+
+if (views.includes(userid)){
+		
+} else {
+
+	fs.appendFile('plans/views/'+planid+'.txt', userid, function (err) {
+	if (err) {
+		// append failed
+	} else {
+		var views = fs.readFileSync('plans/views/'+planid+'.txt');
+		views1 = views.toString().split('#').length-1;
+	
+		connection.query(
+		`UPDATE Plans
+		SET plan_views = ${Number(views1)}
+		WHERE plan_id = "${planid}"`
+		, function (error, results, fields) {
+			if (error) throw serverInfo(error);
+		});
+	}
+	})
+
+}
 break;
 // 4.12..  star on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "starPlan":
