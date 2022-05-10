@@ -13,7 +13,7 @@ if (!fs.existsSync(dir)){
 // requiere plugins ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var net = require('net');
 // plugins
-const starPlan = require("../plugins/plans/stasrPlan.js") 
+const starPlan = require("../plugins/plans/starPlan.js") 
 const viewPlan = require("../plugins/plans/viewPlan.js") 
 const searchElement = require("../plugins/plans/searchElement.js") 
 const aboutSportdash = require("../plugins/sportdash/about.js") 
