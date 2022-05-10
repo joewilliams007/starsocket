@@ -168,7 +168,7 @@ case "login":
 		WHERE user_id="${args[1]}" AND password = "${encryptedPassword}"`
 		, function (error, results, fields) {
 			if (error) serverInfo(error.message);
-
+			var res = JSON.parse(JSON.stringify(results))
 
 			if (cryptr.decrypt(res[0].password) == args[2]) {
 				reply(login(message, results))
