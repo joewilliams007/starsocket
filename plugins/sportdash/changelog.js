@@ -5,13 +5,14 @@ function log(){
 var changelog = 
 
 `NEWVER@new app version@0.1.2.2#
+RELEASED@version 0.1.2.2 release date 10.05.22@0.1.2.2#
 NEW@password encryption added@0.1.2.2#
 NEW@Stars && Views of plans have been added@0.1.2.2#
 UPGRADED@"friends" page has been improved@0.1.2.2#
 `
 
 +`NEWVER@new app version@0.1.2.1#
-RELEASED@version 0.1.2 release date 5.05.22@0.1.2.1#
+RELEASED@version 0.1.2.1 release date 5.05.22@0.1.2.1#
 UPGRADED@beta plan creator
 
 - plan element limit increased to 100
@@ -45,7 +46,8 @@ UPGRADED@leaderboard added functionality
 - new colors added
 - own user account in blue@0.1.1#
 FIX@profile plan download crashing randomly@0.1.1#
-FIX@user profile not opening with link@0.1.1#`
+FIX@user profile not opening with link@0.1.1#
+`
 
 +`NEWVER@new app version@0.1#
 UPGRADED@first iteration of beta launch@0.1`
