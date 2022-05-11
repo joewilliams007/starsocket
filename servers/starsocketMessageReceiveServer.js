@@ -198,6 +198,116 @@ break;
 case "follows":
 	reply(follows(args[1]))
 break;
+// follow/unfollow ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "follow":
+	var userid = args[1] // source
+	var useridplus = "+#"+args[1]+"+" // source
+
+	var id = args[2] // target id
+	var idplus = "+#"+args[2]+"+" // target id
+	var followers = "none"
+
+	try {
+		followers = fs.readFileSync('./users/'+id+'/followers.txt');
+	} catch (err) { }
+
+if (followers.includes(userid)){
+		try {
+		reply("follow-removed")
+
+		var followers = fs.readFileSync('./users/'+id+'/followers.txt');
+		followers1 = followers.toString().split('#').length-2;
+
+		connection.query(
+			`UPDATE Users
+			SET followers = ${Number(followers1)}
+			WHERE user_id = "${userid}"`
+			, function (error, results, fields) {
+			if (error) serverInfo("error updating ");
+		});
+
+		var following = fs.readFileSync('./users/'+id+'/follows.txt');
+		following1 = following.toString().split('#').length-2;
+
+		connection.query(
+			`UPDATE Users
+			SET follows = ${Number(following1)}
+			WHERE user_id = "${id}"`
+			, function (error, results, fields) {
+			if (error) serverInfo("error updating ");
+		});
+
+
+					var replace = require('replace-in-file');
+					var options = {
+
+						files: './users/'+id+'/followers.txt',
+						from: useridplus,
+						to: ' ',
+					};
+
+					replace(options)
+					.then(changedFiles => {
+						console.log('Modified files:', changedFiles.join(', '));
+					})
+					.catch(error => {
+						console.error('Error occurred:', error);
+					});
+
+					var replace = require('replace-in-file');
+					var options = {
+
+						files: './users/'+userid+'/follows.txt',
+						from: idplus,
+						to: ' ',
+					};
+
+					replace(options)
+					.then(changedFiles => {
+						console.log('Modified files:', changedFiles.join(', '));
+					})
+					.catch(error => {
+						console.error('Error occurred:', error);
+					});
+
+	} catch (err) { }
+} else {
+
+
+	fs.appendFile('./users/'+id+'/follows.txt', useridplus, function (err) {
+	if (err) {
+		// append failed
+	} else {
+
+		fs.appendFile('./users/'+userid+'/follows.txt', useridplus, function (err) {
+			if (err) { 	}})
+
+		var followers = fs.readFileSync('./users/'+id+'/followers.txt');
+		followers1 = followers.toString().split('#').length-2;
+
+		connection.query(
+			`UPDATE Users
+			SET followers = ${Number(followers1)}
+			WHERE user_id = "${id}"`
+			, function (error, results, fields) {
+			if (error) serverInfo("error updating ");
+		});
+
+		var following = fs.readFileSync('./users/'+id+'/follows.txt');
+		following1 = following.toString().split('#').length-2;
+
+		connection.query(
+			`UPDATE Users
+			SET follows = ${Number(following1)}
+			WHERE user_id = "${userid}"`
+			, function (error, results, fields) {
+			if (error) serverInfo("error updating ");
+		});
+	}
+	})
+	reply("follow-added")
+}
+break;
 // send message ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "chat":
 	sendChatMessage(message)
@@ -572,6 +682,7 @@ if (stars.includes(userid)){
 	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
 }
 break;
+
 // 4.12.2 clear comments ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "clearComments":
 	var planid = args[1]
