@@ -22,6 +22,8 @@ const shop = require("../plugins/sportdash/shop.js")
 const changelogApp = require("../plugins/sportdash/changelog.js") 
 const leaderboard = require("../plugins/sportdash/leaderboard.js") 
 const sendChatMessage = require("../plugins/online/chat.js") 
+const followers = require("../plugins/online/followers.js") 
+const follows = require("../plugins/online/following.js") 
 const boost = require("../plugins/sportdash/boost.js") 
 const futureLogApp = require("../plugins/sportdash/futureLogApp.js") 
 const downloadPlans = require("../plugins/plans/downloadPlans.js") 
@@ -144,8 +146,8 @@ case "register":
 //	console.log(decryptedString); // bacon
 
 		connection.query( // register userstuff
-				`INSERT INTO Users (username, password, email, account_created, xp, coins, logins, weight, age, energy) 
-				VALUES ("${args[1]}","${encryptedPassword}","${args[3]}","${date}",0,10,1, 0, 0, 0)`
+				`INSERT INTO Users (username, password, email, account_created, xp, coins, logins, weight, age, energy, follows, followers) 
+				VALUES ("${args[1]}","${encryptedPassword}","${args[3]}","${date}",0,10,1, 0, 0, 0, 0, 0)`
 				, function (error, results, fields) {
 					if (error) throw error;
 					console.log('Yey a new registration! >_< ');
@@ -187,6 +189,14 @@ connection.query( // get the users stuff
 			if (error) serverInfo(error.message);
 			reply(profile(message, results))			
 });
+break;
+// followers ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "followers":
+	reply(followers(args[1]))
+break;
+// follows ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "follows":
+	reply(follows(args[1]))
 break;
 // send message ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "chat":

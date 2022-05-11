@@ -24,6 +24,8 @@ function profile(message, results){
         +res[0].weight+" "
         +">_<"+" "
         +day+"."+month+"."+year
+        +res[0].followers+" "
+        +res[0].follows+" "
       //  +res[0].active_style+" "
 
        
