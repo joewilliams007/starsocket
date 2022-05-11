@@ -282,8 +282,20 @@ if (followers.includes(userid)){
 		fs.appendFile('./users/'+userid+'/follows.txt', useridplus, function (err) {
 			if (err) { 	}})
 
-		var followers = fs.readFileSync('./users/'+id+'/followers.txt');
-		followers1 = followers.toString().split('#').length-2;
+		followers = "";
+		try {
+			followers = fs.readFileSync('./users/'+id+'/followers.txt');
+			followers1 = followers.toString().split('#').length-2;
+		} catch(err){
+		
+			fs.appendFile('./users/'+id+'/followers.txt', '', function (err) {
+				if (err) throw err;
+				console.log('Saved!');
+			  });
+
+			followers = fs.readFileSync('./users/'+id+'/followers.txt');
+			followers1 = followers.toString().split('#').length-2;
+		}
 
 		connection.query(
 			`UPDATE Users
