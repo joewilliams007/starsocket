@@ -291,10 +291,11 @@ if (followers.includes(userid)){
 			fs.appendFile('./users/'+id+'/followers.txt', '', function (err) {
 				if (err) throw err;
 				console.log('Saved!');
-			  });
 
 			followers = fs.readFileSync('./users/'+id+'/followers.txt');
 			followers1 = followers.toString().split('#').length-2;
+			  });
+
 		}
 
 		connection.query(
