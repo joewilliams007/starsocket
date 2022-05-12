@@ -608,13 +608,13 @@ case "likeComment" :
 		var comm = ""
 
 		try {
-			comm = fs.readFileSync('plans/comments/'+planid+'.txt');
+			comm = fs.readFileSync('plans/comments/'+commentid+'.txt');
 		} catch (err) { 
-			fs.appendFile('plans/comments/'+planid+'.txt', "#"+userid, function (err) {
+			fs.appendFile('plans/comments/'+commentid+'.txt', "#"+userid, function (err) {
 				if (err) {
 					// append failed
 				} else {
-					comm = fs.readFileSync('plans/comments/'+planid+'.txt');
+					comm = fs.readFileSync('plans/comments/'+commentid+'.txt');
 				}
 				})
 		}
@@ -623,7 +623,7 @@ case "likeComment" :
 				try {
 		
 	
-				amount = fs.readFileSync('plans/comments/'+planid+'.txt').toString().split('#').length-2;
+				amount = fs.readFileSync('plans/comments/'+commentid+'.txt').toString().split('#').length-2;
 		
 				connection.query(
 					`UPDATE Comments
@@ -638,7 +638,7 @@ case "likeComment" :
 				var replace = require('replace-in-file');
 				var options = {
 		
-					files: 'plans/comments/'+planid+'.txt',
+					files: 'plans/comments/'+commentid+'.txt',
 					from: "#"+userid,
 					to: ' ',
 				  };
@@ -654,7 +654,7 @@ case "likeComment" :
 			} catch (err) { }
 		} else {
 		
-			fs.appendFile('plans/comments/'+planid+'.txt', "#"+userid, function (err) {
+			fs.appendFile('plans/comments/'+commentid+'.txt', "#"+userid, function (err) {
 				if (err) {
 					// append failed
 				} else {
@@ -662,7 +662,7 @@ case "likeComment" :
 				}
 				})
 
-				amount = fs.readFileSync('plans/comments/'+planid+'.txt').toString().split('#').length-2;
+				amount = fs.readFileSync('plans/comments/'+commentid+'.txt').toString().split('#').length-2;
 		
 				connection.query(
 					`UPDATE Comments
