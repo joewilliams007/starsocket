@@ -564,7 +564,18 @@ case "downloadPlanById":
 break;
 // plan comments ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getComments":
-	reply(downloadComments(message))
+
+		connection.query( // get the users stuff
+				`SELECT * FROM Comments
+				WHERE plan_id="${args[1].replace("#","")}"`
+		
+				, function (error, results, fields) {
+					if (error) serverInfo(error.message);
+					reply(downloadComments(message, results))		
+		});
+
+
+	
 break;
 // 4.12.2  comment on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "commentPlan":
@@ -587,6 +598,14 @@ case "commentPlan":
 		// done
 	}
 	})
+
+	connection.query( 
+`INSERT INTO Comments (creator_id, creator_name, plan_id, comment, date, reports, likes) 
+VALUES ("${userid}","${username}","${planid}","${comment}",${time} ${date},"0","0")`
+, function (error, results, fields) {
+	if (error) throw error;
+});
+
 break;
 // get plan stars ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getStars": // (and views)
