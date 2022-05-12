@@ -627,7 +627,7 @@ case "likeComment" :
 				serverInfo("amount i s  "+amount)
 				connection.query(
 					`UPDATE Comments
-					SET likes = ${Number(amount)}
+					SET likes = amount
 					WHERE comment_id = "${commentid}"`
 					, function (error, results, fields) {
 						if (error) throw error;
@@ -666,7 +666,7 @@ case "likeComment" :
 				serverInfo("amount i s  "+amount)
 				connection.query(
 					`UPDATE Comments
-					SET likes = ${Number(amount)}
+					SET likes = amount
 					WHERE comment_id = "${commentid}"`
 					, function (error, results, fields) {
 						if (error) throw error;
