@@ -49,7 +49,7 @@ comment varchar(2000),
 plan_id varchar(255),
 reports int,
 date varchar(255),
-likes int,
+likes varchar(255),
 PRIMARY KEY ( comment_id )
 );
 
