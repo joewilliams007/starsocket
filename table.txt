@@ -41,6 +41,18 @@ element_usage int,
 PRIMARY KEY ( element_id )
 );
 
+CREATE TABLE Comments(
+comment_id INT NOT NULL AUTO_INCREMENT,
+creator_name varchar(255),
+creator_id varchar(255),
+comment varchar(2000),
+plan_id varchar(255),
+reports int,
+date int,
+likes int,
+PRIMARY KEY ( comment_id )
+);
+
 CREATE TABLE Plans (
 plan_name varchar(255),
 creator_name varchar(255),
