@@ -601,7 +601,7 @@ case "commentPlan":
 
 	connection.query( 
 `INSERT INTO Comments (creator_id, creator_name, plan_id, comment, date, reports, likes) 
-VALUES ("${userid}","${username}","${planid}","${comment}",${time} ${date},"0","0")`
+VALUES ("${userid}","${username}","${planid}","${comment}","${time} ${date}",0,0)`
 , function (error, results, fields) {
 	if (error) throw error;
 });
