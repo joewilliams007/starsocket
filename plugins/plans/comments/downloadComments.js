@@ -35,8 +35,8 @@ function downloadComments(message, results){
                 comments += res[position].creator_name+" #"
                 +res[position].creator_id+"@"
                 +res[position].comment+"@"
-                +res[position].likes+"\n "
-                +res[position].comment_id+" // "
+                +res[position].likes+"\n-"
+                +res[position].comment_id+"- // "
                 +res[position].date+
                 "NEXTMESSAGEIS:;"
                 position++
