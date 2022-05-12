@@ -624,7 +624,7 @@ case "likeComment" :
 		
 	
 				amount = fs.readFileSync('plans/comments/'+commentid+'.txt').toString().split('#').length-2;
-		
+				serverInfo("amount i s  "+amount)
 				connection.query(
 					`UPDATE Comments
 					SET likes = ${Number(amount)}
