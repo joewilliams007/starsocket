@@ -627,11 +627,11 @@ case "likeComment" :
 				serverInfo("amount i s  "+amount)
 				connection.query(
 					`UPDATE Comments
-					SET likes = ${amount}
-					WHERE comment_id = "${commentid}"`
+					SET likes = ${Number(amount)}
+					WHERE comment_id = "${planid}"`
 					, function (error, results, fields) {
-						if (error) throw error;
-				});
+						if (error) throw serverInfo(error);
+					});
 		
 					
 				
@@ -666,11 +666,11 @@ case "likeComment" :
 				serverInfo("amount i s  "+amount)
 				connection.query(
 					`UPDATE Comments
-					SET likes = ${amount}
-					WHERE comment_id = "${commentid}"`
+					SET likes = ${Number(amount)}
+					WHERE comment_id = "${planid}"`
 					, function (error, results, fields) {
-						if (error) throw error;
-				});
+						if (error) throw serverInfo(error);
+					});
 
 		}
 
