@@ -604,6 +604,7 @@ case "likeComment" :
 	
 
 		var commentid = args[2]
+		serverInfo("id issss "+commentid )
 		var userid = args[1]
 		var comm = ""
 
