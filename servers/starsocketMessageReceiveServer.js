@@ -624,7 +624,7 @@ case "likeComment" :
 				try {
 		
 	
-				amount = fs.readFileSync('plans/comments/'+commentid+'.txt').toString().split('#').length;
+				amount = fs.readFileSync('plans/comments/'+commentid+'.txt').toString().split('#').length-1;
 				serverInfo("amount i s  "+amount)
 				connection.query(
 					`UPDATE Comments
@@ -661,7 +661,7 @@ case "likeComment" :
 
 
 				try {
-					amount = fs.readFileSync('plans/comments/'+commentid+'.txt').toString().split('#').length;
+					amount = fs.readFileSync('plans/comments/'+commentid+'.txt').toString().split('#').length-1;
 				} catch (err) { 
 					fs.appendFile('plans/comments/'+commentid+'.txt', "", function (err) {
 						if (err) {
