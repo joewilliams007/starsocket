@@ -591,20 +591,80 @@ case "commentPlan":
 	var time = time1[0]+":"+time1[1]+" "+time2[1]
 	var finalMessageChat = time+" "+date+"@"+username+" #"+userid+"@"+comment+"NEXTMESSAGEIS:;"
 
-	fs.appendFile('plans/comments/'+planid+'.txt', "\n"+finalMessageChat, function (err) {
-	if (err) {
-		// append failed
-	} else {
-		// done
-	}
-	})
-
 	connection.query( 
 `INSERT INTO Comments (creator_id, creator_name, plan_id, comment, date, reports, likes) 
 VALUES ("${userid}","${username}","${planid}","${comment}","${time} ${date}",0,0)`
 , function (error, results, fields) {
 	if (error) throw error;
 });
+
+break;
+
+case "likeComment" :
+	
+
+		var commentid = args[2]
+		var userid = args[1]
+		var comm = ""
+
+		try {
+			comm = fs.readFileSync('plans/comments/'+planid+'.txt');
+		} catch (err) { }
+		
+		if (comm.includes(userid)){
+				try {
+		
+	
+				amount = fs.readFileSync('plans/comments/'+planid+'.txt').toString().split('#').length-2;
+		
+				connection.query(
+					`UPDATE Comments
+					SET likes = ${Number(amount)}
+					WHERE comment_id = "${commentid}"`
+					, function (error, results, fields) {
+						if (error) serverInfo("error updating ");
+				});
+		
+					
+				
+				var replace = require('replace-in-file');
+				var options = {
+		
+					files: 'plans/comments/'+planid+'.txt',
+					from: "#"+userid,
+					to: ' ',
+				  };
+		
+				  replace(options)
+				  .then(changedFiles => {
+					console.log('Modified files:', changedFiles.join(', '));
+				  })
+				  .catch(error => {
+					console.error('Error occurred:', error);
+				  });
+				  stars = "none"
+			} catch (err) { }
+		} else {
+		
+			fs.appendFile('plans/comments/'+planid+'.txt', "#"+userid, function (err) {
+				if (err) {
+					// append failed
+				} else {
+					// done
+				}
+				})
+
+				amount = fs.readFileSync('plans/comments/'+planid+'.txt').toString().split('#').length-2;
+		
+				connection.query(
+					`UPDATE Comments
+					SET likes = ${Number(amount)}
+					WHERE comment_id = "${commentid}"`
+					, function (error, results, fields) {
+						if (error) serverInfo("error updating ");
+				});
+
+		}
 
 break;
 // get plan stars ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
