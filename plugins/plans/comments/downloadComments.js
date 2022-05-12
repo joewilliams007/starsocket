@@ -30,7 +30,7 @@ function downloadComments(message, results){
     try {
 
         for (const item of res.values()) {  
-            position++
+        
             try {
                 comments += res[position].creator_name+" #"
                 +res[position].creator_id+"@"
@@ -38,6 +38,7 @@ function downloadComments(message, results){
                 +res[position].comment_id+" // "
                 +res[position].date+" // "
                 +res[position].likes+"NEXTMESSAGEIS:;"
+                position++
             } catch (err) {
              
             }
