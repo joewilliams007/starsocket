@@ -25,16 +25,30 @@ function downloadComments(message, results){
     var args = message.split(" ") 
     var comments;
     var res = JSON.parse(JSON.stringify(results))
-
+    var position = 0;
 
     try {
 
-        comments = res[0].creator_name+" #"
-        +res[0].creator_id+"@"
-        +res[0].comment+"@"
-        +res[0].comment_id+" // "
-        +res[0].date+" // "
-        +res[0].likes
+        for (const item of res.values()) {  
+
+            if (Number(JSON.stringify(item.xp))<1){
+
+            } else {
+                
+            position++
+                    //	console.log(`Cache item: ${JSON.stringify(item)}`)
+                    if (position>100){
+                    } else {
+                        comments += res[position].creator_name+" #"
+                        +res[position].creator_id+"@"
+                        +res[position].comment+"@"
+                        +res[position].comment_id+" // "
+                        +res[position].date+" // "
+                        +res[position].likes+"NEXTMESSAGEIS:;"
+                    }
+            }
+        }
+
 
        
     } catch (err) {
