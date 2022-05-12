@@ -663,7 +663,22 @@ case "likeComment" :
 				}
 				})
 
-				amount = fs.readFileSync('plans/comments/'+commentid+'.txt').toString().split('#').length;
+				amount = ""
+
+
+				try {
+					amount = fs.readFileSync('plans/comments/'+commentid+'.txt').toString().split('#').length;
+				} catch (err) { 
+					fs.appendFile('plans/comments/'+commentid+'.txt', "#"+userid, function (err) {
+						if (err) {
+							// append failed
+						} else {
+							amount = fs.readFileSync('plans/comments/'+commentid+'.txt').toString().split('#').length;
+						}
+						})
+				}
+
+
 				serverInfo("amount i s  "+amount)
 				connection.query(
 					`UPDATE Comments
