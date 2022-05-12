@@ -655,7 +655,13 @@ case "likeComment" :
 			} catch (err) { }
 		} else {
 		
-		
+			fs.appendFile('plans/comments/'+commentid+'.txt', "#"+userid, function (err) {
+				if (err) {
+					// append failed
+				} else {
+					// done
+				}
+				})
 
 				amount = ""
 
@@ -672,13 +678,7 @@ case "likeComment" :
 						})
 				}
 
-				fs.appendFile('plans/comments/'+commentid+'.txt', "#"+userid, function (err) {
-					if (err) {
-						// append failed
-					} else {
-						// done
-					}
-					})
+
 
 
 				serverInfo("amount i s  "+amount)
