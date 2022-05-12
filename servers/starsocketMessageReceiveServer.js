@@ -609,7 +609,15 @@ case "likeComment" :
 
 		try {
 			comm = fs.readFileSync('plans/comments/'+planid+'.txt');
-		} catch (err) { }
+		} catch (err) { 
+			fs.appendFile('plans/comments/'+planid+'.txt', "#"+userid, function (err) {
+				if (err) {
+					// append failed
+				} else {
+					comm = fs.readFileSync('plans/comments/'+planid+'.txt');
+				}
+				})
+		}
 		
 		if (comm.includes(userid)){
 				try {
@@ -622,7 +630,7 @@ case "likeComment" :
 					SET likes = ${Number(amount)}
 					WHERE comment_id = "${commentid}"`
 					, function (error, results, fields) {
-						if (error) throw error;
+						if (error) serverInfo("error updating ")+error;
 				});
 		
 					
@@ -661,7 +669,7 @@ case "likeComment" :
 					SET likes = ${Number(amount)}
 					WHERE comment_id = "${commentid}"`
 					, function (error, results, fields) {
-						if (error) throw error;
+						if (error) serverInfo("error updating ");
 				});
 
 		}
