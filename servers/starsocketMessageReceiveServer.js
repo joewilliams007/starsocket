@@ -611,7 +611,7 @@ case "likeComment" :
 		try {
 			comm = fs.readFileSync('plans/comments/'+commentid+'.txt');
 		} catch (err) { 
-			fs.appendFile('plans/comments/'+commentid+'.txt', "#"+userid, function (err) {
+			fs.appendFile('plans/comments/'+commentid+'.txt', " ", function (err) {
 				if (err) {
 					// append failed
 				} else {
@@ -655,13 +655,7 @@ case "likeComment" :
 			} catch (err) { }
 		} else {
 		
-			fs.appendFile('plans/comments/'+commentid+'.txt', "#"+userid, function (err) {
-				if (err) {
-					// append failed
-				} else {
-					// done
-				}
-				})
+		
 
 				amount = ""
 
@@ -669,7 +663,7 @@ case "likeComment" :
 				try {
 					amount = fs.readFileSync('plans/comments/'+commentid+'.txt').toString().split('#').length;
 				} catch (err) { 
-					fs.appendFile('plans/comments/'+commentid+'.txt', "#"+userid, function (err) {
+					fs.appendFile('plans/comments/'+commentid+'.txt', "", function (err) {
 						if (err) {
 							// append failed
 						} else {
@@ -677,6 +671,14 @@ case "likeComment" :
 						}
 						})
 				}
+
+				fs.appendFile('plans/comments/'+commentid+'.txt', "#"+userid, function (err) {
+					if (err) {
+						// append failed
+					} else {
+						// done
+					}
+					})
 
 
 				serverInfo("amount i s  "+amount)
