@@ -51,6 +51,12 @@ function downloadComments(message, results){
         comments = "err"
     }
 
-    return comments.replace("undefined","");
+    try {
+        comments = comments.replace("undefined","")
+    } catch (err) {
+       
+    }
+
+    return comments;
 }
 module.exports = downloadComments;
