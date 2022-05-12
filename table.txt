@@ -48,7 +48,7 @@ creator_id varchar(255),
 comment varchar(2000),
 plan_id varchar(255),
 reports int,
-date int,
+date varchar(255),
 likes int,
 PRIMARY KEY ( comment_id )
 );
