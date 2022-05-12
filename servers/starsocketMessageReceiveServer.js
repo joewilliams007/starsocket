@@ -622,7 +622,7 @@ case "likeComment" :
 					SET likes = ${Number(amount)}
 					WHERE comment_id = "${commentid}"`
 					, function (error, results, fields) {
-						if (error) serverInfo("error updating ")+error;
+						if (error) throw error;
 				});
 		
 					
@@ -661,7 +661,7 @@ case "likeComment" :
 					SET likes = ${Number(amount)}
 					WHERE comment_id = "${commentid}"`
 					, function (error, results, fields) {
-						if (error) serverInfo("error updating ")+error;
+						if (error) throw error;
 				});
 
 		}
