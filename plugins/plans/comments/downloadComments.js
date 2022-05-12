@@ -30,23 +30,13 @@ function downloadComments(message, results){
     try {
 
         for (const item of res.values()) {  
-
-            if (Number(JSON.stringify(item.xp))<1){
-
-            } else {
-                
             position++
-                    //	console.log(`Cache item: ${JSON.stringify(item)}`)
-                    if (position>100){
-                    } else {
                         comments += res[position].creator_name+" #"
                         +res[position].creator_id+"@"
                         +res[position].comment+"@"
                         +res[position].comment_id+" // "
                         +res[position].date+" // "
                         +res[position].likes+"NEXTMESSAGEIS:;"
-                    }
-            }
         }
 
 
