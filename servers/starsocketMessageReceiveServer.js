@@ -629,7 +629,7 @@ case "likeComment" :
 				connection.query(
 					`UPDATE Comments
 					SET likes = "${amount}",
-					WHERE comment_id = "${commentid}"`
+					WHERE comment_id = ${commentid}`
 					, function (error, results, fields) {
 						if (error) throw serverInfo(error);
 					});
@@ -668,7 +668,7 @@ case "likeComment" :
 				connection.query(
 					`UPDATE Comments
 					SET likes = "${amount}",
-					WHERE comment_id = "${commentid}"`
+					WHERE comment_id = ${commentid}`
 					, function (error, results, fields) {
 						if (error) throw serverInfo(error);
 					});
