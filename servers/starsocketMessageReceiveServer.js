@@ -256,7 +256,7 @@ case "follow":
 
 			reply("follow-added")
 		} else {
-			serverInfo(error.message) 
+		
 			reply("follow-removed")
 		};
 	});	
