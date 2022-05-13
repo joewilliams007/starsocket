@@ -244,9 +244,7 @@ case "follow":
 
 	, function (error, follows, fields) {
 		if (error) { 
-			serverInfo(error.message) 
-			reply("follow-removed")
-		} else {
+
 			connection.query( 
 
 				`INSERT INTO Follow  (follower_id, target_id, follower_name) 
@@ -257,6 +255,9 @@ case "follow":
 			});
 
 			reply("follow-added")
+		} else {
+			serverInfo(error.message) 
+			reply("follow-removed")
 		};
 	});	
 
