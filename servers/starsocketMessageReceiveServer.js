@@ -213,7 +213,7 @@ connection.query( // get the users stuff
 
 								f2 = "";
 								try {
-									f2 = JSON.parse(JSON.stringify(follows)).amount
+									f2 = JSON.parse(JSON.stringify(follows))[0].amount
 								} catch (err) {
 									f2 = 0
 								}
