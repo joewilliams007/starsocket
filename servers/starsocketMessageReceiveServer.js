@@ -187,8 +187,26 @@ connection.query( // get the users stuff
 
 		, function (error, results, fields) {
 			if (error) serverInfo(error.message);
-			reply(profile(message, results))			
-});
+
+					connection.query( // get the users stuff
+					`SELECT * FROM Follow
+					WHERE follower_id="${args[1]}"`
+			
+					, function (error, followers, fields) {
+						if (error) serverInfo(error.message);
+
+							connection.query( // get the users stuff
+							`SELECT * FROM Follow
+							WHERE target_id="${args[1]}"`
+					
+							, function (error, follows, fields) {
+								if (error) serverInfo(error.message);
+
+
+					reply(profile(message, results, followers[0].total, follows[0].total))		
+				});	
+			});
+		});
 break;
 // followers ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "followers":
@@ -201,125 +219,19 @@ break;
 // follow/unfollow ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "follow":
 	var userid = args[1] // source
-	var useridplus = "+#"+args[1]+"+" // source
+	var targetid = args[2] // target id
 
-	var id = args[2] // target id
-	var idplus = "+#"+args[2]+"+" // target id
-	var followers = "none"
+	connection.query( 
 
-	try {
-		followers = fs.readFileSync('./users/'+id+'/followers.txt');
-	} catch (err) { }
+		`INSERT INTO Follow > (follower_id, target_id, follower_name) 
+		VALUES ("${userid}","${targetid}","${username}")`
 
-if (followers.includes(userid)){
-		try {
-		reply("follow-removed")
+		, function (error, results, fields) {
+		if (error) throw error;
+	});
 
-		var followers = fs.readFileSync('./users/'+id+'/followers.txt');
-		followers1 = followers.toString().split('#').length-2;
-
-		connection.query(
-			`UPDATE Users
-			SET followers = ${Number(followers1)}
-			WHERE user_id = "${userid}"`
-			, function (error, results, fields) {
-			if (error) serverInfo("error updating ");
-		});
-
-		var following = fs.readFileSync('./users/'+id+'/follows.txt');
-		following1 = following.toString().split('#').length-2;
-
-		connection.query(
-			`UPDATE Users
-			SET follows = ${Number(following1)}
-			WHERE user_id = "${id}"`
-			, function (error, results, fields) {
-			if (error) serverInfo("error updating ");
-		});
-
-
-					var replace = require('replace-in-file');
-					var options = {
-
-						files: './users/'+id+'/followers.txt',
-						from: useridplus,
-						to: ' ',
-					};
-
-					replace(options)
-					.then(changedFiles => {
-						console.log('Modified files:', changedFiles.join(', '));
-					})
-					.catch(error => {
-						console.error('Error occurred:', error);
-					});
-
-					var replace = require('replace-in-file');
-					var options = {
-
-						files: './users/'+userid+'/follows.txt',
-						from: idplus,
-						to: ' ',
-					};
-
-					replace(options)
-					.then(changedFiles => {
-						console.log('Modified files:', changedFiles.join(', '));
-					})
-					.catch(error => {
-						console.error('Error occurred:', error);
-					});
-
-	} catch (err) { }
-} else {
-
-
-	fs.appendFile('./users/'+id+'/follows.txt', useridplus, function (err) {
-	if (err) {
-		// append failed
-	} else {
-
-		fs.appendFile('./users/'+userid+'/follows.txt', useridplus, function (err) {
-			if (err) { 	}})
-
-		followers = "";
-		try {
-			followers = fs.readFileSync('./users/'+id+'/followers.txt');
-			followers1 = followers.toString().split('#').length-2;
-		} catch(err){
-		
-			fs.appendFile('./users/'+id+'/followers.txt', '', function (err) {
-				if (err) throw err;
-				console.log('Saved!');
-
-			followers = fs.readFileSync('./users/'+id+'/followers.txt');
-			followers1 = followers.toString().split('#').length-2;
-			  });
-
-		}
-
-		connection.query(
-			`UPDATE Users
-			SET followers = ${Number(followers1)}
-			WHERE user_id = "${id}"`
-			, function (error, results, fields) {
-			if (error) serverInfo("error updating ");
-		});
-
-		var following = fs.readFileSync('./users/'+id+'/follows.txt');
-		following1 = following.toString().split('#').length-2;
-
-		connection.query(
-			`UPDATE Users
-			SET follows = ${Number(following1)}
-			WHERE user_id = "${userid}"`
-			, function (error, results, fields) {
-			if (error) serverInfo("error updating ");
-		});
-	}
-	})
 	reply("follow-added")
-}
+
 break;
 // send message ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "chat":

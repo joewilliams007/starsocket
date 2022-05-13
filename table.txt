@@ -71,6 +71,13 @@ plan_views int,
 PRIMARY KEY ( plan_name )
 );
 
+CREATE TABLE Follow(
+id INT NOT NULL AUTO_INCREMENT,
+follower_id varchar(255),
+target_id varchar(255),
+follower_name varchar(255),
+PRIMARY KEY ( id )
+);
 
 login :
 
