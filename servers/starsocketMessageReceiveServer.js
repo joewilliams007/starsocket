@@ -206,7 +206,7 @@ connection.query( // get the users stuff
 
 								f1 = "";
 								try {
-									f1 = JSON.parse(JSON.stringify(fields))[0]
+									f1 = JSON.parse(JSON.stringify(followers)).length
 								} catch (err) {
 									f1 = 0
 								}
