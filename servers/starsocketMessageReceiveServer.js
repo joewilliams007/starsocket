@@ -249,7 +249,7 @@ case "follow":
 			connection.query( 
 
 				`INSERT INTO Follow  (follower_id, target_id, follower_name) 
-				VALUES ("${userid}","${targetid}","${username}")`
+				VALUES ("${userid}","${username}","${targetid}")`
 
 				, function (error, results, fields) {
 				if (error) throw error;
@@ -258,6 +258,14 @@ case "follow":
 			reply("follow-added")
 			serverInfo("subbed")
 		} else {
+			connection.query( 
+
+				`DELETE FROM Follow WHERE target_id="${targetid}" AND follower_id="${userid}";`
+
+				, function (error, results, fields) {
+				if (error) throw error;
+			});
+		
 			serverInfo("unsubbed")
 			reply("follow-removed")
 		};
