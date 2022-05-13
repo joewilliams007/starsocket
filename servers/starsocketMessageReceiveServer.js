@@ -206,14 +206,14 @@ connection.query( // get the users stuff
 
 								f1 = "";
 								try {
-									f1 = JSON.parse(JSON.stringify(fields))
+									f1 = JSON.parse(JSON.stringify(fields))[0]
 								} catch (err) {
 									f1 = 0
 								}
 
 								f2 = "";
 								try {
-									f2 = JSON.parse(JSON.stringify(follows))[0].amount
+									f2 = JSON.parse(JSON.stringify(follows)).amount
 								} catch (err) {
 									f2 = 0
 								}
