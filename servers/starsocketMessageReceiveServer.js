@@ -202,17 +202,18 @@ connection.query( // get the users stuff
 							, function (error, follows, fields) {
 								if (error) serverInfo(error.message);
 
+								
 
 								f1 = "";
 								try {
-									f1 = followers.total
+									f1 = JSON.parse(JSON.stringify(followers)).total
 								} catch (err) {
 									f1 = 0
 								}
 
 								f2 = "";
 								try {
-									f2 = follows.total
+									f2 = JSON.parse(JSON.stringify(follows)).total
 								} catch (err) {
 									f2 = 0
 								}
