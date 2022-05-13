@@ -203,7 +203,22 @@ connection.query( // get the users stuff
 								if (error) serverInfo(error.message);
 
 
-					reply(profile(message, results, followers[0].total, follows[0].total))		
+								f1 = "";
+								try {
+									f1 = followers[0].total
+								} catch (err) {
+									f1 = 0
+								}
+
+								f2 = "";
+								try {
+									f2 = follows[0].total
+								} catch (err) {
+									f2 = 0
+								}
+
+
+					reply(profile(message, results, f1, f2))		
 				});	
 			});
 		});
