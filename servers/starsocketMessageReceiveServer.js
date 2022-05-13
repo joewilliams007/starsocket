@@ -205,14 +205,14 @@ connection.query( // get the users stuff
 
 								f1 = "";
 								try {
-									f1 = followers[0].total
+									f1 = followers.total
 								} catch (err) {
 									f1 = 0
 								}
 
 								f2 = "";
 								try {
-									f2 = follows[0].total
+									f2 = follows.total
 								} catch (err) {
 									f2 = 0
 								}
