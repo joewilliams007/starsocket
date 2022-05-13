@@ -237,16 +237,28 @@ case "follow":
 	var userid = args[1] // source
 	var targetid = args[2] // target id
 
-	connection.query( 
 
-		`INSERT INTO Follow  (follower_id, target_id, follower_name) 
-		VALUES ("${userid}","${targetid}","${username}")`
+	connection.query( // get the users stuff
+	`SELECT * FROM Follow
+	WHERE target_id="${targetid}" AND follower_id="${userid}"`
 
-		, function (error, results, fields) {
-		if (error) throw error;
-	});
+	, function (error, follows, fields) {
+		if (error) { 
+			serverInfo(error.message) 
+			reply("follow-removed")
+		} else {
+			connection.query( 
 
-	reply("follow-added")
+				`INSERT INTO Follow  (follower_id, target_id, follower_name) 
+				VALUES ("${userid}","${targetid}","${username}")`
+
+				, function (error, results, fields) {
+				if (error) throw error;
+			});
+
+			reply("follow-added")
+		};
+	});	
 
 break;
 // send message ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
