@@ -242,8 +242,9 @@ case "follow":
 	`SELECT * FROM Follow
 	WHERE target_id="${targetid}" AND follower_id="${userid}"`
 
-	, function (error, follows, fields) {
-		if (error) { 
+	, function (error, results, fields) {
+		if (error) { }
+		if (JSON.parse(JSON.stringify(results))[0]==undefined) { 
 
 			connection.query( 
 
@@ -255,8 +256,9 @@ case "follow":
 			});
 
 			reply("follow-added")
+			serverInfo("subbed")
 		} else {
-		
+			serverInfo("unsubbed")
 			reply("follow-removed")
 		};
 	});	
