@@ -206,7 +206,7 @@ connection.query( // get the users stuff
 
 								f1 = "";
 								try {
-									f1 = fields
+									f1 = JSON.parse(JSON.stringify(fields))
 								} catch (err) {
 									f1 = 0
 								}
