@@ -2,7 +2,7 @@ let fs = require('fs');
 
 function follower (res) {
 
-    var message;
+    var message ="";
 	var position = 0
 					
 			for (const item of res.values()) {  
