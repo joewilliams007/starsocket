@@ -5,9 +5,11 @@ function follower (res) {
     var message;
 	var position = 0
 					
-			for (const item of res.values()) {  
-					message+="\n"+JSON.stringify(item.follower_id)+"@"+JSON.stringify(item.follower_name)+"@"+"-";
-			}
+			//for (const item of res.values()) {  
+				//	message+="\n"+JSON.stringify(item.follower_id)+"@"+JSON.stringify(item.follower_name)+"@"+"-";
+
+                   message+="\ng@gq@g-";
+		//	}
 
 
 
