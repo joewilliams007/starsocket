@@ -300,9 +300,7 @@ case "checkFollow":
 	WHERE target_id="${targetid}" AND follower_id="${userid}"`
 
 	, function (error, results, fields) {
-		if (error) { }
-		if (JSON.parse(JSON.stringify(results))[0]==undefined) { 
-
+		if (error) { 
 			reply("not following")
 		
 		} else {
