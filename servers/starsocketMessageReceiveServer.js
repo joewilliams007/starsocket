@@ -229,7 +229,7 @@ case "followers":
 
 	connection.query( // get the users stuff
 	`SELECT * FROM Follow
-	WHERE target_id="${args[1]}"
+	WHERE target_id="${args[1].replace("#"),""}"
 	ORDER BY xp DESC`
 
 	, function (error, results, fields) {
@@ -242,13 +242,13 @@ break;
 case "follows":
 	connection.query( // get the users stuff
 	`SELECT * FROM Follow
-	WHERE user_id="${args[1]}"	
+	WHERE user_id="${args[1].replace("#"),""}"	
 	ORDER BY xp DESC`
 
 	, function (error, results, fields) {
 		if (error) { }
-		console.log(results)
-	//	reply(follows(JSON.parse(JSON.stringify(results))))
+		
+	reply(follows(JSON.parse(JSON.stringify(results))))
 	});
 break;
 // follow/unfollow ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
