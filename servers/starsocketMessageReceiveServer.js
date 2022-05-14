@@ -227,11 +227,11 @@ break;
 // followers ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "followers":
 
-console.log(`${args[1].replace("#"),""}`)
+
 
 	connection.query( // get the users stuff
 	`SELECT * FROM Follow
-	WHERE target_id="3";`
+	WHERE target_id="${args[1].replace("#"),""}";`
 	, function (error, results, fields) {
 		if (error) { }
 		reply(followers(JSON.parse(JSON.stringify(results))))
@@ -240,10 +240,10 @@ console.log(`${args[1].replace("#"),""}`)
 break;
 // follows ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "follows":
-	console.log(`${args[1].replace("#"),""}`)
+
 	connection.query( // get the users stuff
 	`SELECT * FROM Follow
-	WHERE follower_id="3";`
+	WHERE follower_id="${args[1].replace("#"),""}";`
 	, function (error, results, fields) {
 		if (error) { }
 		reply(follows(JSON.parse(JSON.stringify(results))))
