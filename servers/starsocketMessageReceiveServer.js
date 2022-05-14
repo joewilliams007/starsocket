@@ -247,7 +247,8 @@ case "follows":
 
 	, function (error, results, fields) {
 		if (error) { }
-		reply(follows(JSON.parse(JSON.stringify(results))))
+		console.log(results)
+	//	reply(follows(JSON.parse(JSON.stringify(results))))
 	});
 break;
 // follow/unfollow ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
