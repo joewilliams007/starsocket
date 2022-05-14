@@ -231,8 +231,7 @@ case "followers":
 
 	connection.query( // get the users stuff
 	`SELECT * FROM Follow
-	WHERE target_id="4";`
-
+	WHERE target_id="3";`
 	, function (error, results, fields) {
 		if (error) { }
 		reply(followers(JSON.parse(JSON.stringify(results))))
@@ -243,7 +242,7 @@ break;
 case "follows":
 	connection.query( // get the users stuff
 	`SELECT * FROM Follow
-	WHERE user_id="4";`
+	WHERE user_id="3";`
 
 	, function (error, results, fields) {
 		if (error) { }
