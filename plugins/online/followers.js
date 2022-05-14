@@ -6,10 +6,10 @@ function follower (res) {
 					
 			for (const item of res.values()) {  
 					message+="\n"+JSON.stringify(item.follower_id)+"@"+JSON.stringify(item.follower_name)+"@"+"-";
-                    console.log(item.follower_id)
-                 
+                
+                    console.log(JSON.stringify(item.follower_id))
 			}
-
+       
         
 
 return message;
