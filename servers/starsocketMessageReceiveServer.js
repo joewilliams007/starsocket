@@ -229,10 +229,11 @@ case "followers":
 
 	connection.query( // get the users stuff
 	`SELECT * FROM Follow
-	WHERE target_id="${args[1]}"`
+	WHERE target_id="${args[1]}"
+	ORDER BY xp DESC`
 
 	, function (error, results, fields) {
-		if (error) serverInfo("err");
+		if (error) { }
 		reply(followers(JSON.parse(JSON.stringify(results))))
 	});
 
@@ -244,7 +245,7 @@ case "follows":
 	WHERE user_id="${args[1]}"`
 
 	, function (error, results, fields) {
-		if (error) serverInfo("err");
+		if (error) { }
 		reply(follows(JSON.parse(JSON.stringify(results))))
 
 	});
