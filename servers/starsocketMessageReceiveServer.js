@@ -891,8 +891,32 @@ default:
 // reply ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	function reply(message){
-		_messages.push(socket.remoteAddress+" "+message)
-		fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
+		try {
+			_messages.push(socket.remoteAddress+" "+message)
+			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
+		} catch (err){
+			try {
+				fs.unlinkSync("./user_messages/"+ip+"/messages.json")
+				fs.appendFile("./user_messages/"+ip+"/messages.json", '[]', function (err) {
+					if (err) throw err;
+					console.log('new messages created!');
+					try {
+					_messages = JSON.parse(fs.readFileSync("./user_messages/"+ip+"/messages.json"));
+				} catch (err){
+					fs.unlinkSync("./user_messages/"+ip+"/messages.json")
+					fs.appendFile("./user_messages/"+ip+"/messages.json", '[]', function (err) {
+						if (err) throw err;
+					})
+				}
+				
+				});
+
+				_messages.push(socket.remoteAddress+" "+message)
+				fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))  
+				} catch (err){
+		
+				}	
+		}
 	}
 // 6 functions ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------					
 
