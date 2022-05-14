@@ -242,12 +242,12 @@ break;
 case "follows":
 	connection.query( // get the users stuff
 	`SELECT * FROM Follow
-	WHERE user_id="${args[1]}"`
+	WHERE user_id="${args[1]}"	
+	ORDER BY xp DESC`
 
 	, function (error, results, fields) {
 		if (error) { }
 		reply(follows(JSON.parse(JSON.stringify(results))))
-
 	});
 break;
 // follow/unfollow ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
