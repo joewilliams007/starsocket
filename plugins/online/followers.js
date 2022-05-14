@@ -8,6 +8,7 @@ function follower (res) {
 					message+="\n"+JSON.stringify(item.follower_id)+"@"+JSON.stringify(item.follower_name)+"@"+"-";
                 
                     console.log(JSON.stringify(item.follower_id))
+                    console.log("-.-")
 			}
        
         
