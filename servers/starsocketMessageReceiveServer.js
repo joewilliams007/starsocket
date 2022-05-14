@@ -226,11 +226,27 @@ connection.query( // get the users stuff
 break;
 // followers ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "followers":
-	reply(followers(args[1]))
+
+	connection.query( // get the users stuff
+	`SELECT * FROM Follow
+	WHERE target_id="${args[1]}"`
+
+	, function (error, results, fields) {
+		if (error) serverInfo("err");
+		reply(followers(results))
+	});
+
 break;
 // follows ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "follows":
-	reply(follows(args[1]))
+	connection.query( // get the users stuff
+	`SELECT * FROM Follow
+	WHERE user_id="${args[1]}"`
+
+	, function (error, results, fields) {
+		if (error) serverInfo("err");
+		reply(follows(results))
+	});
 break;
 // follow/unfollow ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "follow":

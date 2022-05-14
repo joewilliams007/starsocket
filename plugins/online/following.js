@@ -1,14 +1,15 @@
 let fs = require('fs');
 
-function follower (id) {
+function follower (res) {
 
     var message;
-    try {
-        var foll = fs.readFileSync('./users/'+id+'/following.txt');
-        message = foll.toString().split('#').length-1;
-    } catch (err) {
-        message = "0"
-    }
+	var position = 0
+					
+			for (const item of res.values()) {  
+					message+="\n"+JSON.stringify(item.follower_id)+"@"+JSON.stringify(item.follower_name)+"@"+"-";
+			}
+
+
 
 return message;
 }
