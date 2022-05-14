@@ -233,7 +233,7 @@ case "followers":
 
 	, function (error, results, fields) {
 		if (error) serverInfo("err");
-		reply(followers(results))
+		reply(followers(JSON.parse(JSON.stringify(results))))
 	});
 
 break;
@@ -245,7 +245,8 @@ case "follows":
 
 	, function (error, results, fields) {
 		if (error) serverInfo("err");
-		reply(follows(results))
+		reply(follows(JSON.parse(JSON.stringify(results))))
+
 	});
 break;
 // follow/unfollow ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

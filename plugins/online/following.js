@@ -4,19 +4,20 @@ function follower (res) {
 
     var message ="";
 	var position = 0
-					
+		
+     try {
 			for (const item of res.values()) {  
-                try {
+              
 				message+="\n"+JSON.stringify(item.follower_id)+"@"+JSON.stringify(item.follower_name)+"@"+"-";
 
                                 
                 console.log(JSON.stringify(item.follower_id))
                 console.log("-.-")
-            } catch(err){
-
-                }
+   
 			}
+        } catch(err){
 
+        }
         
 
 return message;
