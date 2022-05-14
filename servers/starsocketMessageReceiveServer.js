@@ -227,11 +227,11 @@ break;
 // followers ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "followers":
 
-
+// ${args[1].replace("#"),""}
 
 	connection.query( // get the users stuff
 	`SELECT * FROM Follow
-	WHERE target_id="${args[1].replace("#"),""}";`
+	WHERE target_id="4";`
 
 	, function (error, results, fields) {
 		if (error) { }
@@ -243,7 +243,7 @@ break;
 case "follows":
 	connection.query( // get the users stuff
 	`SELECT * FROM Follow
-	WHERE user_id="${args[1].replace("#"),""}";`
+	WHERE user_id="4";`
 
 	, function (error, results, fields) {
 		if (error) { }
