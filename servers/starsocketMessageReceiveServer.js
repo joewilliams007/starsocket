@@ -227,7 +227,7 @@ break;
 // followers ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "followers":
 
-// ${args[1].replace("#"),""}
+console.log(`${args[1].replace("#"),""}`)
 
 	connection.query( // get the users stuff
 	`SELECT * FROM Follow
@@ -240,6 +240,7 @@ case "followers":
 break;
 // follows ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "follows":
+	console.log(`${args[1].replace("#"),""}`)
 	connection.query( // get the users stuff
 	`SELECT * FROM Follow
 	WHERE follower_id="3";`
