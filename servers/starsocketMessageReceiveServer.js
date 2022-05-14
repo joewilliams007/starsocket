@@ -242,7 +242,7 @@ break;
 case "follows":
 	connection.query( // get the users stuff
 	`SELECT * FROM Follow
-	WHERE user_id="3";`
+	WHERE follower_id="3";`
 	, function (error, results, fields) {
 		if (error) { }
 		reply(follows(JSON.parse(JSON.stringify(results))))
