@@ -289,6 +289,30 @@ case "follow":
 	});	
 
 break;
+// check Follow ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "checkFollow":
+	var userid = args[1] // source
+	var targetid = args[2] // target id
+
+
+	connection.query( // get the users stuff
+	`SELECT * FROM Follow
+	WHERE target_id="${targetid}" AND follower_id="${userid}"`
+
+	, function (error, results, fields) {
+		if (error) { }
+		if (JSON.parse(JSON.stringify(results))[0]==undefined) { 
+
+			reply("not following")
+		
+		} else {
+		
+			serverInfo("following")
+			
+		};
+	});	
+
+break;
 // send message ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "chat":
 	sendChatMessage(message)
