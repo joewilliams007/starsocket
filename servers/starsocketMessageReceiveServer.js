@@ -227,10 +227,10 @@ break;
 // followers ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "followers":
 
+
 	connection.query( // get the users stuff
 	`SELECT * FROM Follow
-	WHERE target_id="${args[1].replace("#"),""}"
-	ORDER BY xp DESC`
+	WHERE target_id="${args[1].replace("#"),""}";`
 
 	, function (error, results, fields) {
 		if (error) { }
@@ -242,8 +242,7 @@ break;
 case "follows":
 	connection.query( // get the users stuff
 	`SELECT * FROM Follow
-	WHERE user_id="${args[1].replace("#"),""}"	
-	ORDER BY xp DESC`
+	WHERE user_id="${args[1].replace("#"),""}";`
 
 	, function (error, results, fields) {
 		if (error) { }
@@ -268,7 +267,7 @@ case "follow":
 			connection.query( 
 
 				`INSERT INTO Follow  (follower_id, target_id, follower_name) 
-				VALUES ("${userid}","${username}","${targetid}")`
+				VALUES ("${userid}","${target_id}","${follower_name}")`
 
 				, function (error, results, fields) {
 				if (error) throw error;
