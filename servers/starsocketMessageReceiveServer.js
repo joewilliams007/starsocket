@@ -228,6 +228,7 @@ break;
 case "followers":
 
 
+
 	connection.query( // get the users stuff
 	`SELECT * FROM Follow
 	WHERE target_id="${args[1].replace("#"),""}";`
@@ -267,7 +268,7 @@ case "follow":
 			connection.query( 
 
 				`INSERT INTO Follow  (follower_id, target_id, follower_name) 
-				VALUES ("${userid}","${target_id}","${follower_name}")`
+				VALUES ("${userid}","${targetid}","${username}")`
 
 				, function (error, results, fields) {
 				if (error) throw error;
