@@ -307,7 +307,7 @@ case "checkFollow":
 			serverInfo("following = false")
 		} else {
 		
-			reply("following")
+			reply("true")
 			serverInfo("following = true")
 			
 		};
