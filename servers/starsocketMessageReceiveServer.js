@@ -307,7 +307,7 @@ case "checkFollow":
 		
 		} else {
 		
-			serverInfo("following")
+			reply("following")
 			
 		};
 	});	
