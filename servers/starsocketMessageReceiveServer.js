@@ -457,7 +457,7 @@ case "setBio":
 		SET bio = ${message.split("BIO_IS_THE_FOLLOWING")[1]}
 		WHERE user_id = ${args[1]}`
 		, function (error, results, fields) {
-			if (error) throw err// serverInfo("error updating "+" of #"+args[1]);
+			if (error) throw error// serverInfo("error updating "+" of #"+args[1]);
 		});
 	
 break;
