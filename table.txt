@@ -28,6 +28,8 @@ privacy varchar(200),
 PRIMARY KEY ( user_id )
 );
 
+
+
 CREATE TABLE Elements (
 element_id INT NOT NULL AUTO_INCREMENT,
 element_name varchar(255),
