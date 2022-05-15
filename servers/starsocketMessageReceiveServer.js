@@ -457,9 +457,9 @@ case "setBio":
 		SET bio = ${message.split("BIO_IS_THE_FOLLOWING")[1]}
 		WHERE user_id = ${args[1]}`
 		, function (error, results, fields) {
-			if (error) serverInfo("error updating "+option+" of #"+args[1]);
+			if (error) serverInfo("error updating "+" of #"+args[1]);
 		});
-		serverInfo(option+" updated of user #"+args[1])
+	
 break;
 // 4.9 set energy ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setEnergy":
