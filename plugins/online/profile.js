@@ -26,7 +26,7 @@ function profile(message, results, follows, followers){
         +day+"."+month+"."+year+"ROFILE_OF_USER"
         +followers+"ROFILE_OF_USER"
         +follows+"ROFILE_OF_USER"
-        +res[0].bio+"PROFILE_OF_USER"
+        +res[0].bio+"ROFILE_OF_USER"
       //  +res[0].active_style+" "
 
        
