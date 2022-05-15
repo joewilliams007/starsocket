@@ -454,7 +454,7 @@ case "setBio":
 
 	connection.query(
 		`UPDATE Users
-		SET bio = ${message.split("BIO_IS_THE_FOLLOWING")[1]}
+		SET bio = "${message.split("BIO_IS_THE_FOLLOWING")[1]}"
 		WHERE user_id = ${args[1]}`
 		, function (error, results, fields) {
 			if (error) throw error// serverInfo("error updating "+" of #"+args[1]);
