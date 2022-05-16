@@ -253,6 +253,7 @@ break;
 case "follow":
 	var userid = args[1] // source
 	var targetid = args[2] // target id
+	var target_username = args[4]
 
 
 	connection.query( // get the users stuff
@@ -265,8 +266,8 @@ case "follow":
 
 			connection.query( 
 
-				`INSERT INTO Follow  (follower_id, target_id, follower_name) 
-				VALUES ("${userid}","${targetid}","${username}")`
+				`INSERT INTO Follow  (follower_id, target_id, follower_name, target_name) 
+				VALUES ("${userid}","${targetid}","${username}","${target_name}")`
 
 				, function (error, results, fields) {
 				if (error) throw error;

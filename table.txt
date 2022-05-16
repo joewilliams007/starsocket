@@ -78,8 +78,10 @@ id INT NOT NULL AUTO_INCREMENT,
 follower_id varchar(255),
 target_id varchar(255),
 follower_name varchar(255),
+target_name varchar(255),
 PRIMARY KEY ( id )
 );
+
 
 login :
 
