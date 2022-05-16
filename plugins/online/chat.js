@@ -14,11 +14,12 @@ function chat(message){
 	var time2 = datetime.toLocaleTimeString().split(" ");
 	var time = time1[0]+":"+time1[1]+" "+time2[1]
 	var chatM = message.toString().split("MESSAGE&")[1]
-	var finalMessage = "- - - - -\n"+date+" "+time+" by user #"+FROM+"\n- "+chatM
+
 	var finalMessageChat = time+"@"+username+"@"+chatM+"NEXTMESSAGEIS:;"
+	var finalMessageChatInbox = time+"@"+username+" #"+TO+"@"+chatM+"NEXTMESSAGEIS:;"
 
 	try{
-            fs.appendFile("./users/"+TO+"/chatinbox.txt","\n"+finalMessage, function (err) {
+            fs.appendFile("./users/"+TO+"/chatinbox.txt","\n"+finalMessageChatInbox, function (err) {
                 if (err) {
                     // append failed
                 } else {
