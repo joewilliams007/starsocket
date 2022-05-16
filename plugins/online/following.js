@@ -5,7 +5,7 @@ function follower (res) {
     var message="";
 					
 			for (const item of res.values()) {  
-					message+="\n"+JSON.stringify(item.follower_id)+"@"+JSON.stringify(item.follower_name)+"@"+"-";
+					message+="\n"+JSON.stringify(item.target_id)+"@"+JSON.stringify(item.target_name)+"@"+"-";
                 
         
 			}
