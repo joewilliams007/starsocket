@@ -16,7 +16,7 @@ function chat(message){
 	var chatM = message.toString().split("MESSAGE&")[1]
 
 	var finalMessageChat = time+"@"+username+"@"+chatM+"NEXTMESSAGEIS:;"
-	var finalMessageChatInbox = time+"@"+username+" #"+TO+"@"+chatM+"NEXTMESSAGEIS:;"
+	var finalMessageChatInbox = time+"@"+username+" #"+FROM+"@"+chatM+"NEXTMESSAGEIS:;"
 
 	try{
             fs.appendFile("./users/"+TO+"/chatinbox.txt","\n"+finalMessageChatInbox, function (err) {
