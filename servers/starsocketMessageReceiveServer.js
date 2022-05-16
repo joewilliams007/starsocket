@@ -267,7 +267,7 @@ case "follow":
 			connection.query( 
 
 				`INSERT INTO Follow  (follower_id, target_id, follower_name, target_name) 
-				VALUES ("${userid}","${targetid}","${username}","${target_name}")`
+				VALUES ("${userid}","${targetid}","${username}","${target_username}")`
 
 				, function (error, results, fields) {
 				if (error) throw error;
