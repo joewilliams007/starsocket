@@ -404,7 +404,7 @@ var option = "password"
 	var encryptedPassword = cryptr.encrypt(args[2]);
 	connection.query(
 		`UPDATE Users
-		SET password = ${encryptedPassword}
+		SET password = "${encryptedPassword}"
 		WHERE user_id = ${args[1]}`
 		, function (error, results, fields) {
 			if (error) serverInfo("error updating "+option+" of #"+args[1]);
