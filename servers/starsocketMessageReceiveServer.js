@@ -400,6 +400,7 @@ break;
 // 4.3 set password ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setPassword":
 	
+var option = "password"
 	var encryptedPassword = cryptr.encrypt(args[2]);
 	connection.query(
 		`UPDATE Users
