@@ -728,7 +728,7 @@ case "viewPlan":
 		const util = require('util')
 		var data = util.inspect(results, {showHidden: false, depth: null, colors: true});
 		console.log(data)
-		serverInfo("there is: "+data[0].RowDataPacket)
+		serverInfo("there is: "+data[0])
 	});
 
 	/*connection.query( // register userstuff
