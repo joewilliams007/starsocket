@@ -714,21 +714,24 @@ case "viewPlan":
 	var planid = args[2]
 	var views = "none"
 
-
-
 	connection.query(
 
-	`SELECT EXISTS(SELECT * FROM Views WHERE user_id ='${args[1]}' LIMIT 1)`
+	`SELECT * FROM Views WHERE user_id ='${args[1]}'`
 
 	, function (error, results, fields) {
-		if (error) throw error;
+		if (error) { 
 
-		var res = JSON.parse(JSON.stringify(results))
-		res1 = res[0]
-		const util = require('util')
-		var data = util.inspect(results, {showHidden: false, depth: null, colors: true});
-		console.log(data)
-		serverInfo("there is: "+data.toString().split(".")[1])
+			connection.query( 
+				`INSERT INTO Views (user_id, plan_id, username) 
+				VALUES ("${user_id}","${planid}","${username}")`
+				, function (error, results, fields) {
+					if (error) throw error;
+					console.log('Yey new view! >_< ');
+			});
+
+		} else {
+			serverInfo("already viewed plan before")
+		};
 	});
 
 	/*connection.query( // register userstuff
