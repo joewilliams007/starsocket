@@ -151,15 +151,18 @@ case "register":
 				, function (error, results, fields) {
 					if (error) throw error;
 					console.log('Yey a new registration! >_< ');
-		});
 
-		connection.query( // get the users id
-		`SELECT user_id FROM Users
-		WHERE username="${args[1]}" AND password = "${encryptedPassword}" AND email= "${args[3]}"`
-		, function (error, results, fields) {
-			if (error) serverInfo(error.message);
-			reply(register(message, results))
-		});
+					connection.query( // get the users id
+					`SELECT user_id FROM Users
+					WHERE username="${args[1]}" AND password = "${encryptedPassword}" AND email= "${args[3]}"`
+					, function (error, results, fields) {
+						if (error) serverInfo(error.message);
+						reply(register(message, results))
+					});
+
+				});
+
+
 break;
 // Login ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "login":
@@ -710,6 +713,26 @@ case "viewPlan":
 	var userid = "+#"+args[1]+"+"
 	var planid = args[2]
 	var views = "none"
+
+
+
+	connection.query(
+
+	`SELECT EXISTS(SELECT * FROM Views WHERE user_id ='${args[1]}' LIMIT 1)`
+
+	, function (error, results, fields) {
+		if (error) throw error;
+		console.log('Yey a new registration! >_< ');
+		serverInfo("there is: "+results)
+	});
+
+	/*connection.query( // register userstuff
+	`INSERT INTO Users (username, password, email, account_created, xp, coins, logins, weight, age, energy, follows, followers) 
+	VALUES ("${args[1]}","${encryptedPassword}","${args[3]}","${date}",0,10,1, 0, 0, 0, 0, 0)`
+	, function (error, results, fields) {
+		if (error) throw error;
+		console.log('Yey a new registration! >_< ');
+	});*/
 
 try {
 	views = fs.readFileSync('plans/views/'+planid+'.txt');
