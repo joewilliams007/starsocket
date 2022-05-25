@@ -723,7 +723,7 @@ case "viewPlan":
 	, function (error, results, fields) {
 		if (error) throw error;
 		console.log('Yey a new registration! >_< ');
-		serverInfo("there is: "+results)
+		serverInfo("there is: "+JSON.parse(JSON.stringify(results)))
 	});
 
 	/*connection.query( // register userstuff
