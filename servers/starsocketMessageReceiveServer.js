@@ -726,11 +726,9 @@ case "viewPlan":
 		var res = JSON.parse(JSON.stringify(results))
 		res1 = res[0]
 		const util = require('util')
-		console.log(util.inspect(results, {showHidden: false, depth: null, colors: true}))
-		
-		
-
-		serverInfo("there is: "+JSON.parse(JSON.stringify(res1[0])))
+		var data = util.inspect(results, {showHidden: false, depth: null, colors: true});
+		console.log(data)
+		serverInfo("there is: "+data.RowDataPacket[0])
 	});
 
 	/*connection.query( // register userstuff
