@@ -725,7 +725,7 @@ case "viewPlan":
 		console.log('Yey a new registration! >_< ');
 
 		var res = JSON.parse(JSON.stringify(results))
-		res1 = res[0]
+		res1 = res[0].RowDataPacket[0]
 
 		const util = require('util')
 		console.log(util.inspect(results, {showHidden: false, depth: null, colors: true}))
