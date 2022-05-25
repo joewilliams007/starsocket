@@ -727,6 +727,10 @@ case "viewPlan":
 		var res = JSON.parse(JSON.stringify(results))
 		res1 = res[0]
 
+		const util = require('util')
+		console.log(util.inspect(results, {showHidden: false, depth: null, colors: true}))
+		
+		
 
 		serverInfo("there is: "+res1)
 	});
