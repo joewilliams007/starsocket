@@ -722,17 +722,15 @@ case "viewPlan":
 
 	, function (error, results, fields) {
 		if (error) throw error;
-		console.log('Yey a new registration! >_< ');
 
 		var res = JSON.parse(JSON.stringify(results))
-		res1 = res[0].RowDataPacket[0]
-
+		res1 = res[0]
 		const util = require('util')
 		console.log(util.inspect(results, {showHidden: false, depth: null, colors: true}))
 		
 		
 
-		serverInfo("there is: "+res1)
+		serverInfo("there is: "+JSON.parse(JSON.stringify(res1)))
 	});
 
 	/*connection.query( // register userstuff
