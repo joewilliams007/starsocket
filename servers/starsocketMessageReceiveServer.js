@@ -776,6 +776,34 @@ case "starPlan":
 	var planid = args[2]
 	var stars = "none"
 
+	connection.query(
+
+		`SELECT * FROM Stars WHERE user_id ='${user_id}' AND plan_id ='${planid}'`
+	
+		, function (error, results, fields) {
+			if (results.length<1) { 
+	
+				connection.query( 
+					`INSERT INTO Stars (user_id, plan_id, username) 
+					VALUES ("${user_id}","${planid}","${username}")`
+					, function (error, results, fields) {
+						if (error) throw error;
+						console.log('Yey new star! >_< ');
+				});
+	
+			} else {
+
+				connection.query( 
+					`DELETE FROM Stars WHERE user_id ='${user_id}' AND plan_id ='${planid}'`
+					, function (error, results, fields) {
+						if (error) throw error;
+						console.log('Yey new star! >_< ');
+				});
+	
+			};
+			serverInfo(results)
+		});
+
 try {
 stars = fs.readFileSync('plans/stars/'+planid+'.txt');
 } catch (err) { }
