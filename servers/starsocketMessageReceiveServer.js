@@ -797,7 +797,7 @@ case "starPlan":
 					`DELETE FROM Stars WHERE user_id ='${user_id}' AND plan_id ='${planid}'`
 					, function (error, results, fields) {
 						if (error) throw error;
-						console.log('Yey new star! >_< ');
+						console.log('Star removed! >_< ');
 				});
 	
 			};
