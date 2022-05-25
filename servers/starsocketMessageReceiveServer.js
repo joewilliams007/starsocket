@@ -716,7 +716,7 @@ case "viewPlan":
 
 	connection.query(
 
-	`SELECT * FROM Views WHERE user_id ='${args[1]}'`
+	`SELECT * FROM Views WHERE plan_id ='${args[1]}'`
 
 	, function (error, results, fields) {
 		if (error) { 
