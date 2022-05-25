@@ -788,7 +788,7 @@ case "starPlan":
 					VALUES ("${user_id}","${planid}","${username}")`
 					, function (error, results, fields) {
 						if (error) throw error;
-						console.log('Yey new star! >_< ');
+						console.log(' ------------------ Yey new star! >_< ');
 				});
 	
 			} else {
@@ -797,11 +797,10 @@ case "starPlan":
 					`DELETE FROM Stars WHERE user_id ='${user_id}' AND plan_id ='${planid}'`
 					, function (error, results, fields) {
 						if (error) throw error;
-						console.log('Star removed! >_< ');
+						console.log(' ------------------ Star removed! >_< ');
 				});
 	
 			};
-			serverInfo(results)
 		});
 
 try {
