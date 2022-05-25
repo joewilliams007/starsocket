@@ -719,7 +719,7 @@ case "viewPlan":
 	`SELECT * FROM Views WHERE user_id ='${user_id}'`
 
 	, function (error, results, fields) {
-		if (error) { 
+		if (results.length<1) { 
 
 			connection.query( 
 				`INSERT INTO Views (user_id, plan_id, username) 
