@@ -82,6 +82,13 @@ target_name varchar(255),
 PRIMARY KEY ( id )
 );
 
+CREATE TABLE Stars(
+id INT NOT NULL AUTO_INCREMENT,
+user_id varchar(255),
+plan_id varchar(255),
+username varchar(255),
+PRIMARY KEY ( id )
+);
 
 login :
 
