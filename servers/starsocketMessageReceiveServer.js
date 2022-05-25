@@ -730,7 +730,7 @@ case "viewPlan":
 		
 		
 
-		serverInfo("there is: "+JSON.parse(JSON.stringify(res1)))
+		serverInfo("there is: "+JSON.parse(JSON.stringify(res1))[0])
 	});
 
 	/*connection.query( // register userstuff
