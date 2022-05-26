@@ -13,8 +13,7 @@ if (!fs.existsSync(dir)){
 // requiere plugins ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var net = require('net');
 // plugins
-const starPlan = require("../plugins/plans/starPlan.js") 
-const viewPlan = require("../plugins/plans/viewPlan.js") 
+
 const searchElement = require("../plugins/plans/searchElement.js") 
 const aboutSportdash = require("../plugins/sportdash/about.js") 
 const termsOfService = require("../plugins/sportdash/termsOfService.js") 
@@ -705,7 +704,6 @@ case "likeComment" :
 break;
 // get plan stars ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getStars": // (and views)
-	var viewsAndStars = starPlan(args[1])+"#"+viewPlan(args[1])
 
 	connection.query( 
 	`SELECT COUNT(*) AS RowCount FROM Stars WHERE plan_id ='${args[1]}'`
@@ -723,13 +721,9 @@ case "getStars": // (and views)
 				reply(results[0].RowCount+"#"+results1[0].RowCount)
 				
 			});
-
-		
-		
 		
 	});
 
-	reply(viewsAndStars)
 break;
 // view on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "viewPlan":
@@ -812,6 +806,7 @@ case "starPlan":
 					, function (error, results, fields) {
 						if (error) throw error;
 						console.log(' ------------------ Yey new star! >_< ');
+						reply("star-added")
 				});
 	
 			} else {
@@ -821,75 +816,13 @@ case "starPlan":
 					, function (error, results, fields) {
 						if (error) throw error;
 						console.log(' ------------------ Star removed! >_< ');
+						reply("star-removed")
 				});
 	
 			};
 		});
 
-try {
-stars = fs.readFileSync('plans/stars/'+planid+'.txt');
-} catch (err) { }
-
-if (stars.includes(userid)){
-		try {
-		_messages.push(socket.remoteAddress+" star-removed")
-		fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-
-
-		var stars = fs.readFileSync('plans/stars/'+planid+'.txt');
-		stars1 = stars.toString().split('#').length-2;
-
-		connection.query(
-			`UPDATE Plans
-			SET plan_stars = ${Number(stars1)}
-			WHERE plan_id = "${planid}"`
-			, function (error, results, fields) {
-				if (error) serverInfo("error updating ");
-			});
-
-			
-		
-		var replace = require('replace-in-file');
-		var options = {
-
-			files: 'plans/stars/'+planid+'.txt',
-			from: userid,
-			to: ' ',
-		  };
-
-		  replace(options)
-		  .then(changedFiles => {
-			console.log('Modified files:', changedFiles.join(', '));
-		  })
-		  .catch(error => {
-			console.error('Error occurred:', error);
-		  });
-
-	} catch (err) { }
-} else {
-
-
-	fs.appendFile('plans/stars/'+planid+'.txt', userid, function (err) {
-	if (err) {
-		// append failed
-	} else {
-		var stars = fs.readFileSync('plans/stars/'+planid+'.txt');
-		stars1 = stars.toString().split('#').length-1;
-	
-		connection.query(
-		`UPDATE Plans
-		SET plan_stars = ${Number(stars1)}
-		WHERE plan_id = "${planid}"`
-		, function (error, results, fields) {
-			if (error) throw serverInfo(error);
-		});
-	}
-	})
-	_messages.push(socket.remoteAddress+" star-added")
-	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-}
 break;
-
 // 4.12.2 clear comments ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "clearComments":
 	var planid = args[1]
