@@ -227,11 +227,8 @@ connection.query( // get the users stuff
 									, function (error, resultsStars, fields) {
 								
 									
-										reply(profile(message, results, f1, f2, stars))		
-									});
-
-
-					
+										reply(profile(message, results, f1, f2, resultsStars))		
+								});
 				});	
 			});
 		});
