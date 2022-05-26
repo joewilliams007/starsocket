@@ -717,7 +717,7 @@ case "getStars": // (and views)
 		
 
 				connection.query( 
-					`SELECT COUNT(*) AS RowCount FROM Views WHERE plan_id ='${args[1]}' AND user_id ='${user_id}'`
+					`SELECT COUNT(*) AS RowCount FROM Stars WHERE plan_id ='${args[1]}' AND user_id ='${user_id}'`
 					
 					, function (error, results2, fields) {
 				
