@@ -774,6 +774,7 @@ break;
 case "starPlan":
 	var userid = "+#"+args[1]+"+"
 	var planid = args[2]
+	var planname = message.split("%%%")[1]
 	var stars = "none"
 
 	connection.query(
@@ -784,8 +785,8 @@ case "starPlan":
 			if (results.length<1) { 
 	
 				connection.query( 
-					`INSERT INTO Stars (user_id, plan_id, username) 
-					VALUES ("${user_id}","${planid}","${username}")`
+					`INSERT INTO Stars (user_id, plan_id, username, plan_name) 
+					VALUES ("${user_id}","${planid}","${username}","${planname}")`
 					, function (error, results, fields) {
 						if (error) throw error;
 						console.log(' ------------------ Yey new star! >_< ');
@@ -800,7 +801,7 @@ case "starPlan":
 						if (error) throw error;
 						console.log(' ------------------ Star removed! >_< ');
 						reply("star-removed")
-				});
+				}); 
 	
 			};
 		});
