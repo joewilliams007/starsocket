@@ -715,15 +715,24 @@ case "getStars": // (and views)
 			
 			, function (error, results1, fields) {
 		
-				serverInfo("views are "+results[0].RowCount)
-				serverInfo("stars are "+results1[0].RowCount)
 
-				reply(results[0].RowCount+"#"+results1[0].RowCount)
+				connection.query( 
+					`SELECT COUNT(*) AS RowCount FROM Views WHERE plan_id ='${args[1]}' AND user_id ='${user_id}'`
+					
+					, function (error, results2, fields) {
+				
+						serverInfo("views are "+results[0].RowCount)
+						serverInfo("stars are "+results1[0].RowCount)
+						serverInfo("ur stared status is "+results2[0].RowCount)
+		
+						reply(results[0].RowCount+"#"+results1[0].RowCount+"#"+results2[0].RowCount)
+						
+					});
+
+	
 				
 			});
-		
 	});
-
 break;
 // view on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "viewPlan":
@@ -752,40 +761,6 @@ case "viewPlan":
 		serverInfo(results)
 	});
 
-	/*connection.query( // register userstuff
-	`INSERT INTO Users (username, password, email, account_created, xp, coins, logins, weight, age, energy, follows, followers) 
-	VALUES ("${args[1]}","${encryptedPassword}","${args[3]}","${date}",0,10,1, 0, 0, 0, 0, 0)`
-	, function (error, results, fields) {
-		if (error) throw error;
-		console.log('Yey a new registration! >_< ');
-	});*/
-
-try {
-	views = fs.readFileSync('plans/views/'+planid+'.txt');
-} catch (err) { }
-
-if (views.includes(userid)){
-		
-} else {
-
-	fs.appendFile('plans/views/'+planid+'.txt', userid, function (err) {
-	if (err) {
-		// append failed
-	} else {
-		var views = fs.readFileSync('plans/views/'+planid+'.txt');
-		views1 = views.toString().split('#').length-1;
-	
-		connection.query(
-		`UPDATE Plans
-		SET plan_views = ${Number(views1)}
-		WHERE plan_id = "${planid}"`
-		, function (error, results, fields) {
-			if (error) throw serverInfo(error);
-		});
-	}
-	})
-
-}
 break;
 // 4.12..  star on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "starPlan":
