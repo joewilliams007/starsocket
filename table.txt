@@ -87,7 +87,7 @@ id INT NOT NULL AUTO_INCREMENT,
 user_id varchar(255),
 plan_id varchar(255),
 username varchar(255),
-plan_name varchar(255),
+plan_name varchar(2000),
 PRIMARY KEY ( id )
 );
 

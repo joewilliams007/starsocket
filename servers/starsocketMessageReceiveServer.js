@@ -221,8 +221,17 @@ connection.query( // get the users stuff
 									f2 = 0
 								}
 
+								connection.query( 
+									`SELECT COUNT(*) AS RowCount FROM Stars WHERE user_id ='${user_id}'`
+				
+									, function (error, resultsStars, fields) {
+								
+									
+										reply(profile(message, results, f1, f2, stars))		
+									});
 
-					reply(profile(message, results, f1, f2))		
+
+					
 				});	
 			});
 		});
