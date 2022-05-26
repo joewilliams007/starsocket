@@ -712,7 +712,19 @@ case "getStars": // (and views)
 	
 	, function (error, results, fields) {
 
-		serverInfo("stars are "+results[0].RowCount)
+		connection.query( 
+			`SELECT COUNT(*) AS RowCount FROM Views WHERE plan_id ='${args[1]}'`
+			
+			, function (error, results1, fields) {
+		
+				serverInfo("views are "+results[0].RowCount)
+				serverInfo("stars are "+results1[0].RowCount)
+
+				reply(results[0].RowCount+"#"+results1[0].RowCount)
+				
+			});
+
+		
 		
 		
 	});
