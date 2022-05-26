@@ -23,6 +23,7 @@ const leaderboard = require("../plugins/sportdash/leaderboard.js")
 const sendChatMessage = require("../plugins/online/chat.js") 
 const followers = require("../plugins/online/followers.js") 
 const follows = require("../plugins/online/following.js") 
+const starsPage = require("../plugins/online/starsPage.js") 
 const boost = require("../plugins/sportdash/boost.js") 
 const futureLogApp = require("../plugins/sportdash/futureLogApp.js") 
 const downloadPlans = require("../plugins/plans/downloadPlans.js") 
@@ -241,7 +242,7 @@ case "followers":
 
 break;
 // follows ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-case "follows":
+case "followsPage":
 
 	connection.query( // get the users stuff
 	`SELECT * FROM Follow
@@ -251,8 +252,19 @@ case "follows":
 		reply(follows(JSON.parse(JSON.stringify(results))))
 	});
 break;
+// starsPage ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "starsPage":
+
+	connection.query( // get the users stuff
+	`SELECT * FROM Stars
+	WHERE user_id="${args[1]}";`
+	, function (error, results, fields) {
+		if (error) { }
+		reply(starsPage(JSON.parse(JSON.stringify(results))))
+	});
+break;
 // follow/unfollow ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-case "follow":
+case "followPage":
 	var userid = args[1] // source
 	var targetid = args[2] // target id
 	var target_username = args[4]
@@ -715,10 +727,9 @@ case "getStars": // (and views)
 			
 			, function (error, results1, fields) {
 		
-
 				connection.query( 
 					`SELECT COUNT(*) AS RowCount FROM Stars WHERE plan_id ='${args[1]}' AND user_id ='${user_id}'`
-					
+
 					, function (error, results2, fields) {
 				
 						serverInfo("views are "+results[0].RowCount)
@@ -728,9 +739,6 @@ case "getStars": // (and views)
 						reply(results[0].RowCount+"#"+results1[0].RowCount+"#"+results2[0].RowCount)
 						
 					});
-
-	
-				
 			});
 	});
 break;
