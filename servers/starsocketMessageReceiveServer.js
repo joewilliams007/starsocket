@@ -24,6 +24,7 @@ const sendChatMessage = require("../plugins/online/chat.js")
 const followers = require("../plugins/online/followers.js") 
 const follows = require("../plugins/online/following.js") 
 const starsPage = require("../plugins/online/starsPage.js") 
+const planStarsPage = require("../plugins/online/planStarsPage.js") 
 const boost = require("../plugins/sportdash/boost.js") 
 const futureLogApp = require("../plugins/sportdash/futureLogApp.js") 
 const downloadPlans = require("../plugins/plans/downloadPlans.js") 
@@ -267,6 +268,17 @@ case "starsPage":
 	, function (error, results, fields) {
 		if (error) { }
 		reply(starsPage(JSON.parse(JSON.stringify(results))))
+	});
+break;
+// planStarsPage ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "plansStarsPage":
+
+	connection.query( // get the users stuff
+	`SELECT * FROM Stars
+	WHERE plan_id="${args[1]}";`
+	, function (error, results, fields) {
+		if (error) { }
+		reply(planStarsPage(JSON.parse(JSON.stringify(results))))
 	});
 break;
 // follow/unfollow ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
