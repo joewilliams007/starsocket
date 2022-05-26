@@ -706,6 +706,17 @@ break;
 // get plan stars ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getStars": // (and views)
 	var viewsAndStars = starPlan(args[1])+"#"+viewPlan(args[1])
+
+	connection.query( 
+	`SELECT COUNT(*) AS ROWCount FROM Stars WHERE plan_id ='${planid}'`
+	
+	, function (error, results, fields) {
+
+		serverInfo("stars are "+results[0].RowCount)
+		
+		
+	});
+
 	reply(viewsAndStars)
 break;
 // view on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
