@@ -272,7 +272,7 @@ case "starsPage":
 break;
 // planStarsPage ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "plansStarsPage":
-console.log("asssessssssssssssssssssed")
+
 	connection.query( // get the users stuff
 	`SELECT * FROM Stars
 	WHERE plan_id="${args[1]}";`
