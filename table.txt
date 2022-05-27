@@ -1,3 +1,6 @@
+CREATE DATABASE db_main;
+ALTER DATABASE db_main CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+
 CREATE TABLE Users (
 user_id INT NOT NULL AUTO_INCREMENT,
 username varchar(255),
@@ -55,6 +58,8 @@ likes varchar(255),
 PRIMARY KEY ( comment_id )
 );
 
+
+
 CREATE TABLE Plans (
 plan_name varchar(255),
 creator_name varchar(255),
@@ -72,6 +77,8 @@ date int,
 plan_views int,
 PRIMARY KEY ( plan_name )
 );
+
+
 
 CREATE TABLE Follow(
 id INT NOT NULL AUTO_INCREMENT,
@@ -98,6 +105,14 @@ plan_id varchar(255),
 username varchar(255),
 PRIMARY KEY ( id )
 );
+
+ALTER TABLE Users CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+ALTER TABLE Elements CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+ALTER TABLE Comments CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+ALTER TABLE Plans CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+ALTER TABLE Follow CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+ALTER TABLE Stars CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+ALTER TABLE Views CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 
 login :
 
