@@ -57,7 +57,8 @@ var connection = mysql.createConnection({
 host     : 'localhost',
 user     : 'root',
 password : 'johannw2004',
-database : 'db_main'
+database : 'db_main',
+charset : 'utf8mb4'
 });
 connection.connect();
 // Server ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
