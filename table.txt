@@ -109,6 +109,26 @@ username varchar(255),
 PRIMARY KEY ( id )
 );
 
+
+CREATE TABLE Live(
+id INT NOT NULL AUTO_INCREMENT,
+user_id varchar(255),
+plan_id varchar(255),
+username varchar(255),
+plan_duration int,
+plan_name varchar(2000),
+active varchar(255),
+started varchar(255),
+profile varchar(255),
+followOnly varchar(255),
+passwordOnly varchar(255),
+password varchar(255),
+date int,
+joined int,
+PRIMARY KEY ( id )
+);
+
+
 ALTER TABLE Users CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 ALTER TABLE Elements CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 ALTER TABLE Comments CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
@@ -116,6 +136,7 @@ ALTER TABLE Plans CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 ALTER TABLE Follow CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 ALTER TABLE Stars CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 ALTER TABLE Views CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+ALTER TABLE Live CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 
 login :
 
