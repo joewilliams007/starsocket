@@ -244,8 +244,6 @@ break;
 // followers ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "followersPage":
 
-
-
 	connection.query( // get the users stuff
 	`SELECT * FROM Follow
 	WHERE target_id="${args[1]}";`
@@ -265,6 +263,7 @@ case "followsPage":
 		if (error) { }
 		reply(follows(JSON.parse(JSON.stringify(results))))
 	});
+
 break;
 // starsPage ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "starsPage":
@@ -537,6 +536,39 @@ case "feed_fresh":
 					if (error) serverInfo(error.message);
 					reply(feed("all_time",results))		
 		});
+break;
+// feed following ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "feed_following":
+
+	connection.query( // get the users stuff
+	`SELECT * FROM Follow
+	WHERE follower_id="${args[1]}";`
+	, function (error, res, fields) {
+		if (error) { }
+
+		var message="";
+					
+		for (const item of JSON.parse(JSON.stringify(res)).values()) {  
+				message+=JSON.stringify(item.target_id)+" OR creator_id=";
+		}
+
+
+		connection.query( // get the users stuff
+		`SELECT * FROM Plans
+		WHERE creator_id="${message}"
+		ORDER BY date DESC LIMIT 25`
+
+		, function (error, results, fields) {
+			if (error) serverInfo(error.message);
+			reply(feed("all_time",results))		
+		});
+
+
+	});
+
+
+
+	
 break;
 // 4.11 upload plans ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "upload_plans":
