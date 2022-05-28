@@ -519,7 +519,19 @@ case "all_time":
 		connection.query( // get the users stuff
 				`SELECT * FROM Plans
 				WHERE privacy=1
-				ORDER BY RAND() LIMIT 25`
+				ORDER BY RAND() LIMIT 50`
+		
+				, function (error, results, fields) {
+					if (error) serverInfo(error.message);
+					reply(feed("all_time",results))		
+		});
+break;
+// feed fresh ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "feed_fresh":
+		connection.query( // get the users stuff
+				`SELECT * FROM Plans
+				WHERE privacy=1
+				ORDER BY date ASC LIMIT 50`
 		
 				, function (error, results, fields) {
 					if (error) serverInfo(error.message);
