@@ -13,18 +13,37 @@ function feed(type, results){
 
         for (const item of res.values()) {  
 
-                
-        
-            if (type == "all_time") {
+        finalTime;
+        var time = (dateInSec - Number(item.date))
+
+        if(time/60/60/24>364) {
+
+            finalTime = time/60/60/24/365+" years ago"
+
+        } else if(time/60/60/24>30) {
+
+            finalTime = time/60/60/24/30+" months ago"
+
+        } else if (time/60/60>23.55){
+
+            finalTime = time/60/60+" days ago"
+
+        } else if (time/60>0.55) {
+
+            finalTime = time/60+" hours ago"
+
+        }
+
+           
                 feed += item.plan_name+separator
                 +item.plan_description+separator
                 +item.tags+separator
                 +item.plan_views+separator
                 +item.plan_stars+separator
                 +item.plan_id+separator
-                +(dateInSec - Number(item.date))/60+" min"+separator
+                +finalTime+separator
                 +"\n"
-            }
+            
 
         }
 
