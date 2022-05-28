@@ -549,16 +549,16 @@ case "feed_following":
 		var message="";
 					
 		for (const item of JSON.parse(JSON.stringify(res)).values()) {  
-				message+=JSON.stringify(item.target_id)+"' OR creator_id=";
+				message+=JSON.stringify(item.target_id)+" OR creator_id=";
 		}
 		
 		serverInfo(		`SELECT * FROM Plans
-		WHERE creator_id='${message.replace(/\\"/g, '"').replace(/"/g, '\\"')}'5'
+		WHERE creator_id='${message}'5'
 		ORDER BY date DESC LIMIT 25`)
 
 		connection.query( // get the users stuff
 		`SELECT * FROM Plans
-		WHERE creator_id='${message.replace(/\\"/g, '"').replace(/"/g, '\\"')}'5'
+		WHERE creator_id=${message}'5'
 		ORDER BY date DESC LIMIT 25`
 
 		, function (error, results, fields) {
