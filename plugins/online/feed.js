@@ -2,7 +2,6 @@ let fs = require('fs');
 
 function feed(type, results){
 
-    var args = message.split(" ") 
     var feed;
     var res = JSON.parse(JSON.stringify(results))
     var separator = "PLAN_DIVIDER"
