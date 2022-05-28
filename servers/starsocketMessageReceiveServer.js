@@ -774,12 +774,13 @@ case "getStars": // (and views)
 						reply(results[0].RowCount+"#"+results1[0].RowCount+"#"+results2[0].RowCount)
 
 						if (Number(results[0].RowCount)>0){
-							serverInfo("updating views")
+							serverInfo("updating views "+args[1])
 							connection.query(
 								`UPDATE Plans
 								SET plan_views = ${results[0].RowCount}
 								WHERE plan_id = ${args[1]}`
 								, function (error, results, fields) {	
+									if(error) throw error;
 							});
 
 							if (Number(results1[0].RowCount)>0){
