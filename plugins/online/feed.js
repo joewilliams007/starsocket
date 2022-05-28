@@ -13,7 +13,7 @@ function feed(type, results){
                 
         
             if (type == "all_time") {
-                feed = item.plan_name+separator
+                feed += item.plan_name+separator
                 +item.plan_description+separator
                 +item.tags+separator
                 +item.plan_views+separator
