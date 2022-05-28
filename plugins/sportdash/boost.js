@@ -1,10 +1,9 @@
 let fs = require('fs');
 
-async function boost(ip){
+function boost(ip){
     try {
 
         fs.unlinkSync("./user_messages/"+ip+"/messages.json")
-        await sleep(10);
         fs.appendFile("./user_messages/"+ip+"/messages.json", '[]', function (err) {
             if (err) throw err;
             console.log('ACCOUNT BOOSTED!');
@@ -13,31 +12,6 @@ async function boost(ip){
 
     } catch (err){
         console.log("error boosting")
-
-
-        try {
-
-            fs.unlinkSync("./user_messages/"+ip+"/messages.json")
-            await sleep(10);
-            fs.appendFile("./user_messages/"+ip+"/messages.json", '[]', function (err) {
-                if (err) throw err;
-                console.log('ACCOUNT BOOSTED!');
-                _messages = JSON.parse(fs.readFileSync("./user_messages/"+ip+"/messages.json"));
-            });
-    
-        } catch (err){
-            console.log("error boosting")
-        }
-
     }
-}
-
-
-
-
-function sleep(ms) {
-return new Promise((resolve) => {
-  setTimeout(resolve, ms);
-});
 }
 module.exports = boost;
