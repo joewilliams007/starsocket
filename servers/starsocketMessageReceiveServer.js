@@ -30,6 +30,7 @@ const futureLogApp = require("../plugins/sportdash/futureLogApp.js")
 const downloadPlans = require("../plugins/plans/downloadPlans.js") 
 const downloadPlanById = require("../plugins/plans/downloadPlanById.js") 
 const getChatMessages = require("../plugins/online/getChatMessages.js") 
+const feed = require("../plugins/online/feed.js") 
 const profile = require("../plugins/online/profile.js") 
 const searchUser = require("../plugins/online/searchUser.js") 
 const clearChatMessages = require("../plugins/online/clearChatMessages.js") 
@@ -511,7 +512,19 @@ case "setLogins":
 break;
 // 4.10.1 set energy ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setUsername":
-	set(username)	
+	set("username")	
+break;
+// feed all time ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "all_time":
+		connection.query( // get the users stuff
+				`SELECT * FROM Plans
+				WHERE privacy=1
+				ORDER BY RAND() LIMIT 25`
+		
+				, function (error, results, fields) {
+					if (error) serverInfo(error.message);
+					reply(feed("all_time",results))		
+		});
 break;
 // 4.11 upload plans ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "upload_plans":
@@ -553,6 +566,7 @@ case "upload_plans_everyone":
 var changing = "plans"
 
 var data = message.split("##########")[1].replace("Λ","A");
+var tags = message.split("##########")[2]+",";
 var id = args[1];
 var category = args[4].split("XXXXXXXX")[1];
 var planId = args[3];
@@ -591,8 +605,8 @@ fs.appendFile('users/'+id+'/plan'+args[2]+'.txt', data, function (err) {
 var db =  message.split("##########");
 var dateInSec = Math.floor(new Date() / 1000) // in seconds
 connection.query( // register userstuff
-`INSERT INTO Plans (plan_name, plan_description, creator_name, creator_id,plan_id, duration, category, difficulty, reports, plan_usage, plan_stars,privacy,plan_views,date) 
-VALUES ("${db[2]}","${db[3]}","${db[4]}","${db[5]}","${planId}",${db[7]},"${db[8]}","${db[9]}",0,0,0,1,0,${dateInSec})`
+`INSERT INTO Plans (plan_name, plan_description, creator_name, creator_id,plan_id, duration, category, difficulty, reports, plan_usage, plan_stars,privacy,plan_views,date, tags) 
+VALUES ("${db[2]}","${db[3]}","${db[4]}","${db[5]}","${planId}",${db[7]},"${db[8]}","${db[9]}",0,0,0,1,0,${dateInSec},${tags})`
 , function (error, results, fields) {
 	if (error) throw error;
 });
@@ -618,9 +632,6 @@ case "getComments":
 					if (error) serverInfo(error.message);
 					reply(downloadComments(message, results))		
 		});
-
-
-	
 break;
 // 4.12.2  comment on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "commentPlan":
@@ -956,8 +967,6 @@ default:
 		}
 	}
 // 6 functions ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------					
-
-
 	function logAll(){
 		connection.query('SELECT * FROM Users', function (error, results, fields) {
 			if (error) throw error;
