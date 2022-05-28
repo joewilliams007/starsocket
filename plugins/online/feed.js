@@ -9,11 +9,11 @@ function feed(type, results){
 
     var dateInSec = Math.floor(new Date().getTime() / 1000) // in seconds
 
-    
+    try {
 
         for (const item of res.values()) {  
 
-        finalTime;
+        var finalTime;
         var time = (dateInSec - Number(item.date))
 
         if(time/60/60/24>364) {
@@ -56,7 +56,9 @@ function feed(type, results){
 
 
 
-  
+    } catch(err){
+        feed = "err"
+    }
 
 
 
