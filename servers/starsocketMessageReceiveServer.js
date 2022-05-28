@@ -552,7 +552,9 @@ case "feed_following":
 				message+=JSON.stringify(item.target_id)+"' OR creator_id=";
 		}
 		
-		serverInfo(message)
+		serverInfo(		`SELECT * FROM Plans
+		WHERE creator_id='${message}'5'
+		ORDER BY date DESC LIMIT 25`)
 
 		connection.query( // get the users stuff
 		`SELECT * FROM Plans
