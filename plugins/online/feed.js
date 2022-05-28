@@ -18,26 +18,26 @@ function feed(type, results){
 
         if(time/60/60/24>364) {
 
-            finalTime = time/60/60/24/365+" year(s) ago"
+            finalTime = time/60/60/24/365+". year(s) ago"
 
         } else if(time/60/60/24>30) {
 
-            finalTime = time/60/60/24/30+" month(s) ago"
+            finalTime = time/60/60/24/30+". month(s) ago"
 
         } else if (time/60/60/60>23.55){
 
-            finalTime = time/60/60+" day(s) ago"
+            finalTime = time/60/60+". day(s) ago"
 
         } else if (time/60/60>1){
 
-            finalTime = time/60/60+" hour(s) ago"
+            finalTime = time/60/60+". hour(s) ago"
 
         } else if (time/60>1) {
 
-            finalTime = time/60+" minute(s) ago"
+            finalTime = time/60+". minute(s) ago"
 
         } else {
-            finalTime = time+" second(s) ago"
+            finalTime = time+". second(s) ago"
         }
 
            
@@ -47,7 +47,7 @@ function feed(type, results){
                 +item.plan_views+separator
                 +item.plan_stars+separator
                 +item.plan_id+separator
-                +"."+finalTime+separator
+                +finalTime+separator
                 +"\n"
             
 
