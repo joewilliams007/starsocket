@@ -12,6 +12,12 @@ function boost(ip){
 
     } catch (err){
         console.log("error boosting")
+
+        fs.appendFile("./user_messages/"+ip+"/messages.json", '[]', function (err) {
+            if (err) throw err;
+            console.log('ACCOUNT BOOSTED!');
+            _messages = JSON.parse(fs.readFileSync("./user_messages/"+ip+"/messages.json"));
+        });
     }
 }
 module.exports = boost;
