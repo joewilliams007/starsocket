@@ -778,9 +778,9 @@ case "getStars": // (and views)
 							connection.query(
 								`UPDATE Plans
 								SET plan_views = ${results[0].RowCount}
-								WHERE plan_id = ${args[1]}`
+								WHERE plan_id = "${args[1]}"`
 								, function (error, results, fields) {	
-									if(error) throw error;
+								
 							});
 
 							if (Number(results1[0].RowCount)>0){
@@ -788,7 +788,7 @@ case "getStars": // (and views)
 								connection.query(
 									`UPDATE Plans
 									SET plan_stars = ${results1[0].RowCount}
-									WHERE plan_id = ${args[1]}`
+									WHERE plan_id = "${args[1]}"`
 									, function (error, results, fields) {	
 								});
 							}
