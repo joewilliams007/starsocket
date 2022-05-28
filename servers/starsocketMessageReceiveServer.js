@@ -116,9 +116,13 @@ var server = net.createServer(function(socket) {
 	*/
 		
 		var args;
+		try {
 		if (args[0].length<1){
 			args[0] = "none";
 		}
+	} catch (err){
+		args[0] = "none";
+	}
 
 			
 		switch(args[0]) {
