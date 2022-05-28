@@ -28,11 +28,11 @@ function feed(type, results){
 
             finalTime = time/60/60+" days ago"
 
-        } else if (time/60/60>55){
+        } else if (time/60/60>1){
 
             finalTime = time/60/60+" hours ago"
 
-        } else if (time/60>0.55) {
+        } else if (time/60>1) {
 
             finalTime = time/60+" minutes ago"
 
