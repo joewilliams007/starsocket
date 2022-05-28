@@ -551,7 +551,8 @@ case "feed_following":
 		for (const item of JSON.parse(JSON.stringify(res)).values()) {  
 				message+=JSON.stringify(item.target_id)+"' OR creator_id=";
 		}
-
+		
+		serverInfo("message")
 
 		connection.query( // get the users stuff
 		`SELECT * FROM Plans
