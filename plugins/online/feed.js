@@ -24,9 +24,9 @@ function feed(type, results){
 
             finalTime = time/60/60/24/30+". month(s) ago"
 
-        } else if (time/60/60/60>23.55){
+        } else if (time/60/60/24>1){
 
-            finalTime = time/60/60+". day(s) ago"
+            finalTime = time/60/60/24+". day(s) ago"
 
         } else if (time/60/60>1){
 
