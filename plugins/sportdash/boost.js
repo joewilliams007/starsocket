@@ -1,6 +1,6 @@
 let fs = require('fs');
 
-function boost(ip){
+async function boost(ip){
     try {
 
         fs.unlinkSync("./user_messages/"+ip+"/messages.json")
