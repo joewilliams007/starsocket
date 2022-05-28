@@ -555,7 +555,7 @@ case "feed_following":
 
 		connection.query( // get the users stuff
 		`SELECT * FROM Plans
-		WHERE creator_id="${message}5"
+		WHERE creator_id="${message}"5"
 		ORDER BY date DESC LIMIT 25`
 
 		, function (error, results, fields) {
