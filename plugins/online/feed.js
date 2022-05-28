@@ -6,12 +6,12 @@ function feed(type, results){
     var res = JSON.parse(JSON.stringify(results))
     var separator = "PLAN_DIVIDER"
 
-
+    try {
 
         for (const item of res.values()) {  
 
                 
-            position++
+        
             if (type == "all_time") {
                 feed = item.plan_name+separator
                 +item.plan_description+separator
@@ -27,7 +27,9 @@ function feed(type, results){
 
 
 
-
+    } catch(err){
+        feed = "err"
+    }
 
 
 
