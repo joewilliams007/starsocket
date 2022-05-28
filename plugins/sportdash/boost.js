@@ -4,6 +4,7 @@ function boost(ip){
     try {
 
         fs.unlinkSync("./user_messages/"+ip+"/messages.json")
+        await sleep(1000);
         fs.appendFile("./user_messages/"+ip+"/messages.json", '[]', function (err) {
             if (err) throw err;
             console.log('ACCOUNT BOOSTED!');
@@ -17,6 +18,7 @@ function boost(ip){
         try {
 
             fs.unlinkSync("./user_messages/"+ip+"/messages.json")
+            await sleep(1000);
             fs.appendFile("./user_messages/"+ip+"/messages.json", '[]', function (err) {
                 if (err) throw err;
                 console.log('ACCOUNT BOOSTED!');
@@ -28,5 +30,14 @@ function boost(ip){
         }
 
     }
+}
+
+
+
+
+function sleep(ms) {
+return new Promise((resolve) => {
+  setTimeout(resolve, ms);
+});
 }
 module.exports = boost;
