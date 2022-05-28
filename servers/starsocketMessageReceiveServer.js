@@ -934,32 +934,18 @@ case "clearComments":
 break;
 // 4.11 random plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "randomPlan":
-var randomFile = require('select-random-file')
-var dir = './plans/allplansonline'
-try {
-	randomFileGet()
-	serverInfo("------------------------------------------------------")
-		
-	function randomFileGet(){
-		randomFile(dir, (err, file) => {
-			try {
-				if (file.length<6){
-					randomFileGet()
-				} else {
-					let plan = fs.readFileSync("./plans/allplansonline/"+file);
-					serverInfo(`The random file is: ${file}.`)
-					_messages.push(socket.remoteAddress+" "+plan)
-					fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-					serverInfo("------------------------------------------------------")
-				}
-			} catch (err) {
 
-			}
-		})
-	}
-} catch (err) {
+connection.query( // get the users stuff
+`SELECT * FROM Plans
+WHERE privacy=1
+ORDER BY RAND() LIMIT 1`
 
-}
+, function (error, results, fields) {
+	if (error) serverInfo(error.message);
+
+	reply(results[0].plan)		
+});
+
 break;
 // 4.11 feedback ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "feedback":
