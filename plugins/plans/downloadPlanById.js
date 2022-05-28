@@ -7,6 +7,7 @@ function downloadPlanById(message){
 
         try {
             plan = fs.readFileSync('plans/allplans/'+args[1]+'.txt');
+            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+args[1])
 		} catch (err) {
             plan = "err"
 		}
