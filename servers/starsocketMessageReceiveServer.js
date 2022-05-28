@@ -774,6 +774,7 @@ case "getStars": // (and views)
 						reply(results[0].RowCount+"#"+results1[0].RowCount+"#"+results2[0].RowCount)
 
 						if (Number(results[0].RowCount)>0){
+							serverInfo("updating views")
 							connection.query(
 								`UPDATE Plans
 								SET plan_views = ${results[0].RowCount}
@@ -782,6 +783,7 @@ case "getStars": // (and views)
 							});
 
 							if (Number(results1[0].RowCount)>0){
+								serverInfo("updating stars")
 								connection.query(
 									`UPDATE Plans
 									SET plan_stars = ${results1[0].RowCount}
