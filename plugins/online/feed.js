@@ -7,14 +7,26 @@ function feed(type, results){
     var separator = "PLAN_DIVIDER"
 
     try {
-        if (type == "all_time") {
-            feed = res[0].plan_name+separator
-            +res[0].plan_description+separator
-            +res[0].tags+separator
-            +res[0].plan_views+separator
-            +res[0].plan_stars+separator
-            +res[0].plan_id+separator
+
+        for (const item of res.values()) {  
+
+                
+            position++
+            if (type == "all_time") {
+                feed = item.plan_name+separator
+                +item.plan_description+separator
+                +item.tags+separator
+                +item.plan_views+separator
+                +item.plan_stars+separator
+                +item.plan_id+separator
+                +"\n"
+            }
+
         }
+
+
+
+
     } catch(err){
         feed = "err"
     }
