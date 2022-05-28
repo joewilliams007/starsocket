@@ -115,7 +115,7 @@ var server = net.createServer(function(socket) {
 
 	*/
 		
-		var args;
+		var args = message.split(" ");
 		try {
 			if (args[0].length<1){
 				args[0] = "none";
