@@ -773,7 +773,7 @@ case "getStars": // (and views)
 		
 						reply(results[0].RowCount+"#"+results1[0].RowCount+"#"+results2[0].RowCount)
 
-						if (Number(results[0].RowCount)>0){
+				
 							serverInfo("updating views "+args[1])
 							connection.query(
 								`UPDATE Plans
@@ -783,7 +783,7 @@ case "getStars": // (and views)
 								
 							});
 
-							if (Number(results1[0].RowCount)>0){
+							
 								serverInfo("updating stars")
 								connection.query(
 									`UPDATE Plans
@@ -791,8 +791,8 @@ case "getStars": // (and views)
 									WHERE plan_id = "${args[1]}"`
 									, function (error, results, fields) {	
 								});
-							}
-						}
+							
+						
 		
 					});
 			});
