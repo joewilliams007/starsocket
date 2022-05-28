@@ -11,8 +11,8 @@ function feed(type, results){
             feed = res[0].plan_name+separator
             +res[0].plan_description+separator
             +res[0].tags+separator
-            +res[0].plan_stars+separator
             +res[0].plan_views+separator
+            +res[0].plan_stars+separator
             +res[0].plan_id+separator
         }
     } catch(err){

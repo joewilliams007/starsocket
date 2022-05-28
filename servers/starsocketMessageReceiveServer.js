@@ -767,8 +767,8 @@ case "getStars": // (and views)
 
 					, function (error, results2, fields) {
 				
-						serverInfo("views are "+results[0].RowCount)
-						serverInfo("stars are "+results1[0].RowCount)
+						serverInfo("stars are "+results[0].RowCount)
+						serverInfo("views are "+results1[0].RowCount)
 						serverInfo("ur stared status is "+results2[0].RowCount)
 		
 						reply(results[0].RowCount+"#"+results1[0].RowCount+"#"+results2[0].RowCount)
@@ -777,7 +777,7 @@ case "getStars": // (and views)
 							serverInfo("updating views "+args[1])
 							connection.query(
 								`UPDATE Plans
-								SET plan_views = ${results[0].RowCount}
+								SET plan_views = ${results1[0].RowCount}
 								WHERE plan_id = "${args[1]}"`
 								, function (error, results, fields) {	
 								
@@ -787,7 +787,7 @@ case "getStars": // (and views)
 								serverInfo("updating stars")
 								connection.query(
 									`UPDATE Plans
-									SET plan_stars = ${results1[0].RowCount}
+									SET plan_stars = ${results[0].RowCount}
 									WHERE plan_id = "${args[1]}"`
 									, function (error, results, fields) {	
 								});
