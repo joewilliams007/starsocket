@@ -4,7 +4,7 @@ async function boost(ip){
     try {
 
         fs.unlinkSync("./user_messages/"+ip+"/messages.json")
-        await sleep(1000);
+        await sleep(10);
         fs.appendFile("./user_messages/"+ip+"/messages.json", '[]', function (err) {
             if (err) throw err;
             console.log('ACCOUNT BOOSTED!');
@@ -18,7 +18,7 @@ async function boost(ip){
         try {
 
             fs.unlinkSync("./user_messages/"+ip+"/messages.json")
-            await sleep(1000);
+            await sleep(10);
             fs.appendFile("./user_messages/"+ip+"/messages.json", '[]', function (err) {
                 if (err) throw err;
                 console.log('ACCOUNT BOOSTED!');
