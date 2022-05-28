@@ -6,7 +6,7 @@ function feed(type, results){
     var res = JSON.parse(JSON.stringify(results))
     var separator = "PLAN_DIVIDER"
 
-    try {
+
 
         for (const item of res.values()) {  
 
@@ -27,9 +27,7 @@ function feed(type, results){
 
 
 
-    } catch(err){
-        feed = "err"
-    }
+
 
 
 
