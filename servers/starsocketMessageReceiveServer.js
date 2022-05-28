@@ -671,7 +671,15 @@ case "downloadPlans":
 break;
 // download plan by id ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "downloadPlanById":
-	reply(downloadPlanById(message))
+
+	connection.query( 
+		`SELECT * FROM Plans WHERE plan_id ='${args[1]}'`
+
+		, function (error, results, fields) {
+	
+			reply(results[0].plan)		
+	});
+
 break;
 // plan comments ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getComments":
