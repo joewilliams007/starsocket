@@ -47,7 +47,7 @@ function feed(type, results){
                 +item.plan_views+separator
                 +item.plan_stars+separator
                 +item.plan_id+separator
-                +finalTime+separator
+                +"."+finalTime+separator
                 +"\n"
             
 
