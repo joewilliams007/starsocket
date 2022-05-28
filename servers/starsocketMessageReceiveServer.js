@@ -1063,7 +1063,10 @@ default:
 });
 
 function serverInfo(info){
-	console.log(">_< (receiving) " + info)
+
+var d = new Date()     
+
+	console.log(d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+" >_< (receiving) " + info)
 }
 
 // 7 End of server ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------					

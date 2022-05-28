@@ -71,7 +71,9 @@ var server = net.createServer(function(socket) {
 
 
 function serverInfo(info){
-	console.log(">_> (sending) " + info)
+	var d = new Date()     
+
+	console.log(d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+" >_> (sending) " + info)
 }
 
 server.listen(port);
