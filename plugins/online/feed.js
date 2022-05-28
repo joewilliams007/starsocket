@@ -22,7 +22,7 @@ function feed(type, results){
                 +item.plan_views+separator
                 +item.plan_stars+separator
                 +item.plan_id+separator
-                +(dateInSec - Number(item.date))+separator
+                +(dateInSec - Number(item.date))/60+" min"+separator
                 +"\n"
             }
 
