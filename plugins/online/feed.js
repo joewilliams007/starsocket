@@ -8,7 +8,7 @@ function feed(type, results){
 
 
         if (type == "all_time") {
-            feed = res[0].plan_name+saperator
+            feed = res[0].plan_name+separator
             +res[0].description+separator
             +res[0].tags+separator
             +res[0].plan_views+separator
