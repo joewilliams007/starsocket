@@ -772,7 +772,25 @@ case "getStars": // (and views)
 						serverInfo("ur stared status is "+results2[0].RowCount)
 		
 						reply(results[0].RowCount+"#"+results1[0].RowCount+"#"+results2[0].RowCount)
-						
+
+						if (Number(results[0].RowCount)>0){
+							connection.query(
+								`UPDATE Plans
+								SET plan_views = ${results[0].RowCount}
+								WHERE plan_id = ${args[1]}`
+								, function (error, results, fields) {	
+							});
+
+							if (Number(results1[0].RowCount)>0){
+								connection.query(
+									`UPDATE Plans
+									SET plan_stars = ${results1[0].RowCount}
+									WHERE plan_id = ${args[1]}`
+									, function (error, results, fields) {	
+								});
+							}
+						}
+		
 					});
 			});
 	});
