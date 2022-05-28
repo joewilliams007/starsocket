@@ -9,7 +9,7 @@ function feed(type, results){
 
     var dateInSec = Math.floor(new Date().getTime() / 1000) // in seconds
 
-    try {
+    
 
         for (const item of res.values()) {  
 
@@ -56,9 +56,7 @@ function feed(type, results){
 
 
 
-    } catch(err){
-        feed = "err"
-    }
+  
 
 
 
