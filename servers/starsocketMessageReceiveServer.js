@@ -552,7 +552,7 @@ case "feed_following":
 				message+=JSON.stringify(item.target_id)+"' OR creator_id=";
 		}
 		
-		serverInfo("message")
+		serverInfo(message)
 
 		connection.query( // get the users stuff
 		`SELECT * FROM Plans
