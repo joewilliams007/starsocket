@@ -7,10 +7,7 @@ function feed(type, results){
     var separator = "PLAN_DIVIDER"
 
 
-    var startDate = new Date();
-// Do your operations
-var endDate   = new Date();
-var seconds = (endDate.getTime() - startDate.getTime()) / 1000;
+    var dateInSec = Math.floor(new Date().getTime() / 1000) // in seconds
 
     try {
 
@@ -25,7 +22,7 @@ var seconds = (endDate.getTime() - startDate.getTime()) / 1000;
                 +item.plan_views+separator
                 +item.plan_stars+separator
                 +item.plan_id+separator
-                +(endDate.getTime() - Number(item.date)) / 1000+separator
+                +(dateInSec - Number(item.date))+separator
                 +"\n"
             }
 

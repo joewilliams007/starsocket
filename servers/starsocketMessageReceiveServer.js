@@ -650,7 +650,8 @@ fs.appendFile('users/'+id+'/plan'+args[2]+'.txt', data, function (err) {
 	if (err) throw err;
 });
 var db =  message.split("##########");
-var dateInSec = Math.floor(new Date() / 1000) // in seconds
+var dateInSec = Math.floor(new Date().getTime() / 1000) // in seconds
+
 connection.query( // register userstuff
 `INSERT INTO Plans (plan_name, plan_description, creator_name, creator_id,plan_id, duration, category, difficulty, reports, plan_usage, plan_stars,privacy,plan_views,date, tags) 
 VALUES ("${db[2]}","${db[3]}","${db[4]}","${db[5]}","${planId}",${db[7]},"${db[8]}","${db[9]}",0,0,0,1,0,${dateInSec},"${tags}")`
