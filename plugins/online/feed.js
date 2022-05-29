@@ -37,7 +37,7 @@ function feed(type, results){
             finalTime = time/60+". minute(s) ago"
 
         } else {
-            finalTime = time+". second(s) ago"
+            finalTime = time+".. second(s) ago"
         }
 
            
