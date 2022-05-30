@@ -818,8 +818,8 @@ connection.query(
 
 `SELECT * FROM Views WHERE user_id ='${user_id}' AND plan_id ='${planid}'`
 
-, function (error, results, fields) {
-	if (results.length<1) { 
+, function (error, resultsV, fields) {
+	if (Number(resultsV[0].RowCount)<1) { 
 
 		connection.query( 
 			`INSERT INTO Views (user_id, plan_id, username) 
