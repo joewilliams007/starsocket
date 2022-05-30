@@ -820,7 +820,7 @@ connection.query(
 
 , function (error, resultsV, fields) {
 	
-	if (resultsV[0].RowCount == undefined) { 
+	if (resultsV[0].RowCount == "0") { 
 
 		connection.query( 
 			`INSERT INTO Views (user_id, plan_id, username) 
