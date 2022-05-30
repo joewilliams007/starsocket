@@ -48,6 +48,7 @@ function feed(type, results){
                 +item.plan_stars+separator
                 +item.plan_id+separator
                 +finalTime+separator
+                +item.creator_name+separator
                 +"\n"
             
 
