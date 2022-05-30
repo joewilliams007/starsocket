@@ -812,11 +812,10 @@ break;
 // get plan stars ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getStars": // (and views)
 
-var planid = args[2]
 
 connection.query(
 
-`SELECT COUNT(*) AS RowCount FROM Views WHERE user_id ='${user_id}' AND plan_id ='${planid}'`
+`SELECT COUNT(*) AS RowCount FROM Views WHERE user_id ='${user_id}' AND plan_id ='${args[1]}'`
 
 , function (error, resultsV, fields) {
 	
@@ -824,7 +823,7 @@ connection.query(
 
 		connection.query( 
 			`INSERT INTO Views (user_id, plan_id, username) 
-			VALUES ("${user_id}","${planid}","${username}")`
+			VALUES ("${user_id}","${args[1]}","${username}")`
 			, function (error, results, fields) {
 				if (error) throw error;
 				console.log('Yey new view! >_< ');
