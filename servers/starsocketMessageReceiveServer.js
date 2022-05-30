@@ -819,6 +819,7 @@ connection.query(
 `SELECT * FROM Views WHERE user_id ='${user_id}' AND plan_id ='${planid}'`
 
 , function (error, resultsV, fields) {
+	serverInfo("äääääääääääääääääääääääääää"+resultsV[0].RowCount)
 	if (Number(resultsV[0].RowCount)<1) { 
 
 		connection.query( 
