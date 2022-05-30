@@ -832,7 +832,6 @@ connection.query(
 	} else {
 		serverInfo("already viewed plan before")
 	};
-	serverInfo(results)
 });
 
 	connection.query( 
