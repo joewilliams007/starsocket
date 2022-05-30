@@ -816,7 +816,7 @@ var planid = args[2]
 
 connection.query(
 
-`SELECT * FROM Views WHERE user_id ='${user_id}' AND plan_id ='${planid}'`
+`SELECT COUNT(*) AS RowCount FROM Views WHERE user_id ='${user_id}' AND plan_id ='${planid}'`
 
 , function (error, resultsV, fields) {
 	
