@@ -833,6 +833,7 @@ connection.query(
 	} else {
 		serverInfo("already viewed plan before")
 	};
+	serverInfo(resultsV[0].RowCount)
 });
 
 	connection.query( 
