@@ -812,6 +812,29 @@ break;
 // get plan stars ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getStars": // (and views)
 
+var planid = args[2]
+
+connection.query(
+
+`SELECT * FROM Views WHERE user_id ='${user_id}' AND plan_id ='${planid}'`
+
+, function (error, results, fields) {
+	if (results.length<1) { 
+
+		connection.query( 
+			`INSERT INTO Views (user_id, plan_id, username) 
+			VALUES ("${user_id}","${planid}","${username}")`
+			, function (error, results, fields) {
+				if (error) throw error;
+				console.log('Yey new view! >_< ');
+		});
+
+	} else {
+		serverInfo("already viewed plan before")
+	};
+	serverInfo(results)
+});
+
 	connection.query( 
 	`SELECT COUNT(*) AS RowCount FROM Stars WHERE plan_id ='${args[1]}'`
 	
@@ -857,34 +880,6 @@ case "getStars": // (and views)
 					});
 			});
 	});
-break;
-// view on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-case "viewPlan":
-	var userid = "+#"+args[1]+"+"
-	var planid = args[2]
-	var views = "none"
-
-	connection.query(
-
-	`SELECT * FROM Views WHERE user_id ='${user_id}' AND plan_id ='${planid}'`
-
-	, function (error, results, fields) {
-		if (results.length<1) { 
-
-			connection.query( 
-				`INSERT INTO Views (user_id, plan_id, username) 
-				VALUES ("${user_id}","${planid}","${username}")`
-				, function (error, results, fields) {
-					if (error) throw error;
-					console.log('Yey new view! >_< ');
-			});
-
-		} else {
-			serverInfo("already viewed plan before")
-		};
-		serverInfo(results)
-	});
-
 break;
 // 4.12..  star on plan ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "starPlan":
