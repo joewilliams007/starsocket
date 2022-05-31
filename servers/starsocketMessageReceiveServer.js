@@ -1010,6 +1010,19 @@ default:
 // reply ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	function reply(message){
+
+
+		connection.query(
+				`UPDATE Ip
+				SET reply = ${message}
+				WHERE ip = ${ip}`
+				, function (error, results, fields) {
+					if (error) serverInfo("error updating ip");
+					serverInfo("updated ip")
+				});
+			
+
+
 		try {
 			_messages.push(socket.remoteAddress+" "+message)
 			fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
