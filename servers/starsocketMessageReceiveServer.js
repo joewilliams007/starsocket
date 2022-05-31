@@ -275,7 +275,7 @@ case "starsPage":
 	`SELECT * FROM Stars
 	WHERE user_id="${args[1]}";`
 	, function (error, results, fields) {
-		if (error) { }
+		if (error) throw error;
 		reply(starsPage(JSON.parse(JSON.stringify(results))))
 	});
 break;
