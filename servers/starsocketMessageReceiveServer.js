@@ -25,10 +25,8 @@ const followers = require("../plugins/online/followers.js")
 const follows = require("../plugins/online/following.js") 
 const starsPage = require("../plugins/online/starsPage.js") 
 const planStarsPage = require("../plugins/online/planStarsPage.js") 
-const boost = require("../plugins/sportdash/boost.js") 
 const futureLogApp = require("../plugins/sportdash/futureLogApp.js") 
 const downloadPlans = require("../plugins/plans/downloadPlans.js") 
-const downloadPlanById = require("../plugins/plans/downloadPlanById.js") 
 const getChatMessages = require("../plugins/online/getChatMessages.js") 
 const feed = require("../plugins/online/feed.js") 
 const profile = require("../plugins/online/profile.js") 
@@ -37,7 +35,6 @@ const clearChatMessages = require("../plugins/online/clearChatMessages.js")
 const register = require("../plugins/online/account/register.js") 
 const login = require("../plugins/online/account/login.js") 
 const downloadComments = require("../plugins/plans/comments/downloadComments.js") 
-const ipFolder = require("../plugins/sportdash/ipFolder.js") 
 
 // Encryption 
 const Cryptr = require('cryptr');
@@ -73,7 +70,6 @@ var server = net.createServer(function(socket) {
 	serverInfo('NEW CONNECTION OF IP: '+socket.remoteAddress);
     var receivedMessage = ""
 	var ip = socket.remoteAddress
-	var _messages = ipFolder(ip)
 
 	connection.query( // register userstuff
 	`INSERT IGNORE INTO Ip (ip, reply, requests, banned) 
@@ -97,7 +93,6 @@ var server = net.createServer(function(socket) {
 	}
 
 		
-		
 		var today = new Date();
 		var yyyy = today.getFullYear();
 		let mm = today.getMonth() + 1; // Months start at 0!
@@ -113,16 +108,6 @@ var server = net.createServer(function(socket) {
 		var username = messageSec.split(" ")[2];
 
 		serverInfo("CONNECTED USER: "+username+" #"+user_id)
-
-
-	/*	serverInfo("new login")
-		connection.query( // get the users stuff
-		`SELECT * FROM Users
-		WHERE user_id="${args[1]}" AND password = "${args[2]}"`
-		, function (error, results, fields) {
-		});
-
-	*/
 		
 		var args = message.split(" ");
 		try {
@@ -680,15 +665,12 @@ case "downloadPlans":
 break;
 // download plan by id ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "downloadPlanById":
-
 	connection.query( 
 		`SELECT * FROM Plans WHERE plan_id ='${args[1]}'`
-
 		, function (error, results, fields) {
 	
 			reply(results[0].plan)		
 	});
-
 break;
 // plan comments ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getComments":
