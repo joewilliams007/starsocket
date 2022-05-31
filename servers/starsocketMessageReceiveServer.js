@@ -1014,8 +1014,8 @@ default:
 
 		connection.query(
 				`UPDATE Ip
-				SET reply = ${message}
-				WHERE ip = ${ip}`
+				SET reply = "${message}"
+				WHERE ip = "${ip}"`
 				, function (error, results, fields) {
 					if (error) serverInfo("error updating ip");
 					serverInfo("updated ip")
