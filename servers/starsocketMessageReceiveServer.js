@@ -76,7 +76,7 @@ var server = net.createServer(function(socket) {
 	var _messages = ipFolder(ip)
 
 	connection.query( // register userstuff
-	`INSERT INTO Ip (ip, reply, requests, banned) 
+	`INSERT IGNORE INTO Ip (ip, reply, requests, banned) 
 	VALUES ("${ip}"," ",0,false)`
 	, function (error, results, fields) {
 		if (error) throw error;
