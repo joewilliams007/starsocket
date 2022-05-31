@@ -103,7 +103,12 @@ var server = net.createServer(function(socket) {
 
 		var messageSec = receivedMessage.toString();
 		var message = messageSec.split("§")[1];
-		var user_id = messageSec.split(" ")[0];
+		var user_id;  
+		try {
+			user_id = messageSec.split(" ")[0];
+		} catch (err) {
+			user_id = "0";
+		}
 		var password = messageSec.split(" ")[1];
 		var username = messageSec.split(" ")[2];
 
@@ -994,7 +999,8 @@ default:
 		connection.query(
 				`UPDATE Ip
 				SET reply = "${message}",
-				requests = requests + 1 
+				requests = requests + 1,
+				user_id = "${user_id}"
 				WHERE ip = "${ip}"`
 				, function (error, results, fields) {
 					if (error) serverInfo("error updating ip");
