@@ -131,6 +131,7 @@ PRIMARY KEY ( id )
 
 CREATE TABLE Ip(
 ip varchar(200),
+user_id varchar(255),
 reply MEDIUMTEXT,
 requests int,
 banned BOOLEAN,
