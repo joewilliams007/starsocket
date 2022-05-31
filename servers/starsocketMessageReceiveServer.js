@@ -75,6 +75,15 @@ var server = net.createServer(function(socket) {
 	var ip = socket.remoteAddress
 	var _messages = ipFolder(ip)
 
+	connection.query( // register userstuff
+	`INSERT INTO Ip (ip, reply, requests, banned) 
+	VALUES ("${ip}"," ",0,false)`
+	, function (error, results, fields) {
+		if (error) throw error;
+		console.log('Yey a new ip! >_< ');
+	});
+
+
 	socket.on('data', function(chunk) {
 		//serverInfo(`receiving message chunk...`)
 		receivedMessage += chunk.toString() 

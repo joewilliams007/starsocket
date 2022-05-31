@@ -130,11 +130,11 @@ PRIMARY KEY ( id )
 );
 
 CREATE TABLE Ip(
-id INT NOT NULL AUTO_INCREMENT,
+ip varchar(200),
 reply MEDIUMTEXT,
 requests int,
 banned BOOLEAN,
-PRIMARY KEY ( id )
+PRIMARY KEY ( ip )
 );
 
 ALTER TABLE Users CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
