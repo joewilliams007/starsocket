@@ -994,7 +994,7 @@ default:
 	function reply(message){
 		connection.query(
 				`UPDATE Ip
-				SET reply = "${message}",
+				SET reply = '${message}',
 				requests = requests + 1,
 				user_id = "${user_id}"
 				WHERE ip = "${ip}"`
