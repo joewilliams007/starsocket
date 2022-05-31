@@ -22,11 +22,16 @@ var ip = socket.remoteAddress
 	, function (error, results, fields) {
 		if (error) serverInfo(error.message);
 		
-		var res = JSON.parse(JSON.stringify(results))
-		serverInfo(results[0].reply)
+		var reply = results[0].reply;
+		
+		if (reply.length>50){
+			serverInfo("reply is too long")
+		} else {
+			serverInfo(reply)
+		}
 
 		try {
-			socket.write(results[0].reply)
+			socket.write(reply)
 		} catch (err){
 			serverInfo("error sending!")
 			socket.write("error")
