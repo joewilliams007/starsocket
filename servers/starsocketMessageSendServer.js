@@ -57,7 +57,7 @@ var server = net.createServer(function(socket) {
 		
 		var res = JSON.parse(JSON.stringify(results))
 
-		serverInfo(JSON.stringify(res.reply))
+		serverInfo(results[0].reply)
 
 		try {
 			socket.write(JSON.stringify(res.reply))
