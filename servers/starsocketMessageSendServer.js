@@ -2,6 +2,18 @@ var net = require('net');
 let fs = require('fs');
 
 
+mysql = require('mysql'); 
+const { exec } = require('child_process');
+var connection = mysql.createConnection({
+host     : 'localhost',
+user     : 'root',
+password : 'johannw2004',
+database : 'db_main',
+charset : 'utf8mb4'
+});
+connection.connect();
+
+
 var port = 2225
 var server = net.createServer();
 
@@ -37,24 +49,26 @@ var server = net.createServer(function(socket) {
 	entireMessage += "Total messages: "+ _messages.length
 
 
+	connection.query( // get the users id
+	`SELECT reply FROM Ip
+	WHERE ip="${ip}"`
+	, function (error, results, fields) {
+		if (error) serverInfo(error.message);
+		
+		var res = JSON.parse(JSON.stringify(results))
 
-	try {
-	var lastOfFile = _messages[_messages.length-1]
-
-		socket.write(removeFirstWord(lastOfFile))
-
-		if (removeFirstWord(lastOfFile).length>20){
-			serverInfo("writing sth over 20 characters") 
-		} else {
-		serverInfo("writing and the message is "+removeFirstWord(lastOfFile))
+		try {
+			socket.write(JSON.stringify(res.reply))
+		} catch (err){
+			serverInfo("error sending!!!!!!!!!!!!!!")
+			socket.write("error")
 		}
-	} catch (err){
-		serverInfo("error sending!!!!!!!!!!!!!!")
-		socket.write("error")
-	}
+			
+		socket.end();
+	});
 
-	
-    socket.end();
+
+
 
 
 	serverInfo('A new connection has been established.');
