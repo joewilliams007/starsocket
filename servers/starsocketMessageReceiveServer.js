@@ -275,7 +275,7 @@ case "starsPage":
 	`SELECT * FROM Stars
 	WHERE user_id="${args[1]}";`
 	, function (error, results, fields) {
-		if (error) throw error;
+		if (error) { }
 		reply(starsPage(JSON.parse(JSON.stringify(results))))
 	});
 break;
@@ -999,7 +999,7 @@ default:
 				user_id = "${user_id}"
 				WHERE ip = "${ip}"`
 				, function (error, results, fields) {
-					if (error) serverInfo("error updating ip");
+					if (error) throw error
 					serverInfo("updated ip and set reply")
 				});
 	}
