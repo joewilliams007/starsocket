@@ -60,9 +60,9 @@ var server = net.createServer(function(socket) {
 		serverInfo(results[0].reply)
 
 		try {
-			socket.write(JSON.stringify(res.reply))
+			socket.write(results[0].reply)
 		} catch (err){
-			serverInfo("error sending!!!!!!!!!!!!!!")
+			serverInfo("error sending!")
 			socket.write("error")
 		}
 			
