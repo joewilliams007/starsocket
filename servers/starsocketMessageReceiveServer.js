@@ -999,7 +999,7 @@ default:
 				user_id = "${user_id}"
 				WHERE ip = "${ip}"`
 				, function (error, results, fields) {
-					if (error) throw error
+					if (error) serverInfo(error);
 					serverInfo("updated ip and set reply")
 				});
 	}

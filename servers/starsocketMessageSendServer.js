@@ -21,22 +21,22 @@ var ip = socket.remoteAddress
 	WHERE ip="${ip}"`
 	, function (error, results, fields) {
 		if (error) serverInfo(error.message);
-		
-		var reply = results[0].reply;
-		
-		if (reply.length>50){
-			serverInfo("reply is too long")
-		} else {
-			serverInfo(reply)
-		}
-
 		try {
-			socket.write(reply)
+			var reply = results[0].reply;
+			if (reply.length>50){
+				serverInfo("reply is too long")
+			} else {
+				serverInfo(reply)
+			}
+			try {
+				socket.write(reply)
+			} catch (err){
+				serverInfo("error sending!")
+				socket.write("error")
+			}
 		} catch (err){
 			serverInfo("error sending!")
-			socket.write("error")
-		}
-			
+		}	
 		socket.end();
 	});
 
