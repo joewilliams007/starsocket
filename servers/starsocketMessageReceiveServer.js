@@ -993,8 +993,8 @@ default:
 	function reply(message){
 		connection.query(
 				`UPDATE Ip
-				SET reply = "${message}"
-				AND SET requests = requests + 1 
+				SET reply = "${message}",
+				requests = requests + 1 
 				WHERE ip = "${ip}"`
 				, function (error, results, fields) {
 					if (error) serverInfo("error updating ip");
