@@ -561,6 +561,19 @@ case "feed_fresh":
 					reply(feed("all_time",results))		
 		});
 break;
+// feed trending ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "feed_trending":
+		connection.query( // get the users stuff
+			`SELECT * FROM Plans
+			WHERE privacy=1
+			AND plan_stars>1
+			ORDER BY RAND() LIMIT 25`
+		
+				, function (error, results, fields) {
+					if (error) serverInfo(error.message);
+					reply(feed("all_time",results))		
+		});
+break;
 // feed following ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "feed_following":
 
