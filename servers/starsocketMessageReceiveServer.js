@@ -169,8 +169,8 @@ var transporter = nodemailer.createTransport({
 var mailOptions = {
   from: 'sportdash@gmail.com',
   to: `${args[3]}`,
-  subject: 'SportDash verify account',
-  text: 'Thank you for registering a StarDash Account.\n\nYour verification code is 1378'
+  subject: 'SportDash',
+  text: 'Thank you for registering a StarDash Account!'
 };
 
 transporter.sendMail(mailOptions, function(error, info){
