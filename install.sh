@@ -4,3 +4,4 @@ npm install mysql
 npm i select-random-file
 npm install replace-in-file
 npm install cryptr
+npm install nodemailer

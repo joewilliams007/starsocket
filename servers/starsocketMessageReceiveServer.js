@@ -156,6 +156,31 @@ case "register":
 // var decryptedString = cryptr.decrypt(encryptedString);
 //	console.log(decryptedString); // bacon
 
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'sportdash@gmail.com',
+    pass: 'mitoladash'
+  }
+});
+
+var mailOptions = {
+  from: 'sportdash@gmail.com',
+  to: `${args[3]}`,
+  subject: 'SportDash verify account',
+  text: 'Thank you for registering a StarDash Account.\n\nYour verification code is 1378'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
+
 		connection.query( // register userstuff
 				`INSERT INTO Users (username, password, email, account_created, xp, coins, logins, weight, age, energy, follows, followers) 
 				VALUES ("${args[1]}","${encryptedPassword}","${args[3]}","${date}",0,10,1, 0, 0, 0, 0, 0)`
