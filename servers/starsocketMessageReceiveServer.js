@@ -34,6 +34,7 @@ const searchUser = require("../plugins/online/searchUser.js")
 const clearChatMessages = require("../plugins/online/clearChatMessages.js") 
 const register = require("../plugins/online/account/register.js") 
 const login = require("../plugins/online/account/login.js") 
+const accountActivity = require("../plugins/online/account/accountActivity.js") 
 const downloadComments = require("../plugins/plans/comments/downloadComments.js") 
 
 // Encryption 
@@ -609,13 +610,18 @@ case "feed_following":
 			if (error) serverInfo(error.message);
 			reply(feed("all_time",results))		
 		});
-
-
 	});
-
-
-
-	
+break;
+// login activity ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "accountActivity":
+		connection.query( // get the users stuff
+			`SELECT * FROM Logins
+			WHERE user_id ="${user_id}"
+			ORDER BY date DESC`
+				, function (error, results, fields) {
+					if (error) serverInfo(error.message);
+					reply(accountActivity(results))		
+		});
 break;
 // 4.11 upload plans ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "upload_plans":
