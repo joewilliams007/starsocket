@@ -224,6 +224,8 @@ case "login":
 				serverInfo(cleanIp)
 
 				const iplocate = require('node-iplocate');
+
+				
 				iplocate(cleanIp).then(function(results) {
 					console.log("IP Address: " + results.ip);
 					console.log("Country: " + results.country + " (" + results.country_code + ")");
