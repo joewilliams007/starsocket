@@ -194,7 +194,12 @@ transporter.sendMail(mailOptions, function(error, info){
 					, function (error, results, fields) {
 						if (error) serverInfo(error.message);
 						reply(register(message, results))
-						detectLogin("true")
+
+						var res = JSON.parse(JSON.stringify(results))
+						var id = res[0].user_id;
+
+	
+						detectLogin("true", id)
 					});
 
 				});
@@ -214,7 +219,7 @@ case "login":
 
 			if (cryptr.decrypt(res[0].password) == args[2]) {
 				reply(login(message, results))
-				detectLogin("false")
+				detectLogin("false",args[1])
 			} else {
 				reply("WRONG")
 			}
@@ -1068,7 +1073,7 @@ default:
 
 
 
-async function detectLogin(signup) {
+async function detectLogin(signup, id) {
 
 			String.prototype.replaceAll = function(search, replacement) {
 				var target = this;
@@ -1101,7 +1106,7 @@ async function detectLogin(signup) {
 
 		connection.query(
 		`INSERT INTO Logins (ip, ip_remote, user_id, date, country, country_code, continent, city, latitude, longitude, org, asn, signup) 
-		VALUES ("${cleanIp}","${ip}",${args[1]},${dateInSec},"${country}","${country_code}","${continent}","${city}","${latitude}","${longitude}","${org}","${asn}",${signup})`
+		VALUES ("${cleanIp}","${ip}",${id},${dateInSec},"${country}","${country_code}","${continent}","${city}","${latitude}","${longitude}","${org}","${asn}",${signup})`
 		, function (error, results, fields) {
 			if (error) throw error;
 			console.log('Saved new login detected! >_< ');
