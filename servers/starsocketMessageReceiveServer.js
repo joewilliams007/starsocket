@@ -215,7 +215,7 @@ case "login":
 				reply(login(message, results))
 
 				var dateInSec = Math.floor(new Date().getTime() / 1000) // in seconds
-				var cleanIp = ip.replaceAll("f").replaceAll(":");
+				var cleanIp = ip.replace("f").replace(":");
 
 				const iplocate = require('node-iplocate');
 				iplocate(cleanIp).then(function(results) {
