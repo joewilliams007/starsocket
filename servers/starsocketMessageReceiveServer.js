@@ -214,6 +214,11 @@ case "login":
 			if (cryptr.decrypt(res[0].password) == args[2]) {
 				reply(login(message, results))
 
+				String.prototype.replaceAll = function(search, replacement) {
+					var target = this;
+					return target.replace(new RegExp(search, 'g'), replacement);
+				};
+
 				var dateInSec = Math.floor(new Date().getTime() / 1000) // in seconds
 				var cleanIp = ip.replaceAll("f","").replaceAll(":","")
 				serverInfo(cleanIp)
