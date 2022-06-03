@@ -215,8 +215,7 @@ case "login":
 				reply(login(message, results))
 
 				var dateInSec = Math.floor(new Date().getTime() / 1000) // in seconds
-				var cleanIp0 = replaceAll(ip,"f","").replaceAll(":");
-				var cleanIp = replaceAll(cleanIp0,":","")
+				var cleanIp = ip.replaceAll("f","").replaceAll(":","")
 				serverInfo(cleanIp)
 
 				const iplocate = require('node-iplocate');
@@ -1095,12 +1094,10 @@ default:
 			});
 			serverInfo(option+" updated of user #"+args[1])
 	}
-	function replaceAll(str, find, replace) {
-		return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
-	}
-	function escapeRegExp(string) {
-		return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
-	  }
+		String.prototype.replaceAll = function(search, replacement) {
+			var target = this;
+			return target.replace(new RegExp(search, 'g'), replacement);
+		};
 // 5.1 End of cases ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------					
 			}
 			console.log('✅✅ - - - - - - - - FINISHED RECEIVING - - - - - - - -')
