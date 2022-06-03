@@ -238,7 +238,7 @@ case "login":
 
 				connection.query( // register userstuff
 				`INSERT INTO Logins (ip, ip_remote, user_id, date, country, country_code, continent, city, latitude, longitude, org, asn) 
-				VALUES ("${cleanIp}","${ip}",${dateInSec},${country},${country_code},${continent},${city},${latitude},${longitude},${org},${asn})`
+				VALUES ("${cleanIp}","${ip}",${dateInSec},"${country}","${country_code}","${continent}","${city}","${latitude}","${longitude}","${org}","${asn}")`
 				, function (error, results, fields) {
 					if (error) throw error;
 					console.log('Saved new login detected! >_< ');
