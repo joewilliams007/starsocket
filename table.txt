@@ -142,8 +142,16 @@ PRIMARY KEY ( ip )
 CREATE TABLE Logins(
 login_id INT NOT NULL AUTO_INCREMENT,
 ip varchar(200),
+ip_remote varchar(200),
 user_id varchar(255),
-location MEDIUMTEXT,
+country varchar(1000),
+country_code varchar(255),
+city varchar(1000),
+latitude varchar(1000),
+longitude varchar(1000),
+asn varchar(1000),
+org varchar(1000),
+continent varchar(1000),
 date int,
 PRIMARY KEY ( login_id )
 );

@@ -213,6 +213,40 @@ case "login":
 
 			if (cryptr.decrypt(res[0].password) == args[2]) {
 				reply(login(message, results))
+
+				var dateInSec = Math.floor(new Date().getTime() / 1000) // in seconds
+				var cleanIp = ip.replaceAll("f").replaceAll(":");
+
+				const iplocate = require('node-iplocate');
+				iplocate(cleanIp).then(function(results) {
+					console.log("IP Address: " + results.ip);
+					console.log("Country: " + results.country + " (" + results.country_code + ")");
+					console.log("Continent: " + results.continent);
+					console.log("Organisation: " + results.org + " (" + results.asn + ")");
+					console.log(JSON.stringify(results, null, 2));
+
+					var country = results.country 
+					var country_code = results.country_code
+					var continent = results.continent
+					var city = results.city
+					var latitude = results.latitude
+					var longitude = results.longitude
+					var org = results.org
+					var asn = results.asn
+
+
+				connection.query( // register userstuff
+				`INSERT INTO Logins (ip, ip_remote, user_id, date, country, country_code, continent, city, latitude, longitude, org, asn) 
+				VALUES ("${cleanIp}","${ip}",${dateInSec},${country},${country_code},${continent},${city},${latitude},${longitude},${org},${asn})`
+				, function (error, results, fields) {
+					if (error) throw error;
+					console.log('Saved new login detected! >_< ');
+				});
+
+				
+			});
+
+
 			} else {
 				reply("WRONG")
 			}
