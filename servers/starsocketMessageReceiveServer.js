@@ -215,7 +215,8 @@ case "login":
 				reply(login(message, results))
 
 				var dateInSec = Math.floor(new Date().getTime() / 1000) // in seconds
-				var cleanIp = ip.replace("f").replace(":");
+				var cleanIp0 = replaceAll(ip,"f","").replaceAll(":");
+				var cleanIp = replaceAll(cleanIp0,":","")
 
 				const iplocate = require('node-iplocate');
 				iplocate(cleanIp).then(function(results) {
@@ -1092,6 +1093,9 @@ default:
 				if (error) serverInfo("error updating "+option+" of #"+args[1]);
 			});
 			serverInfo(option+" updated of user #"+args[1])
+	}
+	function replaceAll(str, find, replace) {
+		return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
 	}
 // 5.1 End of cases ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------					
 			}
