@@ -45,8 +45,8 @@ function activity(results){
            
         activity += item.ip+separator
                 +"From "+item.country+" "+item.country_code+" near "+item.city+separator
-                +item.signup+separator
                 +finalTime+separator
+                +item.signup+separator
                 +"\n"
             
 
