@@ -40,13 +40,13 @@ function activity(results){
             finalTime = time+".. second(s) ago"
         }
 
+        console.log(finalTime )
+
            
         activity += item.ip+separator
                 +"From "+item.country+" "+item.country_code+" near "+item.city+separator
                 +item.signup+separator
                 +item.finalTime+separator
-                +item.finalTime+separator
-
                 +"\n"
             
 
