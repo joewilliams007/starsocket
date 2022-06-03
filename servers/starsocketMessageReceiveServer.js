@@ -194,7 +194,7 @@ transporter.sendMail(mailOptions, function(error, info){
 					, function (error, results, fields) {
 						if (error) serverInfo(error.message);
 						reply(register(message, results))
-						detectLogin(true)
+						detectLogin("true")
 					});
 
 				});
@@ -214,7 +214,7 @@ case "login":
 
 			if (cryptr.decrypt(res[0].password) == args[2]) {
 				reply(login(message, results))
-				detectLogin(false)
+				detectLogin("false")
 			} else {
 				reply("WRONG")
 			}
@@ -1099,7 +1099,7 @@ async function detectLogin(signup) {
 			var asn = results.asn
 
 
-		connection.query( // register userstuff
+		connection.query(
 		`INSERT INTO Logins (ip, ip_remote, user_id, date, country, country_code, continent, city, latitude, longitude, org, asn, signup) 
 		VALUES ("${cleanIp}","${ip}",${args[1]},${dateInSec},"${country}","${country_code}","${continent}","${city}","${latitude}","${longitude}","${org}","${asn}",${signup})`
 		, function (error, results, fields) {
