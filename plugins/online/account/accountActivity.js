@@ -45,6 +45,8 @@ function activity(results){
                 +"From "+item.country+" "+item.country_code+" near "+item.city+separator
                 +item.signup+separator
                 +item.finalTime+separator
+                +item.finalTime+separator
+
                 +"\n"
             
 
