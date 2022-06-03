@@ -153,6 +153,7 @@ asn varchar(1000),
 org varchar(1000),
 continent varchar(1000),
 date int,
+signup BOOLEAN,
 PRIMARY KEY ( login_id )
 );
 
