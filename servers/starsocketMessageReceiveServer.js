@@ -346,6 +346,15 @@ case "follow":
 
 				, function (error, results, fields) {
 				if (error) throw error;
+
+				var dateInSec = Math.floor(new Date() / 1000) // in seconds
+				connection.query( 
+				`INSERT INTO Notifications (user_id, from_id, viewed, date, type, notification_text,plan_id,from_name) 
+				VALUES ("${targetid}", "${user_id}",false,${dateInSec},"follow"," ","-","${username}")`
+				, function (error, results, fields) {
+					if (error) throw error;
+					console.log('Yey a new notif! >_< ');
+				});
 			});
 
 			reply("follow-added")
@@ -357,6 +366,15 @@ case "follow":
 
 				, function (error, results, fields) {
 				if (error) throw error;
+
+				connection.query( 
+					`DELETE FROM Notifications 
+					WHERE from_id="${user_id}" AND user_id ="${targetid}" AND type = "follow"`
+
+					, function (error, results, fields) {
+						if (error) throw error;
+						console.log('Deleted notif! >_< ');
+					});
 			});
 		
 			serverInfo("unsubbed")
@@ -465,8 +483,6 @@ break;
 // view notification  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "viewNotification":
 	var notif_id = args[1]
-
-
 		connection.query( // get the users stuff
 				`UPDATE Notifications
 				SET viewed = 1
@@ -976,7 +992,7 @@ case "starPlan":
 
 						connection.query( 
 						`DELETE FROM Notifications 
-						WHERE from_id="${user_id}" AND plan_id ="${planid}"`
+						WHERE from_id="${user_id}" AND plan_id ="${planid}" AND type = "star"`
 
 						, function (error, results, fields) {
 							if (error) throw error;
