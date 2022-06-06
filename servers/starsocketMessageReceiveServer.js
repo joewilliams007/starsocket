@@ -116,8 +116,9 @@ var server = net.createServer(function(socket) {
 
 		serverInfo("CONNECTED USER: "+username+" #"+user_id)
 		
-		var args = message.split(" ");
+		var args; 
 		try {
+			args = message.split(" ");
 			if (args[0].length<1){
 				args[0] = "none";
 			}
