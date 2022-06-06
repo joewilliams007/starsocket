@@ -466,8 +466,9 @@ break;
 case "viewNotification":
 	var notif_id = args[1]
 
+
 		connection.query( // get the users stuff
-				`SELECT * FROM Notifications
+				`UPDATE Notifications
 				SET viewed = 1
 				WHERE notif_id = ${notif_id}`
 		
