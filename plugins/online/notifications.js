@@ -45,8 +45,8 @@ function notif(results){
                 +item.from_name+separator
                 +item.plan_id+separator
                 +item.notification_text+separator
-                +item.viewed +separator
-                +finalTime+
+                +item.viewed+separator
+                +finalTime+separator
                 +item.notif_id +separator
                 +"\n"
         }
