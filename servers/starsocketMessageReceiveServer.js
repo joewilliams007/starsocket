@@ -948,8 +948,8 @@ case "starPlan":
 
 						var dateInSec = Math.floor(new Date() / 1000) // in seconds
 						connection.query( 
-						`INSERT INTO Notifications (user_id, from_id, viewed, date, type, notification_text) 
-						VALUES ("${planid.split("-")[0]}", "${user_id}",false,${dateInSec},"star"," ")`
+						`INSERT INTO Notifications (user_id, from_id, viewed, date, type, notification_text,plan_id) 
+						VALUES ("${planid.split("-")[0]}", "${user_id}",false,${dateInSec},"star"," ","${planid}")`
 						, function (error, results, fields) {
 							if (error) throw error;
 							console.log('Yey a new notif! >_< ');
