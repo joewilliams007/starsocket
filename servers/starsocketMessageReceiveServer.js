@@ -486,7 +486,7 @@ case "notifications":
 		connection.query( // get the users stuff
 				`SELECT * FROM Notifications
 				WHERE user_id="${user_id}"
-				AND tpye = "${type}"
+				AND type = "${type}"
 				ORDER BY date DESC LIMIT 50`
 		
 				, function (error, results, fields) {
