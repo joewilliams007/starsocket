@@ -479,7 +479,7 @@ case "notifications":
 	} else if (args[1] == "comments") {
 		type = "comment"
 	} else if (args[1] == "stars") {
-		type = star
+		type = "star"
 	} 
 		
 	if (args[1] != "all") {
