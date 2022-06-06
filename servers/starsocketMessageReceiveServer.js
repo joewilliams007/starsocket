@@ -482,7 +482,7 @@ case "notifications":
 		type = star
 	} 
 		
-	if (args[1].length>0) {
+	if (args[1] != "all") {
 		connection.query( // get the users stuff
 				`SELECT * FROM Notifications
 				WHERE user_id="${user_id}"
