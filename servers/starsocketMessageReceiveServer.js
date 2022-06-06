@@ -469,7 +469,7 @@ case "viewNotification":
 		connection.query( // get the users stuff
 				`SELECT * FROM Notifications
 				SET viewed = true
-				WHERE notif_id = "${notif_id}"`
+				WHERE notif_id = ${notif_id}`
 		
 				, function (error, results, fields) {
 					if (error) serverInfo(error.message);
