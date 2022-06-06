@@ -13,21 +13,21 @@ function profile(message, results, follows, followers, stars){
         var day = Number(date[2].split("T")[0])+1
         var month = date[1]
         var year = date[0]
+        var separator = "PROFILE_OF_USER";
 
-
-        profile = args[1]+"ROFILE_OF_USER"
-        +res[0].username+"ROFILE_OF_USER"
-        +res[0].xp+"ROFILE_OF_USER"
-        +res[0].today_progress+"ROFILE_OF_USER"
-        +res[0].week_progress+"ROFILE_OF_USER"
-        +res[0].age+"ROFILE_OF_USER"
-        +res[0].weight+"ROFILE_OF_USER"
-        +">_<"+"ROFILE_OF_USER"
-        +day+"."+month+"."+year+"ROFILE_OF_USER"
-        +followers+"ROFILE_OF_USER"
-        +follows+"ROFILE_OF_USER"
-        +res[0].bio+"ROFILE_OF_USER"
-        +stars+"ROFILE_OF_USER"
+        profile = args[1]+separator
+        +res[0].username+separator
+        +res[0].xp+separator
+        +res[0].today_progress+separator
+        +res[0].week_progress+separator
+        +res[0].age+separator
+        +res[0].weight+separator
+        +">_<"+separator
+        +day+"."+month+"."+year+separator
+        +followers+separator
+        +follows+separator
+        +res[0].bio+separator
+        +stars+separator
       //  +res[0].active_style+" "
 
        

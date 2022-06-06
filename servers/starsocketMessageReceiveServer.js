@@ -266,7 +266,7 @@ connection.query( // get the users stuff
 								}
 
 								connection.query( 
-									`SELECT COUNT(*) AS RowCount FROM Stars WHERE user_id ='${user_id}'`
+									`SELECT COUNT(*) AS RowCount FROM Stars WHERE user_id ='${args[1]}'`
 				
 									, function (error, resultsStars, fields) {
 								
