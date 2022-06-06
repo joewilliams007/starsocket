@@ -54,7 +54,7 @@ function notif(results){
     } catch(err){
         notif = "err"
     }
-    console.log("notif")
+    console.log(notif)
     return notif;
 }
 module.exports = notif;
