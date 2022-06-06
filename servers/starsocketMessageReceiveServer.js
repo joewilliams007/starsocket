@@ -776,11 +776,20 @@ case "commentPlan":
 	var finalMessageChat = time+" "+date+"@"+username+" #"+userid+"@"+comment+"NEXTMESSAGEIS:;"
 
 	connection.query( 
-`INSERT INTO Comments (creator_id, creator_name, plan_id, comment, date, reports, likes) 
-VALUES ("${userid}","${username}","${planid}","${comment}","${time} ${date}",0,0)`
-, function (error, results, fields) {
-	if (error) throw error;
-});
+	`INSERT INTO Comments (creator_id, creator_name, plan_id, comment, date, reports, likes) 
+	VALUES ("${userid}","${username}","${planid}","${comment}","${time} ${date}",0,0)`
+	, function (error, results, fields) {
+		if (error) throw error;
+
+		var dateInSec = Math.floor(new Date() / 1000) // in seconds
+				connection.query( 
+				`INSERT INTO Notifications (user_id, from_id, viewed, date, type, notification_text,plan_id,from_name) 
+				VALUES ("${planid.split("-")[0]}", "${user_id}",false,${dateInSec},"comment"," ","${planid}","${username}")`
+				, function (error, results, fields) {
+					if (error) throw error;
+					console.log('Yey a new notif! >_< ');
+			});
+	});
 
 break;
 
