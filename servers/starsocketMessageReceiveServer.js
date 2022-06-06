@@ -470,15 +470,41 @@ case "deleteElement":
 break;
 // get notification inbox ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "notifications":
+
+	var type;
+	if (args[1] == "chats") {
+		type = "chat"
+	} else if (args[1] == "follows") {
+		type = "follow"
+	} else if (args[1] == "comments") {
+		type = "comment"
+	} else if (args[1] == "stars") {
+		type = star
+	} 
+		
+	if (args[1].length>0) {
 		connection.query( // get the users stuff
 				`SELECT * FROM Notifications
 				WHERE user_id="${user_id}"
+				AND tpye = "${type}"
 				ORDER BY date DESC LIMIT 50`
 		
 				, function (error, results, fields) {
 					if (error) serverInfo(error.message);
 					reply(notifications(results))		
 		});
+	} else {
+		connection.query( // get the users stuff
+		`SELECT * FROM Notifications
+		WHERE user_id="${user_id}"
+		ORDER BY date DESC LIMIT 50`
+
+		, function (error, results, fields) {
+			if (error) serverInfo(error.message);
+			reply(notifications(results))		
+});
+	}
+
 break;
 // view notification  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "viewNotification":
