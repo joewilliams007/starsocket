@@ -23,6 +23,7 @@ const leaderboard = require("../plugins/sportdash/leaderboard.js")
 const sendChatMessage = require("../plugins/online/chat.js") 
 const followers = require("../plugins/online/followers.js") 
 const follows = require("../plugins/online/following.js") 
+const notifications = require("../plugins/online/notifications.js") 
 const starsPage = require("../plugins/online/starsPage.js") 
 const planStarsPage = require("../plugins/online/planStarsPage.js") 
 const futureLogApp = require("../plugins/sportdash/futureLogApp.js") 
@@ -449,23 +450,17 @@ case "deleteElement":
 		console.log('deleted element! >_< ');
 });
 break;
-// 4.2.x get inbox ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-case "clearinbox":
-	var userid = args[1]
-	fs.unlinkSync('./users/'+userid+'/chatinbox.txt')
-	fs.appendFile('./users/'+userid+'/chatinbox.txt', '', function (err) {
-		if (err) throw err;
-		console.log('Saved!');
-	  });
-break;
-// get inbox ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-case "mychatinbox":
-	var userid = args[1]
-try {
-	var comments = fs.readFileSync("./users/"+userid+"/chatinbox.txt");
-	_messages.push(socket.remoteAddress+" "+comments)
-	fs.writeFileSync("./user_messages/"+ip+"/messages.json", JSON.stringify(_messages))
-} catch (err){}
+// get notification inbox ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "notifications":
+		connection.query( // get the users stuff
+				`SELECT * FROM Notifications
+				WHERE user_id="${user_id}"
+				ORDER BY date DESC LIMIT 50`
+		
+				, function (error, results, fields) {
+					if (error) serverInfo(error.message);
+					reply(notifications(results))		
+		});
 break;
 // 4.3 set password ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setPassword":
@@ -948,8 +943,8 @@ case "starPlan":
 
 						var dateInSec = Math.floor(new Date() / 1000) // in seconds
 						connection.query( 
-						`INSERT INTO Notifications (user_id, from_id, viewed, date, type, notification_text,plan_id) 
-						VALUES ("${planid.split("-")[0]}", "${user_id}",false,${dateInSec},"star"," ","${planid}")`
+						`INSERT INTO Notifications (user_id, from_id, viewed, date, type, notification_text,plan_id,from_name) 
+						VALUES ("${planid.split("-")[0]}", "${user_id}",false,${dateInSec},"star"," ","${planid}","${username}")`
 						, function (error, results, fields) {
 							if (error) throw error;
 							console.log('Yey a new notif! >_< ');
