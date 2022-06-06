@@ -502,7 +502,7 @@ case "notifications":
 		, function (error, results, fields) {
 			if (error) serverInfo(error.message);
 			reply(notifications(results))		
-});
+		});
 	}
 
 break;
