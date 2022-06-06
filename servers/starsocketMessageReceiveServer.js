@@ -945,6 +945,15 @@ case "starPlan":
 						if (error) throw error;
 						console.log(' ------------------ Yey new star! >_< ');
 						reply("star-added")
+
+						var dateInSec = Math.floor(new Date() / 1000) // in seconds
+						connection.query( 
+						`INSERT INTO Notifications (user_id, from_id, viewed, date, type, notification_text) 
+						VALUES ("${planid.split("-")[0]}", "${user_id}",false,${dateInSec},"star"," ")`
+						, function (error, results, fields) {
+							if (error) throw error;
+							console.log('Yey a new notif! >_< ');
+						});
 				});
 	
 			} else {
@@ -955,6 +964,15 @@ case "starPlan":
 						if (error) throw error;
 						console.log(' ------------------ Star removed! >_< ');
 						reply("star-removed")
+
+						connection.query( 
+						`DELETE FROM Notifications 
+						WHERE from_id="${user_id}" AND plan_id ="${planid}"`
+
+						, function (error, results, fields) {
+							if (error) throw error;
+							console.log('Deleted notif! >_< ');
+						});
 				}); 
 	
 			};

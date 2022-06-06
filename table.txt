@@ -157,10 +157,12 @@ signup BOOLEAN,
 PRIMARY KEY ( login_id )
 );
 
-CREATE TABLE Notifiations(
+CREATE TABLE Notifications(
 notif_id INT NOT NULL AUTO_INCREMENT,
 notification_text MEDIUMTEXT,
 user_id varchar(255),
+from_id varchar(255),
+plan_id varchar(255),
 viewed BOOLEAN,
 date int,
 type varchar(255),
@@ -178,7 +180,7 @@ ALTER TABLE Views CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 ALTER TABLE Live CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 ALTER TABLE Ip CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 ALTER TABLE Logins CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
-ALTER TABLE Notifiations CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+ALTER TABLE Notifications CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 
 login :
 
