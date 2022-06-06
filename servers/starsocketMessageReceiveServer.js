@@ -462,6 +462,19 @@ case "notifications":
 					reply(notifications(results))		
 		});
 break;
+// view notification  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "viewNotification":
+	var notif_id = args[1]
+
+		connection.query( // get the users stuff
+				`SELECT * FROM Notifications
+				WHERE notif_id="${notif_id}"
+				SET viewed=true`
+		
+				, function (error, results, fields) {
+					if (error) serverInfo(error.message);
+		});
+break;
 // 4.3 set password ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setPassword":
 	
