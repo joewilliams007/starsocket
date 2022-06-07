@@ -705,7 +705,7 @@ connection.query( // register userstuff
 `INSERT INTO Plans (plan_name, plan_description, creator_name, creator_id,plan_id, duration, category, difficulty, reports, plan_usage, plan_stars,privacy,plan_views,date,plan) 
 VALUES ("${db[2]}","${db[3]}","${db[4]}","${db[5]}","${planId}",${db[7]},"${db[8]}","${db[9]}",0,0,0,1,0,${dateInSec},"${data}")`
 , function (error, results, fields) {
-	if (error) throw error;
+	if (error) serverInfo("err");
 });
 
 	serverInfo("uploading plan "+args[2]+" of user #"+args[1])
