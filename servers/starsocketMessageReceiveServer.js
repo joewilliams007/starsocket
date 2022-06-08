@@ -450,7 +450,7 @@ case "getChat":
 				AND from_id = "${TO}"
 				OR to_id="${TO}"
 				AND from_id ="${FROM}"
-				ORDER BY date DESC LIMIT 50`
+				ORDER BY date DESC LIMIT 100`
 		
 				, function (error, results, fields) {
 					if (error) serverInfo(error.message);
