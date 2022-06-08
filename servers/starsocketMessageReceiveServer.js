@@ -608,7 +608,7 @@ case "notifications":
 				`SELECT * FROM Notifications
 				WHERE user_id="${user_id}"
 				AND type = "${type}"
-				ORDER BY date DESC LIMIT 50`
+				ORDER BY date DESC LIMIT 100`
 		
 				, function (error, results, fields) {
 					if (error) serverInfo(error.message);
@@ -618,7 +618,7 @@ case "notifications":
 		connection.query( // get the users stuff
 		`SELECT * FROM Notifications
 		WHERE user_id="${user_id}"
-		ORDER BY date DESC LIMIT 50`
+		ORDER BY date DESC LIMIT 100`
 
 		, function (error, results, fields) {
 			if (error) serverInfo(error.message);
@@ -734,7 +734,7 @@ case "all_time":
 		connection.query( // get the users stuff
 				`SELECT * FROM Plans
 				WHERE privacy=1
-				ORDER BY RAND() LIMIT 25`
+				ORDER BY RAND() LIMIT 75`
 		
 				, function (error, results, fields) {
 					if (error) serverInfo(error.message);
@@ -746,7 +746,7 @@ case "feed_fresh":
 		connection.query( // get the users stuff
 				`SELECT * FROM Plans
 				WHERE privacy=1
-				ORDER BY date DESC LIMIT 25`
+				ORDER BY date DESC LIMIT 75`
 		
 				, function (error, results, fields) {
 					if (error) serverInfo(error.message);
@@ -759,7 +759,7 @@ case "feed_trending":
 			`SELECT * FROM Plans
 			WHERE privacy=1
 			AND plan_stars>1
-			ORDER BY RAND() LIMIT 25`
+			ORDER BY RAND() LIMIT 75`
 		
 				, function (error, results, fields) {
 					if (error) serverInfo(error.message);
@@ -788,7 +788,7 @@ case "feed_following":
 		connection.query( // get the users stuff
 		`SELECT * FROM Plans
 		WHERE creator_id=${message}'5'
-		ORDER BY date DESC LIMIT 25`
+		ORDER BY date DESC LIMIT 75`
 
 		, function (error, results, fields) {
 			if (error) serverInfo(error.message);
