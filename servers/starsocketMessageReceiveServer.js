@@ -422,7 +422,7 @@ case "chat":
 	} else {
 		connection.query( 
 			`INSERT INTO Messages (to_id, from_id, from_name, text, type, viewed,edited,deleted,date) 
-			VALUES ("${TO}", "${FROM}","${FROM_NAME}",${text},"text",false,false,false,${dateInSec})`
+			VALUES ("${TO}", "${FROM}","${FROM_NAME}","${text}","text",false,false,false,${dateInSec})`
 			, function (error, results, fields) {
 				if (error) throw error;
 				console.log('Yey a new chat message! >_< ');
