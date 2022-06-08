@@ -17,26 +17,26 @@ function notif(results){
 
         if(time/60/60/24>364) {
 
-            finalTime = time/60/60/24/365+". year(s) ago"
+            finalTime = time/60/60/24/365+".#year(s) ago"
 
         } else if(time/60/60/24>30) {
 
-            finalTime = time/60/60/24/30+". month(s) ago"
+            finalTime = time/60/60/24/30+".#month(s) ago"
 
         } else if (time/60/60/24>1){
 
-            finalTime = time/60/60/24+". day(s) ago"
+            finalTime = time/60/60/24+".#day(s) ago"
 
         } else if (time/60/60>1){
 
-            finalTime = time/60/60+". hour(s) ago"
+            finalTime = time/60/60+".#hour(s) ago"
 
         } else if (time/60>1) {
 
-            finalTime = time/60+". minute(s) ago"
+            finalTime = time/60+".#minute(s) ago"
 
         } else {
-            finalTime = time+".. second(s) ago"
+            finalTime = time+".#second(s) ago"
         }
 
            
@@ -46,7 +46,7 @@ function notif(results){
                 +item.plan_id+separator
                 +item.notification_text+separator
                 +item.viewed+separator
-                +finalTime+separator
+                +finalTime.split(".")[0]+" "+finalTime.split("#")[1]+separator
                 +item.notif_id +separator
                 +"\n"
         }
