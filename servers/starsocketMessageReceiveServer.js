@@ -459,6 +459,20 @@ case "getChat":
 					reply(getChatMessages(results))		
 		});
 break;
+// delete Message ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "deleteMessage":
+
+	connection.query(
+		`UPDATE Messages
+		SET deleted = true
+		WHERE message_id = ${args[1]}
+		AND from_id = "${user_id}"
+		`
+		, function (error, results, fields) {
+			if (error) serverInfo("error updating ");
+	});
+
+break;
 // clear chat ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "clearChat":
 	clearChatMessages(message);
