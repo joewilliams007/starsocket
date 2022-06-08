@@ -442,7 +442,22 @@ case "chat":
 break;
 // get chat ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getChat":
-	reply(getChatMessages(message))
+
+	var FROM = user_id
+	var TO =  args[1]
+
+		connection.query( // get the users stuff
+				`SELECT * FROM Messages
+				WHERE to_id="${FROM}"
+				AND from_id = "${TO}"
+				OR to_id="${TO}"
+				AND from_id = "${FROM}"
+				ORDER BY date DESC LIMIT 50`
+		
+				, function (error, results, fields) {
+					if (error) serverInfo(error.message);
+					reply(getChatMessages(results))		
+		});
 break;
 // clear chat ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "clearChat":

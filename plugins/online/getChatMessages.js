@@ -1,16 +1,31 @@
 let fs = require('fs');
+function notif(results){
 
-function getChat(message){
+    var notif;
+    var res = JSON.parse(JSON.stringify(results))
+    var separator = "CHAT_DIVIDER"
 
-    var args = message.split(" ")
 
-    var userid = args[1]
-    var chatId = args[2]
-    
-    try{
-        var chat = fs.readFileSync("./chat/"+userid+"/"+chatId+".txt");
-    }catch (err){}
+    try {
+        console.log("NEW ITEM")
+        for (const item of res.values()) {  
+           
+        notif += item.message_id+separator
+                +item.text+separator
+                +item.to_id+separator
+                +item.from_id+separator
+                +item.viewed+separator
+                +item.edited+separator
+                +item.deleted+separator
+                +item.date+separator
+                +item.type+separator
+                +"NEXTTEXTMESSAGE"
+        }
 
-    return chat;
+    } catch(err){
+        notif = "err"
+    }
+    console.log(notif)
+    return notif;
 }
-module.exports = getChat;
+module.exports = notif;
