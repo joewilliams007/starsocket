@@ -421,7 +421,7 @@ case "chat":
 		serverInfo("message is too long")
 	} else {
 		connection.query( 
-			`INSERT INTO Chats (to_id, from_id, from_name, text, type, viewed,edited,deleted,date) 
+			`INSERT INTO Messages (to_id, from_id, from_name, text, type, viewed,edited,deleted,date) 
 			VALUES ("${TO}", "${FROM}","${FROM_NAME}",${text},"text",false,false,false,${dateInSec})`
 			, function (error, results, fields) {
 				if (error) throw error;
