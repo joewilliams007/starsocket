@@ -437,8 +437,6 @@ case "chat":
 		});
 	}
 	
-
-	sendChatMessage(message)
 break;
 // get chat ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "getChat":
@@ -470,6 +468,34 @@ case "deleteMessage":
 		`
 		, function (error, results, fields) {
 			if (error) serverInfo("error updating ");
+
+			var dateInSec = Math.floor(new Date() / 1000) // in seconds
+			var FROM = user_id
+			var FROM_NAME = username;
+			var TO =  args[2]
+			var text = message.split("TEXTMESSAGESP:")[1]
+		
+			if(text.length>20000) {
+				serverInfo("message is too long")
+			} else {
+				connection.query( 
+					`INSERT INTO Messages (to_id, from_id, from_name, text, type, viewed,edited,deleted,date) 
+					VALUES ("${TO}", "${FROM}","${FROM_NAME}","${text}","text",false,false,false,${dateInSec})`
+					, function (error, results, fields) {
+						if (error) throw error;
+						console.log('Yey a new chat message! >_< ');
+		
+						connection.query( 
+							`INSERT INTO Notifications (user_id, from_id, viewed, date, type, notification_text,plan_id,from_name) 
+							VALUES ("${TO}", "${FROM}",false,${dateInSec},"chat"," "," ","${username}")`
+							, function (error, results, fields) {
+								if (error) throw error;
+								console.log('Yey a new notif! >_< ');
+						});
+				});
+			}
+
+
 	});
 
 break;
