@@ -546,6 +546,18 @@ case "viewNotification":
 					if (error) serverInfo(error.message);
 		});
 break;
+// view notification chat  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "viewNotificationChat":
+	var from_id = args[1]
+		connection.query( // get the users stuff
+				`UPDATE Notifications
+				SET viewed = 1
+				WHERE from_id = ${from_id} AND user_id = ${user_id}`
+		
+				, function (error, results, fields) {
+					if (error) serverInfo(error.message);
+		});
+break;
 // 4.3 set password ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "setPassword":
 	
