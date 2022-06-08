@@ -170,6 +170,20 @@ type varchar(255),
 PRIMARY KEY ( notif_id )
 );
 
+CREATE TABLE Messages(
+message_id INT NOT NULL AUTO_INCREMENT,
+text TEXT,
+to_id varchar(255),
+from_id varchar(255),
+from_name varchar(255),
+viewed BOOLEAN,
+edited BOOLEAN,
+deleted BOOLEAN,
+date int,
+type varchar(255),
+PRIMARY KEY ( message_id )
+);
+
 
 ALTER TABLE Users CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 ALTER TABLE Elements CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
@@ -182,6 +196,7 @@ ALTER TABLE Live CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 ALTER TABLE Ip CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 ALTER TABLE Logins CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 ALTER TABLE Notifications CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+ALTER TABLE Messages CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 
 login :
 
