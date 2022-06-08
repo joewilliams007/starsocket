@@ -454,7 +454,17 @@ case "getChat":
 		
 				, function (error, results, fields) {
 					if (error) serverInfo(error.message);
-					reply(getChatMessages(results))		
+					reply(getChatMessages(results))	
+					
+					connection.query(
+						`UPDATE Messages
+						SET viewed = true
+						WHERE to_id = ${FROM}
+						AND from_id = "${TO}"
+						`
+						, function (error, results, fields) {
+							if (error) serverInfo("error updating ");			
+					});
 		});
 break;
 // delete Message ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
