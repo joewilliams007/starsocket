@@ -19,6 +19,7 @@ function notif(results){
                 +item.deleted+separator
                 +item.date+separator
                 +item.type+separator
+                +item.from_name+separator
                 +"NEXTTEXTMESSAGE"
         }
 
