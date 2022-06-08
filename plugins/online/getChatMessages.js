@@ -7,7 +7,6 @@ function notif(results){
 
 
     try {
-        console.log("NEW ITEM")
         for (const item of res.values()) {  
            
         notif += item.message_id+separator
@@ -26,7 +25,7 @@ function notif(results){
     } catch(err){
         notif = "err"
     }
-    console.log(notif)
+
     return notif;
 }
 module.exports = notif;
