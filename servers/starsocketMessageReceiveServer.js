@@ -450,7 +450,6 @@ case "getChat":
 				AND from_id = "${TO}"
 				OR to_id="${TO}"
 				AND from_id ="${FROM}"
-				AND text NOT "deletedMessage"
 				ORDER BY date DESC LIMIT 50`
 		
 				, function (error, results, fields) {
