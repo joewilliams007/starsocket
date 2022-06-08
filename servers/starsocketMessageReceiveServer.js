@@ -485,13 +485,6 @@ case "deleteMessage":
 						if (error) throw error;
 						console.log('Yey a new chat message! >_< ');
 		
-						connection.query( 
-							`INSERT INTO Notifications (user_id, from_id, viewed, date, type, notification_text,plan_id,from_name) 
-							VALUES ("${TO}", "${FROM}",false,${dateInSec},"chat"," "," ","${username}")`
-							, function (error, results, fields) {
-								if (error) throw error;
-								console.log('Yey a new notif! >_< ');
-						});
 				});
 			}
 
