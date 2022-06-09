@@ -76,7 +76,6 @@ var server = net.createServer(function(socket) {
 	VALUES ("${ip}"," ",0,false)`
 	, function (error, results, fields) {
 		if (error) throw error;
-		console.log('Yey a new ip! >_< ');
 	});
 
 
@@ -107,7 +106,7 @@ var server = net.createServer(function(socket) {
 
 		
 		if(receivedMessage.length > 0){
-			serverInfo(' \nIP '+ip+"\nSIZE "+receivedMessage.length.toString()+"\nMESSAGE "+receivedMessage+"\nUSERNAME "+username+"\nID "+user_id);
+			serverInfo('\n-------------------------\nIP '+ip+"\nSIZE "+receivedMessage.length.toString()+"\nMESSAGE "+receivedMessage+"\nUSERNAME "+username+"\nID "+user_id+"\n-------------------------\n");
 		}
 
 		var args; 
@@ -348,7 +347,6 @@ case "follow":
 				VALUES ("${targetid}", "${user_id}",false,${dateInSec},"follow"," ","-","${username}")`
 				, function (error, results, fields) {
 					if (error) throw error;
-					console.log('Yey a new notif! >_< ');
 				});
 			});
 
@@ -414,14 +412,13 @@ case "chat":
 			VALUES ("${TO}", "${FROM}","${FROM_NAME}","${text}","text",false,false,false,${dateInSec})`
 			, function (error, results, fields) {
 				if (error) throw error;
-				console.log('Yey a new chat message! >_< ');
 
 				connection.query( 
 					`INSERT INTO Notifications (user_id, from_id, viewed, date, type, notification_text,plan_id,from_name) 
 					VALUES ("${TO}", "${FROM}",false,${dateInSec},"chat"," "," ","${username}")`
 					, function (error, results, fields) {
 						if (error) throw error;
-						console.log('Yey a new notif! >_< ');
+				
 				});
 		});
 	}
@@ -482,7 +479,7 @@ case "deleteMessage":
 					VALUES ("${TO}", "${FROM}","${FROM_NAME}","${text}","text",false,false,false,${dateInSec})`
 					, function (error, results, fields) {
 						if (error) throw error;
-						console.log('Yey a new chat message! >_< ');
+			
 		
 				});
 			}
@@ -517,7 +514,6 @@ case "editMessage":
 					VALUES ("${TO}", "${FROM}","${FROM_NAME}","${text}","text",false,false,false,${dateInSec})`
 					, function (error, results, fields) {
 						if (error) throw error;
-						console.log('Yey a new chat message! >_< ');
 		
 				});
 			}
@@ -935,7 +931,7 @@ case "commentPlan":
 				VALUES ("${planid.split("-")[0]}", "${user_id}",false,${dateInSec},"comment"," ","${planid}","${username}")`
 				, function (error, results, fields) {
 					if (error) throw error;
-					console.log('Yey a new notif! >_< ');
+	
 			});
 	});
 
@@ -1134,7 +1130,6 @@ case "starPlan":
 						VALUES ("${planid.split("-")[0]}", "${user_id}",false,${dateInSec},"star"," ","${planid}","${username}")`
 						, function (error, results, fields) {
 							if (error) throw error;
-							console.log('Yey a new notif! >_< ');
 						});
 				});
 	
