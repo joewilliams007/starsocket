@@ -107,7 +107,7 @@ var server = net.createServer(function(socket) {
 
 		
 		if(receivedMessage.length > 0){
-			serverInfo('\n📩 IP '+ip+"\nSIZE "+receivedMessage.length.toString()+"\nMESSAGE "+receivedMessage+"\nUSERNAME "+username+"\nID "+user_id);
+			serverInfo(' \n📩\nIP '+ip+"\nSIZE "+receivedMessage.length.toString()+"\nMESSAGE "+receivedMessage+"\nUSERNAME "+username+"\nID "+user_id);
 		}
 
 		var args; 
@@ -1326,7 +1326,6 @@ async function detectLogin(signup, id) {
 }
 // 5.1 End of cases ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------					
 			}
-			console.log('✅✅ - - - - - - - - FINISHED RECEIVING - - - - - - - -')
 		socket.destroy()
 	});
 
@@ -1339,7 +1338,7 @@ function serverInfo(info){
 
 var d = new Date()     
 
-	console.log(d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+" >_< (receiving) " + info)
+	console.log(" \n"+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+">_< (receiving) " + info)
 }
 
 // 7 End of server ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------					

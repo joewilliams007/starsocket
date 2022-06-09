@@ -53,7 +53,7 @@ var ip = socket.remoteAddress
 
 function serverInfo(info){
 	var d = new Date()     
-	console.log(d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+" >_> (sending) " + info)
+	console.log(" \n"+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+" >_> (sending) " + info)
 }
 
 server.listen(port);
