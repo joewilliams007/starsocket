@@ -482,7 +482,7 @@ case "getChatInfo":
 		connection.query(
 
 				`SELECT COUNT(*) AS RowCount 
-				FROM Stars 
+				FROM Messages
 				WHERE to_id="${FROM}"
 				AND from_id = "${TO}"
 				AND deleted = false`
@@ -493,7 +493,7 @@ case "getChatInfo":
 					connection.query(
 
 						`SELECT COUNT(*) AS RowCount 
-						FROM Stars 
+						FROM Messages
 						WHERE to_id="${TO}"
 						AND from_id = "${FROM}"
 						AND deleted = false`
