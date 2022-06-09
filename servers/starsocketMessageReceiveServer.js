@@ -107,7 +107,7 @@ var server = net.createServer(function(socket) {
 
 		
 		if(receivedMessage.length > 0){
-			serverInfo(' \n📩\nIP '+ip+"\nSIZE "+receivedMessage.length.toString()+"\nMESSAGE "+receivedMessage+"\nUSERNAME "+username+"\nID "+user_id);
+			serverInfo(' \nIP '+ip+"\nSIZE "+receivedMessage.length.toString()+"\nMESSAGE "+receivedMessage+"\nUSERNAME "+username+"\nID "+user_id);
 		}
 
 		var args; 
