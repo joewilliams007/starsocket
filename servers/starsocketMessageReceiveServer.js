@@ -68,8 +68,6 @@ var server = net.createServer();
 // StartServer ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var server = net.createServer(function(socket) {
 
-	console.log('✅ - - - - - - - -  RECEIVING DATA FROM CLIENT - - - - - - - -')
-	serverInfo('NEW CONNECTION OF IP: '+socket.remoteAddress);
     var receivedMessage = ""
 	var ip = socket.remoteAddress
 
@@ -88,13 +86,6 @@ var server = net.createServer(function(socket) {
 	});
 	
 	socket.on('end', function() {
-		serverInfo("SIZE OF MEESAGE: " + receivedMessage.length.toString()+" characters")
-	if(receivedMessage.length > 0){
-		serverInfo("RECEIVED MESSAGE: " + receivedMessage)
-			
-	}
-
-		
 		var today = new Date();
 		var yyyy = today.getFullYear();
 		let mm = today.getMonth() + 1; // Months start at 0!
@@ -114,8 +105,11 @@ var server = net.createServer(function(socket) {
 		var password = messageSec.split(" ")[1];
 		var username = messageSec.split(" ")[2];
 
-		serverInfo("CONNECTED USER: "+username+" #"+user_id)
 		
+		if(receivedMessage.length > 0){
+			serverInfo('\n📩 IP '+ip+"\nSIZE "+receivedMessage.length.toString()+"\nMESSAGE "+receivedMessage+"\nUSERNAME "+username+"\nID "+user_id);
+		}
+
 		var args; 
 		try {
 			args = message.split(" ");
