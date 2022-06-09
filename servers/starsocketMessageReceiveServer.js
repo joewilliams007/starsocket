@@ -402,25 +402,46 @@ case "chat":
 	var FROM = user_id
 	var FROM_NAME = username;
 	var TO =  args[1]
+	var isReply = args[2]
 	var text = message.split("TEXTMESSAGESP:")[1]
 
 	if(text.length>20000) {
 		serverInfo("message is too long")
 	} else {
-		connection.query( 
+
+		if (isReply=="reply") {
+			var reply =  message.split("TEXTMESSAGESP:")[2]
+
+			connection.query( 
+				`INSERT INTO Messages (to_id, from_id, from_name, text, type, viewed,edited,deleted,date) 
+				VALUES ("${TO}", "${FROM}","${FROM_NAME}","${reply+"TEXT="+text}","reply",false,false,false,${dateInSec})`
+				, function (error, results, fields) {
+				if (error) throw error;
+	
+					connection.query( 
+						`INSERT INTO Notifications (user_id, from_id, viewed, date, type, notification_text,plan_id,from_name) 
+						VALUES ("${TO}", "${FROM}",false,${dateInSec},"chat","has replied to your message"," ","${username}")`
+						, function (error, results, fields) {
+							if (error) throw error;
+					
+					});
+				});	
+		} else {
+			connection.query( 
 			`INSERT INTO Messages (to_id, from_id, from_name, text, type, viewed,edited,deleted,date) 
 			VALUES ("${TO}", "${FROM}","${FROM_NAME}","${text}","text",false,false,false,${dateInSec})`
 			, function (error, results, fields) {
-				if (error) throw error;
+			if (error) throw error;
 
 				connection.query( 
 					`INSERT INTO Notifications (user_id, from_id, viewed, date, type, notification_text,plan_id,from_name) 
-					VALUES ("${TO}", "${FROM}",false,${dateInSec},"chat"," "," ","${username}")`
+					VALUES ("${TO}", "${FROM}",false,${dateInSec},"chat","has sent you a text message"," ","${username}")`
 					, function (error, results, fields) {
 						if (error) throw error;
 				
 				});
-		});
+			});	
+		}
 	}
 	
 break;
