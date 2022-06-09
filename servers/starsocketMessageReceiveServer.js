@@ -391,14 +391,9 @@ case "checkFollow":
 	, function (error, results, fields) {
 		if (error) { }
 		if (JSON.parse(JSON.stringify(results))[0]==undefined) { 
-
 			reply("not following")
-			serverInfo("following = false")
 		} else {
-		
 			reply("true")
-			serverInfo("following = true")
-			
 		};
 	});	
 

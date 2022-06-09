@@ -9,7 +9,6 @@ function notif(results){
     var dateInSec = Math.floor(new Date().getTime() / 1000) // in seconds
 
     try {
-        console.log("NEW ITEM")
         for (const item of res.values()) {  
 
         var finalTime;
