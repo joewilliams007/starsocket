@@ -474,6 +474,41 @@ case "getChat":
 					});
 		});
 break;
+// get chat ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "getChatInfo":
+	var FROM = user_id
+	var TO =  args[1]
+
+		connection.query(
+
+				`SELECT COUNT(*) AS RowCount 
+				FROM Stars 
+				WHERE to_id="${FROM}"
+				AND from_id = "${TO}"
+				AND deleted = false`
+		
+				, function (error, results1, fields) {
+					if (error) serverInfo(error.message);
+
+					connection.query(
+
+						`SELECT COUNT(*) AS RowCount 
+						FROM Stars 
+						WHERE to_id="${TO}"
+						AND from_id = "${FROM}"
+						AND deleted = false`
+				
+						, function (error, results2, fields) {
+							if (error) serverInfo(error.message);
+
+							total = Number(results1[0].RowCount)+Number(results2[0].RowCount)
+							reply(total+" "+results1[0].RowCount+" "+results2[0].RowCount)
+				});
+		});
+
+
+	
+break;
 // delete Message ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "deleteMessage":
 
