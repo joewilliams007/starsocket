@@ -57,4 +57,4 @@ function serverInfo(info){
 }
 
 server.listen(port);
-serverInfo("Started server on port: " + port)
+serverInfo("\nStarted server on port: " + port+"\”")
