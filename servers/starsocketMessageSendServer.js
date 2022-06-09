@@ -24,9 +24,9 @@ var ip = socket.remoteAddress
 		try {
 			var reply = results[0].reply;
 			if (reply.length>50){
-				serverInfo("reply is too long")
+			//	serverInfo("reply is too long")
 			} else {
-				serverInfo(reply)
+			//	serverInfo(reply)
 			}
 			try {
 				socket.write(reply)
