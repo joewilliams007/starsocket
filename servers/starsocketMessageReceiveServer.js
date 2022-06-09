@@ -1337,7 +1337,7 @@ function serverInfo(info){
 
 var d = new Date()     
 
-	console.log(" \n"+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+">_< (receiving) " + info)
+	console.log(" \n"+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+" >_< (receiving) " + info)
 }
 
 // 7 End of server ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------					
