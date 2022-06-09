@@ -485,7 +485,8 @@ case "getChatInfo":
 				FROM Messages
 				WHERE to_id="${FROM}"
 				AND from_id = "${TO}"
-				AND deleted = false`
+				AND deleted = false
+				AND edited = false`
 		
 				, function (error, results1, fields) {
 					if (error) serverInfo(error.message);
@@ -496,7 +497,8 @@ case "getChatInfo":
 						FROM Messages
 						WHERE to_id="${TO}"
 						AND from_id = "${FROM}"
-						AND deleted = false`
+						AND deleted = false
+						AND edited = false`
 				
 						, function (error, results2, fields) {
 							if (error) serverInfo(error.message);
@@ -567,7 +569,7 @@ case "editMessage":
 			} else {
 				connection.query( 
 					`INSERT INTO Messages (to_id, from_id, from_name, text, type, viewed,edited,deleted,date) 
-					VALUES ("${TO}", "${FROM}","${FROM_NAME}","${text}","text",false,false,1,${dateInSec})`
+					VALUES ("${TO}", "${FROM}","${FROM_NAME}","${text}","text",false,false,false,${dateInSec})`
 					, function (error, results, fields) {
 						if (error) throw error;
 		
