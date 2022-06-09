@@ -410,11 +410,11 @@ case "chat":
 	} else {
 
 		if (isReply=="reply") {
-			var reply =  message.split("TEXTMESSAGESP:")[2]
+			var replyText =  message.split("TEXTMESSAGESP:")[2]
 
 			connection.query( 
 				`INSERT INTO Messages (to_id, from_id, from_name, text, type, viewed,edited,deleted,date) 
-				VALUES ("${TO}", "${FROM}","${FROM_NAME}","${reply+"TEXT="+text}","reply",false,false,false,${dateInSec})`
+				VALUES ("${TO}", "${FROM}","${FROM_NAME}","${replyText+"TEXT="+text}","reply",false,false,false,${dateInSec})`
 				, function (error, results, fields) {
 				if (error) throw error;
 	
