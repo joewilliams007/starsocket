@@ -1,6 +1,6 @@
 let fs = require('fs');
 
-function profile(message, results, follows, followers, stars){
+function profile(message, results, follows, followers, stars,plans){
 
     var args = message.split(" ") 
     var profile;
@@ -28,6 +28,7 @@ function profile(message, results, follows, followers, stars){
         +follows+separator
         +res[0].bio+separator
         +stars+separator
+        +plans+separator
       //  +res[0].active_style+" "
 
        

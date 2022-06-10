@@ -266,7 +266,14 @@ connection.query( // get the users stuff
 									, function (error, resultsStars, fields) {
 								
 									
-										reply(profile(message, results, f1, f2, resultsStars[0].RowCount))		
+										connection.query( 
+											`SELECT COUNT(*) AS RowCount FROM Plans WHERE creator_id ='${args[1]}'`
+						
+											, function (error, resultsPlans, fields) {
+										
+											
+												reply(profile(message, results, f1, f2, resultsStars[0].RowCount, resultsPlans[0].RowCount))		
+										});	
 								});
 				});	
 			});
