@@ -307,6 +307,17 @@ case "starsPage":
 		reply(starsPage(JSON.parse(JSON.stringify(results))))
 	});
 break;
+// starsPage ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+case "plansPage":
+
+	connection.query( // get the users stuff
+	`SELECT * FROM Plans
+	WHERE creator_id="${args[1]}";`
+	, function (error, results, fields) {
+		if (error) { }
+		reply(starsPage(JSON.parse(JSON.stringify(results))))
+	});
+break;
 // planStarsPage ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 case "plansStarsPage":
 
