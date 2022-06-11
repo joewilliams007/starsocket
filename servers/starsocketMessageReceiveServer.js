@@ -150,7 +150,7 @@ case "register":
 	var encryptedPassword = cryptr.encrypt(args[2]);
 	
 // var decryptedString = cryptr.decrypt(encryptedString);
-//	console.log(decryptedString); // bacon
+/*	console.log(decryptedString); // bacon
 
 var nodemailer = require('nodemailer');
 
@@ -175,7 +175,7 @@ transporter.sendMail(mailOptions, function(error, info){
   } else {
     console.log('Email sent: ' + info.response);
   }
-});
+}); */
 
 		connection.query( // register userstuff
 				`INSERT INTO Users (username, password, email, account_created, xp, coins, logins, weight, age, energy, follows, followers) 
